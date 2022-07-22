@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "710259264384",
+    "project_id": "hotelmotel-66527",
+    "storage_bucket": "hotelmotel-66527.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:710259264384:android:12081121d421f61cabcf65",
+        "android_client_info": {
+          "package_name": "pl.makjac.hotel_motel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "710259264384-k81uek324n8e9ifo7jvfkr96eftretcq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYcHj1LWgucVQNzP_0M_nxn9jmzb_d6Qo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "710259264384-k81uek324n8e9ifo7jvfkr96eftretcq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
