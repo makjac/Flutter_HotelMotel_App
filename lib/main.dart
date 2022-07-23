@@ -21,6 +21,7 @@ class _HotelMotelAppState extends State<HotelMotelApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: "HotelMotel",
       theme: ThemeData.dark(),
       home: Scaffold(
         appBar: AppBar(
