@@ -53,4 +53,23 @@ class AuthRepository {
       throw Exception(e.toString());
     }
   }
+
+  Future<void> sendVerificationEmail() async {
+    //TODO
+  }
+
+  Future<void> resetPasswd({required String email}) async {
+    try {
+      _firebaseAuth.sendPasswordResetEmail(email: email);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == "auth/invalid-email") {
+        throw Exception("The email address is not valid");
+      }
+      if (e.code == "auth/user-not-found") {
+        throw Exception("There is no user corresponding to the email address");
+      }
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
 }

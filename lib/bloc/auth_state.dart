@@ -8,7 +8,11 @@ class AuthInitial extends AuthState {}
 
 class Processing extends AuthState {}
 
-class Authenticated extends AuthState {}
+class LoggedIn extends AuthState {}
+
+class VerificationEmailSend extends AuthState {}
+
+class ResetPasswdEmailSend extends AuthState {}
 
 class Error extends AuthState {
   final String error;
