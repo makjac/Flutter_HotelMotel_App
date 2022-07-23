@@ -5,5 +5,3 @@ class AppRoute {
   static const String LOGIN_ROUTE = "/login";
   static const String REGISTER_ROUTE = "/register";
 }
-
-Class AppAssets{}
