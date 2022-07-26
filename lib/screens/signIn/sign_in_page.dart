@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hotel_motel/widgets/clippers/auth_bottom_clipper.dart';
-import 'package:hotel_motel/widgets/clippers/auth_top_clipper.dart';
+import 'package:hotel_motel/screens/signIn/sign_in_form.dart';
+import 'package:hotel_motel/widgets/decorations/auth_screen_shapes.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({Key? key}) : super(key: key);
@@ -12,70 +12,16 @@ class SignInPage extends StatefulWidget {
 class _SignInPageState extends State<SignInPage> {
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-
-    return Scaffold(
+      return Scaffold(
       body: Scaffold(
-        backgroundColor: const Color.fromARGB(255, 255, 243, 215),
-        body: Stack(
-          children: [
-            Positioned(
-              top: 0,
-              left: 0,
-              child: ClipPath(
-                clipper: TopAuthClipper(),
-                child: Container(
-                  height: 310,
-                  width: width,
-                  decoration: const BoxDecoration(
-                      color: Color.fromARGB(100, 231, 139, 0)),
-                ),
-              ),
-            ),
-            Positioned(
-              top: 0,
-              left: 0,
-              child: ClipPath(
-                clipper: TopAuthClipper(),
-                child: Container(
-                  height: 250,
-                  width: width,
-                  decoration: const BoxDecoration(
-                      color: Color.fromARGB(255, 231, 139, 0)),
-                ),
-              ),
-            ),
-            const Center(
-              child: Text("hello"),
-            ),
-            Positioned(
-              bottom: 0,
-              right: 0,
-              child: ClipPath(
-                clipper: BottomAuthClipper(),
-                child: Container(
-                  height: 250,
-                  width: width,
-                  decoration: const BoxDecoration(
-                      color: Color.fromARGB(255, 210, 126, 0)),
-                ),
-              ),
-            ),
-            Positioned(
-              bottom: 0,
-              right: 0,
-              child: ClipPath(
-                clipper: BottomAuthClipper(),
-                child: Container(
-                  height: 320,
-                  width: width,
-                  decoration: const BoxDecoration(
-                      color: Color.fromARGB(100, 210, 126, 0)),
-                ),
-              ),
-            ),
-          ],
+        appBar: AppBar(
+          title: const Text("Sign In"),
+          centerTitle: true,
+          backgroundColor: const Color.fromARGB(255, 231, 139, 0),
+          shadowColor: Colors.transparent,
         ),
+        backgroundColor: const Color.fromARGB(255, 255, 243, 215),
+        body: const AuthScreenShapes(child: Center(child: SignInForm(),),),
       ),
     );
   }
