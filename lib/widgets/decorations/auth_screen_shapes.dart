@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hotel_motel/theme/design_system.dart';
 import 'package:hotel_motel/widgets/clippers/auth_bottom_clipper.dart';
 import 'package:hotel_motel/widgets/clippers/auth_top_clipper.dart';
 
@@ -13,6 +14,7 @@ class AuthScreenShapes extends StatelessWidget {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     return Stack(
+      alignment: Alignment.center,
       children: [
         Positioned(
           top: 0,
@@ -23,7 +25,7 @@ class AuthScreenShapes extends StatelessWidget {
               height: 310,
               width: width,
               decoration: const BoxDecoration(
-                  color: Color.fromARGB(100, 231, 139, 0)),
+                  color: InsetsColors.authShapeShadowColor),
             ),
           ),
         ),
@@ -36,7 +38,7 @@ class AuthScreenShapes extends StatelessWidget {
               height: 250,
               width: width,
               decoration: const BoxDecoration(
-                  color: Color.fromARGB(255, 231, 139, 0)),
+                  color: InsetsColors.authShapeMainColor),
             ),
           ),
         ),
@@ -49,7 +51,7 @@ class AuthScreenShapes extends StatelessWidget {
               height: 250,
               width: width,
               decoration: const BoxDecoration(
-                  color: Color.fromARGB(255, 210, 126, 0)),
+                  color: InsetsColors.authShapeMainColor),
             ),
           ),
         ),
@@ -62,7 +64,7 @@ class AuthScreenShapes extends StatelessWidget {
               height: 320,
               width: width,
               decoration: const BoxDecoration(
-                  color: Color.fromARGB(100, 210, 126, 0)),
+                  color: InsetsColors.authShapeShadowColor),
             ),
           ),
         ),
