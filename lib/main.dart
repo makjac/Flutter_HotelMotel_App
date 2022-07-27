@@ -1,7 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hotel_motel/firebase_options.dart';
+import 'package:hotel_motel/screens/forgot_password/forgot_password_page.dart';
 import 'package:hotel_motel/screens/signIn/sign_in_page.dart';
+import 'package:hotel_motel/screens/signUp/sign_up_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,7 +25,7 @@ class _HotelMotelAppState extends State<HotelMotelApp> {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: "HotelMotel",
-      home: SignInPage(),
+      home: ForgotPasswordPage(),
     );
   }
 }
