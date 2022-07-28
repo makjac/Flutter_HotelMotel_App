@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hotel_motel/theme/design_system.dart';
 import 'package:hotel_motel/widgets/TextFormFields/email_text_field.dart';
 import 'package:hotel_motel/widgets/TextFormFields/password_text_field.dart';
+import 'package:hotel_motel/widgets/TextFormFields/repeat_password_text_field.dart';
 
 class SignUpForm extends StatelessWidget {
   const SignUpForm({Key? key}) : super(key: key);
@@ -21,7 +22,7 @@ class SignUpForm extends StatelessWidget {
           const SizedBox(height: Insets.s),
           PasswordTextField(passwordController: passwordController),
           const SizedBox(height: Insets.s),
-          PasswordTextField(passwordController: repeatPasswordController),
+          RepeatPasswordTextField(repeatPasswordController: repeatPasswordController),
           const SizedBox(height: Insets.s),
           ElevatedButton(
             onPressed: () {},

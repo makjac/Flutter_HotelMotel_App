@@ -1,15 +1,30 @@
 // ignore_for_file: depend_on_referenced_packages
+import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
+import 'package:hotel_motel/data/repository/auth_repository.dart';
+
 part 'auth_event.dart';
+
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  AuthBloc() : super(AuthInitial()) {
-    on<AuthEvent>((event, emit) {
-      // TODO: implement event handler
-    });
+  final AuthRepository repository;
+
+  AuthBloc({required this.repository}) : super(AuthInitial()) {
+    on<SignInRequest>(_signIn);
   }
-}
+
+  FutureOr<void> _signIn(SignInRequest event, Emitter<AuthState> emit) async {
+    try{
+      emit(Processing());
+      repository.signIn(email: event.email, passwd: event.passwd);
+      emit(LoggedIn());
+    }catch(e) {
+      emit(Error(error: e.toString()));
+    }
+    }
+  }
+

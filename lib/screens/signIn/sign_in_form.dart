@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hotel_motel/bloc/auth_bloc.dart';
 import 'package:hotel_motel/theme/design_system.dart';
 import 'package:hotel_motel/widgets/TextFormFields/email_text_field.dart';
 import 'package:hotel_motel/widgets/TextFormFields/password_text_field.dart';
@@ -12,6 +14,11 @@ class SignInForm extends StatelessWidget {
     final passwordController = TextEditingController();
     final _formKey = GlobalKey<FormState>();
 
+    void _onSignIn(String email, String password) {
+      BlocProvider.of<AuthBloc>(context)
+          .add(SignInRequest(email: email, passwd: password));
+    }
+
     return Form(
       key: _formKey,
       child: Column(
@@ -21,16 +28,25 @@ class SignInForm extends StatelessWidget {
           PasswordTextField(passwordController: passwordController),
           const SizedBox(height: Insets.s),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () =>
+                _onSignIn(emailController.text, passwordController.text),
             style: ElevatedButton.styleFrom(
               primary: InsetsColors.eButBackgroundColor,
               fixedSize: const Size(200, 40),
             ),
-            child: const Text(
-              "Sign in",
-              style: TextStyle(
-                color: InsetsColors.eButTextColor,
-              ),
+            child: BlocBuilder<AuthBloc, AuthState>(
+              builder: (context, state) {
+                if (state is Processing) {
+                  return const CircularProgressIndicator();
+                } else {
+                  return const Text(
+                    "Sign in",
+                    style: TextStyle(
+                      color: InsetsColors.eButTextColor,
+                    ),
+                  );
+                }
+              },
             ),
           ),
         ],
