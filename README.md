@@ -14,3 +14,7 @@ It will be a copy of the booking.com website.
  - Bloc
  - firebase_core
  - firebase_auth
+
+## Screenshots
+
+![screenshot_1](https://i.imgur.com/0GWncaA.png)
