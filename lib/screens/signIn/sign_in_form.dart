@@ -15,8 +15,10 @@ class SignInForm extends StatelessWidget {
     final _formKey = GlobalKey<FormState>();
 
     void _onSignIn(String email, String password) {
-      BlocProvider.of<AuthBloc>(context)
-          .add(SignInRequest(email: email, passwd: password));
+      if (_formKey.currentState!.validate()) {
+        BlocProvider.of<AuthBloc>(context)
+            .add(SignInRequest(email: email, passwd: password));
+      }
     }
 
     return Form(
@@ -35,9 +37,11 @@ class SignInForm extends StatelessWidget {
               fixedSize: const Size(200, 40),
             ),
             child: BlocBuilder<AuthBloc, AuthState>(
-              builder: (context, state) {
+              builder: (ctx, state) {
                 if (state is Processing) {
-                  return const CircularProgressIndicator();
+                  return const CircularProgressIndicator(
+                    color: InsetsColors.cpiColor,
+                  );
                 } else {
                   return const Text(
                     "Sign in",

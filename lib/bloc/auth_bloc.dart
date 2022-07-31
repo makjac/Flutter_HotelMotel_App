@@ -18,13 +18,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   FutureOr<void> _signIn(SignInRequest event, Emitter<AuthState> emit) async {
-    try{
+    try {
       emit(Processing());
       await repository.signIn(email: event.email, passwd: event.passwd);
       emit(LoggedIn());
-    }catch(e) {
-      emit(Error(error: e.toString()));
-    }
+    } catch (e) {
+      emit(AuthError(error: e.toString()));
     }
   }
-
+}

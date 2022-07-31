@@ -28,14 +28,15 @@ class AuthRepository {
       await _firebaseAuth.signInWithEmailAndPassword(
           email: email, password: passwd);
     } on FirebaseAuthException catch (e) {
-      if (e.code == "user-not-found") {
-        throw Exception("There is no user corresponding to the given email");
-      }
-      if (e.code == "wrong-password") {
-        throw Exception("the password is invalid");
-      }
-      if (e.code == "user-disabled") {
-        throw Exception("the user has been disabled");
+      switch (e.code) {
+        case "user-not-found":
+          throw Exception("There is no user corresponding to the given email");
+        case "wrong-password":
+          throw Exception("the password is invalid");
+        case "user-disabled":
+          throw Exception("the user has been disabled");
+        default:
+          throw Exception(e.toString());
       }
     } catch (e) {
       throw Exception(e.toString());

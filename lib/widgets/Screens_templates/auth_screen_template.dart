@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:hotel_motel/screens/signIn/sign_in_form.dart';
 import 'package:hotel_motel/theme/design_system.dart';
 import 'package:hotel_motel/widgets/decorations/auth_screen_shapes.dart';
 
 class AuthScreenTemplate extends StatelessWidget {
   final String header;
   final Widget form;
+  final Widget? footer;
 
-  const AuthScreenTemplate({required this.header, required this.form, Key? key})
+  const AuthScreenTemplate(
+      {required this.header, required this.form, this.footer, Key? key})
       : super(key: key);
+
+  bool _shouldShowFooter() => footer != null;
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +52,7 @@ class AuthScreenTemplate extends StatelessWidget {
                   child: form,
                 ),
               ),
+              _shouldShowFooter() ? footer! : Container(),
             ],
           ),
         ),

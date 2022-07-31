@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hotel_motel/bloc/auth_bloc.dart';
+import 'package:hotel_motel/constans/route_name_constans.dart';
+import 'package:hotel_motel/data/repository/auth_repository.dart';
+import 'package:hotel_motel/screens/signUp/Sign_up_footer.dart';
 import 'package:hotel_motel/screens/signUp/sign_up_form.dart';
 import 'package:hotel_motel/theme/design_system.dart';
 import 'package:hotel_motel/widgets/Screens_templates/auth_screen_template.dart';
@@ -11,11 +16,38 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+  late AuthBloc _authBloc;
+
+  @override
+  void initState() {
+    super.initState();
+    _authBloc = AuthBloc(repository: AuthRepository());
+  }
+
+  @override
+  void deactivate() {
+    _authBloc.close();
+    super.deactivate();
+  }
+
+  @override
+  void dispose() {
+    _authBloc.close();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: InsetsColors.backgroundColor,
-      body: AuthScreenTemplate(header: "Sign up", form: SignUpForm()),
+    return BlocProvider(
+      create: (context) => _authBloc,
+      child: Scaffold(
+        backgroundColor: InsetsColors.backgroundColor,
+        body: BlocListener<AuthBloc, AuthState>(
+          listener: (ctx, state) {},
+          child: const AuthScreenTemplate(
+              header: "Sign Up", form: SignUpForm(), footer: SignUpFooter()),
+        ),
+      ),
     );
   }
 }

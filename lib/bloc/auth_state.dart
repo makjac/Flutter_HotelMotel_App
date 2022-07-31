@@ -14,9 +14,10 @@ class VerificationEmailSend extends AuthState {}
 
 class ResetPasswdEmailSend extends AuthState {}
 
-class Error extends AuthState {
+class AuthError extends AuthState {
   final String error;
-  Error({
+
+  AuthError({
     required this.error,
   });
 }
