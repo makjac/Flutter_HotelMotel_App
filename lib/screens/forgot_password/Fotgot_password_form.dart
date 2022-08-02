@@ -1,16 +1,25 @@
 // ignore_for_file: no_leading_underscores_for_local_identifiers
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hotel_motel/bloc/auth_bloc.dart';
 import 'package:hotel_motel/theme/design_system.dart';
 import 'package:hotel_motel/widgets/TextFormFields/email_text_field.dart';
 
 class ForgotPasswordForm extends StatelessWidget {
-  const ForgotPasswordForm({Key? key}) : super(key: key);
+  final emailController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+
+  ForgotPasswordForm({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final emailController = TextEditingController();
-    final _formKey = GlobalKey<FormState>();
+    void _onSignIn(String email) {
+      if (_formKey.currentState!.validate()) {
+        BlocProvider.of<AuthBloc>(context)
+            .add(ForgotPasswdRequest(email: email));
+      }
+    }
 
     return Form(
       key: _formKey,
@@ -19,7 +28,7 @@ class ForgotPasswordForm extends StatelessWidget {
           EmailTextField(emailController: emailController),
           const SizedBox(height: Insets.s),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () => _onSignIn(emailController.text),
             style: ElevatedButton.styleFrom(
               primary: InsetsColors.eButBackgroundColor,
               fixedSize: const Size(200, 40),
