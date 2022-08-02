@@ -4,11 +4,19 @@ import 'package:hotel_motel/theme/design_system.dart';
 class RepeatPasswordTextField extends StatelessWidget {
   final TextEditingController repeatPasswordController;
 
-  const RepeatPasswordTextField({required this.repeatPasswordController, Key? key}) : super(key: key);
+  const RepeatPasswordTextField(
+      {required this.repeatPasswordController, Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      validator: (value) {
+        if (value == "") {
+          return "The field is empty";
+        }
+        return null;
+      },
       controller: repeatPasswordController,
       obscureText: true,
       decoration: const InputDecoration(

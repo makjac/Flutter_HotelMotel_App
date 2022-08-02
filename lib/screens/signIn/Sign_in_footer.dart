@@ -14,10 +14,10 @@ class SignInFooter extends StatelessWidget {
         TextButton(
           onPressed: () =>
               Navigator.pushNamed(context, AppRoute.REGISTER_ROUTE),
-          child: const Text("Sign Up"),
           style: TextButton.styleFrom(
             primary: InsetsColors.tButColor,
           ),
+          child: const Text("Sign Up"),
         ),
       ],
     );

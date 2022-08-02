@@ -10,6 +10,8 @@ class Processing extends AuthState {}
 
 class LoggedIn extends AuthState {}
 
+class Authorized extends AuthState {}
+
 class VerificationEmailSend extends AuthState {}
 
 class ResetPasswdEmailSend extends AuthState {}

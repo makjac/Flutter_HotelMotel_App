@@ -15,13 +15,25 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   AuthBloc({required this.repository}) : super(AuthInitial()) {
     on<SignInRequest>(_signIn);
+    on<SignUpRequest>(_signUp);
   }
 
   FutureOr<void> _signIn(SignInRequest event, Emitter<AuthState> emit) async {
     try {
       emit(Processing());
+
       await repository.signIn(email: event.email, passwd: event.passwd);
       emit(LoggedIn());
+    } catch (e) {
+      emit(AuthError(error: e.toString()));
+    }
+  }
+
+  FutureOr<void> _signUp(SignUpRequest event, Emitter<AuthState> emit) async {
+    try {
+      emit(Processing());
+      await repository.signUp(email: event.email, passwd: event.passwd);
+      emit(Authorized());
     } catch (e) {
       emit(AuthError(error: e.toString()));
     }

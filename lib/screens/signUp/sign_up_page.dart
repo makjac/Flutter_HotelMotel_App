@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hotel_motel/bloc/auth_bloc.dart';
 import 'package:hotel_motel/constans/route_name_constans.dart';
 import 'package:hotel_motel/data/repository/auth_repository.dart';
-import 'package:hotel_motel/screens/signUp/Sign_up_footer.dart';
+import 'package:hotel_motel/screens/signUp/sign_up_footer.dart';
 import 'package:hotel_motel/screens/signUp/sign_up_form.dart';
 import 'package:hotel_motel/theme/design_system.dart';
 import 'package:hotel_motel/widgets/Screens_templates/auth_screen_template.dart';
@@ -43,9 +43,21 @@ class _SignUpPageState extends State<SignUpPage> {
       child: Scaffold(
         backgroundColor: InsetsColors.backgroundColor,
         body: BlocListener<AuthBloc, AuthState>(
-          listener: (ctx, state) {},
-          child: const AuthScreenTemplate(
-              header: "Sign Up", form: SignUpForm(), footer: SignUpFooter()),
+          listener: (ctx, state) {
+            if (state is Authorized) {
+              Navigator.pushNamedAndRemoveUntil(
+                  context, AppRoute.HOME_ROUTE, (route) => false);
+            }
+            if (state is AuthError) {
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text(state.error),
+              ));
+            }
+          },
+          child: AuthScreenTemplate(
+              header: "Sign Up",
+              form: SignUpForm(),
+              footer: const SignUpFooter()),
         ),
       ),
     );

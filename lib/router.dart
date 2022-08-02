@@ -15,7 +15,7 @@ class AppRouter {
             builder: (BuildContext context) => const HomePage());
       case AppRoute.LOGIN_ROUTE:
         return MaterialPageRoute(
-            builder: (BuildContext context) => SignInPage());
+            builder: (BuildContext context) => const SignInPage());
       case AppRoute.REGISTER_ROUTE:
         return MaterialPageRoute(
             builder: (BuildContext context) => const SignUpPage());
