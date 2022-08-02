@@ -26,3 +26,10 @@ class SignUpRequest extends AuthEvent {
 }
 
 class SignOutRequest extends AuthEvent {}
+
+class ForgotPasswdRequest extends AuthEvent {
+  final String email;
+  ForgotPasswdRequest({
+    required this.email,
+  });
+}

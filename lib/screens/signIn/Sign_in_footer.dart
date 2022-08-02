@@ -7,17 +7,29 @@ class SignInFooter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+    return Column(
       children: [
-        const Text("Don't have an account?"),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text("Don't have an account?"),
+            TextButton(
+              onPressed: () =>
+                  Navigator.pushNamed(context, AppRoute.REGISTER_ROUTE),
+              style: TextButton.styleFrom(
+                primary: InsetsColors.tButColor,
+              ),
+              child: const Text("Sign Up"),
+            ),
+          ],
+        ),
         TextButton(
           onPressed: () =>
-              Navigator.pushNamed(context, AppRoute.REGISTER_ROUTE),
+              Navigator.pushNamed(context, AppRoute.FORGPASS_ROUTE),
           style: TextButton.styleFrom(
             primary: InsetsColors.tButColor,
           ),
-          child: const Text("Sign Up"),
+          child: const Text("Forgot Password?"),
         ),
       ],
     );
