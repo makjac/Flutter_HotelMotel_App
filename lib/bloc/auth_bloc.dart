@@ -4,7 +4,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
-import 'package:hotel_motel/data/repository/auth_repository.dart';
+import 'package:hotel_motel/data/repository/fb_auth_repository.dart';
 
 part 'auth_event.dart';
 

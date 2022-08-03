@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hotel_motel/constans/route_name_constans.dart';
-import 'package:hotel_motel/screens/forgot_password/forgot_password_page.dart';
-import 'package:hotel_motel/screens/home/home_page.dart';
-import 'package:hotel_motel/screens/signIn/sign_in_page.dart';
-import 'package:hotel_motel/screens/signUp/sign_up_page.dart';
+import 'package:hotel_motel/screens/auth_screens/auth_screens_base.dart';
+import 'package:hotel_motel/screens/home_screens/home_screens_base.dart';
 
 class AppRouter {
   AppRouter();
