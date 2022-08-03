@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hotel_motel/bloc/auth_bloc.dart';
 import 'package:hotel_motel/constans/route_name_constans.dart';
 import 'package:hotel_motel/data/repository/auth_repository.dart';
+import 'package:hotel_motel/locator.dart';
 import 'package:hotel_motel/screens/forgot_password/fotgot_password_form.dart';
 import 'package:hotel_motel/theme/design_system.dart';
 import 'package:hotel_motel/widgets/Screens_templates/auth_screen_template.dart';
@@ -20,7 +21,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   @override
   void initState() {
     super.initState();
-    _authBloc = AuthBloc(repository: AuthRepository());
+    _authBloc = locator.get<AuthBloc>();
   }
 
   @override

@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hotel_motel/firebase_options.dart';
+import 'package:hotel_motel/locator.dart';
 import 'package:hotel_motel/router.dart';
 
 Future<void> main() async {
@@ -8,6 +9,9 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  setupServices();
+
   runApp(HotelMotelApp(
     router: AppRouter(),
   ));

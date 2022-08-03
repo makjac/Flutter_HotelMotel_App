@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hotel_motel/bloc/auth_bloc.dart';
 import 'package:hotel_motel/constans/route_name_constans.dart';
 import 'package:hotel_motel/data/repository/auth_repository.dart';
+import 'package:hotel_motel/locator.dart';
 import 'package:hotel_motel/screens/signUp/sign_up_footer.dart';
 import 'package:hotel_motel/screens/signUp/sign_up_form.dart';
 import 'package:hotel_motel/theme/design_system.dart';
@@ -21,7 +22,7 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   void initState() {
     super.initState();
-    _authBloc = AuthBloc(repository: AuthRepository());
+    _authBloc = locator.get<AuthBloc>();
   }
 
   @override
