@@ -4,7 +4,7 @@ import 'package:hotel_motel/bloc/auth_bloc.dart';
 import 'package:hotel_motel/constans/route_name_constans.dart';
 import 'package:hotel_motel/locator.dart';
 import 'package:hotel_motel/screens/auth_screens/forgot_password/fotgot_password_form.dart';
-import 'package:hotel_motel/theme/design_system.dart';
+import 'package:hotel_motel/theme/theme_base.dart';
 import 'package:hotel_motel/widgets/Screens_templates/auth_screen_template.dart';
 
 class ForgotPasswordPage extends StatefulWidget {

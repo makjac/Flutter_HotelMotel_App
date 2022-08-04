@@ -5,7 +5,7 @@ import 'package:hotel_motel/constans/route_name_constans.dart';
 import 'package:hotel_motel/locator.dart';
 import 'package:hotel_motel/screens/auth_screens/signIn/sign_in_footer.dart';
 import 'package:hotel_motel/screens/auth_screens/signIn/sign_in_form.dart';
-import 'package:hotel_motel/theme/design_system.dart';
+import 'package:hotel_motel/theme/theme_base.dart';
 import 'package:hotel_motel/widgets/Screens_templates/auth_screen_template.dart';
 
 class SignInPage extends StatefulWidget {

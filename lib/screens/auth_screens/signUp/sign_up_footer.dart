@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hotel_motel/constans/route_name_constans.dart';
-import 'package:hotel_motel/theme/design_system.dart';
+import 'package:hotel_motel/theme/theme_base.dart';
 
 class SignUpFooter extends StatelessWidget {
   const SignUpFooter({Key? key}) : super(key: key);

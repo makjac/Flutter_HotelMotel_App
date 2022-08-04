@@ -1,6 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:hotel_motel/theme/design_system.dart';
+import 'package:hotel_motel/theme/theme_base.dart';
 
 class BNBHome extends StatelessWidget {
   final int currentTabIndex;

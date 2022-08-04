@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:hotel_motel/theme/design_system.dart';
+import 'package:hotel_motel/theme/theme_base.dart';
 import 'package:hotel_motel/widgets/clippers/auth_bottom_clipper.dart';
 import 'package:hotel_motel/widgets/clippers/auth_top_clipper.dart';
 
 class AuthScreenShapes extends StatelessWidget {
   final Widget child;
 
-  const AuthScreenShapes({required this.child,Key? key}) : super(key: key);
-
-
+  const AuthScreenShapes({required this.child, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +22,8 @@ class AuthScreenShapes extends StatelessWidget {
             child: Container(
               height: 310,
               width: width,
-              decoration: const BoxDecoration(
-                  color: InsetsColors.authShapeShadowColor),
+              decoration:
+                  const BoxDecoration(color: InsetsColors.authShapeShadowColor),
             ),
           ),
         ),
@@ -37,8 +35,8 @@ class AuthScreenShapes extends StatelessWidget {
             child: Container(
               height: 250,
               width: width,
-              decoration: const BoxDecoration(
-                  color: InsetsColors.authShapeMainColor),
+              decoration:
+                  const BoxDecoration(color: InsetsColors.authShapeMainColor),
             ),
           ),
         ),
@@ -50,8 +48,8 @@ class AuthScreenShapes extends StatelessWidget {
             child: Container(
               height: 250,
               width: width,
-              decoration: const BoxDecoration(
-                  color: InsetsColors.authShapeMainColor),
+              decoration:
+                  const BoxDecoration(color: InsetsColors.authShapeMainColor),
             ),
           ),
         ),
@@ -63,8 +61,8 @@ class AuthScreenShapes extends StatelessWidget {
             child: Container(
               height: 320,
               width: width,
-              decoration: const BoxDecoration(
-                  color: InsetsColors.authShapeShadowColor),
+              decoration:
+                  const BoxDecoration(color: InsetsColors.authShapeShadowColor),
             ),
           ),
         ),

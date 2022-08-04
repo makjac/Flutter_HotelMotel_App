@@ -5,7 +5,7 @@ import 'package:hotel_motel/constans/route_name_constans.dart';
 import 'package:hotel_motel/locator.dart';
 import 'package:hotel_motel/screens/auth_screens/signUp/sign_up_footer.dart';
 import 'package:hotel_motel/screens/auth_screens/signUp/sign_up_form.dart';
-import 'package:hotel_motel/theme/design_system.dart';
+import 'package:hotel_motel/theme/theme_base.dart';
 import 'package:hotel_motel/widgets/Screens_templates/auth_screen_template.dart';
 
 class SignUpPage extends StatefulWidget {

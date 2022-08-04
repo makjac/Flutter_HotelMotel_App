@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hotel_motel/theme/design_system.dart';
+import 'package:hotel_motel/theme/theme_base.dart';
 import 'package:hotel_motel/widgets/decorations/auth_screen_shapes.dart';
 
 class AuthScreenTemplate extends StatelessWidget {
