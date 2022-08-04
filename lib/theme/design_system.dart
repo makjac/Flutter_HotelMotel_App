@@ -21,6 +21,11 @@ class InsetsColors {
       Color.fromARGB(160, 255, 238, 206);
   static const Color authHeaderTextColor = Color.fromARGB(255, 96, 61, 0);
 
+  //BottomNavigationBar
+  static const Color BNBBackgroundColor = Colors.brown;
+  static const Color BNBSelectedItemColor = Colors.blue;
+  static const Color BNBUnselectedItemColor = Colors.white;
+
   //TextFormField
   static const Color tffFillColor = Color.fromARGB(150, 255, 245, 228);
   static const Color tffBorderColor = Colors.brown;

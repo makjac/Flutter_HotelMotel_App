@@ -5,7 +5,7 @@ class AppRoute {
   static const String LOGIN_ROUTE = "/";
   static const String REGISTER_ROUTE = "/register";
   static const String FORGPASS_ROUTE = "/forgotPassword";
-  static const String SEARCH_ROUTE = "/home/search";
+  static const String SEARCH_ROUTE = "/";
   static const String FAVORITE_ROUTE = "/home/favorite";
   static const String BOOKING_ROUTE = "/home/booking";
   static const String PROFILE_ROUTE = "/home/profile";
