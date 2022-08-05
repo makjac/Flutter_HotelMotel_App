@@ -14,9 +14,9 @@ class BNBHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      backgroundColor: InsetsColors.BNBBackgroundColor,
-      selectedItemColor: InsetsColors.BNBSelectedItemColor,
-      unselectedItemColor: InsetsColors.BNBUnselectedItemColor,
+      backgroundColor: InsetsColors.bnbBackgroundColor,
+      selectedItemColor: InsetsColors.bnbSelectedItemColor,
+      unselectedItemColor: InsetsColors.bnbUnselectedItemColor,
       unselectedIconTheme: const IconThemeData(size: 22),
       landscapeLayout: BottomNavigationBarLandscapeLayout.spread,
       type: BottomNavigationBarType.fixed,

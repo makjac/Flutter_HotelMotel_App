@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hotel_motel/constans/route_name_constans.dart';
 import 'package:hotel_motel/routers/home_router.dart';
+import 'package:hotel_motel/routers/router.dart';
+import 'package:hotel_motel/screens/home_screens/home_screens_base.dart';
+import 'package:hotel_motel/theme/design_system.dart';
 import 'package:hotel_motel/theme/theme_base.dart';
 import 'package:hotel_motel/widgets/bottom_navigator_bar/bnb_home.dart';
 
@@ -17,39 +20,26 @@ class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
 
   void _onTap(int tabIndex) {
-    switch (tabIndex) {
-      case 0:
-        _navigatorKey.currentState!.pushReplacementNamed(AppRoute.SEARCH_ROUTE);
-        break;
-      case 1:
-        _navigatorKey.currentState!
-            .pushNamedAndRemoveUntil(AppRoute.FAVORITE_ROUTE, (route) => false);
-        break;
-      case 2:
-        _navigatorKey.currentState!
-            .pushReplacementNamed(AppRoute.BOOKING_ROUTE);
-        break;
-      case 3:
-        _navigatorKey.currentState!
-            .pushReplacementNamed(AppRoute.PROFILE_ROUTE);
-        break;
-      default:
-        break;
+    if (_currentIndex != tabIndex) {
+      setState(() {
+        _currentIndex = tabIndex;
+      });
     }
-    setState(() {
-      _currentIndex = tabIndex;
-    });
   }
+
+  static const List<Widget> _widgetOptions = <Widget>[
+    SearchPage(),
+    FavoritePage(),
+    BookingsPage(),
+    ProfilePage(),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
       backgroundColor: InsetsColors.backgroundColor,
-      body: Navigator(
-        key: _navigatorKey,
-        onGenerateRoute: router.generateHomeRoute,
-      ),
+      body: _widgetOptions[_currentIndex],
       bottomNavigationBar:
           BNBHome(currentTabIndex: _currentIndex, onTap: _onTap),
     ));

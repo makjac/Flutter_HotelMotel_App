@@ -4,6 +4,9 @@ class InsetsColors {
   //main colors
   static const Color backgroundColor = Color.fromARGB(255, 255, 243, 215);
 
+  //AppBar
+  static const Color abBackgroundColor = Colors.brown;
+
   //auth screens
   static const Color authShapeMainColor = Color.fromARGB(255, 231, 139, 0);
   static const Color authShapeShadowColor = Color.fromARGB(100, 231, 139, 0);
@@ -13,9 +16,10 @@ class InsetsColors {
   static const Color authHeaderTextColor = Color.fromARGB(255, 96, 61, 0);
 
   //BottomNavigationBar
-  static const Color BNBBackgroundColor = Colors.brown;
-  static const Color BNBSelectedItemColor = Colors.blue;
-  static const Color BNBUnselectedItemColor = Colors.white;
+  static const Color bnbBackgroundColor =
+      Colors.brown; //Color.fromARGB(255, 140, 101, 87);
+  static const Color bnbSelectedItemColor = Colors.white;
+  static const Color bnbUnselectedItemColor = Color.fromARGB(255, 31, 21, 18);
 
   //TextFormField
   static const Color tffFillColor = Color.fromARGB(150, 255, 245, 228);
