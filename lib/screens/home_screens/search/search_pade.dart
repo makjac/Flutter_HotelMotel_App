@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hotel_motel/theme/theme_base.dart';
+import 'package:hotel_motel/widgets/cards/hotel_thumbnail.dart';
 
 class SearchPage extends StatelessWidget {
   const SearchPage({Key? key}) : super(key: key);
@@ -12,6 +13,11 @@ class SearchPage extends StatelessWidget {
         title: const Text("search"),
         backgroundColor: InsetsColors.abBackgroundColor,
         centerTitle: true,
+      ),
+      body: SingleChildScrollView(
+        child: HotelThumbnail(
+          title: "Rezydencja Wind Rose - luxury ApartHotel",
+        ),
       ),
     );
   }
