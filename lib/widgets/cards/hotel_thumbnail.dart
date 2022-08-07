@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:hotel_motel/theme/design_system.dart';
 
 class HotelThumbnail extends StatelessWidget {
   final String title;
@@ -11,13 +12,41 @@ class HotelThumbnail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: Column(
+      margin: const EdgeInsets.symmetric(horizontal: Insets.s),
+      child: Row(
         children: [
-          Image.network(
-              "https://pliki.propertydesign.pl/i/12/62/06/126206_r0_300.jpg"),
-          Text(
-            title,
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+          Expanded(
+            flex: 1,
+            child: Image.network(
+              "https://pliki.propertydesign.pl/i/12/62/06/126206_r0_300.jpg",
+              fit: BoxFit.fitHeight,
+              width: 100.0,
+              height: 200,
+            ),
+          ),
+          const SizedBox(width: Insets.s),
+          Expanded(
+            flex: 2,
+            child: Column(
+              children: [
+                Text(
+                  title,
+                  softWrap: false,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 15),
+                ),
+                Text("siema"),
+                Text("siema"),
+                Text("siema"),
+                Text("siema"),
+                Text("siema"),
+                Text("siema"),
+                Text("siema"),
+                Text("siema"),
+              ],
+            ),
           ),
         ],
       ),
