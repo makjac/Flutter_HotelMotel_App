@@ -13,42 +13,36 @@ class HotelThumbnail extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: Insets.s),
-      child: Row(
-        children: [
-          Expanded(
-            flex: 1,
-            child: Image.network(
-              "https://pliki.propertydesign.pl/i/12/62/06/126206_r0_300.jpg",
-              fit: BoxFit.fitHeight,
-              width: 100.0,
-              height: 200,
+      child: IntrinsicHeight(
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Expanded(
+              flex: 1,
+              child: Image.network(
+                "https://pliki.propertydesign.pl/i/12/62/06/126206_r0_300.jpg",
+                fit: BoxFit.fitHeight,
+                height: 200,
+              ),
             ),
-          ),
-          const SizedBox(width: Insets.s),
-          Expanded(
-            flex: 2,
-            child: Column(
-              children: [
-                Text(
-                  title,
-                  softWrap: false,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                      fontWeight: FontWeight.bold, fontSize: 15),
-                ),
-                Text("siema"),
-                Text("siema"),
-                Text("siema"),
-                Text("siema"),
-                Text("siema"),
-                Text("siema"),
-                Text("siema"),
-                Text("siema"),
-              ],
+            const SizedBox(width: Insets.s),
+            Expanded(
+              flex: 2,
+              child: Column(
+                children: [
+                  Text(
+                    title,
+                    softWrap: false,
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 15),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
