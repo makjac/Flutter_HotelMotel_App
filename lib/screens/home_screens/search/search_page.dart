@@ -14,9 +14,14 @@ class SearchPage extends StatelessWidget {
         backgroundColor: InsetsColors.abBackgroundColor,
         centerTitle: true,
       ),
-      body: const Padding(
-        padding: EdgeInsets.all(Insets.s),
-        child: SearchForm(),
+      body: Padding(
+        padding: const EdgeInsets.all(Insets.s),
+        child: SearchForm(
+          location: "Poznań",
+          dateRange: DateTimeRange(
+              start: DateTime.now(),
+              end: DateTime.now().add(const Duration(days: 7))),
+        ),
       ),
     );
   }
