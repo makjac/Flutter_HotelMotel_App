@@ -34,4 +34,9 @@ class InsetsColors {
 
   //CircularProgressIndicator
   static const Color cpiColor = Colors.brown;
+
+  // RatingBar
+  static Color? emptyStarColor = Colors.brown[100];
+  static Color? halfStarColor = Colors.brown[300];
+  static Color? fullStarColor = Colors.brown[400];
 }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 import 'package:hotel_motel/data/models/thumbnail_room_model.dart';
+import 'package:hotel_motel/theme/colors.dart';
 import 'package:hotel_motel/theme/design_system.dart';
 import 'package:hotel_motel/widgets/containers/number_box.dart';
 
@@ -65,7 +66,7 @@ class HotelThumbnail extends StatelessWidget {
           softWrap: false,
           maxLines: 3,
           overflow: TextOverflow.ellipsis,
-          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+          style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 17),
         ),
         const SizedBox(height: Insets.xs),
         Row(
@@ -89,12 +90,10 @@ class HotelThumbnail extends StatelessWidget {
       ignoreGestures: true,
       itemSize: 23,
       ratingWidget: RatingWidget(
-        empty: Icon(
-          Icons.star_border_rounded,
-          color: Colors.brown[100],
-        ),
-        half: Icon(Icons.star_half_rounded, color: Colors.brown[300]),
-        full: Icon(Icons.star_rounded, color: Colors.brown[400]),
+        empty:
+            Icon(Icons.star_border_rounded, color: InsetsColors.emptyStarColor),
+        half: Icon(Icons.star_half_rounded, color: InsetsColors.halfStarColor),
+        full: Icon(Icons.star_rounded, color: InsetsColors.fullStarColor),
       ),
       onRatingUpdate: (value) {},
     );
