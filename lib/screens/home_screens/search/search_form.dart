@@ -6,21 +6,26 @@ import 'package:hotel_motel/theme/colors.dart';
 import 'package:hotel_motel/theme/design_system.dart';
 import 'package:hotel_motel/utils/date.dart';
 
-class SearchForm extends StatelessWidget {
-  final String? location;
+class SearchForm extends StatefulWidget {
+  String? location = "Pick location";
   final DateTimeRange? dateRange;
   final int? rooms;
   final int? adults;
   final int? kids;
-  const SearchForm({
+  SearchForm({
     Key? key,
-    this.location = "Pick location",
+    this.location,
     this.dateRange,
     this.rooms = 1,
     this.adults = 1,
     this.kids = 0,
   }) : super(key: key);
 
+  @override
+  State<SearchForm> createState() => _SearchFormState();
+}
+
+class _SearchFormState extends State<SearchForm> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -55,8 +60,14 @@ class SearchForm extends StatelessWidget {
     return Material(
       color: Colors.transparent,
       child: InkWell(
-        onTap: () {
-          showSearch(context: context, delegate: LocationSearchAction());
+        onTap: () async {
+          await showSearch(context: context, delegate: LocationSearchAction())
+              .then((value) {
+            if (value != "") {
+              widget.location = value;
+            }
+          });
+          setState(() {});
         },
         splashColor: InsetsColors.splashColor,
         child: Padding(
@@ -65,7 +76,7 @@ class SearchForm extends StatelessWidget {
             children: [
               const Icon(Icons.search),
               const SizedBox(width: Insets.s),
-              Text(location!),
+              Text(widget.location!),
             ],
           ),
         ),
@@ -94,10 +105,10 @@ class SearchForm extends StatelessWidget {
   }
 
   String _dateText() {
-    if (dateRange == null) {
+    if (widget.dateRange == null) {
       return "Pick date";
     } else {
-      return "${Date.shortenDateToString(dateRange!.start)} - ${Date.shortenDateToString(dateRange!.end)}";
+      return "${Date.shortenDateToString(widget.dateRange!.start)} - ${Date.shortenDateToString(widget.dateRange!.end)}";
     }
   }
 
@@ -113,7 +124,8 @@ class SearchForm extends StatelessWidget {
             children: [
               const Icon(Icons.person),
               const SizedBox(width: Insets.s),
-              Text("$rooms pokój - $adults dorosłych - $kids dzieci")
+              Text(
+                  "${widget.rooms} pokój - ${widget.adults} dorosłych - ${widget.kids} dzieci")
             ],
           ),
         ),

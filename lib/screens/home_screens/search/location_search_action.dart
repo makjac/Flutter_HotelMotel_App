@@ -52,6 +52,7 @@ class LocationSearchAction extends SearchDelegate<String> {
       itemBuilder: (context, index) => ListTile(
         leading: const Icon(Icons.draw),
         title: Text(suggestionList[index]),
+        onTap: () => close(context, suggestionList[index]),
       ),
       itemCount: suggestionList.length,
     );
