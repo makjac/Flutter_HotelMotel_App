@@ -25,7 +25,7 @@ class HotelMotelApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(fontFamily: 'Poopins'),
+      //theme: ThemeData(fontFamily: 'Poopins'),
       debugShowCheckedModeBanner: false,
       onGenerateRoute: router.generateRoute,
     );

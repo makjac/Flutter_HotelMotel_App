@@ -22,7 +22,7 @@ class _FavoritePageState extends State<FavoritePage> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(Insets.xs),
           child: Column(
             children: TestHotel.hotels
                 .map((e) => Padding(

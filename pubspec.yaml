@@ -72,15 +72,23 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  fonts:
-    - family: Helvetica
-      fonts:
-        - asset: fonts/helvetica.otf
-    - family: Poppins
-      fonts:
-        - asset: fonts/Poopins-Regular.ttf
-        - asset: fonts/Poopins-Italic.ttf
-          style: italic
+
+
+
+
+  # fonts:
+  #   - family: Helvetica
+  #     fonts:
+  #       - asset: fonts/helvetica.otf
+  #   - family: Poppins
+  #     fonts:
+  #       - asset: fonts/Poopins-Regular.ttf
+  #       - asset: fonts/Poopins-Italic.ttf
+  #         style: italic
+
+
+
+
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf

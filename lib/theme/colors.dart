@@ -7,6 +7,9 @@ class InsetsColors {
   //AppBar
   static const Color abBackgroundColor = Colors.brown;
 
+  //effects
+  static const Color splashColor = Color.fromARGB(34, 121, 85, 72);
+
   //auth screens
   static const Color authShapeMainColor = Color.fromARGB(255, 231, 139, 0);
   static const Color authShapeShadowColor = Color.fromARGB(100, 231, 139, 0);
@@ -37,6 +40,6 @@ class InsetsColors {
 
   // RatingBar
   static Color? emptyStarColor = Colors.brown[100];
-  static Color? halfStarColor = Colors.brown[300];
-  static Color? fullStarColor = Colors.brown[400];
+  static Color? halfStarColor = Colors.brown[400];
+  static Color? fullStarColor = Colors.brown;
 }

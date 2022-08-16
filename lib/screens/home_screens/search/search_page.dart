@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hotel_motel/screens/home_screens/search/search_form.dart';
 import 'package:hotel_motel/theme/theme_base.dart';
 
 class SearchPage extends StatelessWidget {
@@ -12,6 +13,10 @@ class SearchPage extends StatelessWidget {
         title: const Text("search"),
         backgroundColor: InsetsColors.abBackgroundColor,
         centerTitle: true,
+      ),
+      body: const Padding(
+        padding: EdgeInsets.all(Insets.s),
+        child: SearchForm(),
       ),
     );
   }
