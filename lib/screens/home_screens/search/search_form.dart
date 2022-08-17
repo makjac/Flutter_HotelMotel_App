@@ -8,10 +8,10 @@ import 'package:hotel_motel/utils/date.dart';
 
 class SearchForm extends StatefulWidget {
   String? location = "Pick location";
-  final DateTimeRange? dateRange;
-  final int? rooms;
-  final int? adults;
-  final int? kids;
+  DateTimeRange? dateRange;
+  int? rooms;
+  int? adults;
+  int? kids;
   SearchForm({
     Key? key,
     this.location,
@@ -26,6 +26,9 @@ class SearchForm extends StatefulWidget {
 }
 
 class _SearchFormState extends State<SearchForm> {
+  final start = DateTime.now();
+  final end = DateTime.now().add(const Duration(days: 720));
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -88,7 +91,16 @@ class _SearchFormState extends State<SearchForm> {
     return Material(
       color: Colors.transparent,
       child: InkWell(
-        onTap: () {},
+        onTap: () async {
+          await showDateRangePicker(
+                  context: context, firstDate: start, lastDate: end)
+              .then((range) {
+            if (range != null) {
+              widget.dateRange = range;
+            }
+          });
+          setState(() {});
+        },
         splashColor: InsetsColors.splashColor,
         child: Padding(
           padding: const EdgeInsets.all(Insets.s),
