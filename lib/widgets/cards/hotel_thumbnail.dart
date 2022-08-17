@@ -24,34 +24,38 @@ class HotelThumbnail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: IntrinsicHeight(
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Expanded(
-              flex: 1,
-              child: Image.network(
-                "https://pliki.propertydesign.pl/i/12/62/06/126206_r0_300.jpg",
-                fit: BoxFit.fitHeight,
-              ),
-            ),
-            Expanded(
-              flex: 2,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    _title(),
-                    const SizedBox(height: Insets.xs),
-                    _price(),
-                  ],
+    return InkWell(
+      onTap: () {},
+      splashColor: InsetsColors.splashColor,
+      child: Card(
+        child: IntrinsicHeight(
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Expanded(
+                flex: 1,
+                child: Image.network(
+                  "https://pliki.propertydesign.pl/i/12/62/06/126206_r0_300.jpg",
+                  fit: BoxFit.fitHeight,
                 ),
               ),
-            ),
-          ],
+              Expanded(
+                flex: 2,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      _title(),
+                      const SizedBox(height: Insets.xs),
+                      _price(),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

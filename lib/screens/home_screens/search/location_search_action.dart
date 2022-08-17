@@ -31,7 +31,7 @@ class LocationSearchAction extends SearchDelegate<String> {
   Widget? buildLeading(BuildContext context) {
     return IconButton(
         onPressed: () {
-          close(context, "");
+          query = '';
         },
         icon: AnimatedIcon(
           icon: AnimatedIcons.menu_arrow,
@@ -41,12 +41,35 @@ class LocationSearchAction extends SearchDelegate<String> {
 
   @override
   Widget buildResults(BuildContext context) {
-    return Container();
+    final List<String> allLaocations = locations
+        .where(
+          (location) => location.toLowerCase().contains(
+                query.toLowerCase(),
+              ),
+        )
+        .toList();
+
+    return ListView.builder(
+      itemBuilder: ((context, index) => ListTile(
+            leading: const Icon(Icons.draw),
+            title: Text(allLaocations[index]),
+            onTap: () => close(context, allLaocations[index]),
+          )),
+      itemCount: allLaocations.length,
+    );
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    final suggestionList = query.isEmpty ? recentLocations : locations;
+    final suggestionList = query.isEmpty
+        ? recentLocations
+        : locations
+            .where(
+              (location) => location.toLowerCase().contains(
+                    query.toLowerCase(),
+                  ),
+            )
+            .toList();
 
     return ListView.builder(
       itemBuilder: (context, index) => ListTile(
