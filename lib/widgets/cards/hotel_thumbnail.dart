@@ -1,10 +1,13 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:auto_size_text/auto_size_text.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 import 'package:hotel_motel/data/models/thumbnail_room_model.dart';
 import 'package:hotel_motel/theme/colors.dart';
 import 'package:hotel_motel/theme/design_system.dart';
+import 'package:hotel_motel/utils/scale.dart';
 import 'package:hotel_motel/widgets/containers/number_box.dart';
 
 class HotelThumbnail extends StatelessWidget {
@@ -24,6 +27,7 @@ class HotelThumbnail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
     return InkWell(
       onTap: () {},
       splashColor: InsetsColors.splashColor,
@@ -42,14 +46,14 @@ class HotelThumbnail extends StatelessWidget {
               Expanded(
                 flex: 2,
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(Insets.xs),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      _title(),
+                      _title(width),
                       const SizedBox(height: Insets.xs),
-                      _price(),
+                      _price(width),
                     ],
                   ),
                 ),
@@ -61,7 +65,7 @@ class HotelThumbnail extends StatelessWidget {
     );
   }
 
-  Widget _title() {
+  Widget _title(double width) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -70,6 +74,7 @@ class HotelThumbnail extends StatelessWidget {
           softWrap: false,
           maxLines: 3,
           overflow: TextOverflow.ellipsis,
+          textScaleFactor: Scale.textScale(width, 1.7),
           style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 17),
         ),
         const SizedBox(height: Insets.xs),
@@ -78,21 +83,21 @@ class HotelThumbnail extends StatelessWidget {
           children: [
             NumberBox(number: hotel.rating),
             const SizedBox(width: Insets.xs),
-            _stars(),
+            _stars(width),
           ],
         ),
       ],
     );
   }
 
-  Widget _stars() {
+  Widget _stars(double width) {
     return RatingBar(
       itemCount: 5,
       initialRating: hotel.rating,
       direction: Axis.horizontal,
       allowHalfRating: true,
       ignoreGestures: true,
-      itemSize: 23,
+      itemSize: 23 * Scale.textScale(width, 1.3),
       ratingWidget: RatingWidget(
         empty:
             Icon(Icons.star_border_rounded, color: InsetsColors.emptyStarColor),
@@ -103,7 +108,7 @@ class HotelThumbnail extends StatelessWidget {
     );
   }
 
-  Widget _price() {
+  Widget _price(double width) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
@@ -115,6 +120,7 @@ class HotelThumbnail extends StatelessWidget {
                 ? Container()
                 : Text(
                     "PLN ${hotel.price.round().toString()}",
+                    textScaleFactor: Scale.textScale(width, 1.4),
                     style: const TextStyle(
                         color: Colors.red,
                         decoration: TextDecoration.lineThrough,
@@ -123,32 +129,35 @@ class HotelThumbnail extends StatelessWidget {
             const SizedBox(width: 5),
             Text(
               "PLN ${(hotel.price * ((100 - _discountNull()) / 100)).round().toString()}",
+              textScaleFactor: Scale.textScale(width, 1.4),
               style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
             )
           ],
         ),
-        const Text(
+        Text(
           "Includes fees and taxes",
-          style: TextStyle(color: Colors.grey, fontSize: 10),
+          textScaleFactor: Scale.textScale(width, 1.3),
+          style: const TextStyle(color: Colors.grey, fontSize: 10),
         ),
-        hotel.isFreeCanceling ? _freeCnceling() : Container(),
+        hotel.isFreeCanceling ? _freeCnceling(width) : Container(),
       ],
     );
   }
 
-  Widget _freeCnceling() {
+  Widget _freeCnceling(double width) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
-      children: const [
-        Icon(
+      children: [
+        const Icon(
           Icons.check_circle_outline_outlined,
           color: Colors.green,
           size: 13,
         ),
-        SizedBox(width: 3),
+        const SizedBox(width: 3),
         Text(
           "Free cancellation",
-          style: TextStyle(color: Colors.green, fontSize: 10),
+          textScaleFactor: Scale.textScale(width, 1.3),
+          style: const TextStyle(color: Colors.green, fontSize: 10),
         )
       ],
     );

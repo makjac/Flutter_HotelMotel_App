@@ -13,6 +13,7 @@ class FavoritePage extends StatefulWidget {
 class _FavoritePageState extends State<FavoritePage> {
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: InsetsColors.backgroundColor,
       appBar: AppBar(
@@ -22,18 +23,31 @@ class _FavoritePageState extends State<FavoritePage> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(Insets.xs),
-          child: Column(
-            children: TestHotel.hotels
-                .map((e) => Padding(
-                      padding: const EdgeInsets.only(
-                        bottom: 8,
-                      ),
-                      child: HotelThumbnail(hotel: e),
-                    ))
-                .toList(),
-          ),
-        ),
+            padding: const EdgeInsets.all(Insets.xs),
+            child: GridView.count(
+              crossAxisCount: (width < 1000) ? 1 : 2,
+              physics: const NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              children: TestHotel.hotels
+                  .map((e) => Padding(
+                        padding: const EdgeInsets.only(
+                          bottom: Insets.xs,
+                        ),
+                        child: HotelThumbnail(hotel: e),
+                      ))
+                  .toList(),
+            )
+            // Column(
+            //   children: TestHotel.hotels
+            //       .map((e) => Padding(
+            //             padding: const EdgeInsets.only(
+            //               bottom: Insets.xs,
+            //             ),
+            //             child: HotelThumbnail(hotel: e),
+            //           ))
+            //       .toList(),
+            // ),
+            ),
       ),
     );
   }

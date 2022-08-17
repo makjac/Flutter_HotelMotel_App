@@ -1,3 +1,4 @@
+import 'package:hotel_motel/data/models/search_details_model.dart';
 import 'package:hotel_motel/data/models/thumbnail_room_model.dart';
 
 class TestHotel {
@@ -81,6 +82,65 @@ class TestHotel {
       price: 123,
       discount: 50,
       isFreeCanceling: true,
+    ),
+  ];
+
+  static List<SearchDetails> searchList = [
+    SearchDetails(
+      location: "Poznań",
+      start: DateTime.now().add(const Duration(days: 3)),
+      end: DateTime.now().add(const Duration(days: 6)),
+      adults: 1,
+      kids: 0,
+      rooms: 1,
+    ),
+    SearchDetails(
+      location: "Gniezno",
+      start: DateTime.now(),
+      end: DateTime.now().add(const Duration(days: 9)),
+      adults: 1,
+      kids: 0,
+      rooms: 1,
+    ),
+    SearchDetails(
+      location: "Bydgoszcz",
+      start: DateTime.now(),
+      end: DateTime.now().add(const Duration(days: 1)),
+      adults: 1,
+      kids: 0,
+      rooms: 1,
+    ),
+    SearchDetails(
+      location: "Warszawa",
+      start: DateTime.now().add(const Duration(days: 5)),
+      end: DateTime.now().add(const Duration(days: 8)),
+      adults: 1,
+      kids: 0,
+      rooms: 1,
+    ),
+    SearchDetails(
+      location: "Turek",
+      start: DateTime.now(),
+      end: DateTime.now().add(const Duration(days: 2)),
+      adults: 1,
+      kids: 0,
+      rooms: 1,
+    ),
+    SearchDetails(
+      location: "Luboń",
+      start: DateTime.now().add(const Duration(days: 2)),
+      end: DateTime.now().add(const Duration(days: 12)),
+      adults: 1,
+      kids: 0,
+      rooms: 1,
+    ),
+    SearchDetails(
+      location: "Szczecin",
+      start: DateTime.now().add(const Duration(days: 30)),
+      end: DateTime.now().add(const Duration(days: 33)),
+      adults: 1,
+      kids: 0,
+      rooms: 1,
     ),
   ];
 }

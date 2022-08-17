@@ -24,14 +24,20 @@ class LocationSearchAction extends SearchDelegate<String> {
 
   @override
   List<Widget>? buildActions(BuildContext context) {
-    return [IconButton(onPressed: () {}, icon: const Icon(Icons.clear))];
+    return [
+      IconButton(
+          onPressed: () {
+            query = "";
+          },
+          icon: const Icon(Icons.clear))
+    ];
   }
 
   @override
   Widget? buildLeading(BuildContext context) {
     return IconButton(
         onPressed: () {
-          query = '';
+          close(context, "");
         },
         icon: AnimatedIcon(
           icon: AnimatedIcons.menu_arrow,

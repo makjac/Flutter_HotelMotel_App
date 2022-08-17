@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:hotel_motel/theme/colors.dart';
+import 'package:hotel_motel/utils/scale.dart';
 
 class NumberBox extends StatelessWidget {
   final double number;
@@ -11,6 +12,7 @@ class NumberBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
     return Container(
       decoration: BoxDecoration(
           color: Colors.brown, borderRadius: BorderRadius.circular(5)),
@@ -18,6 +20,7 @@ class NumberBox extends StatelessWidget {
         padding: const EdgeInsets.all(3),
         child: Text(
           number.toStringAsFixed(1).toString(),
+          textScaleFactor: Scale.textScale(width, 1.3),
           style: const TextStyle(color: InsetsColors.eButTextColor),
         ),
       ),

@@ -3,12 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:hotel_motel/firebase_options.dart';
 import 'package:hotel_motel/locator.dart';
 import 'package:hotel_motel/routers/router.dart';
+import 'package:hotel_motel/utils/userSharedPreferences.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  await HomeShared.init();
 
   setupServices();
 

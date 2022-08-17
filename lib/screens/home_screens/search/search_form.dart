@@ -5,13 +5,14 @@ import 'package:hotel_motel/screens/home_screens/search/location_search_action.d
 import 'package:hotel_motel/theme/colors.dart';
 import 'package:hotel_motel/theme/design_system.dart';
 import 'package:hotel_motel/utils/date.dart';
+import 'package:hotel_motel/utils/userSharedPreferences.dart';
 
 class SearchForm extends StatefulWidget {
-  String? location = "Pick location";
+  String? location;
   DateTimeRange? dateRange;
-  int? rooms;
-  int? adults;
-  int? kids;
+  final int rooms;
+  final int adults;
+  final int kids;
   SearchForm({
     Key? key,
     this.location,
@@ -27,7 +28,7 @@ class SearchForm extends StatefulWidget {
 
 class _SearchFormState extends State<SearchForm> {
   final start = DateTime.now();
-  final end = DateTime.now().add(const Duration(days: 720));
+  final end = DateTime.now().add(const Duration(days: 7200));
 
   @override
   Widget build(BuildContext context) {
@@ -66,8 +67,9 @@ class _SearchFormState extends State<SearchForm> {
         onTap: () async {
           await showSearch(context: context, delegate: LocationSearchAction())
               .then((value) {
-            if (value != "") {
+            if (value != "" || value != null) {
               widget.location = value;
+              HomeShared.setLocation(value!);
             }
           });
           setState(() {});
@@ -79,12 +81,20 @@ class _SearchFormState extends State<SearchForm> {
             children: [
               const Icon(Icons.search),
               const SizedBox(width: Insets.s),
-              Text(widget.location!),
+              Text(_locationText()),
             ],
           ),
         ),
       ),
     );
+  }
+
+  String _locationText() {
+    if (widget.location != null) {
+      return widget.location!;
+    } else {
+      return "Pick location";
+    }
   }
 
   Widget _dateRangePicker() {
@@ -128,7 +138,14 @@ class _SearchFormState extends State<SearchForm> {
     return Material(
       color: Colors.transparent,
       child: InkWell(
-        onTap: () {},
+        onTap: () async {
+          await showDialog(
+            context: context,
+            builder: ((context) {
+              return Container();
+            }),
+          );
+        },
         splashColor: InsetsColors.splashColor,
         child: Padding(
           padding: const EdgeInsets.all(Insets.s),
