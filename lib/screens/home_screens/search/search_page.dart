@@ -79,9 +79,9 @@ class SearchPage extends StatelessWidget {
             padding: const EdgeInsets.all(Insets.xs),
             child: Row(
               children: TestHotel.searchList
-                  .map((e) => Padding(
+                  .map((search) => Padding(
                         padding: const EdgeInsets.all(Insets.xs),
-                        child: SearchThumbnail(data: e),
+                        child: SearchThumbnail(data: search),
                       ))
                   .toList(),
             ),

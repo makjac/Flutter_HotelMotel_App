@@ -27,7 +27,6 @@ class SearchThumbnail extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: Image.network(
-                  height: 100,
                   width: double.infinity,
                   fit: BoxFit.cover,
                   "https://www.polska.travel/images/pl-PL/glowne-miasta/poznan/poznan_stare_miasto_2_1170.jpg"),

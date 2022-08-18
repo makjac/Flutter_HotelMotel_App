@@ -31,34 +31,37 @@ class HotelThumbnail extends StatelessWidget {
     return InkWell(
       onTap: () {},
       splashColor: InsetsColors.splashColor,
-      child: Card(
-        child: IntrinsicHeight(
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Expanded(
-                flex: 1,
-                child: Image.network(
-                  "https://pliki.propertydesign.pl/i/12/62/06/126206_r0_300.jpg",
-                  fit: BoxFit.fitHeight,
-                ),
-              ),
-              Expanded(
-                flex: 2,
-                child: Padding(
-                  padding: const EdgeInsets.all(Insets.xs),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      _title(width),
-                      const SizedBox(height: Insets.xs),
-                      _price(width),
-                    ],
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20),
+        child: Card(
+          child: IntrinsicHeight(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: Image.network(
+                    "https://pliki.propertydesign.pl/i/12/62/06/126206_r0_300.jpg",
+                    fit: BoxFit.cover,
                   ),
                 ),
-              ),
-            ],
+                Expanded(
+                  flex: 2,
+                  child: Padding(
+                    padding: const EdgeInsets.all(Insets.xs),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        _title(width),
+                        const SizedBox(height: Insets.xs),
+                        _price(width),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

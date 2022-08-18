@@ -23,31 +23,18 @@ class _FavoritePageState extends State<FavoritePage> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-            padding: const EdgeInsets.all(Insets.xs),
-            child: GridView.count(
-              crossAxisCount: (width < 1000) ? 1 : 2,
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              children: TestHotel.hotels
-                  .map((e) => Padding(
-                        padding: const EdgeInsets.only(
-                          bottom: Insets.xs,
-                        ),
-                        child: HotelThumbnail(hotel: e),
-                      ))
-                  .toList(),
-            )
-            // Column(
-            //   children: TestHotel.hotels
-            //       .map((e) => Padding(
-            //             padding: const EdgeInsets.only(
-            //               bottom: Insets.xs,
-            //             ),
-            //             child: HotelThumbnail(hotel: e),
-            //           ))
-            //       .toList(),
-            // ),
-            ),
+          padding: const EdgeInsets.all(Insets.xs),
+          child: Column(
+            children: TestHotel.hotels
+                .map((e) => Padding(
+                      padding: const EdgeInsets.only(
+                        bottom: Insets.xs,
+                      ),
+                      child: HotelThumbnail(hotel: e),
+                    ))
+                .toList(),
+          ),
+        ),
       ),
     );
   }
