@@ -1,18 +1,22 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:hotel_motel/constans/route_name_constans.dart';
 import 'package:hotel_motel/screens/home_screens/search/location_search_action.dart';
 
 import 'package:hotel_motel/theme/colors.dart';
 import 'package:hotel_motel/theme/design_system.dart';
 import 'package:hotel_motel/utils/date.dart';
 import 'package:hotel_motel/utils/userSharedPreferences.dart';
+import 'package:hotel_motel/widgets/counter_widget/counter.dart';
+import 'package:hotel_motel/widgets/counter_widget/counter_controller.dart';
 
+// ignore: must_be_immutable
 class SearchForm extends StatefulWidget {
   String? location;
   DateTimeRange? dateRange;
-  final int rooms;
-  final int adults;
-  final int kids;
+  int rooms;
+  int adults;
+  int kids;
   SearchForm({
     Key? key,
     this.location,
@@ -27,6 +31,9 @@ class SearchForm extends StatefulWidget {
 }
 
 class _SearchFormState extends State<SearchForm> {
+  final CounterController _roomsController = CounterController();
+  final CounterController _adultsController = CounterController();
+  final CounterController _kidsController = CounterController();
   final start = DateTime.now();
   final end = DateTime.now().add(const Duration(days: 7200));
 
@@ -59,6 +66,8 @@ class _SearchFormState extends State<SearchForm> {
       height: 5,
     );
   }
+
+  //Location Picker
 
   Widget _locationPicker(BuildContext context) {
     return Material(
@@ -97,6 +106,8 @@ class _SearchFormState extends State<SearchForm> {
     }
   }
 
+  //Data range picker
+
   Widget _dateRangePicker() {
     return Material(
       color: Colors.transparent,
@@ -134,18 +145,13 @@ class _SearchFormState extends State<SearchForm> {
     }
   }
 
+  //DetailsPicker
+
   Widget _detailsPicker() {
     return Material(
       color: Colors.transparent,
       child: InkWell(
-        onTap: () async {
-          await showDialog(
-            context: context,
-            builder: ((context) {
-              return Container();
-            }),
-          );
-        },
+        onTap: () async => _detiailsDialog(),
         splashColor: InsetsColors.splashColor,
         child: Padding(
           padding: const EdgeInsets.all(Insets.s),
@@ -162,11 +168,91 @@ class _SearchFormState extends State<SearchForm> {
     );
   }
 
+  Future _detiailsDialog() async {
+    await showDialog(
+      context: context,
+      builder: ((context) {
+        return AlertDialog(
+          title: const Center(child: Text("Select rooms and guests")),
+          content: IntrinsicHeight(
+            child: Center(
+              child: Column(
+                children: [
+                  _detailsPickCounter(
+                      "Rooms", _roomsController, widget.rooms, 1),
+                  const SizedBox(height: Insets.s),
+                  _detailsPickCounter(
+                      "Adults", _adultsController, widget.adults, 1),
+                  const SizedBox(height: Insets.s),
+                  _detailsPickCounter("Kids", _kidsController, widget.kids, 0),
+                ],
+              ),
+            ),
+          ),
+          actions: [
+            ElevatedButton(
+              onPressed: () => _onSelect(context),
+              style: ElevatedButton.styleFrom(
+                primary: InsetsColors.eButBackgroundColor,
+              ),
+              child: const SizedBox(
+                width: double.infinity,
+                child: Center(
+                  child: Text("Select"),
+                ),
+              ),
+            ),
+          ],
+        );
+      }),
+    );
+  }
+
+  void _onSelect(BuildContext context) {
+    int guest = _adultsController.number + _kidsController.number;
+    setState(() {
+      widget.rooms = _roomsController.number;
+      if (widget.rooms > guest) {
+        widget.adults = _adultsController.number + (widget.rooms - guest);
+      } else {
+        widget.adults = _adultsController.number;
+      }
+      widget.kids = _kidsController.number;
+    });
+    Navigator.pop(context);
+  }
+
+  Widget _detailsPickCounter(
+      String title, CounterController controller, int initValue, int minValue) {
+    return Row(
+      children: [
+        Expanded(
+          flex: 1,
+          child: Text(
+            title,
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+          ),
+        ),
+        Expanded(
+          flex: 2,
+          child: Counter(
+              initCount: initValue,
+              minimalValue: minValue,
+              controller: controller),
+        ),
+      ],
+    );
+  }
+
+//Search button
+
   Widget _searchButton() {
     return Material(
       color: Colors.transparent,
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          Navigator.pushNamed(context, AppRoute.RESULTS_ROUTE);
+        },
         splashColor: InsetsColors.splashColor,
         child: Container(
           width: double.infinity,

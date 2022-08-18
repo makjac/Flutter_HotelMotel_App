@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class Insets {
   static const double xs = 8.0;
   static const double s = 16.0;

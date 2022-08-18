@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hotel_motel/data/models/search_details_model.dart';
 import 'package:hotel_motel/screens/home_screens/search/search_form.dart';
 import 'package:hotel_motel/temp/test_hotel.dart';
 import 'package:hotel_motel/theme/theme_base.dart';
