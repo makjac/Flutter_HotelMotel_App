@@ -20,6 +20,7 @@ class EmailTextField extends StatelessWidget {
         return null;
       },
       controller: emailController,
+      keyboardType: TextInputType.emailAddress,
       decoration: const InputDecoration(
         fillColor: InsetsColors.tffFillColor,
         filled: true,
