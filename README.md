@@ -2,7 +2,7 @@
 
 Project in progress.
 
-It will be a copy of the booking.com website.
+It will be a hotel booking app.
 
 ## Used technologies:
 
@@ -18,3 +18,7 @@ It will be a copy of the booking.com website.
 ## Screenshots
 
 ![screenshot_1](https://i.imgur.com/0GWncaA.png)
+
+![screenshot_2](https://i.imgur.com/jTdq302.png)
+![screenshot_3](https://i.imgur.com/bGEM70B.png)
+
