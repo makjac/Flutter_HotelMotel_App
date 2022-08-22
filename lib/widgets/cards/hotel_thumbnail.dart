@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:hotel_motel/constans/route_name_constans.dart';
 
 import 'package:hotel_motel/data/models/thumbnail_room_model.dart';
 import 'package:hotel_motel/theme/colors.dart';
@@ -28,7 +29,9 @@ class HotelThumbnail extends StatelessWidget {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.pushNamed(context, AppRoute.HOTEL_ROUTE);
+      },
       splashColor: InsetsColors.splashColor,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(20),

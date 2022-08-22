@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:hotel_motel/constans/route_name_constans.dart';
 
 import 'package:hotel_motel/data/models/search_details_model.dart';
 import 'package:hotel_motel/theme/theme_base.dart';
@@ -18,7 +19,9 @@ class SearchThumbnail extends StatelessWidget {
     final width = MediaQuery.of(context).size.width;
 
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.pushNamed(context, AppRoute.RESULTS_ROUTE);
+      },
       child: SizedBox(
         width: width / 3,
         child: Column(
