@@ -19,7 +19,8 @@ class _ProfilePageState extends State<ProfilePage> {
       appBar: AppBar(
         title: const Text("Profile"),
         backgroundColor: InsetsColors.abBackgroundColor,
-        shadowColor: Colors.transparent,
+        //shadowColor: Colors.transparent,
+        shadowColor: Colors.brown,
         centerTitle: true,
       ),
       body: Column(
@@ -53,49 +54,60 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget _header(double width, double height) {
     return Stack(
       children: [
-        Container(
-          height: height * 0.17 + 60,
-        ),
-        Container(
-          width: double.infinity,
-          height: height * 0.17,
-          decoration: const BoxDecoration(
-            color: InsetsColors.abBackgroundColor,
-            borderRadius: BorderRadius.vertical(
-              bottom: Radius.circular(20),
+        Column(
+          children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: _statChip("Trips:", "3", width),
+                ),
+                _spacer(),
+                Expanded(
+                  flex: 1,
+                  child: _statChip("revies:", "3", width),
+                ),
+                _spacer(),
+                Expanded(
+                  flex: 1,
+                  child: _statChip("something:", "8", width),
+                ),
+                _spacer(),
+                Expanded(
+                  flex: 1,
+                  child: _statChip("hahahahahahahahahahah:", "190", width),
+                ),
+              ],
             ),
-            boxShadow: [
-              BoxShadow(
-                  color: Color.fromARGB(58, 83, 55, 2),
-                  blurRadius: 5,
-                  blurStyle: BlurStyle.normal,
-                  spreadRadius: 5),
-            ],
-          ),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                flex: 1,
-                child: _statChip("Trips:", "3", width),
+            Container(
+              width: double.infinity,
+              height: 65,
+              decoration: const BoxDecoration(
+                color: InsetsColors.abBackgroundColor,
+                borderRadius: BorderRadius.vertical(
+                  bottom: Radius.circular(20),
+                ),
+                boxShadow: [
+                  BoxShadow(
+                      color: Colors.brown,
+                      offset: Offset(0, -3),
+                      //color: Colors.brown,
+                      blurRadius: 2,
+                      blurStyle: BlurStyle.normal,
+                      spreadRadius: 0),
+                  BoxShadow(
+                      color: Color.fromARGB(58, 83, 55, 2),
+                      offset: Offset(0, 5),
+                      //color: Colors.brown,
+                      blurRadius: 5,
+                      blurStyle: BlurStyle.normal,
+                      spreadRadius: 5),
+                ],
               ),
-              _spacer(),
-              Expanded(
-                flex: 1,
-                child: _statChip("revies:", "3", width),
-              ),
-              _spacer(),
-              Expanded(
-                flex: 1,
-                child: _statChip("something:", "8", width),
-              ),
-              _spacer(),
-              Expanded(
-                flex: 1,
-                child: _statChip("hahahahahahahahahahah:", "190", width),
-              ),
-            ],
-          ),
+            ),
+            Container(height: 60),
+          ],
         ),
         _profileImage(),
       ],
