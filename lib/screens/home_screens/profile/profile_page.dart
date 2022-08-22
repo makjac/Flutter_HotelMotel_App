@@ -66,11 +66,6 @@ class _ProfilePageState extends State<ProfilePage> {
                 _spacer(),
                 Expanded(
                   flex: 1,
-                  child: _statChip("revies:", "3", width),
-                ),
-                _spacer(),
-                Expanded(
-                  flex: 1,
                   child: _statChip("something:", "8", width),
                 ),
                 _spacer(),
