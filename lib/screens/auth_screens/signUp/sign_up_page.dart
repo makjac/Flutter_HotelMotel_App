@@ -38,27 +38,24 @@ class _SignUpPageState extends State<SignUpPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => _authBloc,
-      child: Scaffold(
-        backgroundColor: InsetsColors.backgroundColor,
-        body: BlocListener<AuthBloc, AuthState>(
-          listener: (ctx, state) {
-            if (state is Authorized) {
-              Navigator.pushNamedAndRemoveUntil(
-                  context, AppRoute.HOME_ROUTE, (route) => false);
-            }
-            if (state is AuthError) {
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content: Text(state.error),
-              ));
-            }
-          },
-          child: AuthScreenTemplate(
-              header: "Sign Up",
-              form: SignUpForm(),
-              footer: const SignUpFooter()),
-        ),
+    return Scaffold(
+      backgroundColor: InsetsColors.backgroundColor,
+      body: BlocListener<AuthBloc, AuthState>(
+        listener: (ctx, state) {
+          if (state is Authorized) {
+            Navigator.pushNamedAndRemoveUntil(
+                context, AppRoute.HOME_ROUTE, (route) => false);
+          }
+          if (state is AuthError) {
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text(state.error),
+            ));
+          }
+        },
+        child: AuthScreenTemplate(
+            header: "Sign Up",
+            form: SignUpForm(),
+            footer: const SignUpFooter()),
       ),
     );
   }

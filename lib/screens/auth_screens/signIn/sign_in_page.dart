@@ -38,27 +38,24 @@ class _SignInPageState extends State<SignInPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => _authBloc,
-      child: Scaffold(
-        backgroundColor: InsetsColors.backgroundColor,
-        body: BlocListener<AuthBloc, AuthState>(
-          listener: (ctx, state) {
-            if (state is LoggedIn) {
-              Navigator.pushNamedAndRemoveUntil(
-                  context, AppRoute.HOME_ROUTE, (route) => false);
-            }
-            if (state is AuthError) {
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content: Text(state.error),
-              ));
-            }
-          },
-          child: AuthScreenTemplate(
-              header: "Sign In",
-              form: SignInForm(),
-              footer: const SignInFooter()),
-        ),
+    return Scaffold(
+      backgroundColor: InsetsColors.backgroundColor,
+      body: BlocListener<AuthBloc, AuthState>(
+        listener: (ctx, state) {
+          if (state is LoggedIn) {
+            Navigator.pushNamedAndRemoveUntil(
+                context, AppRoute.HOME_ROUTE, (route) => false);
+          }
+          if (state is AuthError) {
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text(state.error),
+            ));
+          }
+        },
+        child: AuthScreenTemplate(
+            header: "Sign In",
+            form: SignInForm(),
+            footer: const SignInFooter()),
       ),
     );
   }
