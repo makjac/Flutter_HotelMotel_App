@@ -37,22 +37,24 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: InsetsColors.backgroundColor,
-      body: BlocListener<AuthBloc, AuthState>(
-        listener: (ctx, state) {
-          if (state is ResetPasswdEmailSend) {
-            Navigator.pushNamedAndRemoveUntil(
-                context, AppRoute.LOGIN_ROUTE, (route) => false);
-          }
-          if (state is AuthError) {
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              content: Text(state.error),
-            ));
-          }
-        },
-        child: AuthScreenTemplate(
-            header: "Forgot Password", form: ForgotPasswordForm()),
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: InsetsColors.backgroundColor,
+        body: BlocListener<AuthBloc, AuthState>(
+          listener: (ctx, state) {
+            if (state is ResetPasswdEmailSend) {
+              Navigator.pushNamedAndRemoveUntil(
+                  context, AppRoute.LOGIN_ROUTE, (route) => false);
+            }
+            if (state is AuthError) {
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text(state.error),
+              ));
+            }
+          },
+          child: AuthScreenTemplate(
+              header: "Forgot Password", form: ForgotPasswordForm()),
+        ),
       ),
     );
   }
