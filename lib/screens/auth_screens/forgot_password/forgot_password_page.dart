@@ -15,26 +15,6 @@ class ForgotPasswordPage extends StatefulWidget {
 }
 
 class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
-  late AuthBloc _authBloc;
-
-  @override
-  void initState() {
-    super.initState();
-    _authBloc = locator.get<AuthBloc>();
-  }
-
-  @override
-  void deactivate() {
-    _authBloc.close();
-    super.deactivate();
-  }
-
-  @override
-  void dispose() {
-    _authBloc.close();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(

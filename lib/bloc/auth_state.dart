@@ -22,3 +22,5 @@ class AuthError extends AuthState {
     required this.error,
   });
 }
+
+class SignedOut extends AuthState {}

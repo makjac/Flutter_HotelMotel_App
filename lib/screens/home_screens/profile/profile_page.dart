@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hotel_motel/bloc/auth_bloc.dart';
+import 'package:hotel_motel/constans/route_name_constans.dart';
+import 'package:hotel_motel/screens/home_screens/profile/profile_header.dart';
 import 'package:hotel_motel/theme/theme_base.dart';
-import 'package:hotel_motel/utils/scale.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -12,8 +15,6 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: InsetsColors.backgroundColor,
       appBar: AppBar(
@@ -26,23 +27,19 @@ class _ProfilePageState extends State<ProfilePage> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _header(width, height),
+          const ProfileHeader(),
           const SizedBox(height: Insets.xs),
           Padding(
             padding: const EdgeInsets.all(Insets.s),
             child: Column(
               children: [
                 _button(
-                  const Icon(Icons.add_business),
+                  Icons.add_business,
                   "Register own hotel",
                   () {},
                 ),
                 const SizedBox(height: Insets.xs),
-                _button(
-                  const Icon(Icons.logout),
-                  "Log out",
-                  () {},
-                ),
+                _logoutButton(),
               ],
             ),
           ),
@@ -51,144 +48,76 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
-  Widget _header(double width, double height) {
-    return Stack(
-      children: [
-        Column(
-          children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  flex: 1,
-                  child: _statChip("Trips:", "3", width),
-                ),
-                _spacer(),
-                Expanded(
-                  flex: 1,
-                  child: _statChip("something:", "8", width),
-                ),
-                _spacer(),
-                Expanded(
-                  flex: 1,
-                  child: _statChip("hahahahahahahahahahah:", "190", width),
-                ),
-              ],
-            ),
-            Container(
-              width: double.infinity,
-              height: 65,
-              decoration: const BoxDecoration(
-                color: InsetsColors.abBackgroundColor,
-                borderRadius: BorderRadius.vertical(
-                  bottom: Radius.circular(20),
-                ),
-                boxShadow: [
-                  BoxShadow(
-                      color: Colors.brown,
-                      offset: Offset(0, -3),
-                      //color: Colors.brown,
-                      blurRadius: 2,
-                      blurStyle: BlurStyle.normal,
-                      spreadRadius: 0),
-                  BoxShadow(
-                      color: Color.fromARGB(58, 83, 55, 2),
-                      offset: Offset(0, 5),
-                      //color: Colors.brown,
-                      blurRadius: 5,
-                      blurStyle: BlurStyle.normal,
-                      spreadRadius: 5),
-                ],
-              ),
-            ),
-            Container(height: 60),
-          ],
-        ),
-        _profileImage(),
-      ],
-    );
-  }
-
-  Widget _spacer() {
-    return Container(
-      width: 2,
-      height: 70,
-      color: Colors.brown[300],
-    );
-  }
-
-  Widget _statChip(String title, String score, double width) {
-    return Container(
-      height: 70,
-      decoration: BoxDecoration(
-        color: Colors.brown[400],
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(Insets.xs),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              title,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              textScaleFactor: Scale.textScale(width, 1.3),
-              style: const TextStyle(
-                fontWeight: FontWeight.w600,
-                fontSize: 15,
-                color: Colors.white,
-              ),
-            ),
-            const SizedBox(height: 3),
-            Text(
-              score,
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-                color: Colors.white,
-              ),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _profileImage() {
-    return Positioned(
-      bottom: 0,
-      left: 0,
-      right: 0,
-      child: CircleAvatar(
-        backgroundColor: Colors.brown,
-        radius: 60,
-        child: CircleAvatar(
-          backgroundColor: Colors.white,
-          radius: 53,
-          child: CircleAvatar(
-            radius: 48,
-            backgroundColor: Colors.brown[200],
-            child: InkWell(
-              onTap: () {},
-              child: ClipOval(
-                child: Image.network(
-                    "https://i.pinimg.com/736x/74/d7/b0/74d7b05c3476e062ca7c26452ffb22cb.jpg"),
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _button(Icon icon, String label, VoidCallback onTap) {
+  Widget _button(IconData icon, String label, VoidCallback onTap) {
     return InkWell(
       onTap: onTap,
       child: Row(
         children: [
-          icon,
+          Icon(
+            icon,
+            color: const Color.fromARGB(255, 36, 36, 36),
+          ),
           const SizedBox(width: Insets.s),
-          Text(label),
+          Text(
+            label,
+            style: const TextStyle(
+              color: Color.fromARGB(255, 36, 36, 36),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _logoutButton() {
+    return InkWell(
+      onTap: () {
+        showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return BlocListener<AuthBloc, AuthState>(
+                listener: (context, state) {
+                  if (state is SignedOut) {
+                    Navigator.pushNamedAndRemoveUntil(
+                        context, AppRoute.LOGIN_ROUTE, (route) => false);
+                  }
+                },
+                child: AlertDialog(
+                  title: const Center(child: Text("Log out")),
+                  content: const Text("Are you sure, you want to logout?"),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.pop(context),
+                      child: const Text(
+                        "No",
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () => BlocProvider.of<AuthBloc>(context)
+                          .add(SignOutRequest()),
+                      child: const Text(
+                        "Yes",
+                        style: TextStyle(color: Colors.red),
+                      ),
+                    )
+                  ],
+                ),
+              );
+            });
+      },
+      child: Row(
+        children: const [
+          Icon(
+            Icons.logout_outlined,
+            color: Colors.red,
+          ),
+          SizedBox(width: Insets.s),
+          Text(
+            "Log out",
+            style: TextStyle(
+              color: Colors.red,
+            ),
+          ),
         ],
       ),
     );

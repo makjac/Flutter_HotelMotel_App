@@ -17,6 +17,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<SignInRequest>(_signIn);
     on<SignUpRequest>(_signUp);
     on<ForgotPasswdRequest>(_forgotPasswd);
+    on<SignOutRequest>(_signOut);
   }
 
   FutureOr<void> _signIn(SignInRequest event, Emitter<AuthState> emit) async {
@@ -46,6 +47,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(Processing());
       await repository.resetPasswd(email: event.email);
       emit(ResetPasswdEmailSend());
+    } catch (e) {
+      emit(AuthError(error: e.toString()));
+    }
+  }
+
+  FutureOr<void> _signOut(SignOutRequest event, Emitter<AuthState> emit) async {
+    try {
+      emit(Processing());
+      await repository.signOut();
+      emit(SignedOut());
     } catch (e) {
       emit(AuthError(error: e.toString()));
     }
