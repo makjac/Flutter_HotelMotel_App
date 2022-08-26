@@ -50,20 +50,12 @@ class AuthRepository {
     }
   }
 
-  Future<void> signInUsingGoogle() async {
-    //TODO
-  }
-
   Future<void> signOut() async {
     try {
       _firebaseAuth.signOut();
     } catch (e) {
       throw Exception(e.toString());
     }
-  }
-
-  Future<void> sendVerificationEmail() async {
-    //TODO
   }
 
   Future<void> resetPasswd({required String email}) async {
