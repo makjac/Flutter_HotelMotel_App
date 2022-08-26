@@ -1,7 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:hotel_motel/data/models/user_model.dart';
 
 class AuthRepository {
   final _firebaseAuth = FirebaseAuth.instance;
+
+  Future<UserModel> getUser() async {
+    var firebaseUser = await _firebaseAuth.currentUser;
+    return UserModel(
+        uid: firebaseUser?.uid, displayName: firebaseUser?.displayName);
+  }
 
   Future<void> signUp({required String email, required String passwd}) async {
     try {

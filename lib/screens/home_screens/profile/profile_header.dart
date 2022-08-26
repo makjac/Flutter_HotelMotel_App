@@ -1,12 +1,16 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:hotel_motel/theme/design_system.dart';
+
 import 'package:hotel_motel/theme/theme_base.dart';
 import 'package:hotel_motel/utils/scale.dart';
 
 class ProfileHeader extends StatelessWidget {
-  const ProfileHeader({Key? key}) : super(key: key);
+  final String? imgUrl;
+
+  const ProfileHeader({
+    Key? key,
+    this.imgUrl,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +40,7 @@ class ProfileHeader extends StatelessWidget {
             ),
             Container(
               width: double.infinity,
-              height: 65,
+              height: 70,
               decoration: const BoxDecoration(
                 color: InsetsColors.abBackgroundColor,
                 borderRadius: BorderRadius.vertical(
@@ -130,8 +134,11 @@ class ProfileHeader extends StatelessWidget {
             child: InkWell(
               onTap: () {},
               child: ClipOval(
-                child: Image.network(
-                    "https://i.pinimg.com/736x/74/d7/b0/74d7b05c3476e062ca7c26452ffb22cb.jpg"),
+                child: imgUrl != null
+                    ? Image.network(
+                        "https://i.pinimg.com/736x/74/d7/b0/74d7b05c3476e062ca7c26452ffb22cb.jpg")
+                    : Image.network(
+                        "https://firebasestorage.googleapis.com/v0/b/hotelmotel-66527.appspot.com/o/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpeg?alt=media&token=af8c479a-585d-44da-a9b6-f43035f6ef09"),
               ),
             ),
           ),

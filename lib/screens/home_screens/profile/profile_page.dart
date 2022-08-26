@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hotel_motel/bloc/auth_bloc.dart';
 import 'package:hotel_motel/constans/route_name_constans.dart';
+import 'package:hotel_motel/data/models/user_model.dart';
 import 'package:hotel_motel/screens/home_screens/profile/profile_header.dart';
 import 'package:hotel_motel/theme/theme_base.dart';
 
@@ -13,12 +14,13 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  UserModel? currentUser;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: InsetsColors.backgroundColor,
       appBar: AppBar(
-        title: const Text("Profile"),
+        title: Text("Hi, ${currentUser?.displayName ?? "nice to see you"}!"),
         backgroundColor: InsetsColors.abBackgroundColor,
         //shadowColor: Colors.transparent,
         shadowColor: Colors.brown,
@@ -27,7 +29,7 @@ class _ProfilePageState extends State<ProfilePage> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const ProfileHeader(),
+          ProfileHeader(imgUrl: currentUser?.avatarUrl),
           const SizedBox(height: Insets.xs),
           Padding(
             padding: const EdgeInsets.all(Insets.s),

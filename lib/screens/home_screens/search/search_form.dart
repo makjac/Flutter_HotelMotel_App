@@ -160,12 +160,33 @@ class _SearchFormState extends State<SearchForm> {
               const Icon(Icons.person),
               const SizedBox(width: Insets.s),
               Text(
-                  "${widget.rooms} pokój - ${widget.adults} dorosłych - ${widget.kids} dzieci")
+                  "${_roomStr(widget.rooms)} - ${_adultsStr(widget.adults)} - ${_kidsStr(widget.kids)}"),
             ],
           ),
         ),
       ),
     );
+  }
+
+  String _roomStr(int number) {
+    if (number == 1) {
+      return "$number pokój";
+    }
+    return "$number pokoje";
+  }
+
+  String _adultsStr(int number) {
+    if (number == 1) {
+      return "$number dorosły";
+    }
+    return "$number dorosłych";
+  }
+
+  String _kidsStr(int number) {
+    if (number == 1) {
+      return "$number dziecko";
+    }
+    return "$number dzieci";
   }
 
   Future _detiailsDialog() async {
