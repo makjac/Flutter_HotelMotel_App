@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hotel_motel/bloc/auth_bloc.dart';
+import 'package:hotel_motel/bloc/storage_bloc.dart';
 import 'package:hotel_motel/firebase_options.dart';
 import 'package:hotel_motel/locator.dart';
 import 'package:hotel_motel/routers/router.dart';
@@ -21,6 +22,9 @@ Future<void> main() async {
     providers: [
       BlocProvider<AuthBloc>(
         create: (context) => locator.get<AuthBloc>(),
+      ),
+      BlocProvider(
+        create: (context) => locator.get<StorageBloc>(),
       ),
     ],
     child: HotelMotelApp(

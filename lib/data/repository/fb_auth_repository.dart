@@ -5,9 +5,11 @@ class AuthRepository {
   final _firebaseAuth = FirebaseAuth.instance;
 
   Future<UserModel> getUser() async {
-    var firebaseUser = await _firebaseAuth.currentUser;
+    var firebaseUser = _firebaseAuth.currentUser;
     return UserModel(
-        uid: firebaseUser?.uid, displayName: firebaseUser?.displayName);
+        uid: firebaseUser?.uid,
+        displayName: firebaseUser?.displayName,
+        avatarUrl: null);
   }
 
   Future<void> signUp({required String email, required String passwd}) async {

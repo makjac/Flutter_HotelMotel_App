@@ -3,8 +3,8 @@ class UserModel {
   final String? displayName;
   final String? avatarUrl;
   UserModel({
-    this.uid,
-    this.displayName,
-    this.avatarUrl,
+    required this.uid,
+    required this.displayName,
+    required this.avatarUrl,
   });
 }

@@ -2,6 +2,8 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:hotel_motel/data/controller/user_controller.dart';
+import 'package:hotel_motel/locator.dart';
 import 'package:meta/meta.dart';
 
 import 'package:hotel_motel/data/repository/fb_auth_repository.dart';
@@ -12,6 +14,7 @@ part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final AuthRepository repository;
+  final UserController _userController = locator.get<UserController>();
 
   AuthBloc({required this.repository}) : super(AuthInitial()) {
     on<SignInRequest>(_signIn);
@@ -25,6 +28,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(Processing());
 
       await repository.signIn(email: event.email, passwd: event.passwd);
+      await _userController.initUser();
       emit(LoggedIn());
     } catch (e) {
       emit(AuthError(error: e.toString()));
