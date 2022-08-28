@@ -24,7 +24,7 @@ class UserController {
   Future<void> uploadUserProfileImage(File file) async {
     try {
       await _storageRepo.uploadProfileFile(file, _currentUser.uid);
-      await _storageRepo.getProfulrImgUrl(_currentUser.uid).then(
+      _storageRepo.getProfulrImgUrl(_currentUser.uid).then(
         (value) {
           _currentUser.avatarUrl = value;
         },
@@ -43,7 +43,7 @@ class UserController {
     try {
       await _authRepo.signIn(email: email, passwd: passwd);
       initUser();
-      await _storageRepo.getProfulrImgUrl(_currentUser.uid).then(
+      _storageRepo.getProfulrImgUrl(_currentUser.uid).then(
         (value) {
           _currentUser.avatarUrl = value;
         },
@@ -56,7 +56,7 @@ class UserController {
   Future<void> signUpUser(
       {required String email, required String passwd}) async {
     try {
-      await _authRepo.signUp(email: email, passwd: passwd);
+      _authRepo.signUp(email: email, passwd: passwd);
     } catch (e) {
       throw Exception(e.toString());
     }
@@ -64,7 +64,7 @@ class UserController {
 
   Future<void> logoutUser() async {
     try {
-      await _authRepo.signOut();
+      _authRepo.signOut();
     } catch (e) {
       throw Exception(e.toString());
     }
@@ -72,7 +72,7 @@ class UserController {
 
   Future<void> resetUserPassword({required String email}) async {
     try {
-      await _authRepo.resetPasswd(email: email);
+      _authRepo.resetPasswd(email: email);
     } catch (e) {
       throw Exception(e.toString());
     }

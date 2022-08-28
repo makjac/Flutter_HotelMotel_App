@@ -148,15 +148,12 @@ class ProfileHeader extends StatelessWidget {
             child: CircleAvatar(
               radius: 48,
               backgroundColor: Colors.brown[200],
-              child: ClipOval(
-                child: imgUrl != null
-                    ? Image.network(
-                        imgUrl!,
-                        fit: BoxFit.cover,
-                      )
-                    : Image.network(
-                        "https://firebasestorage.googleapis.com/v0/b/hotelmotel-66527.appspot.com/o/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpeg?alt=media&token=af8c479a-585d-44da-a9b6-f43035f6ef09"),
-              ),
+              backgroundImage: imgUrl != null
+                  ? NetworkImage(
+                      imgUrl!,
+                    )
+                  : const NetworkImage(
+                      "https://firebasestorage.googleapis.com/v0/b/hotelmotel-66527.appspot.com/o/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpeg?alt=media&token=af8c479a-585d-44da-a9b6-f43035f6ef09"),
             ),
           ),
         ),
