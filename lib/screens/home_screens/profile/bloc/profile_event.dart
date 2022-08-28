@@ -1,12 +1,12 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-part of 'storage_bloc.dart';
+part of 'profile_bloc.dart';
 
 @immutable
-abstract class StorageEvent {}
+abstract class ProfileEvent {}
 
-class UploadProfileImage extends StorageEvent {
+class UploadProdileImgEvt extends ProfileEvent {
   final File image;
-  UploadProfileImage({
+  UploadProdileImgEvt({
     required this.image,
   });
 }

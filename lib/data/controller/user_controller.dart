@@ -21,7 +21,7 @@ class UserController {
     return _currentUser;
   }
 
-  Future<void> uploadUserProfileImage(File file) async {
+  Future<String?> uploadUserProfileImage(File file) async {
     try {
       await _storageRepo.uploadProfileFile(file, _currentUser.uid);
       _storageRepo.getProfulrImgUrl(_currentUser.uid).then(
@@ -29,6 +29,7 @@ class UserController {
           _currentUser.avatarUrl = value;
         },
       );
+      return _currentUser.avatarUrl;
     } catch (e) {
       throw Exception(e.toString());
     }

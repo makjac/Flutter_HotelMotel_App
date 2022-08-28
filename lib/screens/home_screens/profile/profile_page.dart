@@ -1,11 +1,15 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hotel_motel/bloc/auth_bloc.dart';
 import 'package:hotel_motel/constans/route_name_constans.dart';
 import 'package:hotel_motel/data/controller/user_controller.dart';
 import 'package:hotel_motel/locator.dart';
+import 'package:hotel_motel/screens/home_screens/profile/bloc/profile_bloc.dart';
 import 'package:hotel_motel/screens/home_screens/profile/profile_header.dart';
 import 'package:hotel_motel/theme/theme_base.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -16,6 +20,23 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   final currentUser = locator.get<UserController>().currentUser;
+  final ImagePicker _picker = ImagePicker();
+
+  Future<void> uploadImage() async {
+    try {
+      final pickedImage = await _picker.pickImage(source: ImageSource.gallery);
+      if (pickedImage != null) {
+        File image = File(pickedImage.path);
+        UserController uc = locator.get<UserController>();
+        await uc.uploadUserProfileImage(image).then((value) {
+          currentUser?.avatarUrl = value;
+        }).whenComplete(() {
+          setState(() {});
+        });
+      }
+    } catch (e) {}
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,26 +48,31 @@ class _ProfilePageState extends State<ProfilePage> {
         shadowColor: Colors.brown,
         centerTitle: true,
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ProfileHeader(imgUrl: currentUser?.avatarUrl),
-          const SizedBox(height: Insets.xs),
-          Padding(
-            padding: const EdgeInsets.all(Insets.s),
-            child: Column(
-              children: [
-                _button(
-                  Icons.add_business,
-                  "Register own hotel",
-                  () {},
-                ),
-                const SizedBox(height: Insets.xs),
-                _logoutButton(),
-              ],
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ProfileHeader(
+              imgUrl: locator.get<UserController>().currentUser?.avatarUrl,
+              onTap: uploadImage,
             ),
-          ),
-        ],
+            const SizedBox(height: Insets.xs),
+            Padding(
+              padding: const EdgeInsets.all(Insets.s),
+              child: Column(
+                children: [
+                  _button(
+                    Icons.add_business,
+                    "Register own hotel",
+                    () {},
+                  ),
+                  const SizedBox(height: Insets.xs),
+                  _logoutButton(),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

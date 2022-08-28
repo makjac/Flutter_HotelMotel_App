@@ -1,22 +1,15 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:hotel_motel/data/controller/user_controller.dart';
-import 'package:hotel_motel/data/repository/fb_storage_repository.dart';
-import 'package:hotel_motel/locator.dart';
-
 import 'package:hotel_motel/theme/theme_base.dart';
 import 'package:hotel_motel/utils/scale.dart';
-import 'package:image_picker/image_picker.dart';
 
 class ProfileHeader extends StatelessWidget {
   final String? imgUrl;
-  final ImagePicker _picker = ImagePicker();
+  final Function()? onTap;
 
-  ProfileHeader({
+  const ProfileHeader({
     Key? key,
     this.imgUrl,
+    required this.onTap,
   }) : super(key: key);
 
   @override
@@ -136,28 +129,24 @@ class ProfileHeader extends StatelessWidget {
           backgroundColor: Colors.white,
           radius: 53,
           child: InkWell(
-            onTap: () async {
-              final pickedImage =
-                  await _picker.pickImage(source: ImageSource.gallery);
-              if (pickedImage != null) {
-                File image = File(pickedImage.path);
-                UserController uc = locator.get<UserController>();
-                uc.uploadUserProfileImage(image);
-              }
-            },
-            child: CircleAvatar(
-              radius: 48,
-              backgroundColor: Colors.brown[200],
-              backgroundImage: imgUrl != null
-                  ? NetworkImage(
-                      imgUrl!,
-                    )
-                  : const NetworkImage(
-                      "https://firebasestorage.googleapis.com/v0/b/hotelmotel-66527.appspot.com/o/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpeg?alt=media&token=af8c479a-585d-44da-a9b6-f43035f6ef09"),
-            ),
+            onTap: onTap,
+            child: _image(),
           ),
         ),
       ),
+    );
+  }
+
+  Widget _image() {
+    return CircleAvatar(
+      radius: 48,
+      backgroundColor: Colors.brown[200],
+      backgroundImage: imgUrl != null
+          ? NetworkImage(
+              imgUrl!,
+            )
+          : const NetworkImage(
+              "https://firebasestorage.googleapis.com/v0/b/hotelmotel-66527.appspot.com/o/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpeg?alt=media&token=af8c479a-585d-44da-a9b6-f43035f6ef09"),
     );
   }
 }

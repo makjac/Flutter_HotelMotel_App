@@ -6,8 +6,6 @@ import 'package:hotel_motel/data/controller/user_controller.dart';
 import 'package:hotel_motel/locator.dart';
 import 'package:meta/meta.dart';
 
-import 'package:hotel_motel/data/repository/fb_auth_repository.dart';
-
 part 'auth_event.dart';
 
 part 'auth_state.dart';
