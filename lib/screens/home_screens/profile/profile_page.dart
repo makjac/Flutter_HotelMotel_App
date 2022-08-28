@@ -3,8 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hotel_motel/bloc/auth_bloc.dart';
 import 'package:hotel_motel/constans/route_name_constans.dart';
 import 'package:hotel_motel/data/controller/user_controller.dart';
-import 'package:hotel_motel/data/models/user_model.dart';
-import 'package:hotel_motel/data/repository/fb_storage_repository.dart';
 import 'package:hotel_motel/locator.dart';
 import 'package:hotel_motel/screens/home_screens/profile/profile_header.dart';
 import 'package:hotel_motel/theme/theme_base.dart';
@@ -32,7 +30,7 @@ class _ProfilePageState extends State<ProfilePage> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ProfileHeader(imgUrl: null),
+          ProfileHeader(imgUrl: currentUser?.avatarUrl),
           const SizedBox(height: Insets.xs),
           Padding(
             padding: const EdgeInsets.all(Insets.s),

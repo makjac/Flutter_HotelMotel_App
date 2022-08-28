@@ -11,11 +11,11 @@ setupServices() {
   //repositores
   locator.registerSingleton<AuthRepository>(AuthRepository());
   locator.registerSingleton<StorageRepository>(StorageRepository());
+
   //controllers
   locator.registerSingleton<UserController>(UserController());
 
   //blocs
-  locator.registerSingleton<AuthBloc>(
-      AuthBloc(repository: locator.get<AuthRepository>()));
+  locator.registerSingleton<AuthBloc>(AuthBloc());
   locator.registerSingleton<StorageBloc>(StorageBloc());
 }

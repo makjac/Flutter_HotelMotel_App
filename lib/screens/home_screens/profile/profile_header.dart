@@ -135,19 +135,19 @@ class ProfileHeader extends StatelessWidget {
         child: CircleAvatar(
           backgroundColor: Colors.white,
           radius: 53,
-          child: CircleAvatar(
-            radius: 48,
-            backgroundColor: Colors.brown[200],
-            child: InkWell(
-              onTap: () async {
-                final pickedImage =
-                    await _picker.pickImage(source: ImageSource.gallery);
-                if (pickedImage != null) {
-                  File image = File(pickedImage.path);
-                  UserController uc = locator.get<UserController>();
-                  uc.uploadUserProfileImage(image);
-                }
-              },
+          child: InkWell(
+            onTap: () async {
+              final pickedImage =
+                  await _picker.pickImage(source: ImageSource.gallery);
+              if (pickedImage != null) {
+                File image = File(pickedImage.path);
+                UserController uc = locator.get<UserController>();
+                uc.uploadUserProfileImage(image);
+              }
+            },
+            child: CircleAvatar(
+              radius: 48,
+              backgroundColor: Colors.brown[200],
               child: ClipOval(
                 child: imgUrl != null
                     ? Image.network(

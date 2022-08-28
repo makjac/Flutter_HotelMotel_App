@@ -13,10 +13,9 @@ part 'auth_event.dart';
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  final AuthRepository repository;
   final UserController _userController = locator.get<UserController>();
 
-  AuthBloc({required this.repository}) : super(AuthInitial()) {
+  AuthBloc() : super(AuthInitial()) {
     on<SignInRequest>(_signIn);
     on<SignUpRequest>(_signUp);
     on<ForgotPasswdRequest>(_forgotPasswd);
@@ -27,7 +26,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     try {
       emit(Processing());
 
-      await repository.signIn(email: event.email, passwd: event.passwd);
+      await _userController.signInUser(
+          email: event.email, passwd: event.passwd);
       await _userController.initUser();
       emit(LoggedIn());
     } catch (e) {
@@ -38,7 +38,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   FutureOr<void> _signUp(SignUpRequest event, Emitter<AuthState> emit) async {
     try {
       emit(Processing());
-      await repository.signUp(email: event.email, passwd: event.passwd);
+      await _userController.signUpUser(
+          email: event.email, passwd: event.passwd);
       emit(Authorized());
     } catch (e) {
       emit(AuthError(error: e.toString()));
@@ -49,7 +50,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       ForgotPasswdRequest event, Emitter<AuthState> emit) async {
     try {
       emit(Processing());
-      await repository.resetPasswd(email: event.email);
+      await _userController.resetUserPassword(email: event.email);
       emit(ResetPasswdEmailSend());
     } catch (e) {
       emit(AuthError(error: e.toString()));
@@ -59,7 +60,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   FutureOr<void> _signOut(SignOutRequest event, Emitter<AuthState> emit) async {
     try {
       emit(Processing());
-      await repository.signOut();
+      await _userController.logoutUser();
       emit(SignedOut());
     } catch (e) {
       emit(AuthError(error: e.toString()));
