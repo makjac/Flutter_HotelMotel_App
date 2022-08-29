@@ -42,6 +42,7 @@ dependencies:
   hive: ^2.2.3
   auto_size_text: ^3.0.0
 
+
 dev_dependencies:
 
   # The "flutter_lints" package below contains a set of recommended lints to
@@ -75,10 +76,6 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-
-
-
-
   # fonts:
   #   - family: Helvetica
   #     fonts:
@@ -88,10 +85,6 @@ flutter:
   #       - asset: fonts/Poopins-Regular.ttf
   #       - asset: fonts/Poopins-Italic.ttf
   #         style: italic
-
-
-
-
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf
@@ -100,3 +93,5 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+flutter_intl:
+  enabled: true

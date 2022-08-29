@@ -1,0 +1,42 @@
+{
+    "SignInLabel" : "SignIn",
+    "SignIn" : "SignIn",
+    "isAccountAsk" : "Already have an account?",
+    "ForgotPasswdNav" : "Forgot Password?",
+
+    "SignUpLabel" : "SignUp",
+    "SignUp" : "SignUp",
+    "NoAccountAsk" : "Don't have an account",
+
+    "ForgotPasswdLablel" : "Forgot Password",
+    "ForgotPasswdBNT" : "Refresh password",
+    
+    "Email" : "email",
+    "Passwd" : "Password",
+    "RepPasswd" : "Repeat password",
+
+    "SearchAppBar" : "Search",
+    "SearchIconLabel" : "Search",
+    "PickLocation" : "Pick location",
+    "PickDate" : "Pick date",
+    "Room" : "room",
+    "Rooms" : "rooms",
+    "Adult" : "adult",
+    "Adults" : "adults",
+    "Kid" : "Kid",
+    "Kids" : "Kids",
+    "RecomendedLabel" : "Recomended",
+    "SearchAgainLabel" : "Search again",
+
+    "FavoriteAppBar" : "Favorite",
+    "FavoriteIconLabel" : "Saved",
+
+    "BookingsAppBar" : "Bookings",
+    "BookingsIconLabel" : "Booked",
+
+    "ProfileAppBar_hi" : "Hi, ",
+    "ProfileAppBar_ntsy" : "nice to see you!",
+    "TripScoreLabel" : "Trips",
+    "RegisterHotelBNTLabel" : "Register own hotel",
+    "Logout" : "Logout"
+}
