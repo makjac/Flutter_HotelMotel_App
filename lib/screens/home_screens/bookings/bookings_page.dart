@@ -20,13 +20,15 @@ class _BookingsPageState extends State<BookingsPage> {
         backgroundColor: InsetsColors.abBackgroundColor,
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            HotelThumbnail(hotel: TestHotel.hotels[1]),
-            HotelThumbnail(hotel: TestHotel.hotels[5]),
-          ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              HotelThumbnail(hotel: TestHotel.hotels[1]),
+              HotelThumbnail(hotel: TestHotel.hotels[5]),
+            ],
+          ),
         ),
       ),
     );
