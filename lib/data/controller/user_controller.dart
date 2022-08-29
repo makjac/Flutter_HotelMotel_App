@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:hotel_motel/data/models/user_model.dart';
+import 'package:hotel_motel/data/repository/fb_analitics_repository.dart';
 import 'package:hotel_motel/data/repository/fb_auth_repository.dart';
 import 'package:hotel_motel/data/repository/fb_storage_repository.dart';
 import 'package:hotel_motel/locator.dart';
@@ -9,6 +10,7 @@ class UserController {
   late UserModel _currentUser;
   final AuthRepository _authRepo = locator.get<AuthRepository>();
   final StorageRepository _storageRepo = locator.get<StorageRepository>();
+  final AnalyticsRepository _analiticsRepo = locator.get<AnalyticsRepository>();
   late Future init;
 
   UserController() {
@@ -58,6 +60,7 @@ class UserController {
       {required String email, required String passwd}) async {
     try {
       _authRepo.signUp(email: email, passwd: passwd);
+      _analiticsRepo.loginLog("Email");
     } catch (e) {
       throw Exception(e.toString());
     }

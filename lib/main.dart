@@ -1,8 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:hotel_motel/bloc/auth_bloc.dart';
 import 'package:hotel_motel/firebase_options.dart';
+import 'package:hotel_motel/hive.dart';
 import 'package:hotel_motel/locator.dart';
 import 'package:hotel_motel/routers/router.dart';
 import 'package:hotel_motel/utils/userSharedPreferences.dart';
@@ -16,6 +18,7 @@ Future<void> main() async {
   await HomeShared.init();
 
   setupServices();
+  setupHiveAdapters();
 
   runApp(MultiBlocProvider(
     providers: [
@@ -29,17 +32,28 @@ Future<void> main() async {
   ));
 }
 
-class HotelMotelApp extends StatelessWidget {
+class HotelMotelApp extends StatefulWidget {
   final AppRouter router;
 
   const HotelMotelApp({required this.router, Key? key}) : super(key: key);
+
+  @override
+  State<HotelMotelApp> createState() => _HotelMotelAppState();
+}
+
+class _HotelMotelAppState extends State<HotelMotelApp> {
+  @override
+  void dispose() {
+    Hive.close();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       //theme: ThemeData(fontFamily: 'Poopins'),
       debugShowCheckedModeBanner: false,
-      onGenerateRoute: router.generateRoute,
+      onGenerateRoute: widget.router.generateRoute,
     );
   }
 }

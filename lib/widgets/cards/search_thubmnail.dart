@@ -2,16 +2,13 @@
 import 'package:flutter/material.dart';
 import 'package:hotel_motel/constans/route_name_constans.dart';
 
-import 'package:hotel_motel/data/models/search_details_model.dart';
 import 'package:hotel_motel/theme/theme_base.dart';
 import 'package:hotel_motel/utils/date.dart';
 import 'package:hotel_motel/utils/scale.dart';
 
 class SearchThumbnail extends StatelessWidget {
-  final SearchDetails data;
   const SearchThumbnail({
     Key? key,
-    required this.data,
   }) : super(key: key);
 
   @override
@@ -36,14 +33,14 @@ class SearchThumbnail extends StatelessWidget {
             ),
             const SizedBox(height: Insets.xs),
             Text(
-              data.location,
+              "Poznan",
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
               style: const TextStyle(fontWeight: FontWeight.bold),
               textScaleFactor: Scale.textScale(width, 1.5),
             ),
             Text(
-              "${Date.shortenDateToString(data.start)} - ${Date.shortenDateToString(data.end)}",
+              "${DateTime.now().add(const Duration(days: 30))} - ${DateTime.now().add(const Duration(days: 20))}",
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
               style: const TextStyle(

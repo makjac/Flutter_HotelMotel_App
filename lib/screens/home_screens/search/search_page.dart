@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
+import 'package:hotel_motel/data/hive_models/search_model.dart';
 import 'package:hotel_motel/screens/home_screens/search/search_form.dart';
 import 'package:hotel_motel/temp/test_hotel.dart';
 import 'package:hotel_motel/theme/theme_base.dart';
@@ -6,8 +8,19 @@ import 'package:hotel_motel/utils/userSharedPreferences.dart';
 import 'package:hotel_motel/widgets/cards/hotel_thumbnail.dart';
 import 'package:hotel_motel/widgets/cards/search_thubmnail.dart';
 
-class SearchPage extends StatelessWidget {
+class SearchPage extends StatefulWidget {
   const SearchPage({Key? key}) : super(key: key);
+
+  @override
+  State<SearchPage> createState() => _SearchPageState();
+}
+
+class _SearchPageState extends State<SearchPage> {
+  @override
+  void initState() {
+    Hive.openBox<Search>('search');
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -77,12 +90,12 @@ class SearchPage extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(Insets.xs),
             child: Row(
-              children: TestHotel.searchList
-                  .map((search) => Padding(
-                        padding: const EdgeInsets.all(Insets.xs),
-                        child: SearchThumbnail(data: search),
-                      ))
-                  .toList(),
+              children: const [
+                Padding(
+                  padding: EdgeInsets.all(Insets.xs),
+                  child: SearchThumbnail(),
+                ),
+              ],
             ),
           ),
         ),

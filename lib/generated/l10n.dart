@@ -140,10 +140,10 @@ class S {
     );
   }
 
-  /// `email`
+  /// `Email`
   String get Email {
     return Intl.message(
-      'email',
+      'Email',
       name: 'Email',
       desc: '',
       args: [],
@@ -387,6 +387,7 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
   List<Locale> get supportedLocales {
     return const <Locale>[
       Locale.fromSubtags(languageCode: 'en'),
+      Locale.fromSubtags(languageCode: 'pl'),
     ];
   }
 

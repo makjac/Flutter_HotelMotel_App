@@ -26,7 +26,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Adults": MessageLookupByLibrary.simpleMessage("adults"),
         "BookingsAppBar": MessageLookupByLibrary.simpleMessage("Bookings"),
         "BookingsIconLabel": MessageLookupByLibrary.simpleMessage("Booked"),
-        "Email": MessageLookupByLibrary.simpleMessage("email"),
+        "Email": MessageLookupByLibrary.simpleMessage("Email"),
         "FavoriteAppBar": MessageLookupByLibrary.simpleMessage("Favorite"),
         "FavoriteIconLabel": MessageLookupByLibrary.simpleMessage("Saved"),
         "ForgotPasswdBNT":
