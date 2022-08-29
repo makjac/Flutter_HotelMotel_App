@@ -34,7 +34,9 @@ class _ProfilePageState extends State<ProfilePage> {
           setState(() {});
         });
       }
-    } catch (e) {}
+    } catch (e) {
+      throw Exception(e.toString());
+    }
   }
 
   @override

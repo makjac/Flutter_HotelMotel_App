@@ -1,13 +1,16 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:hotel_motel/constans/route_name_constans.dart';
 
+import 'package:hotel_motel/constans/route_name_constans.dart';
+import 'package:hotel_motel/data/controller/storage_controller.dart';
+import 'package:hotel_motel/locator.dart';
 import 'package:hotel_motel/theme/theme_base.dart';
 import 'package:hotel_motel/utils/date.dart';
 import 'package:hotel_motel/utils/scale.dart';
 
 class SearchThumbnail extends StatelessWidget {
-  const SearchThumbnail({
+  final StorageController _storageController = locator.get<StorageController>();
+  SearchThumbnail({
     Key? key,
   }) : super(key: key);
 
@@ -27,9 +30,7 @@ class SearchThumbnail extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: Image.network(
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                  "https://www.polska.travel/images/pl-PL/glowne-miasta/poznan/poznan_stare_miasto_2_1170.jpg"),
+                  width: double.infinity, fit: BoxFit.cover, "www.wp.pl"),
             ),
             const SizedBox(height: Insets.xs),
             Text(
@@ -40,7 +41,7 @@ class SearchThumbnail extends StatelessWidget {
               textScaleFactor: Scale.textScale(width, 1.5),
             ),
             Text(
-              "${DateTime.now().add(const Duration(days: 30))} - ${DateTime.now().add(const Duration(days: 20))}",
+              "data",
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
               style: const TextStyle(

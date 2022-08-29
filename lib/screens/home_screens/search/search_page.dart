@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/adapters.dart';
-import 'package:hotel_motel/data/hive_models/search_model.dart';
 import 'package:hotel_motel/screens/home_screens/search/search_form.dart';
 import 'package:hotel_motel/temp/test_hotel.dart';
 import 'package:hotel_motel/theme/theme_base.dart';
@@ -18,7 +16,6 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   @override
   void initState() {
-    Hive.openBox<Search>('search');
     super.initState();
   }
 
@@ -37,7 +34,7 @@ class _SearchPageState extends State<SearchPage> {
           children: [
             _searchForm(),
             _recomended(),
-            _searchAgain(),
+            //_searchAgain(),
             const SizedBox(height: Insets.xs),
           ],
         ),
@@ -77,29 +74,37 @@ class _SearchPageState extends State<SearchPage> {
     );
   }
 
-  Widget _searchAgain() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: Insets.s),
-          child: _label("Search again"),
-        ),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Padding(
-            padding: const EdgeInsets.all(Insets.xs),
-            child: Row(
-              children: const [
-                Padding(
-                  padding: EdgeInsets.all(Insets.xs),
-                  child: SearchThumbnail(),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ],
-    );
-  }
+//   Widget _searchAgain() {
+//     return Column(
+//       crossAxisAlignment: CrossAxisAlignment.start,
+//       children: [
+//         Padding(
+//           padding: const EdgeInsets.symmetric(horizontal: Insets.s),
+//           child: _label("Search again"),
+//         ),
+//         SingleChildScrollView(
+//           scrollDirection: Axis.horizontal,
+//           child: Padding(
+//             padding: const EdgeInsets.all(Insets.xs),
+//             child: ValueListenableBuilder<Box<Search>>(
+//               valueListenable: Boxes.getSearch().listenable(),
+//               builder: (context, box, _) {
+//                 final searches = box.values.toList().cast<Search>();
+//                 return Row(
+//                   children: searches
+//                       .map((search) => Padding(
+//                             padding: const EdgeInsets.all(Insets.xs),
+//                             child: SearchThumbnail(
+//                               search: search,
+//                             ),
+//                           ))
+//                       .toList(),
+//                 );
+//               },
+//             ),
+//           ),
+//         ),
+//       ],
+//     );
+//   }
 }

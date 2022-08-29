@@ -34,7 +34,7 @@ class StorageRepository {
     }
   }
 
-  Future<String> getFileDownloadUrl(String? fileName, [String? path]) async {
+  Future<String> getFileDownloadUrl(String fileName, String? path) async {
     try {
       var storageRef = _storage.ref().child("$path$fileName");
       return storageRef.getDownloadURL();
