@@ -3,9 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>710259264384-39cll7q53e213fvafmsva4rup2ltv5l5.apps.googleusercontent.com</string>
+	<string>710259264384-eheudem342hr959gtjhsg0j5luetepe8.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.710259264384-39cll7q53e213fvafmsva4rup2ltv5l5</string>
+	<string>com.googleusercontent.apps.710259264384-eheudem342hr959gtjhsg0j5luetepe8</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>710259264384-l2dqsbglq3al4tl8s02be6go1p1p8vcq.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
 	<string>AIzaSyDqEztT13tH3J3D8ICUntjGnMXpdioWwq0</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>pl.makjac.hotelMotel</string>
+	<string>com.example.hotelMotel</string>
 	<key>PROJECT_ID</key>
 	<string>hotelmotel-66527</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,6 +31,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:710259264384:ios:add42c9c874da469abcf65</string>
+	<string>1:710259264384:ios:a775d2c23ce397f8abcf65</string>
+	<key>DATABASE_URL</key>
+	<string>https://hotelmotel-66527-default-rtdb.europe-west1.firebasedatabase.app</string>
 </dict>
 </plist>
