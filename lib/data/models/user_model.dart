@@ -1,6 +1,6 @@
 class UserModel {
-  final String? uid;
-  final String? displayName;
+  String? uid;
+  String? displayName;
   String? avatarUrl;
   UserModel({
     required this.uid,
