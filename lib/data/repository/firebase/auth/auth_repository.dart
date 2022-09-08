@@ -1,7 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hotel_motel/data/models/user_model.dart';
+import 'package:hotel_motel/data/repository/firebase/auth/base_auth_repository.dart';
 
-class AuthRepository {
+class AuthRepository extends BaseAuthRepository {
   final _firebaseAuth = FirebaseAuth.instance;
 
   Future<UserModel> getUser() async {

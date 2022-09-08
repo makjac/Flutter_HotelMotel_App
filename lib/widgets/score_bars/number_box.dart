@@ -21,8 +21,8 @@ class NumberBox extends StatelessWidget {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     return Container(
-      decoration: BoxDecoration(
-          color: Colors.brown, borderRadius: BorderRadius.circular(5)),
+      decoration:
+          BoxDecoration(color: color, borderRadius: BorderRadius.circular(5)),
       child: Padding(
         padding: EdgeInsets.all(textPadding),
         child: Center(

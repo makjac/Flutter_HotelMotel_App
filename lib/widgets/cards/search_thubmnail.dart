@@ -2,15 +2,12 @@
 import 'package:flutter/material.dart';
 
 import 'package:hotel_motel/constans/route_name_constans.dart';
-import 'package:hotel_motel/data/controller/storage_controller.dart';
-import 'package:hotel_motel/locator.dart';
 import 'package:hotel_motel/theme/theme_base.dart';
-import 'package:hotel_motel/utils/date.dart';
 import 'package:hotel_motel/utils/scale.dart';
 
 class SearchThumbnail extends StatelessWidget {
-  final StorageController _storageController = locator.get<StorageController>();
-  SearchThumbnail({
+  //final StorageController _storageController = locator.get<StorageController>();
+  const SearchThumbnail({
     Key? key,
   }) : super(key: key);
 

@@ -1,4 +1,4 @@
-import 'package:hotel_motel/data/repository/fb_storage_repository.dart';
+import 'package:hotel_motel/data/repository/firebase/storage/storage_repository.dart';
 import 'package:hotel_motel/locator.dart';
 
 class StorageController {

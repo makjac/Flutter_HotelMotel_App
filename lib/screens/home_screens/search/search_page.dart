@@ -4,7 +4,6 @@ import 'package:hotel_motel/temp/test_hotel.dart';
 import 'package:hotel_motel/theme/theme_base.dart';
 import 'package:hotel_motel/utils/userSharedPreferences.dart';
 import 'package:hotel_motel/widgets/cards/hotel_thumbnail.dart';
-import 'package:hotel_motel/widgets/cards/search_thubmnail.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({Key? key}) : super(key: key);
@@ -66,9 +65,10 @@ class _SearchPageState extends State<SearchPage> {
         children: [
           _label("Recomended"),
           const SizedBox(height: Insets.s),
-          HotelThumbnail(hotel: TestHotel.hotels[2]),
-          HotelThumbnail(hotel: TestHotel.hotels[4]),
-          HotelThumbnail(hotel: TestHotel.hotels[3]),
+          //TODO: add recomended hotels
+          // HotelThumbnail(hotel: TestHotel.hotels[2]),
+          // HotelThumbnail(hotel: TestHotel.hotels[4]),
+          // HotelThumbnail(hotel: TestHotel.hotels[3]),
         ],
       ),
     );

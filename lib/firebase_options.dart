@@ -49,6 +49,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '710259264384',
     projectId: 'hotelmotel-66527',
     authDomain: 'hotelmotel-66527.firebaseapp.com',
+    databaseURL: 'https://hotelmotel-66527-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'hotelmotel-66527.appspot.com',
     measurementId: 'G-EG6YPM56QY',
   );
@@ -58,17 +59,20 @@ class DefaultFirebaseOptions {
     appId: '1:710259264384:android:12081121d421f61cabcf65',
     messagingSenderId: '710259264384',
     projectId: 'hotelmotel-66527',
+    databaseURL: 'https://hotelmotel-66527-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'hotelmotel-66527.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyDqEztT13tH3J3D8ICUntjGnMXpdioWwq0',
-    appId: '1:710259264384:ios:add42c9c874da469abcf65',
+    appId: '1:710259264384:ios:a775d2c23ce397f8abcf65',
     messagingSenderId: '710259264384',
     projectId: 'hotelmotel-66527',
+    databaseURL: 'https://hotelmotel-66527-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'hotelmotel-66527.appspot.com',
-    iosClientId: '710259264384-39cll7q53e213fvafmsva4rup2ltv5l5.apps.googleusercontent.com',
-    iosBundleId: 'pl.makjac.hotelMotel',
+    androidClientId: '710259264384-l2dqsbglq3al4tl8s02be6go1p1p8vcq.apps.googleusercontent.com',
+    iosClientId: '710259264384-eheudem342hr959gtjhsg0j5luetepe8.apps.googleusercontent.com',
+    iosBundleId: 'com.example.hotelMotel',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
@@ -76,7 +80,9 @@ class DefaultFirebaseOptions {
     appId: '1:710259264384:ios:a775d2c23ce397f8abcf65',
     messagingSenderId: '710259264384',
     projectId: 'hotelmotel-66527',
+    databaseURL: 'https://hotelmotel-66527-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'hotelmotel-66527.appspot.com',
+    androidClientId: '710259264384-l2dqsbglq3al4tl8s02be6go1p1p8vcq.apps.googleusercontent.com',
     iosClientId: '710259264384-eheudem342hr959gtjhsg0j5luetepe8.apps.googleusercontent.com',
     iosBundleId: 'com.example.hotelMotel',
   );

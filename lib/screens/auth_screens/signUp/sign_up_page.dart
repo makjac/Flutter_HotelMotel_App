@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hotel_motel/bloc/auth_bloc.dart';
+import 'package:hotel_motel/bloc/auth/auth_bloc.dart';
 import 'package:hotel_motel/constans/route_name_constans.dart';
 import 'package:hotel_motel/screens/auth_screens/signUp/sign_up_footer.dart';
 import 'package:hotel_motel/screens/auth_screens/signUp/sign_up_form.dart';

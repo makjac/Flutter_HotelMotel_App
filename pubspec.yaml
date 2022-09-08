@@ -39,9 +39,9 @@ dependencies:
   image_picker: ^0.8.5+3
   flutter_rating_bar: ^4.0.1
   shared_preferences: ^2.0.15
-  hive: ^2.2.3
-  auto_size_text: ^3.0.0
   firebase_analytics: ^9.3.3
+  cloud_firestore: ^3.4.6
+  equatable: ^2.0.5
   
 
 
@@ -51,10 +51,10 @@ dev_dependencies:
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
-  # rules and activating additional ones.
-  flutter_lints: ^2.0.1
+  # rules and activating additional ones.8
   flutter_test:
     sdk: flutter
+  json_serializable: ^6.3.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

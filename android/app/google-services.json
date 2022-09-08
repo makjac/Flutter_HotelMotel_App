@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "710259264384",
+    "firebase_url": "https://hotelmotel-66527-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "hotelmotel-66527",
     "storage_bucket": "hotelmotel-66527.appspot.com"
   },
@@ -13,6 +14,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "710259264384-l2dqsbglq3al4tl8s02be6go1p1p8vcq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "pl.makjac.hotel_motel",
+            "certificate_hash": "2cce3e682d4562eb624e5259d5078570722240ca"
+          }
+        },
         {
           "client_id": "710259264384-k81uek324n8e9ifo7jvfkr96eftretcq.apps.googleusercontent.com",
           "client_type": 3
@@ -29,6 +38,13 @@
             {
               "client_id": "710259264384-k81uek324n8e9ifo7jvfkr96eftretcq.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "710259264384-39cll7q53e213fvafmsva4rup2ltv5l5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "pl.makjac.hotelMotel"
+              }
             }
           ]
         }

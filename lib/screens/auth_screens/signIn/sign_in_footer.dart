@@ -26,8 +26,9 @@ class SignInFooter extends StatelessWidget {
         TextButton(
           onPressed: () =>
               Navigator.pushNamed(context, AppRoute.FORGPASS_ROUTE),
-          style: TextButton.styleFrom(
-            primary: InsetsColors.tButColor,
+          style: ButtonStyle(
+            foregroundColor:
+                MaterialStateProperty.all<Color>(InsetsColors.tButColor),
           ),
           child: const Text("Forgot Password?"),
         ),

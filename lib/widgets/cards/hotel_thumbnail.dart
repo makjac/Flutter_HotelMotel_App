@@ -3,15 +3,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:hotel_motel/constans/route_name_constans.dart';
+import 'package:hotel_motel/data/models/hotel_thumbnail_model.dart';
 
-import 'package:hotel_motel/data/models/thumbnail_room_model.dart';
 import 'package:hotel_motel/theme/colors.dart';
 import 'package:hotel_motel/theme/design_system.dart';
 import 'package:hotel_motel/utils/scale.dart';
-import 'package:hotel_motel/widgets/containers/number_box.dart';
+import 'package:hotel_motel/widgets/score_bars/number_box.dart';
 
 class HotelThumbnail extends StatelessWidget {
-  final HotelLite hotel;
+  final HotelThumbnailModel hotel;
 
   const HotelThumbnail({
     Key? key,
@@ -75,7 +75,7 @@ class HotelThumbnail extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          hotel.title,
+          hotel.name,
           softWrap: false,
           maxLines: 3,
           overflow: TextOverflow.ellipsis,
@@ -86,7 +86,7 @@ class HotelThumbnail extends StatelessWidget {
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            NumberBox(number: hotel.rating),
+            NumberBox(number: hotel.rating / 20),
             const SizedBox(width: Insets.xs),
             _stars(width),
           ],
@@ -98,7 +98,7 @@ class HotelThumbnail extends StatelessWidget {
   Widget _stars(double width) {
     return RatingBar(
       itemCount: 5,
-      initialRating: hotel.rating,
+      initialRating: hotel.rating / 20,
       direction: Axis.horizontal,
       allowHalfRating: true,
       ignoreGestures: true,
@@ -144,7 +144,8 @@ class HotelThumbnail extends StatelessWidget {
           textScaleFactor: Scale.textScale(width, 1.3),
           style: const TextStyle(color: Colors.grey, fontSize: 10),
         ),
-        hotel.isFreeCanceling ? _freeCnceling(width) : Container(),
+        //TODO: add is freeCanceling into hotelThumbnailModel
+        true ? _freeCnceling(width) : Container(),
       ],
     );
   }

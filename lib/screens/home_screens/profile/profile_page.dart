@@ -2,11 +2,10 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hotel_motel/bloc/auth_bloc.dart';
+import 'package:hotel_motel/bloc/auth/auth_bloc.dart';
 import 'package:hotel_motel/constans/route_name_constans.dart';
 import 'package:hotel_motel/data/controller/user_controller.dart';
 import 'package:hotel_motel/locator.dart';
-import 'package:hotel_motel/screens/home_screens/profile/bloc/profile_bloc.dart';
 import 'package:hotel_motel/screens/home_screens/profile/profile_header.dart';
 import 'package:hotel_motel/theme/theme_base.dart';
 import 'package:image_picker/image_picker.dart';

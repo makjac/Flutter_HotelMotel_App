@@ -1,7 +1,8 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:hotel_motel/data/repository/firebase/analitic/base_analitics_repository.dart';
 
-class AnalyticsRepository {
-  FirebaseAnalytics _analitics = FirebaseAnalytics.instance;
+class AnalyticsRepository extends BaseAnaliticsRepository {
+  final FirebaseAnalytics _analitics = FirebaseAnalytics.instance;
 
   Future<void> setUserID(String uid) async {
     try {

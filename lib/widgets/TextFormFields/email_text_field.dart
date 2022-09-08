@@ -14,7 +14,7 @@ class EmailTextField extends StatelessWidget {
         if (value == "") {
           return "The field is empty";
         }
-        if (!Validator.isEmail(value)) {
+        if (!AppValidator.isEmail(value)) {
           return "email address is not valid";
         }
         return null;

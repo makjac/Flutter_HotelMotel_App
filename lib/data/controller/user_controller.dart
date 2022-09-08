@@ -1,9 +1,9 @@
 import 'dart:io';
 
 import 'package:hotel_motel/data/models/user_model.dart';
-import 'package:hotel_motel/data/repository/fb_analitics_repository.dart';
-import 'package:hotel_motel/data/repository/fb_auth_repository.dart';
-import 'package:hotel_motel/data/repository/fb_storage_repository.dart';
+import 'package:hotel_motel/data/repository/firebase/analitic/analitics_repository.dart';
+import 'package:hotel_motel/data/repository/firebase/auth/auth_repository.dart';
+import 'package:hotel_motel/data/repository/firebase/storage/storage_repository.dart';
 import 'package:hotel_motel/locator.dart';
 
 class UserController {
