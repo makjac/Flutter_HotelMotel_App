@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:hotel_motel/data/models/hotel_thumbnail_model.dart';
 import 'package:hotel_motel/data/repository/model_repositores/hotel_thumbnail/base_hotel_thumbnail_repository.dart';
@@ -11,29 +9,30 @@ class HotelThumbnailRepository extends BaseHotelThumbnailRepository {
       : _firestore = firebaseFirestore ?? FirebaseFirestore.instance;
 
   @override
-  Stream<List<HotelThumbnailModel>> getAllThumbnails() async* {
+  Future<List<HotelThumbnailModel>> getAllThumbnails() async {
     try {
       List<HotelThumbnailModel> response = [];
 
-      final hotelRef = _firestore.collection("hotel");
+      final hotelRef = await _firestore.collection("hotel");
 
       final hotelSnapshot = await hotelRef.snapshots();
 
-       yield* hotelSnapshot.map((hotels) {
-        for(var hotelDoc in hotels.docs){
-        //hotels.docs.forEach((hotelDoc) {
+      await hotelSnapshot.map((hotels) async {
+        return await hotels.docs.map((hotelDoc) async {
           final roomRef = hotelRef
               .doc(hotelDoc.id)
               .collection("room")
               .orderBy('price')
               .limit(1);
-          return roomRef.snapshots().map((rooms) {
-            for(var roomDoc in rooms.docs){
-            //rooms.docs.forEach((roomDoc) {
-              response.add(HotelThumbnailModel.fromSnapshot(hotelDoc, roomDoc))
-              return response;
-            }});
-          }}).toList();
+          return await roomRef.snapshots().map((rooms) async {
+            return await rooms.docs.map((roomDoc) async {
+              response.add(HotelThumbnailModel.fromSnapshot(hotelDoc, roomDoc));
+            });
+          });
+        });
+      });
+
+      return await response;
     } catch (e) {
       throw Exception(e.toString());
     }

@@ -3,6 +3,8 @@ import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
+import 'package:hotel_motel/data/models/hotel_model.dart';
+import 'package:hotel_motel/data/models/room_model.dart';
 
 class HotelThumbnailModel extends Equatable {
   final String hotelID;
@@ -27,6 +29,15 @@ class HotelThumbnailModel extends Equatable {
       rating: Hotelsnap['rating'] as double,
       price: roomSnap['price'] as double,
       discount: roomSnap['discount'] as double,
+    );
+  }
+
+  static HotelThumbnailModel fromModels(Hotel hotel, Room room) {
+    return HotelThumbnailModel(
+      hotelID: hotel.hotelID,
+      name: hotel.name,
+      rating: hotel.rating,
+      price: room.price,
     );
   }
 
