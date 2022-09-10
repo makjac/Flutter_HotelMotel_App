@@ -10,7 +10,7 @@ class Hotel extends Equatable {
   final String category;
   final bool isFreeCanceling;
   final bool isRecomended;
-  final double rating;
+  final num rating;
   final String country;
   final String city;
   final String zipcode;
@@ -45,7 +45,7 @@ class Hotel extends Equatable {
       category: snap['category'] as String,
       isFreeCanceling: snap['free_canceling'] as bool,
       isRecomended: snap['isRecomended'] as bool,
-      rating: snap['rating'] as double,
+      rating: snap['rating'] as num,
       country: snap['country'] as String,
       city: snap['city'] as String,
       zipcode: snap['zipcode'] as String,
@@ -60,40 +60,40 @@ class Hotel extends Equatable {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'hotel_id': hotelID,
+      'hotelID': hotelID,
       'name': name,
       'category': category,
-      'free_canceling': isFreeCanceling,
+      'isFreeCanceling': isFreeCanceling,
       'isRecomended': isRecomended,
       'rating': rating,
       'country': country,
       'city': city,
       'zipcode': zipcode,
       'street': street,
-      'building_number': buildingNumber,
-      'local_number': localNumber,
-      'Phone_prefix': PhonePrefix,
-      'Phone_number': PhoneNumber,
+      'buildingNumber': buildingNumber,
+      'localNumber': localNumber,
+      'PhonePrefix': PhonePrefix,
+      'PhoneNumber': PhoneNumber,
       'Email': Email,
     };
   }
 
   factory Hotel.fromMap(Map<String, dynamic> map) {
     return Hotel(
-      hotelID: map['hotel_id'] as String,
+      hotelID: map['hotelID'] as String,
       name: map['name'] as String,
       category: map['category'] as String,
-      isFreeCanceling: map['free_canceling'] as bool,
+      isFreeCanceling: map['isFreeCanceling'] as bool,
       isRecomended: map['isRecomended'] as bool,
-      rating: map['rating'] as double,
+      rating: map['rating'] as num,
       country: map['country'] as String,
       city: map['city'] as String,
       zipcode: map['zipcode'] as String,
       street: map['street'] as String,
-      buildingNumber: map['building_number'] as String,
-      localNumber: map['local_number'] as String,
-      PhonePrefix: map['Phone_prefix'] as String,
-      PhoneNumber: map['Phone_number'] as String,
+      buildingNumber: map['buildingNumber'] as String,
+      localNumber: map['localNumber'] as String,
+      PhonePrefix: map['PhonePrefix'] as String,
+      PhoneNumber: map['PhoneNumber'] as String,
       Email: map['Email'] as String,
     );
   }
@@ -109,7 +109,7 @@ class Hotel extends Equatable {
     String? category,
     bool? isFreeCanceling,
     bool? isRecomended,
-    double? rating,
+    num? rating,
     String? country,
     String? city,
     String? zipcode,

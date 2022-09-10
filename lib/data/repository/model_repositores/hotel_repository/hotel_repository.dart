@@ -28,4 +28,23 @@ class HotelRepository extends BaseHotelRepository {
           .toList();
     });
   }
+
+  @override
+  Stream<List<Hotel>> getAllRecomendedHotels() {
+    final hotelRef =
+        _firestore.collection('hotel').where('isRecomended', isEqualTo: true);
+    return hotelRef.snapshots().map((hotels) {
+      return hotels.docs
+          .map((hotelDoc) => Hotel.fromSnapshot(hotelDoc))
+          .toList();
+    });
+  }
+
+  @override
+  Stream<Hotel> getHotel(String hotelID) {
+    final hotelRef = _firestore.collection('hotel').doc(hotelID);
+    return hotelRef.snapshots().map((hotel) {
+      return Hotel.fromSnapshot(hotel);
+    });
+  }
 }

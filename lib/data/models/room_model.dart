@@ -8,9 +8,9 @@ class Room extends Equatable {
   final String roomID;
   final String descryption;
   final double price;
-  final double discount;
-  final int numberOfRooms;
-  final int capacity;
+  final num discount;
+  final num numberOfRooms;
+  final num capacity;
   final Map bedsType;
   final Map facilities;
   const Room({
@@ -29,9 +29,9 @@ class Room extends Equatable {
       roomID: snap.id,
       descryption: snap['description'] as String,
       price: snap['price'] as double,
-      discount: snap['discount'] as double,
-      numberOfRooms: snap['Number_of_rooms'] as int,
-      capacity: snap['capacity'] as int,
+      discount: snap['discount'] as num,
+      numberOfRooms: snap['Number_of_rooms'] as num,
+      capacity: snap['capacity'] as num,
       bedsType: Map.from((snap['beds_types'] as Map)),
       facilities: Map.from((snap['facilities'] as Map)),
     );
@@ -41,9 +41,9 @@ class Room extends Equatable {
     String? roomID,
     String? descryption,
     double? price,
-    double? discount,
-    int? numberOfRooms,
-    int? capacity,
+    num? discount,
+    num? numberOfRooms,
+    num? capacity,
     Map? bedsType,
     Map? facilities,
   }) {
@@ -61,27 +61,27 @@ class Room extends Equatable {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'room_id': roomID,
+      'roomID': roomID,
       'descryption': descryption,
       'price': price,
       'discount': discount,
-      'number_of_rooms': numberOfRooms,
+      'numberOfRooms': numberOfRooms,
       'capacity': capacity,
-      'beds_type': bedsType,
+      'bedsType': bedsType,
       'facilities': facilities,
     };
   }
 
   factory Room.fromMap(Map<String, dynamic> map) {
     return Room(
-      roomID: map['room_id'] as String,
+      roomID: map['roomID'] as String,
       descryption: map['descryption'] as String,
       price: map['price'] as double,
-      discount: map['discount'] as double,
-      numberOfRooms: map['number_of_rooms'] as int,
-      capacity: map['capacity'] as int,
-      bedsType: Map.from((map['beds_type'] as Map)),
-      facilities: Map.from((map['facilities'] as Map)),
+      discount: map['discount'] as num,
+      numberOfRooms: map['numberOfRooms'] as num,
+      capacity: map['capacity'] as num,
+      bedsType: Map.from(map['bedsType'] as Map),
+      facilities: Map.from(map['facilities'] as Map),
     );
   }
 

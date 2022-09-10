@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hotel_motel/bloc/hotel_thumbnail/hotel_thumbnail_bloc.dart';
-import 'package:hotel_motel/temp/test_hotel.dart';
 import 'package:hotel_motel/theme/theme_base.dart';
 import 'package:hotel_motel/widgets/cards/hotel_thumbnail.dart';
 

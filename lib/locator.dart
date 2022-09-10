@@ -9,7 +9,6 @@ import 'package:hotel_motel/data/repository/firebase/auth/auth_repository.dart';
 import 'package:hotel_motel/data/repository/fb_firestore_repository.dart';
 import 'package:hotel_motel/data/repository/firebase/storage/storage_repository.dart';
 import 'package:hotel_motel/data/repository/model_repositores/category/category_repository.dart';
-import 'package:hotel_motel/data/repository/model_repositores/hotel_thumbnail/hotel_thumbnail_repository.dart';
 
 final locator = GetIt.instance;
 
@@ -29,7 +28,5 @@ setupServices() {
   locator.registerSingleton<CategoryBloc>(CategoryBloc(
     categoryRepository: CategoryRepository(),
   ));
-  locator.registerSingleton<HotelThumbnailBloc>(HotelThumbnailBloc(
-    hotelThumbnailRepository: HotelThumbnailRepository(),
-  ));
+  locator.registerSingleton<HotelThumbnailBloc>(HotelThumbnailBloc());
 }

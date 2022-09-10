@@ -19,10 +19,10 @@ class HotelThumbnail extends StatelessWidget {
   }) : super(key: key);
 
   double _discountNull() {
-    if (hotel.discount == null) {
+    if (hotel.discount == null || hotel.discount == 0) {
       return 0;
     }
-    return hotel.discount!;
+    return hotel.discount as double;
   }
 
   @override
@@ -121,7 +121,7 @@ class HotelThumbnail extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            hotel.discount == null
+            hotel.discount == null || hotel.discount == 0
                 ? Container()
                 : Text(
                     "PLN ${hotel.price.round().toString()}",
@@ -133,7 +133,7 @@ class HotelThumbnail extends StatelessWidget {
                   ),
             const SizedBox(width: 5),
             Text(
-              "PLN ${(hotel.price * ((100 - _discountNull()) / 100)).round().toString()}",
+              "PLN ${_calculatePrice()}",
               textScaleFactor: Scale.textScale(width, 1.4),
               style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
             )
@@ -144,10 +144,16 @@ class HotelThumbnail extends StatelessWidget {
           textScaleFactor: Scale.textScale(width, 1.3),
           style: const TextStyle(color: Colors.grey, fontSize: 10),
         ),
-        //TODO: add is freeCanceling into hotelThumbnailModel
-        true ? _freeCnceling(width) : Container(),
+        hotel.isFeeCanceling ? _freeCnceling(width) : Container(),
       ],
     );
+  }
+
+  num _calculatePrice() {
+    if (hotel.discount == null || hotel.discount == 0) {
+      return hotel.price.round();
+    }
+    return (hotel.price * ((100.0 - hotel.discount * 100) / 100.0)).round();
   }
 
   Widget _freeCnceling(double width) {
