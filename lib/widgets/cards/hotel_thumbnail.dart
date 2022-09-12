@@ -18,13 +18,6 @@ class HotelThumbnail extends StatelessWidget {
     required this.hotel,
   }) : super(key: key);
 
-  double _discountNull() {
-    if (hotel.discount == null || hotel.discount == 0) {
-      return 0;
-    }
-    return hotel.discount as double;
-  }
-
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -121,7 +114,7 @@ class HotelThumbnail extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            hotel.discount == null || hotel.discount == 0
+            hotel.discount == 0
                 ? Container()
                 : Text(
                     "PLN ${hotel.price.round().toString()}",
@@ -150,7 +143,7 @@ class HotelThumbnail extends StatelessWidget {
   }
 
   num _calculatePrice() {
-    if (hotel.discount == null || hotel.discount == 0) {
+    if (hotel.discount == 0) {
       return hotel.price.round();
     }
     return (hotel.price * ((100.0 - hotel.discount * 100) / 100.0)).round();

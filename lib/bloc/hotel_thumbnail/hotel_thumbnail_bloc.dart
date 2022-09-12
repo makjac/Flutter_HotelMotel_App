@@ -30,7 +30,6 @@ class HotelThumbnailBloc
           await _roomRepository.getHotelRoom(hotel.hotelID).listen((room) {
             thumbnails.add(HotelThumbnailModel.fromModels(hotel, room.last));
             emit(ThumbnailsLoaded(hotelThumbnails: thumbnails));
-            print(thumbnails.last);
           }).asFuture();
         });
       });

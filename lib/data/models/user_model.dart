@@ -8,13 +8,11 @@ class UserModel extends Equatable {
   String? uid;
   String? displayName;
   String? avatarUrl;
-  List<String>? favoriteHotels;
   bool? anonim;
   UserModel({
     this.uid,
     this.displayName,
     this.avatarUrl,
-    this.favoriteHotels,
     this.anonim,
   });
 
@@ -25,16 +23,11 @@ class UserModel extends Equatable {
       avatarUrl:
           snap['avatar_url'] != null ? snap['avatar_url'] as String : null,
       displayName: snap['username'] != null ? snap['usernale'] as String : null,
-      favoriteHotels: snap['favorite_hotels'] != null
-          ? List<String>.from((snap['favorite_hotels'] as List<String>))
-          : null,
     );
   }
 
   @override
-  List<Object> get props {
-    return [];
-  }
+  List<Object> get props => [];
 
   @override
   bool get stringify => true;
@@ -42,9 +35,8 @@ class UserModel extends Equatable {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'uid': uid,
-      'displayName': displayName,
-      'avatarUrl': avatarUrl,
-      'favoriteHotels': favoriteHotels,
+      'username': displayName,
+      'avatar_url': avatarUrl,
       'anonim': anonim,
     };
   }
@@ -54,9 +46,6 @@ class UserModel extends Equatable {
       uid: map['uid'] != null ? map['uid'] as String : null,
       displayName: map['username'] != null ? map['username'] as String : null,
       avatarUrl: map['avatar_url'] != null ? map['avatar_url'] as String : null,
-      favoriteHotels: map['favorite_hotels'] != null
-          ? List<String>.from((map['favorite_hotels'] as List<String>))
-          : null,
       anonim: map['anonim'] != null ? map['anonim'] as bool : null,
     );
   }
@@ -70,14 +59,12 @@ class UserModel extends Equatable {
     String? uid,
     String? displayName,
     String? avatarUrl,
-    List<String>? favoriteHotels,
     bool? anonim,
   }) {
     return UserModel(
       uid: uid ?? this.uid,
       displayName: displayName ?? this.displayName,
       avatarUrl: avatarUrl ?? this.avatarUrl,
-      favoriteHotels: favoriteHotels ?? this.favoriteHotels,
       anonim: anonim ?? this.anonim,
     );
   }

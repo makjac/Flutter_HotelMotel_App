@@ -83,4 +83,6 @@ class UserController {
   }
 
   UserModel? get currentUser => _currentUser;
+
+  String? get currentUserUid => _currentUser.uid;
 }
