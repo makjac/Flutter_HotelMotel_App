@@ -8,6 +8,7 @@ class RoomRepository extends BaseRoomRepository {
   RoomRepository({FirebaseFirestore? firebaseFirestore})
       : _firestore = firebaseFirestore ?? FirebaseFirestore.instance;
 
+  //todo: remove list
   @override
   Stream<List<Room>> getHotelRoom(String hotelID) {
     final roomRef = _firestore
@@ -16,6 +17,15 @@ class RoomRepository extends BaseRoomRepository {
         .collection('room')
         .orderBy('price')
         .limit(1);
+    return roomRef.snapshots().map((rooms) {
+      return rooms.docs.map((roomDoc) => Room.fromSnapshot(roomDoc)).toList();
+    });
+  }
+
+  @override
+  Stream<List<Room>> getHotelRooms(String hotelID) {
+    final roomRef =
+        _firestore.collection('hotel').doc(hotelID).collection('room');
     return roomRef.snapshots().map((rooms) {
       return rooms.docs.map((roomDoc) => Room.fromSnapshot(roomDoc)).toList();
     });

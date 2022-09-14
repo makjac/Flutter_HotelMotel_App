@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hotel_motel/constans/route_name_constans.dart';
+import 'package:hotel_motel/data/models/search_cryteria.dart';
 import 'package:hotel_motel/screens/auth_screens/auth_screens_base.dart';
 import 'package:hotel_motel/screens/home_screens/home_screens_base.dart';
 import 'package:hotel_motel/screens/hotel_screen/hotel_page.dart';
@@ -23,8 +24,11 @@ class AppRouter {
         return MaterialPageRoute(
             builder: (BuildContext context) => const ForgotPasswordPage());
       case AppRoute.RESULTS_ROUTE:
+        final sreenArguments = settings.arguments as SearchCryteria;
         return MaterialPageRoute(
-            builder: (BuildContext context) => const ResultsPage());
+            builder: (BuildContext context) => ResultsPage(
+                  searchCryteria: sreenArguments,
+                ));
       case AppRoute.HOTEL_ROUTE:
         return MaterialPageRoute(
             builder: (BuildContext context) => const HotelPage());

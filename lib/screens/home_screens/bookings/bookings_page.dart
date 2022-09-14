@@ -20,12 +20,14 @@ class _BookingsPageState extends State<BookingsPage> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              // HotelThumbnail(hotel: TestHotel.hotels[1]),
-              // HotelThumbnail(hotel: TestHotel.hotels[5]),
-            ],
+          padding: const EdgeInsets.all(Insets.s),
+          child: DefaultTabController(
+            length: 3,
+            child: TabBar(tabs: [
+              const Text("Incoming"),
+              const Text("Realized"),
+              const Text("Cancelled"),
+            ]),
           ),
         ),
       ),

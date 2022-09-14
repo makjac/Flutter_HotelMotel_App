@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class LocationSearchAction extends SearchDelegate<String> {
   final locations = [
-    "Poznań",
+    "Poznan",
     "Warszawa",
     "Kraków",
     "Szcecin",

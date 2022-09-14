@@ -1,6 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+
 import 'package:flutter/material.dart';
 import 'package:hotel_motel/constans/route_name_constans.dart';
+import 'package:hotel_motel/data/models/search_cryteria.dart';
 import 'package:hotel_motel/screens/home_screens/search/location_search_action.dart';
 
 import 'package:hotel_motel/theme/colors.dart';
@@ -272,7 +274,19 @@ class _SearchFormState extends State<SearchForm> {
       color: Colors.transparent,
       child: InkWell(
         onTap: () {
-          Navigator.pushNamed(context, AppRoute.RESULTS_ROUTE);
+          if (widget.location != null && widget.dateRange != null) {
+            Navigator.pushNamed(
+              context,
+              AppRoute.RESULTS_ROUTE,
+              arguments: SearchCryteria(
+                location: widget.location!,
+                timeRange: widget.dateRange!,
+                rooms: widget.rooms,
+                adults: widget.adults,
+                kids: widget.kids,
+              ),
+            );
+          }
         },
         splashColor: InsetsColors.splashColor,
         child: Container(
