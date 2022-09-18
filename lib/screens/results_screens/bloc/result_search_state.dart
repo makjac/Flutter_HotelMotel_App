@@ -12,14 +12,7 @@ class ResultSearchInitial extends ResultSearchState {}
 
 class LoadingResults extends ResultSearchState {}
 
-class LoadingMore extends ResultSearchState {
-  final List<HotelThumbnailModel> thumbnails;
-
-  LoadingMore({required this.thumbnails});
-
-  @override
-  List<Object> get props => [this.thumbnails];
-}
+class LoadingMore extends ResultSearchState {}
 
 class ResultsLoaded extends ResultSearchState {
   final List<HotelThumbnailModel> thumbnails;

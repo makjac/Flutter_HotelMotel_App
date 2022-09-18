@@ -53,7 +53,7 @@ class ResultSearchBloc extends Bloc<ResultSearchEvent, ResultSearchState> {
                     event.searchCryteria.adults + event.searchCryteria.kids) {
                   thumbnails.add(HotelThumbnailModel.fromModels(hotel, room));
                   thumbnails.sort((a, b) => b.rating.compareTo(a.rating));
-                  emit(LoadingMore(thumbnails: thumbnails));
+                  emit(LoadingMore());
                 }
               }
               emit(ResultsLoaded(thumbnails: thumbnails));
