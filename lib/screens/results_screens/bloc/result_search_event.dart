@@ -15,6 +15,13 @@ class LoadSearchResults extends ResultSearchEvent {
   });
 }
 
+class SortResults extends ResultSearchEvent {
+  final SortValues value;
+  SortResults({
+    required this.value,
+  });
+}
+
 class UpdateResults extends ResultSearchEvent {
   final List<HotelThumbnailModel> thumbnails;
   UpdateResults({

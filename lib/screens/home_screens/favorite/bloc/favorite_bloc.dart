@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hotel_motel/data/controller/user_controller.dart';
 import 'package:hotel_motel/data/models/hotel_thumbnail_model.dart';
 import 'package:hotel_motel/data/repository/model_repositores/favorite_repository/favorite_repository.dart';
@@ -45,6 +46,7 @@ class FavoriteBloc extends Bloc<FavoriteEvent, FavoriteState> {
               _roomRepository.getHotelRoom(hotel.hotelID).listen((room) {
                 thumbnails
                     .add(HotelThumbnailModel.fromModels(hotel, room.last));
+
                 emit(FavoriteHotelsLoaded(hotels: thumbnails));
               });
             });

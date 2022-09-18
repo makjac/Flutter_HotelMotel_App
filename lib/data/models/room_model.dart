@@ -7,7 +7,7 @@ import 'package:equatable/equatable.dart';
 class Room extends Equatable {
   final String roomID;
   final String descryption;
-  final double price;
+  final num price;
   final num discount;
   final num numberOfRooms;
   final num capacity;
@@ -28,7 +28,7 @@ class Room extends Equatable {
     return Room(
       roomID: snap.id,
       descryption: snap['description'] as String,
-      price: snap['price'] as double,
+      price: snap['price'] as num,
       discount: snap['discount'] as num,
       numberOfRooms: snap['Number_of_rooms'] as num,
       capacity: snap['capacity'] as num,
@@ -40,7 +40,7 @@ class Room extends Equatable {
   Room copyWith({
     String? roomID,
     String? descryption,
-    double? price,
+    num? price,
     num? discount,
     num? numberOfRooms,
     num? capacity,
@@ -76,7 +76,7 @@ class Room extends Equatable {
     return Room(
       roomID: map['roomID'] as String,
       descryption: map['descryption'] as String,
-      price: map['price'] as double,
+      price: map['price'] as num,
       discount: map['discount'] as num,
       numberOfRooms: map['numberOfRooms'] as num,
       capacity: map['capacity'] as num,
