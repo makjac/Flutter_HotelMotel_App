@@ -3,12 +3,14 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:hotel_motel/data/models/hotel_thumbnail_model.dart';
+import 'package:hotel_motel/data/models/results_filters.dart';
 import 'package:hotel_motel/data/models/search_cryteria.dart';
 import 'package:hotel_motel/data/repository/http/http_repository.dart';
 import 'package:hotel_motel/data/repository/model_repositores/hotel_repository/hotel_repository.dart';
 import 'package:hotel_motel/data/repository/model_repositores/room_repository/room_repository.dart';
 import 'package:hotel_motel/locator.dart';
 import 'package:hotel_motel/screens/results_screens/results_sort_values.dart';
+import 'package:hotel_motel/utils/numbers.dart';
 
 part 'result_search_event.dart';
 part 'result_search_state.dart';
@@ -69,31 +71,32 @@ class ResultSearchBloc extends Bloc<ResultSearchEvent, ResultSearchState> {
   FutureOr<void> _sortResults(
       SortResults event, Emitter<ResultSearchState> emit) async {
     try {
+      final filtredResults = _filterResults(event.filters);
       emit(SortingResults());
       switch (event.value) {
         case SortValues.sortPriceHL:
-          thumbnails.sort(
+          filtredResults.sort(
             (a, b) => b.price.compareTo(a.price),
           );
-          emit(ResultsLoaded(thumbnails: thumbnails));
+          emit(ResultsLoaded(thumbnails: filtredResults));
           break;
         case SortValues.sortPriceLH:
-          thumbnails.sort(
+          filtredResults.sort(
             (a, b) => a.price.compareTo(b.price),
           );
-          emit(ResultsLoaded(thumbnails: thumbnails));
+          emit(ResultsLoaded(thumbnails: filtredResults));
           break;
         case SortValues.sortRatingHL:
-          thumbnails.sort(
+          filtredResults.sort(
             (a, b) => b.rating.compareTo(a.rating),
           );
-          emit(ResultsLoaded(thumbnails: thumbnails));
+          emit(ResultsLoaded(thumbnails: filtredResults));
           break;
         case SortValues.sortRatingLH:
-          thumbnails.sort(
+          filtredResults.sort(
             (a, b) => a.rating.compareTo(b.rating),
           );
-          emit(ResultsLoaded(thumbnails: thumbnails));
+          emit(ResultsLoaded(thumbnails: filtredResults));
           break;
         default:
           break;
@@ -101,6 +104,20 @@ class ResultSearchBloc extends Bloc<ResultSearchEvent, ResultSearchState> {
     } catch (error) {
       emit(ResultsError(error: error.toString()));
     }
+  }
+
+  List<HotelThumbnailModel> _filterResults(ResultsFilters filter) {
+    return thumbnails.where((thumbnail) {
+      if (Numbers.isNumberInRange(thumbnail.price, filter.priceRange) &&
+          Numbers.isNumberInRange(
+              (thumbnail.rating / 100) * 5, filter.ratingRange)) {
+        if (filter.isFreeCancelling) {
+          return thumbnail.isFeeCanceling;
+        }
+        return true;
+      }
+      return false;
+    }).toList();
   }
 
   FutureOr<void> _updateResults(

@@ -21,6 +21,7 @@ class ResultsPage extends StatefulWidget {
 class RresultStatesPage extends State<ResultsPage> {
   SortValues? _character = SortValues.sortRatingHL;
   ResultsFilters _filters = ResultsFilters();
+  ResultsFilters _tempFilters = ResultsFilters();
 
   @override
   void initState() {
@@ -55,7 +56,7 @@ class RresultStatesPage extends State<ResultsPage> {
             children: <Widget>[
               _sortButton(),
               const SizedBox(width: Insets.m),
-              _filterButton(),
+              _filterButton(context),
             ],
           ),
         ),
@@ -115,7 +116,7 @@ class RresultStatesPage extends State<ResultsPage> {
       onChanged: (value) {
         _character = filter;
         BlocProvider.of<ResultSearchBloc>(context)
-            .add(SortResults(value: _character!));
+            .add(SortResults(value: _character!, filters: _filters));
         Navigator.pop(context);
       },
       title: Text(title),
@@ -124,19 +125,105 @@ class RresultStatesPage extends State<ResultsPage> {
     );
   }
 
-  Widget _filterButton() {
+  Widget _filterButton(BuildContext context) {
     return ElevatedButton.icon(
       onPressed: () {
-        showModalBottomSheet<void>(
-            context: context,
-            builder: ((context) => Center(
-                  child: const Text("filter"),
-                )));
+        showModalBottomSheet(
+          context: context,
+          builder: ((context) => StatefulBuilder(
+                builder: (BuildContext context, StateSetter setState) {
+                  return Center(
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(Insets.s),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            _filterLabel("Price in range:"),
+                            RangeSlider(
+                              values: _tempFilters.priceRange,
+                              min: 0,
+                              max: 1000,
+                              divisions: 20,
+                              labels: RangeLabels(
+                                  _tempFilters.priceRange.start
+                                      .round()
+                                      .toString(),
+                                  _tempFilters.priceRange.end != 1000
+                                      ? _tempFilters.priceRange.end
+                                          .round()
+                                          .toString()
+                                      : "+1000"),
+                              onChanged: (RangeValues values) {
+                                setState(() {
+                                  _tempFilters.priceRange = values;
+                                });
+                              },
+                            ),
+                            const SizedBox(height: Insets.s),
+                            _filterLabel("Rating in range:"),
+                            RangeSlider(
+                              values: _tempFilters.ratingRange,
+                              min: 0.0,
+                              max: 5.0,
+                              divisions: 10,
+                              labels: RangeLabels(
+                                "${_tempFilters.ratingRange.start} ⭐",
+                                "${_tempFilters.ratingRange.end} ⭐",
+                              ),
+                              onChanged: (RangeValues values) {
+                                setState(() {
+                                  _tempFilters.ratingRange = values;
+                                });
+                              },
+                            ),
+                            CheckboxListTile(
+                              title: const Text("Only with free canceling!"),
+                              secondary: Icon(Icons.monetization_on_outlined),
+                              value: _tempFilters.isFreeCancelling,
+                              onChanged: ((value) {
+                                setState(() {
+                                  _tempFilters.isFreeCancelling =
+                                      value ?? false;
+                                });
+                              }),
+                            ),
+                            const SizedBox(height: Insets.l),
+                            Center(
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  _filters = _tempFilters;
+                                  BlocProvider.of<ResultSearchBloc>(context)
+                                      .add(SortResults(
+                                          value: _character!,
+                                          filters: _filters));
+                                  Navigator.pop(context);
+                                },
+                                child: const Text("Filter!"),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              )),
+        );
       },
       icon: Icon(Icons.filter_alt_outlined),
       label: const Text("Filter"),
     );
   }
+
+  Text _filterLabel(String label) => Text(
+        label,
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 20,
+        ),
+      );
 
   Widget _searchResults() {
     return BlocConsumer<ResultSearchBloc, ResultSearchState>(

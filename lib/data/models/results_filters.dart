@@ -1,27 +1,23 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 
 class ResultsFilters extends Equatable {
-  final num minPrice;
-  final num maxPrice;
-  final num nimRating;
-  final num maxRating;
-  final bool isFreeCancelling;
+  RangeValues priceRange;
+  RangeValues ratingRange;
+  bool isFreeCancelling;
   ResultsFilters({
-    this.minPrice = 0,
-    this.maxPrice = double.infinity,
-    this.nimRating = 0,
-    this.maxRating = 10,
+    RangeValues? priceRang,
+    RangeValues? ratingRang,
     this.isFreeCancelling = false,
-  });
+  })  : priceRange = priceRang ?? RangeValues(0, 1000),
+        ratingRange = ratingRang ?? RangeValues(0, 5);
 
   @override
   List<Object> get props {
     return [
-      minPrice,
-      maxPrice,
-      nimRating,
-      maxRating,
+      priceRange,
+      ratingRange,
       isFreeCancelling,
     ];
   }

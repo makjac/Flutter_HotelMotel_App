@@ -20,12 +20,17 @@ class LoadSearchResults extends ResultSearchEvent {
 
 class SortResults extends ResultSearchEvent {
   final SortValues value;
+  final ResultsFilters filters;
   SortResults({
     required this.value,
+    required this.filters,
   });
 
   @override
-  List<Object> get props => [this.value];
+  List<Object> get props => [
+        this.value,
+        this.filters,
+      ];
 }
 
 class UpdateResults extends ResultSearchEvent {
