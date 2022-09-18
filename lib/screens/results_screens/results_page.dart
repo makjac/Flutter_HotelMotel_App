@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hotel_motel/data/models/hotel_thumbnail_model.dart';
 import 'package:hotel_motel/data/models/results_filters.dart';
 import 'package:hotel_motel/data/models/search_cryteria.dart';
+import 'package:hotel_motel/locator.dart';
 import 'package:hotel_motel/screens/results_screens/bloc/result_search_bloc.dart';
 import 'package:hotel_motel/screens/results_screens/results_sort_values.dart';
 import 'package:hotel_motel/theme/design_system.dart';
@@ -20,19 +21,27 @@ class ResultsPage extends StatefulWidget {
 class RresultStatesPage extends State<ResultsPage> {
   SortValues? _character = SortValues.sortRatingHL;
   ResultsFilters _filters = ResultsFilters();
+
+  @override
+  void initState() {
+    locator
+        .get<ResultSearchBloc>()
+        .add(LoadSearchResults(searchCryteria: widget.searchCryteria));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("Results"),
         centerTitle: true,
-        bottom: _appBarBottom(),
+        bottom: _appBarBottom(context),
       ),
       body: _searchResults(),
     );
   }
 
-  PreferredSize _appBarBottom() {
+  PreferredSize _appBarBottom(BuildContext context) {
     return PreferredSize(
       preferredSize: const Size.fromHeight(65),
       child: Container(
@@ -105,6 +114,8 @@ class RresultStatesPage extends State<ResultsPage> {
       groupValue: _character,
       onChanged: (value) {
         _character = filter;
+        BlocProvider.of<ResultSearchBloc>(context)
+            .add(SortResults(value: _character!));
         Navigator.pop(context);
       },
       title: Text(title),
@@ -128,23 +139,20 @@ class RresultStatesPage extends State<ResultsPage> {
   }
 
   Widget _searchResults() {
-    return BlocProvider<ResultSearchBloc>(
-        create: (context) => ResultSearchBloc()
-          ..add(LoadSearchResults(searchCryteria: widget.searchCryteria)),
-        child: BlocConsumer<ResultSearchBloc, ResultSearchState>(
-          listener: (context, state) {},
-          builder: (context, state) {
-            if (state is LoadingResults) {
-              return _loadingResults();
-            }
-            if (state is ResultsLoaded) {
-              return _resultsLoaded(state.thumbnails);
-            }
-            return Center(
-              child: const Text('Something went wrong...'),
-            );
-          },
-        ));
+    return BlocConsumer<ResultSearchBloc, ResultSearchState>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        if (state is LoadingResults || state is SortingResults) {
+          return _loadingResults();
+        }
+        if (state is ResultsLoaded) {
+          return _resultsLoaded(state.thumbnails);
+        }
+        return Center(
+          child: const Text('Something went wrong...'),
+        );
+      },
+    );
   }
 
   Widget _loadingResults() {

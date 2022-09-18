@@ -13,6 +13,9 @@ class LoadSearchResults extends ResultSearchEvent {
   LoadSearchResults({
     required this.searchCryteria,
   });
+
+  @override
+  List<Object> get props => [this.searchCryteria];
 }
 
 class SortResults extends ResultSearchEvent {
@@ -20,6 +23,9 @@ class SortResults extends ResultSearchEvent {
   SortResults({
     required this.value,
   });
+
+  @override
+  List<Object> get props => [this.value];
 }
 
 class UpdateResults extends ResultSearchEvent {
@@ -27,4 +33,7 @@ class UpdateResults extends ResultSearchEvent {
   UpdateResults({
     required this.thumbnails,
   });
+
+  @override
+  List<Object> get props => [this.thumbnails];
 }

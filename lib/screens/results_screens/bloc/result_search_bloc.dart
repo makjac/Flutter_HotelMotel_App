@@ -28,6 +28,7 @@ class ResultSearchBloc extends Bloc<ResultSearchEvent, ResultSearchState> {
         super(ResultSearchInitial()) {
     on<LoadSearchResults>(_loadResults);
     on<UpdateResults>(_updateResults);
+    on<SortResults>(_sortResults);
   }
 
   FutureOr<void> _loadResults(
@@ -44,7 +45,7 @@ class ResultSearchBloc extends Bloc<ResultSearchEvent, ResultSearchState> {
             rooms.forEach((room) async {
               var colision = await _httpRepository.getBookingColision(
                   room.roomID, event.searchCryteria.timeRange);
-              final availableRooms = room.numberOfRooms - colision;
+              final availableRooms = await await room.numberOfRooms - colision;
               if (availableRooms > 0) {
                 if (availableRooms *
                         room.capacity *
@@ -52,38 +53,51 @@ class ResultSearchBloc extends Bloc<ResultSearchEvent, ResultSearchState> {
                     event.searchCryteria.adults + event.searchCryteria.kids) {
                   thumbnails.add(HotelThumbnailModel.fromModels(hotel, room));
                   thumbnails.sort((a, b) => b.rating.compareTo(a.rating));
-                  emit(ResultsLoaded(thumbnails: thumbnails));
+                  emit(LoadingMore(thumbnails: thumbnails));
                 }
               }
+              emit(ResultsLoaded(thumbnails: thumbnails));
             });
           });
         });
       });
-      // await _hotelRepository
-      //     .getHotelsFromLocation(event.searchCryteria.location)
-      //     .listen((hotels) async {
-      //   hotels.forEach((hotel) async {
-      //     await _roomRepository
-      //         .getHotelRooms(hotel.hotelID)
-      //         .listen((rooms) async {
-      //       rooms.forEach((room) async {
-      //         var colision = await _httpRepository.getBookingColision(
-      //             room.roomID, event.searchCryteria.timeRange);
-      //         final availableRooms = room.numberOfRooms - colision;
-      //         if (availableRooms > 0) {
-      //           if (availableRooms *
-      //                   room.capacity *
-      //                   event.searchCryteria.rooms >
-      //               event.searchCryteria.adults + event.searchCryteria.kids) {
-      //             thumbnails.add(HotelThumbnailModel.fromModels(hotel, room));
-      //             thumbnails.sort((a, b) => b.rating.compareTo(a.rating));
-      //             emit(ResultsLoaded(thumbnails: thumbnails));
-      //           }
-      //         }
-      //       });
-      //     });
-      //   });
-      // });
+    } catch (error) {
+      emit(ResultsError(error: error.toString()));
+    }
+  }
+
+  FutureOr<void> _sortResults(
+      SortResults event, Emitter<ResultSearchState> emit) async {
+    try {
+      emit(SortingResults());
+      switch (event.value) {
+        case SortValues.sortPriceHL:
+          thumbnails.sort(
+            (a, b) => b.price.compareTo(a.price),
+          );
+          emit(ResultsLoaded(thumbnails: thumbnails));
+          break;
+        case SortValues.sortPriceLH:
+          thumbnails.sort(
+            (a, b) => a.price.compareTo(b.price),
+          );
+          emit(ResultsLoaded(thumbnails: thumbnails));
+          break;
+        case SortValues.sortRatingHL:
+          thumbnails.sort(
+            (a, b) => b.rating.compareTo(a.rating),
+          );
+          emit(ResultsLoaded(thumbnails: thumbnails));
+          break;
+        case SortValues.sortRatingLH:
+          thumbnails.sort(
+            (a, b) => a.rating.compareTo(b.rating),
+          );
+          emit(ResultsLoaded(thumbnails: thumbnails));
+          break;
+        default:
+          break;
+      }
     } catch (error) {
       emit(ResultsError(error: error.toString()));
     }
