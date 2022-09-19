@@ -52,6 +52,9 @@ class _SearchPageState extends State<SearchPage> {
       padding: const EdgeInsets.all(Insets.s),
       child: SearchForm(
         location: HomeShared.getLocation(),
+        room: HomeShared.getRoomsCount(),
+        adult: HomeShared.getAtultsCount(),
+        kid: HomeShared.getKidsCount(),
       ),
     );
   }

@@ -6,6 +6,8 @@ class HomeShared {
   static late SharedPreferences _preferences;
 
   static const _keyLocation = 'search_location';
+  static const _keyStatTime = 'start_time';
+  static const _keyEndTime = 'end_time';
   static const _keyRoomsNum = 'rooms_number';
   static const _keyAdultsNum = 'adults_number';
   static const _keyKidsNum = 'kids_number';
@@ -19,20 +21,31 @@ class HomeShared {
 
   static String? getLocation() => _preferences.getString(_keyLocation);
 
+  //Search time range
+  //
+  //Start Time
+  static Future setStartTime(int milisecondStamp) async =>
+      await _preferences.setInt(_keyStatTime, milisecondStamp);
+  static int? getStartTime() => _preferences.getInt(_keyStatTime);
+  //End Time
+  static Future setEndTime(int milisecondStamp) async =>
+      await _preferences.setInt(_keyEndTime, milisecondStamp);
+  static int? getEndTime() => _preferences.getInt(_keyEndTime);
+
   //Search reserwation details
   //
   //rooms
-  static Future steRooms(int count) async =>
+  static Future setRooms(int count) async =>
       await _preferences.setInt(_keyRoomsNum, count);
   static int? getRoomsCount() => _preferences.getInt(_keyRoomsNum);
   //
   //adults
-  static Future steAdults(int count) async =>
+  static Future setAdults(int count) async =>
       await _preferences.setInt(_keyAdultsNum, count);
   static int? getAtultsCount() => _preferences.getInt(_keyAdultsNum);
   //
   //kids
-  static Future steKids(int count) async =>
+  static Future setKids(int count) async =>
       await _preferences.setInt(_keyKidsNum, count);
   static int? getKidsCount() => _preferences.getInt(_keyKidsNum);
 }

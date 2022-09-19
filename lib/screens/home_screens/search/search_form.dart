@@ -22,11 +22,14 @@ class SearchForm extends StatefulWidget {
   SearchForm({
     Key? key,
     this.location,
-    this.dateRange,
-    this.rooms = 1,
-    this.adults = 1,
-    this.kids = 0,
-  }) : super(key: key);
+    DateTimeRange? range,
+    int? room,
+    int? adult,
+    int? kid,
+  })  : rooms = room ?? 1,
+        adults = adult ?? 1,
+        kids = kid ?? 0,
+        super(key: key);
 
   @override
   State<SearchForm> createState() => _SearchFormState();
@@ -78,9 +81,9 @@ class _SearchFormState extends State<SearchForm> {
         onTap: () async {
           await showSearch(context: context, delegate: LocationSearchAction())
               .then((value) {
-            if (value != "" || value != null) {
+            if (value != "" && value != null) {
               widget.location = value;
-              HomeShared.setLocation(value!);
+              HomeShared.setLocation(value);
             }
           });
           setState(() {});
@@ -120,6 +123,8 @@ class _SearchFormState extends State<SearchForm> {
               .then((range) {
             if (range != null) {
               widget.dateRange = range;
+              HomeShared.setStartTime(range.start.millisecondsSinceEpoch);
+              HomeShared.setEndTime(range.end.millisecondsSinceEpoch);
             }
           });
           setState(() {});
@@ -242,6 +247,9 @@ class _SearchFormState extends State<SearchForm> {
       }
       widget.kids = _kidsController.number;
     });
+    HomeShared.setRooms(widget.rooms);
+    HomeShared.setAdults(widget.adults);
+    HomeShared.setKids(widget.kids);
     Navigator.pop(context);
   }
 
