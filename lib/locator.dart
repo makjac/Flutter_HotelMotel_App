@@ -8,7 +8,10 @@ import 'package:hotel_motel/data/repository/firebase/analitic/analitics_reposito
 import 'package:hotel_motel/data/repository/firebase/auth/auth_repository.dart';
 import 'package:hotel_motel/data/repository/fb_firestore_repository.dart';
 import 'package:hotel_motel/data/repository/firebase/storage/storage_repository.dart';
+import 'package:hotel_motel/data/repository/http/http_repository.dart';
 import 'package:hotel_motel/data/repository/model_repositores/category/category_repository.dart';
+import 'package:hotel_motel/data/repository/model_repositores/hotel_repository/hotel_repository.dart';
+import 'package:hotel_motel/data/repository/model_repositores/room_repository/room_repository.dart';
 import 'package:hotel_motel/screens/results_screens/bloc/result_search_bloc.dart';
 
 final locator = GetIt.instance;
@@ -19,6 +22,8 @@ setupServices() {
   locator.registerSingleton<StorageRepository>(StorageRepository());
   locator.registerSingleton<AnalyticsRepository>(AnalyticsRepository());
   locator.registerSingleton<FirestoreRepository>(FirestoreRepository());
+  locator.registerSingleton<HotelRepository>(HotelRepository());
+  locator.registerSingleton<RoomRepository>(RoomRepository());
 
   //controllers
   locator.registerSingleton<UserController>(UserController());
@@ -30,5 +35,10 @@ setupServices() {
     categoryRepository: CategoryRepository(),
   ));
   locator.registerSingleton<HotelThumbnailBloc>(HotelThumbnailBloc());
-  locator.registerSingleton<ResultSearchBloc>(ResultSearchBloc());
+  locator.registerSingleton<ResultSearchBloc>(
+    ResultSearchBloc(
+      hotelRepository: locator.get<HotelRepository>(),
+      roomRepository: locator.get<RoomRepository>(),
+    ),
+  );
 }

@@ -42,25 +42,29 @@ class ResultSearchBloc extends Bloc<ResultSearchEvent, ResultSearchState> {
           .getHotelsFromLocation(event.searchCryteria.location);
       await hotels.forEach((hotelList) async {
         hotelList.forEach((hotel) async {
-          var roomList = await _roomRepository.getHotelRooms(hotel.hotelID);
-          await roomList.forEach((rooms) async {
-            rooms.forEach((room) async {
-              var colision = await _httpRepository.getBookingColision(
-                  room.roomID, event.searchCryteria.timeRange);
-              final availableRooms = await await room.numberOfRooms - colision;
-              if (availableRooms > 0) {
-                if (availableRooms *
-                        room.capacity *
-                        event.searchCryteria.rooms >
-                    event.searchCryteria.adults + event.searchCryteria.kids) {
-                  thumbnails.add(HotelThumbnailModel.fromModels(hotel, room));
-                  thumbnails.sort((a, b) => b.rating.compareTo(a.rating));
-                  emit(LoadingMore());
+          if (!thumbnails
+              .any((thumbnail) => thumbnail.hotelID == hotel.hotelID)) {
+            var roomList = await _roomRepository.getHotelRooms(hotel.hotelID);
+            await roomList.forEach((rooms) async {
+              rooms.forEach((room) async {
+                var colision = await _httpRepository.getBookingColision(
+                    room.roomID, event.searchCryteria.timeRange);
+                final availableRooms =
+                    await await room.numberOfRooms - colision;
+                if (availableRooms > 0) {
+                  if (availableRooms *
+                          room.capacity *
+                          event.searchCryteria.rooms >
+                      event.searchCryteria.adults + event.searchCryteria.kids) {
+                    thumbnails.add(HotelThumbnailModel.fromModels(hotel, room));
+                    thumbnails.sort((a, b) => b.rating.compareTo(a.rating));
+                    emit(LoadingMore());
+                  }
                 }
-              }
-              emit(ResultsLoaded(thumbnails: thumbnails));
+                emit(ResultsLoaded(thumbnails: thumbnails));
+              });
             });
-          });
+          }
         });
       });
     } catch (error) {
