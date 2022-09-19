@@ -10,6 +10,7 @@ class Hotel extends Equatable {
   final String category;
   final bool isFreeCanceling;
   final bool isRecomended;
+  final String description;
   final num rating;
   final String country;
   final String city;
@@ -26,6 +27,7 @@ class Hotel extends Equatable {
     required this.category,
     required this.isFreeCanceling,
     required this.isRecomended,
+    required this.description,
     required this.rating,
     required this.country,
     required this.city,
@@ -45,6 +47,7 @@ class Hotel extends Equatable {
       category: snap['category'] as String,
       isFreeCanceling: snap['free_canceling'] as bool,
       isRecomended: snap['isRecomended'] as bool,
+      description: snap['description'] as String,
       rating: snap['rating'] as num,
       country: snap['country'] as String,
       city: snap['city'] as String,
@@ -65,6 +68,7 @@ class Hotel extends Equatable {
       'category': category,
       'isFreeCanceling': isFreeCanceling,
       'isRecomended': isRecomended,
+      'description': description,
       'rating': rating,
       'country': country,
       'city': city,
@@ -85,6 +89,7 @@ class Hotel extends Equatable {
       category: map['category'] as String,
       isFreeCanceling: map['isFreeCanceling'] as bool,
       isRecomended: map['isRecomended'] as bool,
+      description: map['description'] as String,
       rating: map['rating'] as num,
       country: map['country'] as String,
       city: map['city'] as String,
@@ -109,6 +114,7 @@ class Hotel extends Equatable {
     String? category,
     bool? isFreeCanceling,
     bool? isRecomended,
+    String? description,
     num? rating,
     String? country,
     String? city,
@@ -126,6 +132,7 @@ class Hotel extends Equatable {
       category: category ?? this.category,
       isFreeCanceling: isFreeCanceling ?? this.isFreeCanceling,
       isRecomended: isRecomended ?? this.isRecomended,
+      description: description ?? this.description,
       rating: rating ?? this.rating,
       country: country ?? this.country,
       city: city ?? this.city,
@@ -150,6 +157,7 @@ class Hotel extends Equatable {
       category,
       isFreeCanceling,
       isRecomended,
+      description,
       rating,
       country,
       city,
