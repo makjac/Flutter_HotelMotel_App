@@ -23,7 +23,17 @@ class HotelPageBloc extends Bloc<HotelPageEvent, HotelPageState> {
 
   FutureOr<void> _loadHotel(
       LoadHotelData event, Emitter<HotelPageState> emit) async {
-    try {} catch (error) {
+    try {
+      emit(LoadingHotelData());
+      var hotelStr = await _hotelRepository.getHotel(event.hotelID);
+      await hotelStr.listen((hotel) async {
+        await _roomRepository
+            .getHotelRooms(event.hotelID)
+            .listen(
+                (rooms) => emit(HotelDataLoaded(hotel: hotel, rooms: rooms)))
+            .asFuture();
+      }).asFuture();
+    } catch (error) {
       emit(HotelPageError(error: error.toString()));
     }
   }

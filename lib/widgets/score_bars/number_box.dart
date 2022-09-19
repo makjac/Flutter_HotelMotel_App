@@ -5,7 +5,7 @@ import 'package:hotel_motel/utils/scale.dart';
 
 // ignore: must_be_immutable
 class NumberBox extends StatelessWidget {
-  final double number;
+  final num number;
   Color color;
   double textPadding;
   double textScale;

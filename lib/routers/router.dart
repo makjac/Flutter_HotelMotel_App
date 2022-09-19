@@ -30,8 +30,11 @@ class AppRouter {
                   searchCryteria: sreenArguments,
                 ));
       case AppRoute.HOTEL_ROUTE:
+        final hotelID = settings.arguments as String;
         return MaterialPageRoute(
-            builder: (BuildContext context) => const HotelPage());
+            builder: (BuildContext context) => HotelPage(
+                  hotelID: hotelID,
+                ));
       default:
         return null;
     }

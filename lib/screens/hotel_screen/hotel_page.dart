@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:hotel_motel/data/models/amenities_model.dart';
+import 'package:hotel_motel/data/models/hotel_model.dart';
+import 'package:hotel_motel/data/models/room_model.dart';
+import 'package:hotel_motel/locator.dart';
+import 'package:hotel_motel/screens/hotel_screen/bloc/hotel_page_bloc.dart';
 import 'package:hotel_motel/theme/theme_base.dart';
 import 'package:hotel_motel/utils/scale.dart';
 import 'package:hotel_motel/widgets/score_bars/linear_score.dart';
 import 'package:hotel_motel/widgets/score_bars/number_box.dart';
 
 class HotelPage extends StatefulWidget {
-  const HotelPage({Key? key}) : super(key: key);
+  final String hotelID;
+  const HotelPage({required this.hotelID, Key? key}) : super(key: key);
 
   @override
   State<HotelPage> createState() => _HotelPageState();
@@ -35,6 +41,7 @@ class _HotelPageState extends State<HotelPage> {
 
   @override
   void initState() {
+    locator.get<HotelPageBloc>().add(LoadHotelData(hotelID: widget.hotelID));
     _scrollController.addListener(() {
       double showoffset = 250;
       if (_scrollController.offset > showoffset) {
@@ -52,41 +59,51 @@ class _HotelPageState extends State<HotelPage> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      // appBar: AppBar(
-      //   title: const Text("hotel"),
-      //   centerTitle: true,
-      //   backgroundColor: InsetsColors.abBackgroundColor,
-      //   shadowColor: Colors.brown,
-      // ),
       floatingActionButton: _showScroolUp ? _sctollBackToTopBut() : null,
-      body: SingleChildScrollView(
-        controller: _scrollController,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Container(
-              width: double.infinity,
-              height: 250,
-              color: Colors.amber,
+      body: BlocBuilder<HotelPageBloc, HotelPageState>(
+        builder: ((context, state) {
+          if (state is LoadingHotelData) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          if (state is HotelDataLoaded) {
+            return _LoadedPage(width, state.hotel, state.rooms);
+          }
+          return Container();
+        }),
+      ),
+    );
+  }
+
+  Widget _LoadedPage(double width, Hotel hotel, List<Room> rooms) {
+    return SingleChildScrollView(
+      controller: _scrollController,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Container(
+            width: double.infinity,
+            height: 250,
+            color: Colors.amber,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(Insets.s),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _title(width, hotel),
+                divider(),
+                _price(120, 4, 2, 3, 1, width),
+                const SizedBox(height: Insets.m),
+                _summary(width, hotel),
+                _amenities(width),
+                const SizedBox(height: Insets.m),
+                _opinions(width)
+              ],
             ),
-            Padding(
-              padding: const EdgeInsets.all(Insets.s),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _title(width),
-                  divider(),
-                  _price(120, 4, 2, 3, 1, width),
-                  const SizedBox(height: Insets.m),
-                  _summary(width),
-                  _amenities(width),
-                  const SizedBox(height: Insets.m),
-                  _opinions(width)
-                ],
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -119,7 +136,7 @@ class _HotelPageState extends State<HotelPage> {
     );
   }
 
-  Widget _title(double width) {
+  Widget _title(double width, Hotel hotel) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -130,7 +147,7 @@ class _HotelPageState extends State<HotelPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Hotel zielona rózaa",
+                hotel.name,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style:
@@ -148,7 +165,7 @@ class _HotelPageState extends State<HotelPage> {
                   ),
                   const SizedBox(width: 2),
                   Text(
-                    "Polska, Poznań",
+                    "${hotel.country}, ${hotel.city}",
                     style: const TextStyle(
                         fontWeight: FontWeight.w400,
                         fontSize: 14,
@@ -165,7 +182,7 @@ class _HotelPageState extends State<HotelPage> {
           child: Padding(
             padding: const EdgeInsets.only(left: 10),
             child: NumberBox(
-              number: 3.7,
+              number: (hotel.rating / 100) * 5,
               textPadding: 5,
               textScale: 1.3,
               color: Colors.black,
@@ -249,7 +266,7 @@ class _HotelPageState extends State<HotelPage> {
     );
   }
 
-  Widget _summary(double width) {
+  Widget _summary(double width, Hotel hotel) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

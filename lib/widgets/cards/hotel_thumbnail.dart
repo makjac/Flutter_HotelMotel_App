@@ -23,7 +23,8 @@ class HotelThumbnail extends StatelessWidget {
     final width = MediaQuery.of(context).size.width;
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, AppRoute.HOTEL_ROUTE);
+        Navigator.pushNamed(context, AppRoute.HOTEL_ROUTE,
+            arguments: hotel.hotelID);
       },
       splashColor: InsetsColors.splashColor,
       child: ClipRRect(

@@ -112,9 +112,11 @@ class ResultSearchBloc extends Bloc<ResultSearchEvent, ResultSearchState> {
 
   List<HotelThumbnailModel> _filterResults(ResultsFilters filter) {
     return thumbnails.where((thumbnail) {
-      if (filter.priceRange.start <= thumbnail.price &&
+      var reducedPrice = thumbnail.price * (1 - thumbnail.discount);
+
+      if (filter.priceRange.start <= reducedPrice &&
           (filter.priceRange.end == 1000 ||
-              thumbnail.price < filter.priceRange.end) &&
+              reducedPrice < filter.priceRange.end) &&
           Numbers.isNumberInRange(
               (thumbnail.rating / 100) * 5, filter.ratingRange)) {
         if (filter.isFreeCancelling) {

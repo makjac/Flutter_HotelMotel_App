@@ -12,10 +12,14 @@ part 'hotel_thumbnail_state.dart';
 
 class HotelThumbnailBloc
     extends Bloc<HotelThumbnailEvent, HotelThumbnailState> {
-  final HotelRepository _hotelRepository = HotelRepository();
-  final RoomRepository _roomRepository = RoomRepository();
+  final HotelRepository _hotelRepository;
+  final RoomRepository _roomRepository;
 
-  HotelThumbnailBloc() : super(HotelThumbnailInitial()) {
+  HotelThumbnailBloc(
+      {HotelRepository? hotelRepository, RoomRepository? roomRepository})
+      : _hotelRepository = hotelRepository ?? HotelRepository(),
+        _roomRepository = roomRepository ?? RoomRepository(),
+        super(HotelThumbnailInitial()) {
     on<LoadThumbnails>(_loadThumbnails);
     on<UpdateThumbnails>(_updateThumbnails);
   }

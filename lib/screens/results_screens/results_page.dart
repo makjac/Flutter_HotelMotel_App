@@ -189,6 +189,16 @@ class RresultStatesPage extends State<ResultsPage> {
                                 });
                               }),
                             ),
+                            CheckboxListTile(
+                                title: const Text("Only with a discount"),
+                                secondary:
+                                    Icon(Icons.account_balance_wallet_outlined),
+                                value: _tempFilters.isDiscount,
+                                onChanged: ((value) {
+                                  setState(() {
+                                    _tempFilters.isDiscount = value ?? false;
+                                  });
+                                })),
                             const SizedBox(height: Insets.l),
                             Center(
                               child: ElevatedButton(
