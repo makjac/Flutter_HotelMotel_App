@@ -6,14 +6,15 @@ import 'package:hotel_motel/data/models/hotel_model.dart';
 import 'package:hotel_motel/data/models/room_model.dart';
 import 'package:hotel_motel/locator.dart';
 import 'package:hotel_motel/screens/hotel_screen/bloc/hotel_page_bloc.dart';
+import 'package:hotel_motel/screens/results_screens/hotel_home_nav_argument.dart';
 import 'package:hotel_motel/theme/theme_base.dart';
 import 'package:hotel_motel/utils/scale.dart';
 import 'package:hotel_motel/widgets/score_bars/linear_score.dart';
 import 'package:hotel_motel/widgets/score_bars/number_box.dart';
 
 class HotelPage extends StatefulWidget {
-  final String hotelID;
-  const HotelPage({required this.hotelID, Key? key}) : super(key: key);
+  final hotelPageArguments hotelArguments;
+  const HotelPage({required this.hotelArguments, Key? key}) : super(key: key);
 
   @override
   State<HotelPage> createState() => _HotelPageState();
@@ -41,7 +42,9 @@ class _HotelPageState extends State<HotelPage> {
 
   @override
   void initState() {
-    locator.get<HotelPageBloc>().add(LoadHotelData(hotelID: widget.hotelID));
+    locator
+        .get<HotelPageBloc>()
+        .add(LoadHotelData(hotelID: widget.hotelArguments.hotelID));
     _scrollController.addListener(() {
       double showoffset = 250;
       if (_scrollController.offset > showoffset) {
@@ -94,10 +97,19 @@ class _HotelPageState extends State<HotelPage> {
               children: [
                 _title(width, hotel),
                 divider(),
-                _price(120, 4, 2, 3, 1, width),
+                widget.hotelArguments.cryteria != null
+                    ? _price(
+                        rooms[0].price,
+                        widget
+                            .hotelArguments.cryteria!.timeRange.duration.inDays,
+                        widget.hotelArguments.cryteria!.rooms,
+                        1,
+                        1,
+                        width)
+                    : _price(rooms[0].price, 1, 1, 1, 1, width),
                 const SizedBox(height: Insets.m),
                 _summary(width, hotel),
-                _amenities(width),
+                _amenities(width, rooms),
                 const SizedBox(height: Insets.m),
                 _opinions(width)
               ],
@@ -193,10 +205,10 @@ class _HotelPageState extends State<HotelPage> {
     );
   }
 
-  Widget _stars(double width) {
+  Widget _stars(double width, num rating) {
     return RatingBar(
       itemCount: 5,
-      initialRating: 3.5,
+      initialRating: (rating / 100) * 5,
       direction: Axis.horizontal,
       allowHalfRating: true,
       ignoreGestures: true,
@@ -210,8 +222,8 @@ class _HotelPageState extends State<HotelPage> {
     );
   }
 
-  Widget _price(int priceUnit, int nights, int rooms, int adults, int? kids,
-      double width) {
+  Widget _price(num priceUnit, int nights, int roomCount, int adultsCount,
+      int? kidsCount, double width) {
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
@@ -236,9 +248,19 @@ class _HotelPageState extends State<HotelPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Price for $nights nights, $rooms rooms",
+                    "Price for $nights nights, $roomCount rooms",
                     textScaleFactor: Scale.textScale(width, 1.3),
                     style: const TextStyle(fontWeight: FontWeight.w400),
+                  ),
+                  const SizedBox(height: Insets.xs),
+                  Text(
+                    //todo: set room name
+                    "Deluxe",
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 22),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                    textScaleFactor: Scale.textScale(width, 1.5),
                   ),
                   const SizedBox(height: Insets.xs),
                   Text(
@@ -272,10 +294,11 @@ class _HotelPageState extends State<HotelPage> {
       children: [
         _header("Summary", width),
         const SizedBox(height: Insets.s),
-        _hotelScore(width),
+        _hotelScore(width, hotel),
         const SizedBox(height: Insets.s),
         Text(
-          "Hotel Traffic Poznań Stare Miasto zlokalizowany jest w centrum Poznania. Dysponuje on pokojami z bezpłatnym WiFi oraz czynną przez całą dobę recepcją. Obiekt Hotel Altus Poznań Old Town, położony w miejscowości Poznań, oferuje usługę błyskawicznego zameldowania i wymeldowania, zakwaterowanie w pokojach dla alergików, centrum fitness, bezpłatne WiFi...",
+          hotel.description,
+          //"Hotel Traffic Poznań Stare Miasto zlokalizowany jest w centrum Poznania. Dysponuje on pokojami z bezpłatnym WiFi oraz czynną przez całą dobę recepcją. Obiekt Hotel Altus Poznań Old Town, położony w miejscowości Poznań, oferuje usługę błyskawicznego zameldowania i wymeldowania, zakwaterowanie w pokojach dla alergików, centrum fitness, bezpłatne WiFi...",
           textAlign: TextAlign.justify,
           overflow: _readMore ? null : TextOverflow.ellipsis,
           textScaleFactor: Scale.textScale(width, 1.3),
@@ -296,34 +319,34 @@ class _HotelPageState extends State<HotelPage> {
     );
   }
 
-  Widget _hotelScore(double width) {
+  Widget _hotelScore(double width, Hotel hotel) {
     return Column(
       children: [
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             NumberBox(
-              number: 3.7,
+              number: (hotel.rating / 100) * 5,
               textPadding: 5,
               textScale: 1.1,
               color: Colors.black,
             ),
             const SizedBox(width: Insets.xs),
-            _stars(width),
+            _stars(width, hotel.rating),
           ],
         ),
         const SizedBox(height: Insets.xs),
-        _scoreLabel("Czystość", 78.4, width),
-        _scoreLabel("Komfort", 36, width),
-        _scoreLabel("Udogodnienia", 100, width),
-        _scoreLabel("Personel", 90.5, width),
-        _scoreLabel("Lokalizacja", 20, width),
-        _scoreLabel("Cena", 70, width),
+        _scoreLabel("Czystość", hotel.score['purity'] as num, width),
+        _scoreLabel("Komfort", hotel.score['comfort'] as num, width),
+        _scoreLabel("Udogodnienia", hotel.score['facilities'] as num, width),
+        _scoreLabel("Personel", hotel.score['staff'] as num, width),
+        _scoreLabel("Lokalizacja", hotel.score['location'] as num, width),
+        _scoreLabel("Cena", hotel.score['price'] as num, width),
       ],
     );
   }
 
-  Widget _scoreLabel(String label, double score, double width) {
+  Widget _scoreLabel(String label, num score, double width) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 2),
       child: Row(
@@ -351,7 +374,7 @@ class _HotelPageState extends State<HotelPage> {
     );
   }
 
-  Widget _amenities(double width) {
+  Widget _amenities(double width, List<Room> rooms) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -362,54 +385,56 @@ class _HotelPageState extends State<HotelPage> {
           runSpacing: 3,
           runAlignment: WrapAlignment.spaceBetween,
           children: <Widget>[
-            amenities.airportPickUp
+            rooms[0].facilities['airport_pickUp']
                 ? _amenitiesLabel(
                     Icons.airplanemode_active_rounded, "Ariport pick-up", width)
-                : Container(),
-            amenities.carRent
+                : _nullContainer(),
+            rooms[0].facilities['car_rent']
                 ? _amenitiesLabel(Icons.car_rental, "Car renting", width)
-                : Container(),
-            amenities.conferenceFacilities
+                : _nullContainer(),
+            rooms[0].facilities['conference_facilities']
                 ? _amenitiesLabel(
                     Icons.contact_phone, "Conference facilities", width)
-                : Container(),
-            amenities.cots
+                : _nullContainer(),
+            rooms[0].facilities['cots']
                 ? _amenitiesLabel(Icons.child_care, "Cots for children", width)
-                : Container(),
-            amenities.freeWifi
+                : _nullContainer(),
+            rooms[0].facilities['free_wifi']
                 ? _amenitiesLabel(Icons.wifi, "Free wifi", width)
-                : Container(),
-            amenities.fridge
+                : _nullContainer(),
+            rooms[0].facilities['fridge']
                 ? _amenitiesLabel(Icons.ac_unit, "In Room fridge", width)
-                : Container(),
-            amenities.inRoomSafe
+                : _nullContainer(),
+            rooms[0].facilities['in_room_safe']
                 ? _amenitiesLabel(Icons.lock, "In Room Safe", width)
-                : Container(),
-            amenities.coffyMaker
+                : _nullContainer(),
+            rooms[0].facilities['coffy_maker']
                 ? _amenitiesLabel(
                     Icons.coffee_maker, "In Room coffy maker", width)
-                : Container(),
-            amenities.laundryService
+                : _nullContainer(),
+            rooms[0].facilities['laundry_service']
                 ? _amenitiesLabel(Icons.local_laundry_service_rounded,
                     "Laundry service", width)
-                : Container(),
-            amenities.petFriendly
+                : _nullContainer(),
+            rooms[0].facilities['pet_friendly']
                 ? _amenitiesLabel(Icons.pets, "Pet friendly", width)
-                : Container(),
-            amenities.roomService
+                : _nullContainer(),
+            rooms[0].facilities['room_service']
                 ? _amenitiesLabel(Icons.room_service, "Room service", width)
-                : Container(),
-            amenities.spa
+                : _nullContainer(),
+            rooms[0].facilities['spa']
                 ? _amenitiesLabel(Icons.spa, "Spa", width)
-                : Container(),
-            amenities.tv
+                : _nullContainer(),
+            rooms[0].facilities['tv_in_room']
                 ? _amenitiesLabel(Icons.tv, "Ariport pick-up", width)
-                : Container(),
+                : _nullContainer(),
           ],
         )
       ],
     );
   }
+
+  Widget _nullContainer() => Container(width: 0.001, height: 0.001);
 
   Widget _amenitiesLabel(IconData icons, String label, double width) {
     return SizedBox(

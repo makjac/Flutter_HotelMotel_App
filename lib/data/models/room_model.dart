@@ -7,6 +7,8 @@ import 'package:equatable/equatable.dart';
 class Room extends Equatable {
   final String roomID;
   final String descryption;
+  final String name;
+  final String type;
   final num price;
   final num discount;
   final num numberOfRooms;
@@ -16,6 +18,8 @@ class Room extends Equatable {
   const Room({
     required this.roomID,
     required this.descryption,
+    required this.name,
+    required this.type,
     required this.price,
     required this.discount,
     required this.numberOfRooms,
@@ -28,6 +32,8 @@ class Room extends Equatable {
     return Room(
       roomID: snap.id,
       descryption: snap['description'] as String,
+      name: snap['name'] as String,
+      type: snap['type'] as String,
       price: snap['price'] as num,
       discount: snap['discount'] as num,
       numberOfRooms: snap['Number_of_rooms'] as num,
@@ -40,6 +46,8 @@ class Room extends Equatable {
   Room copyWith({
     String? roomID,
     String? descryption,
+    String? name,
+    String? type,
     num? price,
     num? discount,
     num? numberOfRooms,
@@ -50,6 +58,8 @@ class Room extends Equatable {
     return Room(
       roomID: roomID ?? this.roomID,
       descryption: descryption ?? this.descryption,
+      name: name ?? this.name,
+      type: type ?? this.type,
       price: price ?? this.price,
       discount: discount ?? this.discount,
       numberOfRooms: numberOfRooms ?? this.numberOfRooms,
@@ -63,6 +73,8 @@ class Room extends Equatable {
     return <String, dynamic>{
       'roomID': roomID,
       'descryption': descryption,
+      'name': name,
+      'type': type,
       'price': price,
       'discount': discount,
       'numberOfRooms': numberOfRooms,
@@ -76,6 +88,8 @@ class Room extends Equatable {
     return Room(
       roomID: map['roomID'] as String,
       descryption: map['descryption'] as String,
+      name: map['name'] as String,
+      type: map['type'] as String,
       price: map['price'] as num,
       discount: map['discount'] as num,
       numberOfRooms: map['numberOfRooms'] as num,
@@ -98,6 +112,8 @@ class Room extends Equatable {
     return [
       roomID,
       descryption,
+      name,
+      type,
       price,
       discount,
       numberOfRooms,

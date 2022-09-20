@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 class LinearScoreBar extends StatelessWidget {
-  final double value;
+  final num value;
   final double? minHeight;
   final Color? mainColor;
   final Color? backgroundColor;

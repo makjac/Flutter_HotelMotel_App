@@ -12,6 +12,7 @@ class Hotel extends Equatable {
   final bool isRecomended;
   final String description;
   final num rating;
+  final Map score;
   final String country;
   final String city;
   final String zipcode;
@@ -29,6 +30,7 @@ class Hotel extends Equatable {
     required this.isRecomended,
     required this.description,
     required this.rating,
+    required this.score,
     required this.country,
     required this.city,
     required this.zipcode,
@@ -49,6 +51,7 @@ class Hotel extends Equatable {
       isRecomended: snap['isRecomended'] as bool,
       description: snap['description'] as String,
       rating: snap['rating'] as num,
+      score: Map.from((snap['score'] as Map)),
       country: snap['country'] as String,
       city: snap['city'] as String,
       zipcode: snap['zipcode'] as String,
@@ -70,6 +73,7 @@ class Hotel extends Equatable {
       'isRecomended': isRecomended,
       'description': description,
       'rating': rating,
+      'score': score,
       'country': country,
       'city': city,
       'zipcode': zipcode,
@@ -91,6 +95,7 @@ class Hotel extends Equatable {
       isRecomended: map['isRecomended'] as bool,
       description: map['description'] as String,
       rating: map['rating'] as num,
+      score: Map.from(map['score'] as Map),
       country: map['country'] as String,
       city: map['city'] as String,
       zipcode: map['zipcode'] as String,
@@ -116,6 +121,7 @@ class Hotel extends Equatable {
     bool? isRecomended,
     String? description,
     num? rating,
+    Map? score,
     String? country,
     String? city,
     String? zipcode,
@@ -134,6 +140,7 @@ class Hotel extends Equatable {
       isRecomended: isRecomended ?? this.isRecomended,
       description: description ?? this.description,
       rating: rating ?? this.rating,
+      score: score ?? this.score,
       country: country ?? this.country,
       city: city ?? this.city,
       zipcode: zipcode ?? this.zipcode,
@@ -159,6 +166,7 @@ class Hotel extends Equatable {
       isRecomended,
       description,
       rating,
+      score,
       country,
       city,
       zipcode,

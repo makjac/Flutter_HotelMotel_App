@@ -28,6 +28,7 @@ class RresultStatesPage extends State<ResultsPage> {
     locator
         .get<ResultSearchBloc>()
         .add(LoadSearchResults(searchCryteria: widget.searchCryteria));
+    super.initState();
   }
 
   @override
@@ -273,7 +274,10 @@ class RresultStatesPage extends State<ResultsPage> {
             ),
             Column(
               children: thumbnails
-                  .map((thumbnail) => HotelThumbnail(hotel: thumbnail))
+                  .map((thumbnail) => HotelThumbnail(
+                        hotel: thumbnail,
+                        searchCryteria: widget.searchCryteria,
+                      ))
                   .toList(),
             ),
           ],
