@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hotel_motel/screens/home_screens/search/bloc/rcomended_bloc.dart';
 import 'package:hotel_motel/screens/home_screens/search/search_form.dart';
 import 'package:hotel_motel/theme/theme_base.dart';
 import 'package:hotel_motel/utils/userSharedPreferences.dart';
@@ -67,46 +69,23 @@ class _SearchPageState extends State<SearchPage> {
         children: [
           _label("Recomended"),
           const SizedBox(height: Insets.s),
-          //TODO: add recomended hotels
-          // HotelThumbnail(hotel: TestHotel.hotels[2]),
-          // HotelThumbnail(hotel: TestHotel.hotels[4]),
-          // HotelThumbnail(hotel: TestHotel.hotels[3]),
+          BlocBuilder<RecomendedBloc, RecomendedState>(
+            builder: (context, state) {
+              if (state is LoadingRecommendation) {
+                return Center(child: CircularProgressIndicator());
+              }
+              if (state is RecommendationLoaded) {
+                return Column(
+                  children: state.thumbnails
+                      .map((thumbnail) => HotelThumbnail(hotel: thumbnail))
+                      .toList(),
+                );
+              }
+              return Container();
+            },
+          )
         ],
       ),
     );
   }
-
-//   Widget _searchAgain() {
-//     return Column(
-//       crossAxisAlignment: CrossAxisAlignment.start,
-//       children: [
-//         Padding(
-//           padding: const EdgeInsets.symmetric(horizontal: Insets.s),
-//           child: _label("Search again"),
-//         ),
-//         SingleChildScrollView(
-//           scrollDirection: Axis.horizontal,
-//           child: Padding(
-//             padding: const EdgeInsets.all(Insets.xs),
-//             child: ValueListenableBuilder<Box<Search>>(
-//               valueListenable: Boxes.getSearch().listenable(),
-//               builder: (context, box, _) {
-//                 final searches = box.values.toList().cast<Search>();
-//                 return Row(
-//                   children: searches
-//                       .map((search) => Padding(
-//                             padding: const EdgeInsets.all(Insets.xs),
-//                             child: SearchThumbnail(
-//                               search: search,
-//                             ),
-//                           ))
-//                       .toList(),
-//                 );
-//               },
-//             ),
-//           ),
-//         ),
-//       ],
-//     );
-//   }
 }

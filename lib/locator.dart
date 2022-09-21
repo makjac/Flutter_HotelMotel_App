@@ -12,6 +12,7 @@ import 'package:hotel_motel/data/repository/http/http_repository.dart';
 import 'package:hotel_motel/data/repository/model_repositores/category/category_repository.dart';
 import 'package:hotel_motel/data/repository/model_repositores/hotel_repository/hotel_repository.dart';
 import 'package:hotel_motel/data/repository/model_repositores/room_repository/room_repository.dart';
+import 'package:hotel_motel/screens/home_screens/search/bloc/rcomended_bloc.dart';
 import 'package:hotel_motel/screens/hotel_screen/bloc/hotel_page_bloc.dart';
 import 'package:hotel_motel/screens/results_screens/bloc/result_search_bloc.dart';
 
@@ -43,6 +44,10 @@ setupServices() {
     ),
   );
   locator.registerSingleton<HotelPageBloc>(HotelPageBloc(
+    hotelRepository: locator.get<HotelRepository>(),
+    roomRepository: locator.get<RoomRepository>(),
+  ));
+  locator.registerSingleton<RecomendedBloc>(RecomendedBloc(
     hotelRepository: locator.get<HotelRepository>(),
     roomRepository: locator.get<RoomRepository>(),
   ));

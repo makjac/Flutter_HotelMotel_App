@@ -30,9 +30,11 @@ class HotelRepository extends BaseHotelRepository {
   }
 
   @override
-  Stream<List<Hotel>> getAllRecomendedHotels() {
-    final hotelRef =
-        _firestore.collection('hotel').where('isRecomended', isEqualTo: true);
+  Stream<List<Hotel>> getAllRecomendedHotels(int limit) {
+    final hotelRef = _firestore
+        .collection('hotel')
+        .where('isRecomended', isEqualTo: true)
+        .limit(limit);
     return hotelRef.snapshots().map((hotels) {
       return hotels.docs
           .map((hotelDoc) => Hotel.fromSnapshot(hotelDoc))

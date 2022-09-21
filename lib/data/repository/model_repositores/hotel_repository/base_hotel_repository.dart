@@ -7,5 +7,5 @@ abstract class BaseHotelRepository {
 
   Stream<List<Hotel>> getHotelsFromLocation(String location);
 
-  Stream<List<Hotel>> getAllRecomendedHotels();
+  Stream<List<Hotel>> getAllRecomendedHotels(int limit);
 }
