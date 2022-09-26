@@ -45,7 +45,7 @@ class UserController {
       {required String email, required String passwd}) async {
     try {
       await _authRepo.signIn(email: email, passwd: passwd);
-      initUser();
+      await initUser();
       _storageRepo.getProfulrImgUrl(_currentUser.uid).then(
         (value) {
           _currentUser.avatarUrl = value;
@@ -59,8 +59,8 @@ class UserController {
   Future<void> signUpUser(
       {required String email, required String passwd}) async {
     try {
-      _authRepo.signUp(email: email, passwd: passwd);
-      _analiticsRepo.loginLog("Email");
+      await _authRepo.signUp(email: email, passwd: passwd);
+      await _analiticsRepo.loginLog("Email");
     } catch (e) {
       throw Exception(e.toString());
     }
@@ -68,7 +68,7 @@ class UserController {
 
   Future<void> logoutUser() async {
     try {
-      _authRepo.signOut();
+      await _authRepo.signOut();
     } catch (e) {
       throw Exception(e.toString());
     }
@@ -76,7 +76,7 @@ class UserController {
 
   Future<void> resetUserPassword({required String email}) async {
     try {
-      _authRepo.resetPasswd(email: email);
+      await _authRepo.resetPasswd(email: email);
     } catch (e) {
       throw Exception(e.toString());
     }
