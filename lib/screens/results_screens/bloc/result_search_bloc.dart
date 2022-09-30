@@ -9,7 +9,7 @@ import 'package:hotel_motel/data/repository/http/http_repository.dart';
 import 'package:hotel_motel/data/repository/model_repositores/hotel_repository/hotel_repository.dart';
 import 'package:hotel_motel/data/repository/model_repositores/room_repository/room_repository.dart';
 import 'package:hotel_motel/locator.dart';
-import 'package:hotel_motel/screens/results_screens/results_sort_values.dart';
+import 'package:hotel_motel/screens/results_screens/utils/results_sort_values.dart';
 import 'package:hotel_motel/utils/numbers.dart';
 
 part 'result_search_event.dart';

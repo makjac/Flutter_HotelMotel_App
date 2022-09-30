@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hotel_motel/data/models/hotel_thumbnail_model.dart';
 import 'package:hotel_motel/data/models/results_filters.dart';
 import 'package:hotel_motel/data/models/search_cryteria.dart';
 import 'package:hotel_motel/locator.dart';
 import 'package:hotel_motel/screens/results_screens/bloc/result_search_bloc.dart';
-import 'package:hotel_motel/screens/results_screens/results_sort_values.dart';
+import 'package:hotel_motel/screens/results_screens/utils/results_sort_values.dart';
+import 'package:hotel_motel/screens/results_screens/widgets/results_list.dart';
 import 'package:hotel_motel/theme/design_system.dart';
-import 'package:hotel_motel/widgets/cards/hotel_thumbnail.dart';
 
 class ResultsPage extends StatefulWidget {
   final SearchCryteria searchCryteria;
@@ -34,11 +33,11 @@ class RresultStatesPage extends State<ResultsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text("Results"),
-      //   centerTitle: true,
-      //   bottom: _appBarBottom(context),
-      // ),
+      appBar: AppBar(
+        title: Text("Results"),
+        centerTitle: true,
+        bottom: _appBarBottom(context),
+      ),
       body: _searchResults(),
     );
   }
@@ -130,101 +129,95 @@ class RresultStatesPage extends State<ResultsPage> {
     return ElevatedButton.icon(
       onPressed: () {
         showModalBottomSheet(
-          context: context,
-          builder: ((context) => StatefulBuilder(
-                builder: (BuildContext context, StateSetter setState) {
-                  return Center(
-                    child: Center(
-                      child: Padding(
-                        padding: const EdgeInsets.all(Insets.s),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            _filterLabel("Price in range:"),
-                            RangeSlider(
-                              values: _tempFilters.priceRange,
-                              min: 0,
-                              max: 1000,
-                              divisions: 20,
-                              labels: RangeLabels(
-                                  _tempFilters.priceRange.start
-                                      .round()
-                                      .toString(),
-                                  _tempFilters.priceRange.end != 1000
-                                      ? _tempFilters.priceRange.end
-                                          .round()
-                                          .toString()
-                                      : "+1000"),
-                              onChanged: (RangeValues values) {
-                                setState(() {
-                                  _tempFilters.priceRange = values;
-                                });
-                              },
-                            ),
-                            const SizedBox(height: Insets.s),
-                            _filterLabel("Rating in range:"),
-                            RangeSlider(
-                              values: _tempFilters.ratingRange,
-                              min: 0.0,
-                              max: 5.0,
-                              divisions: 10,
-                              labels: RangeLabels(
-                                "${_tempFilters.ratingRange.start} ⭐",
-                                "${_tempFilters.ratingRange.end} ⭐",
-                              ),
-                              onChanged: (RangeValues values) {
-                                setState(() {
-                                  _tempFilters.ratingRange = values;
-                                });
-                              },
-                            ),
-                            CheckboxListTile(
-                              title: const Text("Only with free canceling!"),
-                              secondary: Icon(Icons.monetization_on_outlined),
-                              value: _tempFilters.isFreeCancelling,
-                              onChanged: ((value) {
-                                setState(() {
-                                  _tempFilters.isFreeCancelling =
-                                      value ?? false;
-                                });
-                              }),
-                            ),
-                            CheckboxListTile(
-                                title: const Text("Only with a discount"),
-                                secondary:
-                                    Icon(Icons.account_balance_wallet_outlined),
-                                value: _tempFilters.isDiscount,
-                                onChanged: ((value) {
-                                  setState(() {
-                                    _tempFilters.isDiscount = value ?? false;
-                                  });
-                                })),
-                            const SizedBox(height: Insets.l),
-                            Center(
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  _filters = _tempFilters;
-                                  BlocProvider.of<ResultSearchBloc>(context)
-                                      .add(SortResults(
-                                          value: _character!,
-                                          filters: _filters));
-                                  Navigator.pop(context);
-                                },
-                                child: const Text("Filter!"),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  );
-                },
-              )),
-        );
+            context: context, builder: ((context) => _filtersSheetContent()));
       },
       icon: Icon(Icons.filter_alt_outlined),
       label: const Text("Filter"),
+    );
+  }
+
+  Widget _filtersSheetContent() {
+    return StatefulBuilder(
+      builder: (BuildContext context, StateSetter setState) {
+        return Center(
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(Insets.s),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  _filterLabel("Price in range:"),
+                  RangeSlider(
+                    values: _tempFilters.priceRange,
+                    min: 0,
+                    max: 1000,
+                    divisions: 20,
+                    labels: RangeLabels(
+                        _tempFilters.priceRange.start.round().toString(),
+                        _tempFilters.priceRange.end != 1000
+                            ? _tempFilters.priceRange.end.round().toString()
+                            : "+1000"),
+                    onChanged: (RangeValues values) {
+                      setState(() {
+                        _tempFilters.priceRange = values;
+                      });
+                    },
+                  ),
+                  const SizedBox(height: Insets.s),
+                  _filterLabel("Rating in range:"),
+                  RangeSlider(
+                    values: _tempFilters.ratingRange,
+                    min: 0.0,
+                    max: 5.0,
+                    divisions: 10,
+                    labels: RangeLabels(
+                      "${_tempFilters.ratingRange.start} ⭐",
+                      "${_tempFilters.ratingRange.end} ⭐",
+                    ),
+                    onChanged: (RangeValues values) {
+                      setState(() {
+                        _tempFilters.ratingRange = values;
+                      });
+                    },
+                  ),
+                  CheckboxListTile(
+                    title: const Text("Only with free canceling!"),
+                    secondary: Icon(Icons.monetization_on_outlined),
+                    value: _tempFilters.isFreeCancelling,
+                    onChanged: ((value) {
+                      setState(() {
+                        _tempFilters.isFreeCancelling = value ?? false;
+                      });
+                    }),
+                  ),
+                  CheckboxListTile(
+                      title: const Text("Only with a discount"),
+                      secondary: Icon(Icons.account_balance_wallet_outlined),
+                      value: _tempFilters.isDiscount,
+                      onChanged: ((value) {
+                        setState(() {
+                          _tempFilters.isDiscount = value ?? false;
+                        });
+                      })),
+                  const SizedBox(height: Insets.l),
+                  Center(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        _filters = _tempFilters;
+                        BlocProvider.of<ResultSearchBloc>(context).add(
+                            SortResults(value: _character!, filters: _filters));
+                        Navigator.pop(context);
+                      },
+                      child: const Text("Filter!"),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 
@@ -244,7 +237,10 @@ class RresultStatesPage extends State<ResultsPage> {
           return _loadingResults();
         }
         if (state is ResultsLoaded) {
-          return _resultsLoaded(state.thumbnails);
+          return ResultsList(
+            thumbnails: state.thumbnails,
+            searchCryteria: widget.searchCryteria,
+          );
         }
         return Center(
           child: const Text('Something went wrong...'),
@@ -256,33 +252,6 @@ class RresultStatesPage extends State<ResultsPage> {
   Widget _loadingResults() {
     return Center(
       child: CircularProgressIndicator(),
-    );
-  }
-
-  Widget _resultsLoaded(List<HotelThumbnailModel> thumbnails) {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.all(Insets.s),
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(Insets.xs),
-              child: Text(
-                "${thumbnails.length} results founded!",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-              ),
-            ),
-            Column(
-              children: thumbnails
-                  .map((thumbnail) => HotelThumbnail(
-                        hotel: thumbnail,
-                        searchCryteria: widget.searchCryteria,
-                      ))
-                  .toList(),
-            ),
-          ],
-        ),
-      ),
     );
   }
 }

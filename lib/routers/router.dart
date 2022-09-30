@@ -4,7 +4,7 @@ import 'package:hotel_motel/data/models/search_cryteria.dart';
 import 'package:hotel_motel/screens/auth_screens/auth_screens_base.dart';
 import 'package:hotel_motel/screens/home_screens/home_screens_base.dart';
 import 'package:hotel_motel/screens/hotel_screen/hotel_page.dart';
-import 'package:hotel_motel/screens/results_screens/hotel_home_nav_argument.dart';
+import 'package:hotel_motel/screens/results_screens/utils/hotel_home_nav_argument.dart';
 import 'package:hotel_motel/screens/results_screens/results_page.dart';
 
 class AppRouter {

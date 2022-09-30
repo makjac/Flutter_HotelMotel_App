@@ -11,7 +11,7 @@ import '../../data/models/room_model.dart';
 import '../../locator.dart';
 import '../../theme/design_system.dart';
 import '../../utils/scale.dart';
-import '../results_screens/hotel_home_nav_argument.dart';
+import '../results_screens/utils/hotel_home_nav_argument.dart';
 import 'bloc/hotel_page_bloc.dart';
 
 class HotelPage extends StatefulWidget {
@@ -25,7 +25,6 @@ class HotelPage extends StatefulWidget {
 class _HotelPageState extends State<HotelPage> {
   final ScrollController _scrollController = ScrollController();
   bool _showScroolUp = false;
-  bool _readMore = false;
 
   @override
   void initState() {
