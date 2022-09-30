@@ -34,11 +34,11 @@ class RresultStatesPage extends State<ResultsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Results"),
-        centerTitle: true,
-        bottom: _appBarBottom(context),
-      ),
+      // appBar: AppBar(
+      //   title: Text("Results"),
+      //   centerTitle: true,
+      //   bottom: _appBarBottom(context),
+      // ),
       body: _searchResults(),
     );
   }

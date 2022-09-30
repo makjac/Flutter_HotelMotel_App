@@ -16,7 +16,6 @@ class ResultsFilters extends Equatable {
         ratingRange = ratingRang ?? RangeValues(0, 5);
 
   @override
-  List<Object> get props {
-    return [priceRange, ratingRange, isFreeCancelling, isDiscount];
-  }
+  List<Object> get props =>
+      [priceRange, ratingRange, isFreeCancelling, isDiscount];
 }
