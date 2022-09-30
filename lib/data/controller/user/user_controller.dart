@@ -1,16 +1,19 @@
 import 'dart:io';
 
+import 'package:hotel_motel/data/controller/user/base_user_controller.dart';
 import 'package:hotel_motel/data/models/user_model.dart';
 import 'package:hotel_motel/data/repository/firebase/analitic/analitics_repository.dart';
 import 'package:hotel_motel/data/repository/firebase/auth/auth_repository.dart';
 import 'package:hotel_motel/data/repository/firebase/storage/storage_repository.dart';
+import 'package:hotel_motel/data/repository/model_repositores/user_repository/user_repository.dart';
 import 'package:hotel_motel/locator.dart';
 
-class UserController {
+class UserController extends BaseUserController {
   late UserModel _currentUser;
   final AuthRepository _authRepo = locator.get<AuthRepository>();
   final StorageRepository _storageRepo = locator.get<StorageRepository>();
   final AnalyticsRepository _analiticsRepo = locator.get<AnalyticsRepository>();
+  final UserRepository _userRepository = UserRepository();
   late Future init;
 
   UserController() {
@@ -85,4 +88,14 @@ class UserController {
   UserModel? get currentUser => _currentUser;
 
   String? get currentUserUid => _currentUser.uid;
+
+  @override
+  Future<bool> addFavoriteHotel(String hotelId) async {
+    try {
+      await _userRepository.addFavoriteHotel(_currentUser.uid!, hotelId);
+      return true;
+    } catch (error) {
+      return false;
+    }
+  }
 }

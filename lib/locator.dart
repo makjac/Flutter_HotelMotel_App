@@ -3,7 +3,7 @@ import 'package:hotel_motel/bloc/auth/auth_bloc.dart';
 import 'package:hotel_motel/bloc/category/category_bloc.dart';
 import 'package:hotel_motel/bloc/hotel_thumbnail/hotel_thumbnail_bloc.dart';
 import 'package:hotel_motel/data/controller/storage_controller.dart';
-import 'package:hotel_motel/data/controller/user_controller.dart';
+import 'package:hotel_motel/data/controller/user/user_controller.dart';
 import 'package:hotel_motel/data/repository/firebase/analitic/analitics_repository.dart';
 import 'package:hotel_motel/data/repository/firebase/auth/auth_repository.dart';
 import 'package:hotel_motel/data/repository/fb_firestore_repository.dart';

@@ -44,6 +44,8 @@ dependencies:
   equatable: ^2.0.5
   cloud_functions: ^3.3.7
   http: ^0.13.5
+  carousel_slider: ^4.1.1
+  smooth_page_indicator: ^1.0.0+2
   
 
 
