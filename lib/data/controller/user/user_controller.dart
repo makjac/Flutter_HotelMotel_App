@@ -17,19 +17,22 @@ class UserController extends BaseUserController {
   late Future init;
 
   UserController() {
-    init = initUser();
+    //init = initUser();
   }
 
   Future<UserModel?> initUser() async {
     _currentUser = await _authRepo.getUser();
     getUserProfileImgUrl().then((value) => _currentUser.displayName);
+    _currentUser.favorite =
+        await _userRepository.getUserFavoriteHotels(_currentUser.uid!);
+    print(_currentUser.favorite);
     return _currentUser;
   }
 
   Future<String?> uploadUserProfileImage(File file) async {
     try {
       await _storageRepo.uploadProfileFile(file, _currentUser.uid);
-      _storageRepo.getProfulrImgUrl(_currentUser.uid).then(
+      await _storageRepo.getProfulrImgUrl(_currentUser.uid).then(
         (value) {
           _currentUser.avatarUrl = value;
         },
@@ -92,10 +95,32 @@ class UserController extends BaseUserController {
   @override
   Future<bool> addFavoriteHotel(String hotelId) async {
     try {
-      await _userRepository.addFavoriteHotel(_currentUser.uid!, hotelId);
-      return true;
+      return await _userRepository
+          .addFavoriteHotel(_currentUser.uid!, hotelId)
+          .whenComplete(
+              () => _currentUser.favorite?.favoriteHotels?.add(hotelId));
     } catch (error) {
       return false;
     }
+  }
+
+  @override
+  Future<bool> removeFavoriteHotel(String hotelID) async {
+    try {
+      return await _userRepository
+          .removeFavoriteHotel(_currentUser.uid!, hotelID)
+          .whenComplete(
+              () => _currentUser.favorite?.favoriteHotels?.remove(hotelID));
+    } catch (error) {
+      return false;
+    }
+  }
+
+  @override
+  bool isHotelUserFavorite(String hotelID) {
+    if (_currentUser.favorite != null) {
+      return _currentUser.favorite!.favoriteHotels!.contains(hotelID);
+    }
+    return false;
   }
 }

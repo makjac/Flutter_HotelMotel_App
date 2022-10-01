@@ -3,17 +3,20 @@ import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
+import 'package:hotel_motel/data/models/favorite_model.dart';
 
 class UserModel extends Equatable {
   String? uid;
   String? displayName;
   String? avatarUrl;
   bool? anonim;
+  Favorite? favorite;
   UserModel({
     this.uid,
     this.displayName,
     this.avatarUrl,
     this.anonim,
+    this.favorite,
   });
 
   static UserModel fromSnapshot(DocumentSnapshot snap) {

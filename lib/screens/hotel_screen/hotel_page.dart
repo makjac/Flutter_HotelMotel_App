@@ -79,7 +79,7 @@ class _HotelPageState extends State<HotelPage> {
         SliverPersistentHeader(
           floating: false,
           pinned: true,
-          delegate: HotelPageAppbar(),
+          delegate: HotelPageAppbar(hotel: hotel),
         ),
         SliverToBoxAdapter(
           child: _content(width, hotel, rooms),

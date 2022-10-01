@@ -19,6 +19,10 @@ abstract class BaseUserController {
 
   Future<bool> addFavoriteHotel(String hotelId);
 
+  Future<bool> removeFavoriteHotel(String hotelID);
+
+  bool isHotelUserFavorite(String hotelID);
+
   UserModel? get currentUser;
 
   String? get currentUserUid;

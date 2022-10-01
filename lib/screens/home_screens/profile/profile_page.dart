@@ -26,8 +26,8 @@ class _ProfilePageState extends State<ProfilePage> {
       final pickedImage = await _picker.pickImage(source: ImageSource.gallery);
       if (pickedImage != null) {
         File image = File(pickedImage.path);
-        UserController uc = locator.get<UserController>();
-        await uc.uploadUserProfileImage(image).then((value) {
+        UserController userController = locator.get<UserController>();
+        await userController.uploadUserProfileImage(image).then((value) {
           currentUser?.avatarUrl = value;
         }).whenComplete(() {
           setState(() {});
