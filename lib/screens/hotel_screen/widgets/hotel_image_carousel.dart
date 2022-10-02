@@ -37,7 +37,7 @@ class _HotelImageCarouselState extends State<HotelImageCarousel> {
             initialPage: _activeIndex,
             autoPlay: _isAautoPlay,
             height: widget.height,
-            autoPlayInterval: const Duration(seconds: 5),
+            autoPlayInterval: const Duration(seconds: 3),
             onPageChanged: (index, reason) {
               setState(() {
                 _activeIndex = index;

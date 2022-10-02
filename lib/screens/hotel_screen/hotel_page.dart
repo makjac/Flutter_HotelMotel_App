@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hotel_motel/screens/hotel_screen/widgets/hotel_amenities.dart';
-import 'package:hotel_motel/screens/hotel_screen/widgets/hotel_page_appbar.dart';
+import 'package:hotel_motel/screens/hotel_screen/widgets/appbar/hotel_page_appbar.dart';
 import 'package:hotel_motel/screens/hotel_screen/widgets/hotel_page_title.dart';
 import 'package:hotel_motel/screens/hotel_screen/widgets/hotel_price_container.dart';
 import 'package:hotel_motel/screens/hotel_screen/widgets/summary/hotel_summary.dart';
