@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hotel_motel/constans/route_name_constans.dart';
+import 'package:hotel_motel/screens/finalize_booking_screen/utils/finalize_booking_arguments.dart';
 import 'package:hotel_motel/screens/hotel_screen/widgets/hotel_amenities.dart';
 import 'package:hotel_motel/screens/hotel_screen/widgets/appbar/hotel_page_appbar.dart';
 import 'package:hotel_motel/screens/hotel_screen/widgets/hotel_page_title.dart';
@@ -104,13 +106,26 @@ class _HotelPageState extends State<HotelPage> {
                   roomCount: widget.hotelArguments.cryteria!.rooms,
                   adultsCount: 1,
                   kidsCount: 1,
+                  funcHandler: () => Navigator.pushNamed(
+                      context, AppRoute.FINALIZE_ROUTE,
+                      arguments: FinalizeBookingArguments(
+                          hotel: hotel,
+                          room: rooms[0],
+                          cryteria: widget.hotelArguments.cryteria)),
                 )
               : HotelPriceContainer(
                   priceUnit: rooms[0].price,
                   nights: 1,
                   roomCount: 1,
                   adultsCount: 1,
-                  kidsCount: 1),
+                  kidsCount: 1,
+                  funcHandler: () =>
+                      Navigator.pushNamed(context, AppRoute.FINALIZE_ROUTE,
+                          arguments: FinalizeBookingArguments(
+                            hotel: hotel,
+                            room: rooms[0],
+                          )),
+                ),
           const SizedBox(height: Insets.m),
           HotelSummary(hotel: hotel),
           HotelAmenities(room: rooms[0]),

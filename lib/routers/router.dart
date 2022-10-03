@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hotel_motel/constans/route_name_constans.dart';
 import 'package:hotel_motel/data/models/search_cryteria.dart';
 import 'package:hotel_motel/screens/auth_screens/auth_screens_base.dart';
+import 'package:hotel_motel/screens/finalize_booking_screen/finalize_booking_page.dart';
+import 'package:hotel_motel/screens/finalize_booking_screen/utils/finalize_booking_arguments.dart';
 import 'package:hotel_motel/screens/home_screens/home_screens_base.dart';
 import 'package:hotel_motel/screens/hotel_screen/hotel_page.dart';
 import 'package:hotel_motel/screens/results_screens/utils/hotel_home_nav_argument.dart';
@@ -35,6 +37,13 @@ class AppRouter {
         return MaterialPageRoute(
             builder: (BuildContext context) => HotelPage(
                   hotelArguments: pageArguments,
+                ));
+      case AppRoute.FINALIZE_ROUTE:
+        final finalizeBookingArguments =
+            settings.arguments as FinalizeBookingArguments;
+        return MaterialPageRoute(
+            builder: (BuildContext context) => FinalizeBookingPage(
+                  arguments: finalizeBookingArguments,
                 ));
       default:
         return null;

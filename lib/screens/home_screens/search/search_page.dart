@@ -81,6 +81,11 @@ class _SearchPageState extends State<SearchPage> {
                       .toList(),
                 );
               }
+              if (state is RecomendedError) {
+                return Center(
+                  child: const Text("Unable to load recomendation..."),
+                );
+              }
               return Container();
             },
           )

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class SearchCryteria extends Equatable {
   final String location;
-  final DateTimeRange timeRange;
+  DateTimeRange timeRange;
   final int rooms;
   final int adults;
   final int kids;

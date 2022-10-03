@@ -9,6 +9,7 @@ class HotelPriceContainer extends StatelessWidget {
   final int roomCount;
   final int adultsCount;
   final int? kidsCount;
+  final Function()? funcHandler;
   const HotelPriceContainer({
     Key? key,
     required this.priceUnit,
@@ -16,6 +17,7 @@ class HotelPriceContainer extends StatelessWidget {
     required this.roomCount,
     required this.adultsCount,
     this.kidsCount,
+    this.funcHandler,
   }) : super(key: key);
 
   @override
@@ -37,7 +39,7 @@ class HotelPriceContainer extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(Insets.s),
         child: InkWell(
-          onTap: () {},
+          onTap: funcHandler,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
