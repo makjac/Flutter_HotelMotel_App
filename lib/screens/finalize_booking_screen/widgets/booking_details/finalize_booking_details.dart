@@ -34,7 +34,10 @@ class FinalizeBookingDetails extends StatelessWidget {
         const SizedBox(height: Insets.xs),
         Container(
           decoration: BoxDecoration(
-              border: Border.all(color: Colors.black54),
+              border: Border.all(
+                color: Colors.black54,
+                width: 2,
+              ),
               borderRadius: BorderRadius.circular(10)),
           padding: EdgeInsets.all(Insets.s),
           child: Column(
