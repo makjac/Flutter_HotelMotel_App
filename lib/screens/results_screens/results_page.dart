@@ -18,7 +18,7 @@ class ResultsPage extends StatefulWidget {
 }
 
 class RresultStatesPage extends State<ResultsPage> {
-  SortValues? _character = SortValues.sortRatingHL;
+  SortValues _character = SortValues.sortRatingHL;
   ResultsFilters _filters = ResultsFilters();
   ResultsFilters _tempFilters = ResultsFilters();
 
@@ -116,7 +116,7 @@ class RresultStatesPage extends State<ResultsPage> {
       onChanged: (value) {
         _character = filter;
         BlocProvider.of<ResultSearchBloc>(context)
-            .add(SortResults(value: _character!, filters: _filters));
+            .add(SortResults(value: _character, filters: _filters));
         Navigator.pop(context);
       },
       title: Text(title),
@@ -206,7 +206,7 @@ class RresultStatesPage extends State<ResultsPage> {
                       onPressed: () {
                         _filters = _tempFilters;
                         BlocProvider.of<ResultSearchBloc>(context).add(
-                            SortResults(value: _character!, filters: _filters));
+                            SortResults(value: _character, filters: _filters));
                         Navigator.pop(context);
                       },
                       child: const Text("Filter!"),
