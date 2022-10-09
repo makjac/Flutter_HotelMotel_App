@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
@@ -11,6 +13,16 @@ class BookingPage extends StatefulWidget {
 class _BookingPageState extends State<BookingPage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text("Booking details"),
+          centerTitle: true,
+        ),
+        body: Center(
+          child: const Text("Booking page"),
+        ),
+      ),
+    );
   }
 }

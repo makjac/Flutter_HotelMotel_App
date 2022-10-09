@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hotel_motel/constans/route_name_constans.dart';
 import 'package:hotel_motel/screens/home_screens/bookings/widgets/booking_thumbnail/booking_thumbnail_title.dart';
 
 import '../../../../../theme/colors.dart';
@@ -10,7 +11,9 @@ class BookingThumbnail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.pushNamed(context, AppRoute.BOOKING_ROUTE);
+      },
       splashColor: InsetsColors.splashColor,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(20),
