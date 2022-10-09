@@ -8,4 +8,5 @@ class AppRoute {
   static const String RESULTS_ROUTE = "/results";
   static const String HOTEL_ROUTE = "/hotel";
   static const String FINALIZE_ROUTE = "/FinalizeBooking";
+  static const String BOOKING_ROUTE = "/booking";
 }

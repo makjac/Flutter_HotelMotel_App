@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hotel_motel/data/controller/user/user_controller.dart';
@@ -13,6 +11,7 @@ import 'package:hotel_motel/theme/theme_base.dart';
 
 import 'bloc/finalize_booking_bloc.dart';
 
+// ignore: must_be_immutable
 class FinalizeBookingPage extends StatefulWidget {
   FinalizeBookingArguments _arguments;
 

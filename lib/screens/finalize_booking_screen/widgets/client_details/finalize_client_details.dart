@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hotel_motel/screens/finalize_booking_screen/widgets/client_details/user_details_form.dart';
 import 'package:hotel_motel/screens/finalize_booking_screen/widgets/finalize_header.dart';

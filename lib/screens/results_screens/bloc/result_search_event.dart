@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'result_search_bloc.dart';
 
 abstract class ResultSearchEvent extends Equatable {
@@ -8,6 +7,7 @@ abstract class ResultSearchEvent extends Equatable {
   List<Object> get props => [];
 }
 
+// ignore: must_be_immutable
 class LoadSearchResults extends ResultSearchEvent {
   SearchCryteria searchCryteria;
   LoadSearchResults({

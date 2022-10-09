@@ -6,7 +6,6 @@ import 'package:hotel_motel/screens/hotel_screen/widgets/summary/score_label.dar
 
 import '../../../../theme/design_system.dart';
 import '../../../../utils/scale.dart';
-import '../../../../widgets/score_bars/linear_score.dart';
 import '../../../../widgets/score_bars/number_box.dart';
 
 class HotelSummary extends StatefulWidget {
