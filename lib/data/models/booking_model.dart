@@ -14,6 +14,7 @@ class Booking extends Equatable {
   final DateTime endTime;
   final String status;
   final String payment;
+  final String opinion;
   Booking({
     required this.bookingID,
     required this.hotelID,
@@ -24,6 +25,7 @@ class Booking extends Equatable {
     required this.endTime,
     required this.status,
     required this.payment,
+    required this.opinion,
   });
 
   static Booking fromSnapshot(DocumentSnapshot snap) {
@@ -40,6 +42,7 @@ class Booking extends Equatable {
           snap['end_time'].millisecondsSinceEpoch as int),
       status: snap['status'] as String,
       payment: snap['payment'] as String,
+      opinion: snap['opinion'] as String,
     );
   }
 
@@ -55,6 +58,7 @@ class Booking extends Equatable {
       endTime,
       status,
       payment,
+      opinion,
     ];
   }
 
@@ -70,7 +74,8 @@ class Booking extends Equatable {
     DateTime? startTime,
     DateTime? endTime,
     String? status,
-    String? paytment,
+    String? payment,
+    String? opinion,
   }) {
     return Booking(
       bookingID: bookingID ?? this.bookingID,
@@ -81,13 +86,14 @@ class Booking extends Equatable {
       startTime: startTime ?? this.startTime,
       endTime: endTime ?? this.endTime,
       status: status ?? this.status,
-      payment: paytment ?? this.payment,
+      payment: payment ?? this.payment,
+      opinion: opinion ?? this.opinion,
     );
   }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'booking_id': bookingID,
+      'bookingID': bookingID,
       'hotel_id': hotelID,
       'room_id': roomID,
       'user_uid': userUid,
@@ -95,13 +101,14 @@ class Booking extends Equatable {
       'start_time': startTime.millisecondsSinceEpoch,
       'end_time': endTime.millisecondsSinceEpoch,
       'status': status,
-      'paytment': payment,
+      'payment': payment,
+      'opinion': opinion,
     };
   }
 
   factory Booking.fromMap(Map<String, dynamic> map) {
     return Booking(
-      bookingID: map['booking_id'] as String,
+      bookingID: map['bookingID'] as String,
       hotelID: map['hotel_id'] as String,
       roomID: map['room_id'] as String,
       userUid: map['user_uid'] as String,
@@ -109,7 +116,8 @@ class Booking extends Equatable {
       startTime: DateTime.fromMillisecondsSinceEpoch(map['start_time'] as int),
       endTime: DateTime.fromMillisecondsSinceEpoch(map['end_time'] as int),
       status: map['status'] as String,
-      payment: map['paytment'] as String,
+      payment: map['payment'] as String,
+      opinion: map['opinion'] as String,
     );
   }
 

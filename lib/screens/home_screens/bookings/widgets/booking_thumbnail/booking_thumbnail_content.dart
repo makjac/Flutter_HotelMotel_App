@@ -1,0 +1,56 @@
+import 'package:flutter/material.dart';
+
+import 'package:hotel_motel/data/models/booking_model.dart';
+import 'package:hotel_motel/data/models/hotel_model.dart';
+
+import '../../../../../theme/design_system.dart';
+import 'booking_thumbnail_details.dart';
+import 'booking_thumbnail_title.dart';
+
+class BookingThumbnailContent extends StatelessWidget {
+  final Booking booking;
+  final Hotel hotel;
+
+  const BookingThumbnailContent({
+    Key? key,
+    required this.booking,
+    required this.hotel,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return IntrinsicHeight(
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Expanded(
+            flex: 1,
+            child: Image.network(
+              "https://pliki.propertydesign.pl/i/12/62/06/126206_r0_300.jpg",
+              fit: BoxFit.cover,
+            ),
+          ),
+          Expanded(
+            flex: 2,
+            child: Padding(
+              padding: const EdgeInsets.all(Insets.xs),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  BookingThumbnailTitle(
+                    hotel: hotel,
+                  ),
+                  const SizedBox(height: Insets.xs),
+                  BookingThumbnailDetails(
+                    booking: booking,
+                    hotel: hotel,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

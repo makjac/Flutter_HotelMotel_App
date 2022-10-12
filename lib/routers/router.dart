@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hotel_motel/constans/route_name_constans.dart';
 import 'package:hotel_motel/data/models/search_cryteria.dart';
+import 'package:hotel_motel/screens/add_review_screen/add_review_page.dart';
 import 'package:hotel_motel/screens/auth_screens/auth_screens_base.dart';
 import 'package:hotel_motel/screens/booking_screen/booking_page.dart';
 import 'package:hotel_motel/screens/finalize_booking_screen/finalize_booking_page.dart';
@@ -49,6 +50,9 @@ class AppRouter {
       case AppRoute.BOOKING_ROUTE:
         return MaterialPageRoute(
             builder: (BuildContext context) => BookingPage());
+      case AppRoute.ADD_REVIEW_ROUTE:
+        return MaterialPageRoute(
+            builder: (BuildContext context) => AddReviewPage());
       default:
         return null;
     }
