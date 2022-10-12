@@ -12,8 +12,8 @@ class Booking extends Equatable {
   final DateTime created;
   final DateTime startTime;
   final DateTime endTime;
-  final bool status;
-  final String paytment;
+  final String status;
+  final String payment;
   Booking({
     required this.bookingID,
     required this.hotelID,
@@ -23,7 +23,7 @@ class Booking extends Equatable {
     required this.startTime,
     required this.endTime,
     required this.status,
-    required this.paytment,
+    required this.payment,
   });
 
   static Booking fromSnapshot(DocumentSnapshot snap) {
@@ -32,11 +32,14 @@ class Booking extends Equatable {
       hotelID: snap['hotel_id'] as String,
       roomID: snap['room_id'] as String,
       userUid: snap['user_uid'] as String,
-      created: DateTime.fromMillisecondsSinceEpoch(snap['created'] as int),
-      startTime: DateTime.fromMillisecondsSinceEpoch(snap['start_time'] as int),
-      endTime: DateTime.fromMillisecondsSinceEpoch(snap['end_time'] as int),
-      status: snap['status'] as bool,
-      paytment: snap['paytment'] as String,
+      created: DateTime.fromMillisecondsSinceEpoch(
+          snap['created'].millisecondsSinceEpoch as int),
+      startTime: DateTime.fromMillisecondsSinceEpoch(
+          snap['start_time'].millisecondsSinceEpoch as int),
+      endTime: DateTime.fromMillisecondsSinceEpoch(
+          snap['end_time'].millisecondsSinceEpoch as int),
+      status: snap['status'] as String,
+      payment: snap['payment'] as String,
     );
   }
 
@@ -51,7 +54,7 @@ class Booking extends Equatable {
       startTime,
       endTime,
       status,
-      paytment,
+      payment,
     ];
   }
 
@@ -66,7 +69,7 @@ class Booking extends Equatable {
     DateTime? created,
     DateTime? startTime,
     DateTime? endTime,
-    bool? status,
+    String? status,
     String? paytment,
   }) {
     return Booking(
@@ -78,7 +81,7 @@ class Booking extends Equatable {
       startTime: startTime ?? this.startTime,
       endTime: endTime ?? this.endTime,
       status: status ?? this.status,
-      paytment: paytment ?? this.paytment,
+      payment: paytment ?? this.payment,
     );
   }
 
@@ -92,7 +95,7 @@ class Booking extends Equatable {
       'start_time': startTime.millisecondsSinceEpoch,
       'end_time': endTime.millisecondsSinceEpoch,
       'status': status,
-      'paytment': paytment,
+      'paytment': payment,
     };
   }
 
@@ -105,8 +108,8 @@ class Booking extends Equatable {
       created: DateTime.fromMillisecondsSinceEpoch(map['created'] as int),
       startTime: DateTime.fromMillisecondsSinceEpoch(map['start_time'] as int),
       endTime: DateTime.fromMillisecondsSinceEpoch(map['end_time'] as int),
-      status: map['status'] as bool,
-      paytment: map['paytment'] as String,
+      status: map['status'] as String,
+      payment: map['paytment'] as String,
     );
   }
 

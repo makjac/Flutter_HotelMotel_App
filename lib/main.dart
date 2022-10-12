@@ -7,6 +7,7 @@ import 'package:hotel_motel/bloc/hotel_thumbnail/hotel_thumbnail_bloc.dart';
 import 'package:hotel_motel/firebase_options.dart';
 import 'package:hotel_motel/locator.dart';
 import 'package:hotel_motel/routers/router.dart';
+import 'package:hotel_motel/screens/home_screens/bookings/bloc/bookings_bloc.dart';
 import 'package:hotel_motel/screens/home_screens/search/bloc/rcomended_bloc.dart';
 import 'package:hotel_motel/screens/hotel_screen/bloc/hotel_page_bloc.dart';
 import 'package:hotel_motel/screens/results_screens/bloc/result_search_bloc.dart';
@@ -41,6 +42,9 @@ Future<void> main() async {
       BlocProvider<RecomendedBloc>(
         create: (context) =>
             locator.get<RecomendedBloc>()..add(LoadRecommendation()),
+      ),
+      BlocProvider<BookingsBloc>(
+        create: (context) => locator.get<BookingsBloc>()..add(LoadBookings()),
       ),
     ],
     child: HotelMotelApp(

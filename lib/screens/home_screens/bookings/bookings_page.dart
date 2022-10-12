@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hotel_motel/screens/home_screens/bookings/bloc/bookings_bloc.dart';
 import 'package:hotel_motel/screens/home_screens/bookings/cancelled/cancelled_bookings.dart';
 import 'package:hotel_motel/screens/home_screens/bookings/incoming/incoming_bookins.dart';
 import 'package:hotel_motel/screens/home_screens/bookings/realized/realized_bookings.dart';
@@ -27,12 +29,24 @@ class _BookingsPageState extends State<BookingsPage> {
             preferredSize: Size(double.infinity, 35),
           ),
         ),
-        body: const TabBarView(
-          children: <Widget>[
-            const IncomingBooking(),
-            const RealizedBooking(),
-            const CancelledBookings(),
-          ],
+        body: BlocBuilder<BookingsBloc, BookingsState>(
+          builder: ((context, state) {
+            if (state is LoadingBooking) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+            if (state is BookingsLoaded) {
+              return TabBarView(
+                children: <Widget>[
+                  IncomingBooking(thumbnails: state.thumbnails),
+                  RealizedBooking(thumbnails: state.thumbnails),
+                  CancelledBookings(thumbnails: state.thumbnails),
+                ],
+              );
+            }
+            return const Text("Opps... Something went wrong");
+          }),
         ),
       ),
     );

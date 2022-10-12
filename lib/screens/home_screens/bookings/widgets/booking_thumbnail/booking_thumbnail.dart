@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
+
 import 'package:hotel_motel/constans/route_name_constans.dart';
+import 'package:hotel_motel/data/models/booking_thumbnail_model.dart';
 import 'package:hotel_motel/screens/home_screens/bookings/widgets/booking_thumbnail/booking_thumbnail_title.dart';
 
 import '../../../../../theme/colors.dart';
 import '../../../../../theme/design_system.dart';
 
 class BookingThumbnail extends StatelessWidget {
-  const BookingThumbnail({super.key});
+  final BookingThumbnailModel booking;
+  const BookingThumbnail({
+    Key? key,
+    required this.booking,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +43,10 @@ class BookingThumbnail extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        BookingThumbnailTitle(),
+                        BookingThumbnailTitle(
+                          booking: booking.booking,
+                          hotel: booking.hotel,
+                        ),
                         const SizedBox(height: Insets.xs),
                       ],
                     ),

@@ -30,4 +30,14 @@ class RoomRepository extends BaseRoomRepository {
       return rooms.docs.map((roomDoc) => Room.fromSnapshot(roomDoc)).toList();
     });
   }
+
+  @override
+  Stream<Room> getRoom(String hotelID, String roomID) {
+    final RoomRef = _firestore
+        .collection('hotel')
+        .doc(hotelID)
+        .collection('room')
+        .doc(roomID);
+    return RoomRef.snapshots().map((roomDoc) => Room.fromSnapshot(roomDoc));
+  }
 }
