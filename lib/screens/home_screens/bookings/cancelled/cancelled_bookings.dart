@@ -8,7 +8,7 @@ import '../../../../theme/design_system.dart';
 class CancelledBookings extends StatelessWidget {
   final List<BookingThumbnailModel> thumbnails;
 
-  const CancelledBookings({
+  CancelledBookings({
     Key? key,
     required this.thumbnails,
   }) : super(key: key);
@@ -20,7 +20,7 @@ class CancelledBookings extends StatelessWidget {
         padding: const EdgeInsets.all(Insets.s),
         child: Column(
             children: thumbnails
-                .takeWhile((booking) => booking.booking.status == "inactive")
+                .where((booking) => booking.booking.status == "inactive")
                 .map((booking) => BookingThumbnail(booking: booking))
                 .toList()),
       ),

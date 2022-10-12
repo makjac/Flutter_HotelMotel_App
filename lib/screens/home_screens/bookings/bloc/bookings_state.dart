@@ -23,6 +23,8 @@ class BookingsLoaded extends BookingsState {
   List<Object> get props => [thumbnails];
 }
 
+class EmptyBookings extends BookingsState {}
+
 class BookingError extends BookingsState {
   final String error;
 

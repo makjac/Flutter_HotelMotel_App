@@ -16,6 +16,12 @@ class BookingsPage extends StatefulWidget {
 
 class _BookingsPageState extends State<BookingsPage> {
   @override
+  void initState() {
+    BlocProvider.of<BookingsBloc>(context).add(LoadBookings());
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 3,
@@ -43,6 +49,11 @@ class _BookingsPageState extends State<BookingsPage> {
                   RealizedBooking(thumbnails: state.thumbnails),
                   CancelledBookings(thumbnails: state.thumbnails),
                 ],
+              );
+            }
+            if (state is EmptyBookings) {
+              return Center(
+                child: const Text("You haven't have any bookings yet!"),
               );
             }
             return const Text("Opps... Something went wrong");

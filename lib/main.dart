@@ -44,7 +44,7 @@ Future<void> main() async {
             locator.get<RecomendedBloc>()..add(LoadRecommendation()),
       ),
       BlocProvider<BookingsBloc>(
-        create: (context) => locator.get<BookingsBloc>()..add(LoadBookings()),
+        create: (context) => locator.get<BookingsBloc>(),
       ),
     ],
     child: HotelMotelApp(

@@ -20,7 +20,9 @@ class IncomingBooking extends StatelessWidget {
         padding: const EdgeInsets.all(Insets.s),
         child: Column(
             children: thumbnails
-                .takeWhile((booking) => booking.booking.status == "active")
+                .where((booking) => booking.booking.status == "active")
+                .where((booking) =>
+                    booking.booking.startTime.isAfter(DateTime.now()))
                 .map((booking) => BookingThumbnail(booking: booking))
                 .toList()),
       ),
