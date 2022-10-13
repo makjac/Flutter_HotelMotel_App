@@ -15,24 +15,26 @@ class BookingThumbnailAddReviewButto extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (booking.opinion == "none" && booking.status != "inactive") {
-      return InkWell(
-        onTap: () {
-          Navigator.pushNamed(context, AppRoute.ADD_REVIEW_ROUTE);
-        },
-        child: Container(
-          color: Colors.black12,
-          child: Padding(
-            padding: const EdgeInsets.all(Insets.xs),
-            child: Row(
-              children: [
-                Icon(Icons.add_comment),
-                SizedBox(width: Insets.xs),
-                const Text("Add review"),
-              ],
+      if (booking.startTime.isBefore(DateTime.now())) {
+        return InkWell(
+          onTap: () {
+            Navigator.pushNamed(context, AppRoute.ADD_REVIEW_ROUTE);
+          },
+          child: Container(
+            color: Colors.black12,
+            child: Padding(
+              padding: const EdgeInsets.all(Insets.xs),
+              child: Row(
+                children: [
+                  Icon(Icons.add_comment),
+                  SizedBox(width: Insets.xs),
+                  const Text("Add review"),
+                ],
+              ),
             ),
           ),
-        ),
-      );
+        );
+      }
     }
     return Container(height: 0.001, width: 0.001);
   }
