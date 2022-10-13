@@ -40,7 +40,7 @@ class BookingThumbnailContent extends StatelessWidget {
                   BookingThumbnailTitle(
                     hotel: hotel,
                   ),
-                  const SizedBox(height: Insets.xs),
+                  const SizedBox(height: Insets.s),
                   BookingThumbnailDetails(
                     booking: booking,
                     hotel: hotel,
