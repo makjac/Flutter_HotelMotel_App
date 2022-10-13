@@ -1,12 +1,12 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:hotel_motel/constans/route_name_constans.dart';
+import 'package:hotel_motel/data/models/booking_thumbnail_model.dart';
 
-import '../../../../../data/models/booking_model.dart';
 import '../../../../../theme/design_system.dart';
 
 class BookingThumbnailAddReviewButto extends StatelessWidget {
-  final Booking booking;
+  final BookingThumbnailModel booking;
   const BookingThumbnailAddReviewButto({
     Key? key,
     required this.booking,
@@ -14,11 +14,13 @@ class BookingThumbnailAddReviewButto extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (booking.opinion == "none" && booking.status != "inactive") {
-      if (booking.startTime.isBefore(DateTime.now())) {
+    if (booking.booking.opinion == "none" &&
+        booking.booking.status != "inactive") {
+      if (booking.booking.startTime.isBefore(DateTime.now())) {
         return InkWell(
           onTap: () {
-            Navigator.pushNamed(context, AppRoute.ADD_REVIEW_ROUTE);
+            Navigator.pushNamed(context, AppRoute.ADD_REVIEW_ROUTE,
+                arguments: booking);
           },
           child: Container(
             color: Colors.black12,

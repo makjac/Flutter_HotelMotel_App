@@ -33,7 +33,7 @@ class BookingThumbnail extends StatelessWidget {
               children: [
                 BookingThumbnailContent(
                     booking: booking.booking, hotel: booking.hotel),
-                BookingThumbnailAddReviewButto(booking: booking.booking),
+                BookingThumbnailAddReviewButto(booking: booking),
               ],
             ),
           ),
