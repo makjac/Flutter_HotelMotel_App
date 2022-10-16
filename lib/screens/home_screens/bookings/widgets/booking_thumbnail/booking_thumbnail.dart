@@ -23,7 +23,8 @@ class BookingThumbnail extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: Insets.xs),
       child: InkWell(
         onTap: () {
-          Navigator.pushNamed(context, AppRoute.BOOKING_ROUTE);
+          Navigator.pushNamed(context, AppRoute.BOOKING_ROUTE,
+              arguments: booking);
         },
         splashColor: InsetsColors.splashColor,
         child: ClipRRect(

@@ -1,16 +1,15 @@
-import 'package:flutter/cupertino.dart';
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
-class BookingPage extends StatefulWidget {
-  const BookingPage({super.key});
+import 'package:hotel_motel/data/models/booking_thumbnail_model.dart';
 
-  @override
-  State<BookingPage> createState() => _BookingPageState();
-}
+class BookingPage extends StatelessWidget {
+  final BookingThumbnailModel details;
+  const BookingPage({
+    Key? key,
+    required this.details,
+  }) : super(key: key);
 
-class _BookingPageState extends State<BookingPage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(

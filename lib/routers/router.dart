@@ -49,8 +49,11 @@ class AppRouter {
                   arguments: finalizeBookingArguments,
                 ));
       case AppRoute.BOOKING_ROUTE:
+        final bookingArguments = settings.arguments as BookingThumbnailModel;
         return MaterialPageRoute(
-            builder: (BuildContext context) => BookingPage());
+          builder: (BuildContext context) =>
+              BookingPage(details: bookingArguments),
+        );
       case AppRoute.ADD_REVIEW_ROUTE:
         final reviewArguments = settings.arguments as BookingThumbnailModel;
         return MaterialPageRoute(
