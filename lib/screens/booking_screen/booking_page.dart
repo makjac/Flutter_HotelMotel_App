@@ -23,18 +23,27 @@ class BookingPage extends StatelessWidget {
           title: const Text("Booking details"),
           centerTitle: true,
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(Insets.s),
-          child: Column(
-            children: [
-              HotelDetails(),
-              Divider(),
-              BookingDetails(),
-              Divider(),
-              ContactDetails(),
-              Divider(),
-              PriceDetails(),
-            ],
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(Insets.s),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                HotelDetails(
+                  hotel: details.hotel,
+                  room: details.room,
+                ),
+                Divider(),
+                BookingDetails(booking: details.booking),
+                Divider(),
+                ContactDetails(hotel: details.hotel),
+                Divider(),
+                PriceDetails(
+                  booking: details.booking,
+                  room: details.room,
+                ),
+              ],
+            ),
           ),
         ),
       ),
