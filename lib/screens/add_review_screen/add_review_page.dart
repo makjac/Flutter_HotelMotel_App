@@ -8,6 +8,7 @@ import 'package:hotel_motel/screens/add_review_screen/widgets/Review_star_rating
 import 'package:hotel_motel/screens/add_review_screen/widgets/review_add_comment.dart';
 import 'package:hotel_motel/screens/add_review_screen/widgets/review_details_rating.dart';
 import 'package:hotel_motel/theme/design_system.dart';
+import 'package:hotel_motel/widgets/decorations/app_divider.dart';
 
 class AddReviewPage extends StatelessWidget {
   final BookingThumbnailModel bookingDetails;
@@ -27,42 +28,46 @@ class AddReviewPage extends StatelessWidget {
         body: CustomScrollView(
           slivers: [
             SliverPersistentHeader(
-              floating: true,
-              pinned: false,
+              floating: false,
+              pinned: true,
               delegate: ReviewAppbar(
                   booking: bookingDetails.booking, hotel: bookingDetails.hotel),
             ),
             SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.all(Insets.s),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        left: Insets.s, right: Insets.s, top: Insets.s),
+                    child: const Text(
                       "Review your trip!",
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
                     ),
-                    const SizedBox(height: Insets.s),
-                    ReviewStarRating(
-                        onChanged: (value) => review.totalScore = value),
-                    const SizedBox(height: Insets.s),
-                    ReviewDetailsRating(
-                      onChanged: (details) => review.details = details,
+                  ),
+                  const SizedBox(height: Insets.xs),
+                  ReviewStarRating(
+                      onChanged: (value) => review.totalScore = value),
+                  AppDivider(),
+                  ReviewDetailsRating(
+                    onChanged: (details) => review.details = details,
+                  ),
+                  AppDivider(),
+                  ReviewaddComment(
+                    onChanged: (value) => review.comment = value,
+                  ),
+                  const SizedBox(height: Insets.s),
+                  Center(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        print(review);
+                      },
+                      child: const Text("Send"),
                     ),
-                    const SizedBox(height: Insets.s),
-                    ReviewaddComment(
-                      onChanged: (value) => review.comment = value,
-                    ),
-                    const SizedBox(height: Insets.s),
-                    Center(
-                        child: ElevatedButton(
-                            onPressed: () {
-                              print(review);
-                            },
-                            child: const Text("Send")))
-                  ],
-                ),
+                  ),
+                  const SizedBox(height: Insets.s),
+                ],
               ),
             ),
           ],

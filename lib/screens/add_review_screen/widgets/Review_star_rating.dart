@@ -16,43 +16,65 @@ class ReviewStarRating extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        ReviewHeader(label: "How did you enjoy your stay?"),
-        const SizedBox(height: Insets.xs),
-        Container(
-          width: double.infinity,
-          padding: EdgeInsets.all(Insets.xs),
-          decoration: BoxDecoration(
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: Insets.s),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ReviewHeader(label: "How did you enjoy your stay?"),
+          const SizedBox(height: Insets.xs),
+          Container(
+            width: double.infinity,
+            padding: EdgeInsets.all(Insets.xs),
+            decoration: BoxDecoration(
               border: Border.all(),
               borderRadius: BorderRadius.circular(10),
-              color: Colors.black54),
-          child: Center(
-            child: RatingBar(
-                glow: false,
-                itemCount: 5,
-                allowHalfRating: true,
-                ratingWidget: RatingWidget(
-                  full: Icon(
-                    Icons.star,
-                    color: Colors.amber,
+              color: Colors.black54,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: Insets.s),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  _label("bad"),
+                  Center(
+                    child: RatingBar(
+                        glow: false,
+                        itemCount: 5,
+                        allowHalfRating: true,
+                        ratingWidget: RatingWidget(
+                          full: Icon(
+                            Icons.star,
+                            color: Colors.amber,
+                          ),
+                          half: Icon(
+                            Icons.star_half,
+                            color: Colors.amber[100],
+                          ),
+                          empty: Icon(
+                            Icons.star_outline_outlined,
+                            color: Colors.white,
+                          ),
+                        ),
+                        onRatingUpdate: ((value) {
+                          onChanged(value);
+                        })),
                   ),
-                  half: Icon(
-                    Icons.star_half,
-                    color: Colors.amber[300],
-                  ),
-                  empty: Icon(
-                    Icons.star_outline_outlined,
-                    color: Colors.amber[100],
-                  ),
-                ),
-                onRatingUpdate: ((value) {
-                  onChanged(value);
-                })),
-          ),
-        )
-      ],
+                  _label("good"),
+                ],
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget _label(String label) {
+    return Text(
+      label,
+      style: TextStyle(
+          color: Colors.white, fontWeight: FontWeight.bold, fontSize: 17),
     );
   }
 }

@@ -26,22 +26,25 @@ class _ReviewDetailsRatingState extends State<ReviewDetailsRating> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        ReviewHeader(label: "Booking details"),
-        SizedBox(height: Insets.xs),
-        _sliders(),
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: Insets.s),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          ReviewHeader(label: "Booking details"),
+          SizedBox(height: Insets.xs),
+          _sliders(),
+        ],
+      ),
     );
   }
 
   Widget _sliders() {
     return Container(
       decoration: BoxDecoration(
-          border: Border.all(),
-          borderRadius: BorderRadius.circular(10),
-          color: Colors.black12),
+        border: Border.all(),
+        borderRadius: BorderRadius.circular(10),
+      ),
       child: Padding(
         padding: const EdgeInsets.all(Insets.xs),
         child: Column(

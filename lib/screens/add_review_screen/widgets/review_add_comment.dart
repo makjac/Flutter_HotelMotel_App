@@ -18,32 +18,34 @@ class ReviewaddComment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _maxLines = 5;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        ReviewHeader(label: "Comment"),
-        const SizedBox(height: Insets.xs),
-        Container(
-          height: _maxLines * 24,
-          width: double.infinity,
-          child: TextField(
-            maxLines: _maxLines,
-            decoration: InputDecoration(
-              hintText: "Enter a comment",
-              fillColor: Colors.black12,
-              filled: true,
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: Insets.s),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ReviewHeader(label: "Comment"),
+          const SizedBox(height: Insets.xs),
+          Container(
+            height: _maxLines * 24,
+            width: double.infinity,
+            child: TextField(
+              maxLines: _maxLines,
+              decoration: InputDecoration(
+                hintText: "Enter a comment",
+                filled: true,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                focusColor: Colors.black54,
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
               ),
-              focusColor: Colors.black54,
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
+              onChanged: (value) => onChanged(value),
             ),
-            onChanged: (value) => onChanged(value),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
