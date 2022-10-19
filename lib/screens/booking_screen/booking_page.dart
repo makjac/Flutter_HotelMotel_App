@@ -2,7 +2,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:hotel_motel/data/models/booking_thumbnail_model.dart';
+import 'package:hotel_motel/screens/booking_screen/widgets/add_review_button.dart';
 import 'package:hotel_motel/screens/booking_screen/widgets/booking_details.dart';
+import 'package:hotel_motel/screens/booking_screen/widgets/cancell_booking_button.dart';
 import 'package:hotel_motel/screens/booking_screen/widgets/contact_details.dart';
 import 'package:hotel_motel/screens/booking_screen/widgets/hotel_details.dart';
 import 'package:hotel_motel/screens/booking_screen/widgets/price_details.dart';
@@ -32,6 +34,7 @@ class BookingPage extends StatelessWidget {
                 hotel: details.hotel,
                 room: details.room,
               ),
+              AddreviewButton(bookingDetails: details),
               AppDivider(),
               BookingDetails(booking: details.booking),
               AppDivider(),
@@ -41,6 +44,8 @@ class BookingPage extends StatelessWidget {
                 booking: details.booking,
                 room: details.room,
               ),
+              SizedBox(height: Insets.s),
+              CancellBookingButton(booking: details.booking),
             ],
           ),
         ),

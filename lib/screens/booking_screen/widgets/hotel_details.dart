@@ -8,6 +8,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:hotel_motel/data/models/hotel_model.dart';
 import 'package:hotel_motel/data/models/hotel_thumbnail_model.dart';
 import 'package:hotel_motel/data/models/room_model.dart';
+import 'package:hotel_motel/screens/booking_screen/widgets/add_review_button.dart';
 import 'package:hotel_motel/theme/theme_base.dart';
 import 'package:hotel_motel/widgets/cards/hotel_thumbnail.dart';
 
@@ -39,14 +40,15 @@ class HotelDetails extends StatelessWidget {
           ),
           const SizedBox(height: Insets.s),
           HotelThumbnail(
-              hotel: HotelThumbnailModel(
-            hotelID: hotel.hotelID,
-            name: hotel.name,
-            discount: room.discount,
-            isFeeCanceling: hotel.isFreeCanceling,
-            price: room.price,
-            rating: hotel.rating,
-          ))
+            hotel: HotelThumbnailModel(
+              hotelID: hotel.hotelID,
+              name: hotel.name,
+              discount: room.discount,
+              isFeeCanceling: hotel.isFreeCanceling,
+              price: room.price,
+              rating: hotel.rating,
+            ),
+          ),
         ],
       ),
     );
