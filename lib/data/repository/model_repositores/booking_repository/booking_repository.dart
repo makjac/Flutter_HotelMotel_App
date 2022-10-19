@@ -27,4 +27,15 @@ class BookingRepository extends BaseBookingRepository {
       throw Exception(error);
     }
   }
+
+  @override
+  Future<void> updateReviewStatus(String bookingID, bool status) async {
+    try {
+      final bookingRef =
+          _firebaseFirestore.collection('booking').doc(bookingID);
+      await bookingRef.update({'opinion': 'added'});
+    } catch (error) {
+      throw Exception(error);
+    }
+  }
 }

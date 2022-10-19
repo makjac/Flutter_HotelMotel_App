@@ -16,13 +16,16 @@ class PriceDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var _range = DateTimeRange(start: booking.startTime, end: booking.endTime);
-    return Column(
-      children: [
-        _row(Icons.money, "Total Price:",
-            "${(_range.duration.inDays * room.price).truncate()} PLN"),
-        const SizedBox(height: Insets.xs),
-        _row(Icons.payment, "Peytment: ", booking.payment),
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: Insets.s),
+      child: Column(
+        children: [
+          _row(Icons.payment, "Peytment: ", booking.payment),
+          const SizedBox(height: Insets.xs),
+          _row(Icons.money, "Total Price:",
+              "${(_range.duration.inDays * room.price).truncate()} PLN"),
+        ],
+      ),
     );
   }
 

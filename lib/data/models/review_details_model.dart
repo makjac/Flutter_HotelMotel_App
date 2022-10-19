@@ -1,7 +1,11 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:convert';
+
 import 'package:equatable/equatable.dart';
 
 // ignore: must_be_immutable
 class ReviewDetailsModel extends Equatable {
+  double total;
   double purity;
   double comfort;
   double amenities;
@@ -9,6 +13,7 @@ class ReviewDetailsModel extends Equatable {
   double location;
   double price;
   ReviewDetailsModel({
+    this.total = 0,
     this.purity = 0,
     this.comfort = 0,
     this.amenities = 0,
@@ -19,6 +24,7 @@ class ReviewDetailsModel extends Equatable {
 
   @override
   List<Object?> get props => [
+        total,
         purity,
         comfort,
         amenities,
@@ -26,4 +32,33 @@ class ReviewDetailsModel extends Equatable {
         location,
         price,
       ];
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'total': total,
+      'cleanliness': purity,
+      'comfort': comfort,
+      'amenities': amenities,
+      'personnel': staff,
+      'location': location,
+      'price': price,
+    };
+  }
+
+  factory ReviewDetailsModel.fromMap(Map<String, dynamic> map) {
+    return ReviewDetailsModel(
+      total: map['total'] as double,
+      purity: map['cleanliness'] as double,
+      comfort: map['comfort'] as double,
+      amenities: map['amenities'] as double,
+      staff: map['personnel'] as double,
+      location: map['location'] as double,
+      price: map['price'] as double,
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory ReviewDetailsModel.fromJson(String source) =>
+      ReviewDetailsModel.fromMap(json.decode(source) as Map<String, dynamic>);
 }

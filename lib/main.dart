@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hotel_motel/bloc/auth/auth_bloc.dart';
 import 'package:hotel_motel/bloc/category/category_bloc.dart';
 import 'package:hotel_motel/bloc/hotel_thumbnail/hotel_thumbnail_bloc.dart';
+import 'package:hotel_motel/bloc/review/review_bloc.dart';
 import 'package:hotel_motel/firebase_options.dart';
 import 'package:hotel_motel/locator.dart';
 import 'package:hotel_motel/routers/router.dart';
@@ -45,6 +46,9 @@ Future<void> main() async {
       ),
       BlocProvider<BookingsBloc>(
         create: (context) => locator.get<BookingsBloc>(),
+      ),
+      BlocProvider<ReviewBloc>(
+        create: (context) => locator.get<ReviewBloc>(),
       ),
     ],
     child: HotelMotelApp(

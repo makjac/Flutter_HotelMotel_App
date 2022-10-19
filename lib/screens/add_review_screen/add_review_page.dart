@@ -1,5 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hotel_motel/bloc/review/review_bloc.dart';
 
 import 'package:hotel_motel/data/models/booking_thumbnail_model.dart';
 import 'package:hotel_motel/data/models/review_model.dart';
@@ -22,6 +24,7 @@ class AddReviewPage extends StatelessWidget {
     ReviewModel review = ReviewModel(
       hotelID: bookingDetails.hotel.hotelID,
       userUid: bookingDetails.booking.userUid,
+      bookingID: bookingDetails.booking.bookingID,
     );
     return SafeArea(
       child: Scaffold(
@@ -48,7 +51,7 @@ class AddReviewPage extends StatelessWidget {
                   ),
                   const SizedBox(height: Insets.xs),
                   ReviewStarRating(
-                      onChanged: (value) => review.totalScore = value),
+                      onChanged: (value) => review.details.total = value),
                   AppDivider(),
                   ReviewDetailsRating(
                     onChanged: (details) => review.details = details,
@@ -58,14 +61,26 @@ class AddReviewPage extends StatelessWidget {
                     onChanged: (value) => review.comment = value,
                   ),
                   const SizedBox(height: Insets.s),
-                  Center(
-                    child: ElevatedButton(
-                      onPressed: () {
-                        print(review);
-                      },
-                      child: const Text("Send"),
-                    ),
-                  ),
+                  BlocBuilder<ReviewBloc, ReviewState>(
+                      builder: ((context, state) {
+                    if (state is AddReview) {
+                      return Center(
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          child: CircularProgressIndicator(),
+                        ),
+                      );
+                    }
+                    return Center(
+                      child: ElevatedButton(
+                        onPressed: () {
+                          BlocProvider.of<ReviewBloc>(context)
+                              .add(AddReview(review: review));
+                        },
+                        child: const Text("Send"),
+                      ),
+                    );
+                  })),
                   const SizedBox(height: Insets.s),
                 ],
               ),
@@ -76,3 +91,22 @@ class AddReviewPage extends StatelessWidget {
     );
   }
 }
+
+// void _setFavorite(BuildContext context) {
+//     if (isFavorite) {
+//       BlocProvider.of<HotelAppbarBloc>(context)
+//           .add(RemoveFavoriteHotel(hotelID: hotel.hotelID));
+//       isFavorite = !isFavorite;
+//     } else {
+//       BlocProvider.of<HotelAppbarBloc>(context)
+//           .add(AddFavoriteHotel(hotelID: hotel.hotelID));
+//       isFavorite = !isFavorite;
+//     }
+//   }
+
+// Center(
+//                     child: ElevatedButton(
+//                       onPressed: () {},
+//                       child: const Text("Send"),
+//                     ),
+//                   )

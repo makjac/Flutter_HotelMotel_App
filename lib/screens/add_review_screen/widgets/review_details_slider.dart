@@ -4,6 +4,7 @@ import '../../../utils/scale.dart';
 
 typedef void DoubleCallback(double value);
 
+// ignore: must_be_immutable
 class ReviewDetailsSlider extends StatefulWidget {
   final String label;
   double value;

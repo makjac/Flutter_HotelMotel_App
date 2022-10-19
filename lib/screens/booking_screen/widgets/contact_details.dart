@@ -15,13 +15,16 @@ class ContactDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        _adres(),
-        const SizedBox(height: Insets.xs),
-        _contact(),
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: Insets.s),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _adres(),
+          const SizedBox(height: Insets.s),
+          _contact(),
+        ],
+      ),
     );
   }
 
@@ -92,12 +95,11 @@ class ContactDetails extends StatelessWidget {
         const SizedBox(width: Insets.xs),
         Text(
           label,
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+          style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15),
         ),
         const SizedBox(width: Insets.xs),
         Text(
           value,
-          style: TextStyle(fontWeight: FontWeight.bold),
         )
       ],
     );

@@ -2,6 +2,7 @@ import 'package:get_it/get_it.dart';
 import 'package:hotel_motel/bloc/auth/auth_bloc.dart';
 import 'package:hotel_motel/bloc/category/category_bloc.dart';
 import 'package:hotel_motel/bloc/hotel_thumbnail/hotel_thumbnail_bloc.dart';
+import 'package:hotel_motel/bloc/review/review_bloc.dart';
 import 'package:hotel_motel/data/controller/storage/storage_controller.dart';
 import 'package:hotel_motel/data/controller/user/user_controller.dart';
 import 'package:hotel_motel/data/repository/firebase/analitic/analitics_repository.dart';
@@ -55,4 +56,5 @@ setupServices() {
     hotelRepository: locator.get<HotelRepository>(),
     roomRepository: locator.get<RoomRepository>(),
   ));
+  locator.registerSingleton<ReviewBloc>(ReviewBloc());
 }

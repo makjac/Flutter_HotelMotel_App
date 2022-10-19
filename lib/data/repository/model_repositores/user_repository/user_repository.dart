@@ -6,13 +6,11 @@ import 'package:hotel_motel/data/repository/model_repositores/user_repository/ba
 
 class UserRepository extends BaseUserRepository {
   final FirebaseFirestore _firestore;
-  final FavoriteRepository _favoriteRepository;
 
   UserRepository(
       {FirebaseFirestore? firebaseFirestore,
       FavoriteRepository? favoriteRepository})
-      : _firestore = firebaseFirestore ?? FirebaseFirestore.instance,
-        _favoriteRepository = favoriteRepository ?? FavoriteRepository();
+      : _firestore = firebaseFirestore ?? FirebaseFirestore.instance;
 
   @override
   Stream<UserModel> getUserDetails(String uid) {

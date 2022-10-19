@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:hotel_motel/data/models/review_details_model.dart';
 import 'package:hotel_motel/screens/add_review_screen/widgets/review_details_slider.dart';
 import 'package:hotel_motel/screens/add_review_screen/widgets/review_header.dart';
-import 'package:hotel_motel/utils/scale.dart';
 
 import '../../../theme/design_system.dart';
 

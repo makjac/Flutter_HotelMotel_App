@@ -17,37 +17,40 @@ class BookingDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var _range = DateTimeRange(start: booking.startTime, end: booking.endTime);
-    return Row(
-      children: [
-        Expanded(
-          flex: 1,
-          child: Icon(Icons.calendar_month),
-        ),
-        Expanded(
-            flex: 5,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "${_range.duration.inDays} Days",
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                Text(
-                  "${Date.shortenDateToString(booking.startTime)} - ${Date.shortenDateToString(booking.endTime)}",
-                  style: TextStyle(fontWeight: FontWeight.w600),
-                ),
-                const SizedBox(height: Insets.xs),
-                const Text(
-                  "Check-in: 14:00 pm",
-                  style: TextStyle(fontWeight: FontWeight.w500),
-                ),
-                const Text(
-                  "Check-out: 10:00 am",
-                  style: TextStyle(fontWeight: FontWeight.w500),
-                ),
-              ],
-            ))
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: Insets.s),
+      child: Row(
+        children: [
+          Expanded(
+            flex: 1,
+            child: Icon(Icons.calendar_month),
+          ),
+          Expanded(
+              flex: 5,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "${_range.duration.inDays} Days",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    "${Date.shortenDateToString(booking.startTime)} - ${Date.shortenDateToString(booking.endTime)}",
+                    style: TextStyle(fontWeight: FontWeight.w600),
+                  ),
+                  const SizedBox(height: Insets.xs),
+                  const Text(
+                    "Check-in: 14:00 pm",
+                    style: TextStyle(fontWeight: FontWeight.w500),
+                  ),
+                  const Text(
+                    "Check-out: 10:00 am",
+                    style: TextStyle(fontWeight: FontWeight.w500),
+                  ),
+                ],
+              ))
+        ],
+      ),
     );
   }
 }

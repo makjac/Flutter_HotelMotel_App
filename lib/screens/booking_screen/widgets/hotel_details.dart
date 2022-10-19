@@ -22,29 +22,33 @@ class HotelDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          hotel.name,
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 23,
+    return Padding(
+      padding:
+          const EdgeInsets.only(left: Insets.s, right: Insets.s, top: Insets.s),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            hotel.name,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 23,
+            ),
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
           ),
-          maxLines: 2,
-          overflow: TextOverflow.ellipsis,
-        ),
-        const SizedBox(height: Insets.s),
-        HotelThumbnail(
-            hotel: HotelThumbnailModel(
-          hotelID: hotel.hotelID,
-          name: hotel.name,
-          discount: room.discount,
-          isFeeCanceling: hotel.isFreeCanceling,
-          price: room.price,
-          rating: hotel.rating,
-        ))
-      ],
+          const SizedBox(height: Insets.s),
+          HotelThumbnail(
+              hotel: HotelThumbnailModel(
+            hotelID: hotel.hotelID,
+            name: hotel.name,
+            discount: room.discount,
+            isFeeCanceling: hotel.isFreeCanceling,
+            price: room.price,
+            rating: hotel.rating,
+          ))
+        ],
+      ),
     );
   }
 }

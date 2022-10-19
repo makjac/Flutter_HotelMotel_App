@@ -7,6 +7,7 @@ import 'package:hotel_motel/screens/booking_screen/widgets/contact_details.dart'
 import 'package:hotel_motel/screens/booking_screen/widgets/hotel_details.dart';
 import 'package:hotel_motel/screens/booking_screen/widgets/price_details.dart';
 import 'package:hotel_motel/theme/design_system.dart';
+import 'package:hotel_motel/widgets/decorations/app_divider.dart';
 
 class BookingPage extends StatelessWidget {
   final BookingThumbnailModel details;
@@ -24,26 +25,23 @@ class BookingPage extends StatelessWidget {
           centerTitle: true,
         ),
         body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(Insets.s),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                HotelDetails(
-                  hotel: details.hotel,
-                  room: details.room,
-                ),
-                Divider(),
-                BookingDetails(booking: details.booking),
-                Divider(),
-                ContactDetails(hotel: details.hotel),
-                Divider(),
-                PriceDetails(
-                  booking: details.booking,
-                  room: details.room,
-                ),
-              ],
-            ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              HotelDetails(
+                hotel: details.hotel,
+                room: details.room,
+              ),
+              AppDivider(),
+              BookingDetails(booking: details.booking),
+              AppDivider(),
+              ContactDetails(hotel: details.hotel),
+              AppDivider(),
+              PriceDetails(
+                booking: details.booking,
+                room: details.room,
+              ),
+            ],
           ),
         ),
       ),
