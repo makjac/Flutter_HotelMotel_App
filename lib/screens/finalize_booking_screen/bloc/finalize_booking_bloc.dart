@@ -40,9 +40,9 @@ class FinalizeBookingBloc
       UpdateUserDetails event, Emitter<FinalizeBookingState> emit) async {
     try {
       emit(UpdatingUserDetails());
-      await _userDetailsRepository
-          .updateUserDetails(event.userUid, event.userDetails)
-          .then((value) => emit(UserDetailsUpdated()));
+      await _userDetailsRepository.updateUserDetails(
+          event.userUid, event.userDetails);
+      emit(UserDetailsUpdated());
     } catch (error) {
       emit(ErrorFinalizeBooking(error: error.toString()));
     }

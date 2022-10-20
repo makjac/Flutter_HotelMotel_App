@@ -24,23 +24,14 @@ class FinalizeBookingDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: Insets.xs),
-          child: FinalizeHeader(label: "Booking details"),
-        ),
-        const SizedBox(height: Insets.xs),
-        Container(
-          decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.black54,
-                width: 2,
-              ),
-              borderRadius: BorderRadius.circular(10)),
-          padding: EdgeInsets.all(Insets.s),
-          child: Column(
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: Insets.s),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          FinalizeHeader(label: "Booking details"),
+          const SizedBox(height: Insets.xs),
+          Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               (cryteria != null)
@@ -58,8 +49,8 @@ class FinalizeBookingDetails extends StatelessWidget {
               HotelDetails(hotel: hotel),
             ],
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

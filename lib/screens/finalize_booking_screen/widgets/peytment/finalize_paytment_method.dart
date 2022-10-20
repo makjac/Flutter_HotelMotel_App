@@ -18,40 +18,43 @@ class _FinalizePaytmentMethodsState extends State<FinalizePaytmentMethods> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        FinalizeHeader(label: "Paytment method"),
-        const SizedBox(height: Insets.s),
-        Container(
-          padding: EdgeInsets.all(Insets.s),
-          decoration: BoxDecoration(
-              border: Border.all(color: Colors.black54, width: 2),
-              borderRadius: BorderRadius.circular(10)),
-          child: Column(
-            children: <Widget>[
-              _radioButtom(
-                PaytmentMethodsValues.inCash,
-                Icon(Icons.attach_money_rounded),
-                "In cash",
-              ),
-              _radioButtom(
-                PaytmentMethodsValues.card,
-                Icon(Icons.credit_card_rounded),
-                "Card",
-              ),
-              _radioButtom(
-                PaytmentMethodsValues.payPal,
-                Icon(Icons.paypal_rounded),
-                "PayPal",
-              ),
-              Row(
-                children: <Widget>[],
-              ),
-            ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: Insets.s),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          FinalizeHeader(label: "Paytment method"),
+          const SizedBox(height: Insets.s),
+          Container(
+            padding: EdgeInsets.all(Insets.s),
+            decoration: BoxDecoration(
+                border: Border.all(color: Colors.black54, width: 2),
+                borderRadius: BorderRadius.circular(10)),
+            child: Column(
+              children: <Widget>[
+                _radioButtom(
+                  PaytmentMethodsValues.inCash,
+                  Icon(Icons.attach_money_rounded),
+                  "In cash",
+                ),
+                _radioButtom(
+                  PaytmentMethodsValues.card,
+                  Icon(Icons.credit_card_rounded),
+                  "Card",
+                ),
+                _radioButtom(
+                  PaytmentMethodsValues.payPal,
+                  Icon(Icons.paypal_rounded),
+                  "PayPal",
+                ),
+                Row(
+                  children: <Widget>[],
+                ),
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 

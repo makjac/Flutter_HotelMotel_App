@@ -5,9 +5,10 @@ import 'package:hotel_motel/data/models/search_cryteria.dart';
 import 'package:hotel_motel/locator.dart';
 import 'package:hotel_motel/screens/finalize_booking_screen/utils/finalize_booking_arguments.dart';
 import 'package:hotel_motel/screens/finalize_booking_screen/widgets/booking_details/finalize_booking_details.dart';
-import 'package:hotel_motel/screens/finalize_booking_screen/widgets/client_details/finalize_client_details.dart';
+import 'package:hotel_motel/screens/finalize_booking_screen/widgets/finalize_client_details.dart';
 import 'package:hotel_motel/screens/finalize_booking_screen/widgets/peytment/finalize_paytment_method.dart';
 import 'package:hotel_motel/theme/theme_base.dart';
+import 'package:hotel_motel/widgets/decorations/app_divider.dart';
 
 import 'bloc/finalize_booking_bloc.dart';
 
@@ -47,26 +48,24 @@ class _FinalizeBookingPageState extends State<FinalizeBookingPage> {
             centerTitle: true,
           ),
           body: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(Insets.s),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  FinalizeBookingDetails(
-                    hotel: widget._arguments.hotel,
-                    room: widget._arguments.room,
-                    cryteria: widget._arguments.cryteria,
-                    updateTimeRange: _updateTimeRange,
-                  ),
-                  const SizedBox(height: Insets.s),
-                  FinalizeClientDetails(),
-                  const SizedBox(height: Insets.s),
-                  FinalizePaytmentMethods(),
-                  Center(
-                      child: ElevatedButton(
-                          onPressed: () {}, child: const Text("Book a trip!"))),
-                ],
-              ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                const SizedBox(height: Insets.s),
+                FinalizeBookingDetails(
+                  hotel: widget._arguments.hotel,
+                  room: widget._arguments.room,
+                  cryteria: widget._arguments.cryteria,
+                  updateTimeRange: _updateTimeRange,
+                ),
+                AppDivider(),
+                FinalizeClientDetails(),
+                AppDivider(),
+                FinalizePaytmentMethods(),
+                Center(
+                    child: ElevatedButton(
+                        onPressed: () {}, child: const Text("Book a trip!"))),
+              ],
             ),
           ),
         ),

@@ -26,6 +26,8 @@ class ReviewaddComment extends StatelessWidget {
             height: _maxLines * 24,
             width: double.infinity,
             child: TextField(
+              maxLength: 200,
+              autocorrect: true,
               maxLines: _maxLines,
               decoration: InputDecoration(
                 hintText: "Enter a comment",

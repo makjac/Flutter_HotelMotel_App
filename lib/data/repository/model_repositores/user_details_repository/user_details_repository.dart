@@ -27,7 +27,7 @@ class UserDetailsRepository extends BaseUserDetailsRepository {
   }
 
   @override
-  Future<bool> updateUserDetails(
+  Future<void> updateUserDetails(
       String userUid, UserDetails userDetails) async {
     try {
       var usrDetailsRef = _firestore
@@ -36,7 +36,6 @@ class UserDetailsRepository extends BaseUserDetailsRepository {
           .collection('details')
           .doc('details');
       usrDetailsRef.update(userDetails.toMap());
-      return true;
     } catch (error) {
       throw Exception(error);
     }
