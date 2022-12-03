@@ -11,6 +11,8 @@ import '../../../../data/models/user_details.dart';
 import '../../../../locator.dart';
 
 class FinalizeClientDetails extends StatelessWidget {
+  final _formKey = GlobalKey<FormState>();
+
   FinalizeClientDetails({
     Key? key,
   }) : super(key: key);
@@ -34,41 +36,46 @@ class FinalizeClientDetails extends StatelessWidget {
             },
             builder: (context, state) {
               if (state is UserDetailsLoaded) {
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    _inputField("Name", Icon(Icons.person),
-                        state.userDetails.name, ((value) {})),
-                    _inputField("Surname", Icon(Icons.person),
-                        state.userDetails.surname, ((value) {})),
-                    _inputField("Street", Icon(Icons.location_city),
-                        state.userDetails.street, ((value) {})),
-                    _inputField("Building Number", Icon(Icons.location_city),
-                        state.userDetails.buildingNumber, ((value) {})),
-                    _inputField("Local Number", Icon(Icons.location_city),
-                        state.userDetails.localNumber, ((value) {})),
-                    _inputField("City", Icon(Icons.location_city),
-                        state.userDetails.city, ((value) {})),
-                    _inputField("ZipCode", Icon(Icons.location_city),
-                        state.userDetails.zipcode, ((value) {})),
-                    _inputField("Phone number", Icon(Icons.phone),
-                        state.userDetails.phoneNumber, ((value) {})),
-                    _inputField("email", Icon(Icons.email),
-                        state.userDetails.email, ((value) {})),
-                    const SizedBox(height: Insets.s),
-                    Center(
-                      child: ElevatedButton(
-                          onPressed: () {
-                            BlocProvider.of<FinalizeBookingBloc>(context).add(
-                                UpdateUserDetails(
-                                    userUid: locator
-                                        .get<UserController>()
-                                        .currentUserUid!,
-                                    userDetails: userDetails!));
-                          },
-                          child: const Text("Save user details")),
-                    ),
-                  ],
+                return Form(
+                  key: _formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      _inputField("Name", Icon(Icons.person),
+                          state.userDetails.name, ((value) {})),
+                      _inputField("Surname", Icon(Icons.person),
+                          state.userDetails.surname, ((value) {})),
+                      _inputField("Street", Icon(Icons.location_city),
+                          state.userDetails.street, ((value) {})),
+                      _inputField("Building Number", Icon(Icons.location_city),
+                          state.userDetails.buildingNumber, ((value) {})),
+                      _inputField("Local Number", Icon(Icons.location_city),
+                          state.userDetails.localNumber, ((value) {})),
+                      _inputField("City", Icon(Icons.location_city),
+                          state.userDetails.city, ((value) {})),
+                      _inputField("ZipCode", Icon(Icons.location_city),
+                          state.userDetails.zipcode, ((value) {})),
+                      _inputField("Phone number", Icon(Icons.phone),
+                          state.userDetails.phoneNumber, ((value) {})),
+                      _inputField("email", Icon(Icons.email),
+                          state.userDetails.email, ((value) {})),
+                      const SizedBox(height: Insets.s),
+                      Center(
+                        child: ElevatedButton(
+                            onPressed: () {
+                              if (_formKey.currentState!.validate()) {
+                                BlocProvider.of<FinalizeBookingBloc>(context)
+                                    .add(UpdateUserDetails(
+                                        userUid: locator
+                                            .get<UserController>()
+                                            .currentUserUid!,
+                                        userDetails: userDetails!));
+                              }
+                            },
+                            child: const Text("Save user details")),
+                      ),
+                    ],
+                  ),
                 );
               }
               return CircularProgressIndicator();
@@ -88,6 +95,12 @@ class FinalizeClientDetails extends StatelessWidget {
         minLines: 1,
         initialValue: initValue,
         onChanged: onChanged,
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return "value can't be null";
+          }
+          return null;
+        },
       ),
     );
   }
