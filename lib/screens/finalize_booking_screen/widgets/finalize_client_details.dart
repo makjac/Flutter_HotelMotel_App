@@ -13,12 +13,14 @@ import '../../../../locator.dart';
 // ignore: must_be_immutable
 class FinalizeClientDetails extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
+  UserDetails userDetails;
+  final ValueChanged<UserDetails> getDetails;
 
   FinalizeClientDetails({
     Key? key,
+    required this.userDetails,
+    required this.getDetails,
   }) : super(key: key);
-
-  UserDetails? userDetails;
 
   @override
   Widget build(BuildContext context) {
@@ -29,80 +31,95 @@ class FinalizeClientDetails extends StatelessWidget {
         children: <Widget>[
           FinalizeHeader(label: "Client details"),
           const SizedBox(height: Insets.s),
-          BlocConsumer<FinalizeBookingBloc, FinalizeBookingState>(
-            listener: (context, state) {
-              if (state is UserDetailsLoaded) {
-                userDetails = state.userDetails;
-              }
-            },
-            builder: (context, state) {
-              if (state is UserDetailsLoaded) {
-                return Form(
-                  key: _formKey,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      _inputField(
-                        "Name",
-                        Icon(Icons.person),
-                        state.userDetails.name,
-                        (newName) => userDetails?.name = newName!,
-                      ),
-                      _inputField(
-                        "Surname",
-                        Icon(Icons.person),
-                        state.userDetails.surname,
-                        (newSurname) => userDetails?.surname = newSurname!,
-                      ),
-                      _inputField(
-                        "Street",
-                        Icon(Icons.location_city),
-                        state.userDetails.street,
-                        (newStreet) => userDetails?.street = newStreet!,
-                      ),
-                      _inputField(
-                        "Building Number",
-                        Icon(Icons.location_city),
-                        state.userDetails.buildingNumber,
-                        (newBN) => userDetails?.buildingNumber = newBN ?? "",
-                      ),
-                      _inputField(
-                        "Local Number",
-                        Icon(Icons.location_city),
-                        state.userDetails.localNumber,
-                        (newLN) => userDetails?.localNumber = newLN ?? "",
-                      ),
-                      _inputField(
-                        "City",
-                        Icon(Icons.location_city),
-                        state.userDetails.city,
-                        (newCity) => userDetails?.city = newCity!,
-                      ),
-                      _inputField(
-                        "ZipCode",
-                        Icon(Icons.location_city),
-                        state.userDetails.zipcode,
-                        (newZipcode) => userDetails?.zipcode = newZipcode!,
-                      ),
-                      _inputField(
-                        "Phone number",
-                        Icon(Icons.phone),
-                        state.userDetails.phoneNumber,
-                        (newPN) => userDetails?.phoneNumber = newPN!,
-                      ),
-                      _inputField(
-                        "email",
-                        Icon(Icons.email),
-                        state.userDetails.email,
-                        (newEmail) => userDetails?.email = newEmail!,
-                      ),
-                      const SizedBox(height: Insets.s),
-                    ],
-                  ),
-                );
-              }
-              return CircularProgressIndicator();
-            },
+          Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                _inputField(
+                  "Name",
+                  Icon(Icons.person),
+                  userDetails.name,
+                  (newName) {
+                    userDetails.name = newName!;
+                    getDetails(userDetails);
+                  },
+                ),
+                _inputField(
+                  "Surname",
+                  Icon(Icons.person),
+                  userDetails.surname,
+                  (newSurname) {
+                    userDetails.surname = newSurname!;
+                    getDetails(userDetails);
+                  },
+                ),
+                _inputField(
+                  "Street",
+                  Icon(Icons.location_city),
+                  userDetails.street,
+                  (newStreet) {
+                    userDetails.street = newStreet!;
+                    getDetails(userDetails);
+                  },
+                ),
+                _inputField(
+                  "Building Number",
+                  Icon(Icons.location_city),
+                  userDetails.buildingNumber,
+                  (newBN) {
+                    userDetails.buildingNumber = newBN ?? "";
+                    getDetails(userDetails);
+                  },
+                ),
+                _inputField(
+                  "Local Number",
+                  Icon(Icons.location_city),
+                  userDetails.localNumber,
+                  (newLN) {
+                    userDetails.localNumber = newLN ?? "";
+                    getDetails(userDetails);
+                  },
+                ),
+                _inputField(
+                  "City",
+                  Icon(Icons.location_city),
+                  userDetails.city,
+                  (newCity) {
+                    userDetails.city = newCity!;
+                    getDetails(userDetails);
+                  },
+                ),
+                _inputField(
+                  "ZipCode",
+                  Icon(Icons.location_city),
+                  userDetails.zipcode,
+                  (newZipcode) {
+                    userDetails.zipcode = newZipcode!;
+                    getDetails(userDetails);
+                  },
+                ),
+                _inputField(
+                  "Phone number",
+                  Icon(Icons.phone),
+                  userDetails.phoneNumber,
+                  (newPN) {
+                    userDetails.phoneNumber = newPN!;
+                    getDetails(userDetails);
+                  },
+                ),
+                _inputField(
+                  "email",
+                  Icon(Icons.email),
+                  userDetails.email,
+                  (newEmail) {
+                    userDetails.email = newEmail!;
+                    getDetails(userDetails);
+                  },
+                ),
+                const SizedBox(height: Insets.s),
+              ],
+            ),
           ),
           BlocBuilder<FinalizeBookingBloc, FinalizeBookingState>(
             builder: (context, state) {
@@ -117,7 +134,6 @@ class FinalizeClientDetails extends StatelessWidget {
               return Center(
                 child: ElevatedButton(
                     onPressed: () {
-                      _formKey.currentState!.save();
                       if (_formKey.currentState!.validate()) {
                         BlocProvider.of<FinalizeBookingBloc>(context).add(
                             UpdateUserDetails(

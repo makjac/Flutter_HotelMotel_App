@@ -59,7 +59,19 @@ class _FinalizeBookingPageState extends State<FinalizeBookingPage> {
                   updateTimeRange: _updateTimeRange,
                 ),
                 AppDivider(),
-                FinalizeClientDetails(),
+                BlocBuilder<FinalizeBookingBloc, FinalizeBookingState>(
+                  builder: (context, state) {
+                    if (state is UserDetailsLoaded) {
+                      return FinalizeClientDetails(
+                        userDetails: state.userDetails,
+                        getDetails: (value) {
+                          print(value);
+                        },
+                      );
+                    }
+                    return CircularProgressIndicator();
+                  },
+                ),
                 AppDivider(),
                 FinalizePaytmentMethods(),
                 Center(
