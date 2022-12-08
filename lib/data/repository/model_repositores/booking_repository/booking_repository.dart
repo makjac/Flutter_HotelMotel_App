@@ -13,29 +13,20 @@ class BookingRepository extends BaseBookingRepository {
 
   @override
   Stream<List<Booking>> getUserBookings(String userUid) {
-    try {
-      final bookingRef = _firebaseFirestore
-          .collection('booking')
-          .where('user_uid', isEqualTo: userUid);
+    final bookingRef = _firebaseFirestore
+        .collection('booking')
+        .where('user_uid', isEqualTo: userUid);
 
-      return bookingRef.snapshots().map((bookings) {
-        return bookings.docs
-            .map((bookingDoc) => Booking.fromSnapshot(bookingDoc))
-            .toList();
-      });
-    } catch (error) {
-      throw Exception(error);
-    }
+    return bookingRef.snapshots().map((bookings) {
+      return bookings.docs
+          .map((bookingDoc) => Booking.fromSnapshot(bookingDoc))
+          .toList();
+    });
   }
 
   @override
   Future<void> updateReviewStatus(String bookingID, bool status) async {
-    try {
-      final bookingRef =
-          _firebaseFirestore.collection('booking').doc(bookingID);
-      await bookingRef.update({'opinion': 'added'});
-    } catch (error) {
-      throw Exception(error);
-    }
+    final bookingRef = _firebaseFirestore.collection('booking').doc(bookingID);
+    await bookingRef.update({'opinion': 'added'});
   }
 }

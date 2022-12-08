@@ -60,16 +60,12 @@ class UserRepository extends BaseUserRepository {
 
   @override
   Future<Favorite> getUserFavoriteHotels(String userUid) async {
-    try {
-      var snap = await _firestore
-          .collection('user')
-          .doc(userUid)
-          .collection('favorite')
-          .doc('favorite')
-          .get();
-      return Favorite.fromSnapshot(snap);
-    } catch (error) {
-      throw Exception(error);
-    }
+    var snap = await _firestore
+        .collection('user')
+        .doc(userUid)
+        .collection('favorite')
+        .doc('favorite')
+        .get();
+    return Favorite.fromSnapshot(snap);
   }
 }

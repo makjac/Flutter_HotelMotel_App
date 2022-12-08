@@ -12,32 +12,24 @@ class UserDetailsRepository extends BaseUserDetailsRepository {
 
   @override
   Stream<UserDetails> getUserDetails(String userUid) {
-    try {
-      var usrDetailsRef = _firestore
-          .collection('user')
-          .doc(userUid)
-          .collection('details')
-          .doc('details');
-      return usrDetailsRef
-          .snapshots()
-          .map((detailsDoc) => UserDetails.fromSnapshot(detailsDoc));
-    } catch (error) {
-      throw Exception(error);
-    }
+    var usrDetailsRef = _firestore
+        .collection('user')
+        .doc(userUid)
+        .collection('details')
+        .doc('details');
+    return usrDetailsRef
+        .snapshots()
+        .map((detailsDoc) => UserDetails.fromSnapshot(detailsDoc));
   }
 
   @override
   Future<void> updateUserDetails(
       String userUid, UserDetails userDetails) async {
-    try {
-      var usrDetailsRef = _firestore
-          .collection('user')
-          .doc(userUid)
-          .collection('details')
-          .doc('details');
-      usrDetailsRef.update(userDetails.toMap());
-    } catch (error) {
-      throw Exception(error);
-    }
+    var usrDetailsRef = _firestore
+        .collection('user')
+        .doc(userUid)
+        .collection('details')
+        .doc('details');
+    usrDetailsRef.update(userDetails.toMap());
   }
 }

@@ -30,17 +30,13 @@ class UserController extends BaseUserController {
   }
 
   Future<String?> uploadUserProfileImage(File file) async {
-    try {
-      await _storageRepo.uploadProfileFile(file, _currentUser.uid);
-      await _storageRepo.getProfulrImgUrl(_currentUser.uid).then(
-        (value) {
-          _currentUser.avatarUrl = value;
-        },
-      );
-      return _currentUser.avatarUrl;
-    } catch (e) {
-      throw Exception(e.toString());
-    }
+    await _storageRepo.uploadProfileFile(file, _currentUser.uid);
+    await _storageRepo.getProfulrImgUrl(_currentUser.uid).then(
+      (value) {
+        _currentUser.avatarUrl = value;
+      },
+    );
+    return _currentUser.avatarUrl;
   }
 
   Future<String> getUserProfileImgUrl() {
@@ -49,43 +45,27 @@ class UserController extends BaseUserController {
 
   Future<void> signInUser(
       {required String email, required String passwd}) async {
-    try {
-      await _authRepo.signIn(email: email, passwd: passwd);
-      await initUser();
-      _storageRepo.getProfulrImgUrl(_currentUser.uid).then(
-        (value) {
-          _currentUser.avatarUrl = value;
-        },
-      );
-    } catch (e) {
-      throw Exception(e.toString());
-    }
+    await _authRepo.signIn(email: email, passwd: passwd);
+    await initUser();
+    _storageRepo.getProfulrImgUrl(_currentUser.uid).then(
+      (value) {
+        _currentUser.avatarUrl = value;
+      },
+    );
   }
 
   Future<void> signUpUser(
       {required String email, required String passwd}) async {
-    try {
-      await _authRepo.signUp(email: email, passwd: passwd);
-      await _analiticsRepo.loginLog("Email");
-    } catch (e) {
-      throw Exception(e.toString());
-    }
+    await _authRepo.signUp(email: email, passwd: passwd);
+    await _analiticsRepo.loginLog("Email");
   }
 
   Future<void> logoutUser() async {
-    try {
-      await _authRepo.signOut();
-    } catch (e) {
-      throw Exception(e.toString());
-    }
+    await _authRepo.signOut();
   }
 
   Future<void> resetUserPassword({required String email}) async {
-    try {
-      await _authRepo.resetPasswd(email: email);
-    } catch (e) {
-      throw Exception(e.toString());
-    }
+    await _authRepo.resetPasswd(email: email);
   }
 
   UserModel? get currentUser => _currentUser;

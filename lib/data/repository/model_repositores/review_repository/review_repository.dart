@@ -11,12 +11,8 @@ class ReviewRepository extends BaseReviewRepository {
 
   @override
   Future<void> AddhotelReview(ReviewModel review) async {
-    try {
-      CollectionReference reviewRef = _firestore.collection('opinion');
-      await reviewRef.add(review.toMap()).then((value) => null);
-    } catch (error) {
-      throw Exception(error);
-    }
+    CollectionReference reviewRef = _firestore.collection('opinion');
+    await reviewRef.add(review.toMap()).then((value) => null);
   }
 
   @override

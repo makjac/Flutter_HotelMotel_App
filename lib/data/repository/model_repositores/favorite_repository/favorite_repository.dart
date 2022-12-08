@@ -9,17 +9,13 @@ class FavoriteRepository extends BaseFavoriteRepository {
       : _firestore = firebaseFirestore ?? FirebaseFirestore.instance;
   @override
   Stream<Favorite> getUserFavorite(String uid) {
-    try {
-      final favoriteRef = _firestore
-          .collection('user')
-          .doc(uid)
-          .collection('favorite')
-          .doc('favorite');
-      return favoriteRef.snapshots().map((favoriteDoc) {
-        return Favorite.fromSnapshot(favoriteDoc);
-      });
-    } catch (error) {
-      throw Exception(error.toString());
-    }
+    final favoriteRef = _firestore
+        .collection('user')
+        .doc(uid)
+        .collection('favorite')
+        .doc('favorite');
+    return favoriteRef.snapshots().map((favoriteDoc) {
+      return Favorite.fromSnapshot(favoriteDoc);
+    });
   }
 }
