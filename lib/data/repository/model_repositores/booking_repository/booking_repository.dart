@@ -29,4 +29,10 @@ class BookingRepository extends BaseBookingRepository {
     final bookingRef = _firebaseFirestore.collection('booking').doc(bookingID);
     await bookingRef.update({'opinion': 'added'});
   }
+
+  @override
+  Future<void> createBooking(Booking booking) async {
+    final bookingRef = _firebaseFirestore.collection('booking');
+    await bookingRef.add(booking.toMapCreation());
+  }
 }

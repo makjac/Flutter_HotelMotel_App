@@ -5,8 +5,13 @@ import 'package:hotel_motel/screens/finalize_booking_screen/widgets/finalize_hea
 import '../../../../theme/design_system.dart';
 
 class FinalizePaytmentMethods extends StatefulWidget {
-  const FinalizePaytmentMethods(
-      {PaytmentMethodsValues? paytmentMethodsValues, super.key});
+  final ValueChanged<PaytmentMethodsValues> onChanged;
+
+  const FinalizePaytmentMethods({
+    PaytmentMethodsValues? paytmentMethodsValues,
+    required this.onChanged,
+    super.key,
+  });
 
   @override
   State<FinalizePaytmentMethods> createState() =>
@@ -66,6 +71,7 @@ class _FinalizePaytmentMethodsState extends State<FinalizePaytmentMethods> {
       onChanged: (value) {
         setState(() {
           _paytmentMethodsValues = paytmentValue;
+          widget.onChanged(value as PaytmentMethodsValues);
         });
       },
       title: Text(title),

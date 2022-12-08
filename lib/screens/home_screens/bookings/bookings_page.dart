@@ -56,6 +56,11 @@ class _BookingsPageState extends State<BookingsPage> {
                 child: const Text("You haven't have any bookings yet!"),
               );
             }
+            if (state is BookingError) {
+              return Center(
+                child: Text(state.error),
+              );
+            }
             return Center(
               child: const Text("Opps... Something went wrong :("),
             );

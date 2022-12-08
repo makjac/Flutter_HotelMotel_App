@@ -106,15 +106,29 @@ class Booking extends Equatable {
     };
   }
 
+  Map<String, dynamic> toMapCreation() {
+    return <String, dynamic>{
+      'hotel_id': hotelID,
+      'room_id': roomID,
+      'user_uid': userUid,
+      'created': created,
+      'start_time': startTime,
+      'end_time': endTime,
+      'status': status,
+      'payment': payment,
+      'opinion': opinion,
+    };
+  }
+
   factory Booking.fromMap(Map<String, dynamic> map) {
     return Booking(
       bookingID: map['bookingID'] as String,
       hotelID: map['hotel_id'] as String,
       roomID: map['room_id'] as String,
       userUid: map['user_uid'] as String,
-      created: DateTime.fromMillisecondsSinceEpoch(map['created'] as int),
-      startTime: DateTime.fromMillisecondsSinceEpoch(map['start_time'] as int),
-      endTime: DateTime.fromMillisecondsSinceEpoch(map['end_time'] as int),
+      created: DateTime.fromMillisecondsSinceEpoch(map['created']),
+      startTime: DateTime.fromMillisecondsSinceEpoch(map['start_time']),
+      endTime: DateTime.fromMillisecondsSinceEpoch(map['end_time']),
       status: map['status'] as String,
       payment: map['payment'] as String,
       opinion: map['opinion'] as String,

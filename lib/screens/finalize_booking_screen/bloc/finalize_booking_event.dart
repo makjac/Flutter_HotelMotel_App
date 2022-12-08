@@ -34,3 +34,14 @@ class UpdateUserDetails extends FinalizeBookingEvent {
         this.userDetails,
       ];
 }
+
+class CreateBooking extends FinalizeBookingEvent {
+  final Booking booking;
+
+  CreateBooking({
+    required this.booking,
+  });
+
+  @override
+  List<Object> get props => [booking];
+}

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hotel_motel/data/controller/user/user_controller.dart';
+import 'package:hotel_motel/data/models/booking_model.dart';
 import 'package:hotel_motel/data/models/search_cryteria.dart';
+import 'package:hotel_motel/data/models/user_details.dart';
 import 'package:hotel_motel/locator.dart';
 import 'package:hotel_motel/screens/finalize_booking_screen/utils/finalize_booking_arguments.dart';
 import 'package:hotel_motel/screens/finalize_booking_screen/widgets/booking_details/finalize_booking_details.dart';
@@ -37,6 +39,8 @@ class FinalizeBookingPage extends StatefulWidget {
 class _FinalizeBookingPageState extends State<FinalizeBookingPage> {
   @override
   Widget build(BuildContext context) {
+    UserDetails _user;
+    String _paytmentMethod = "inCash";
     return BlocProvider<FinalizeBookingBloc>(
       create: (context) => FinalizeBookingBloc()
         ..add(LoadDetails(
@@ -59,13 +63,18 @@ class _FinalizeBookingPageState extends State<FinalizeBookingPage> {
                   updateTimeRange: _updateTimeRange,
                 ),
                 AppDivider(),
-                BlocBuilder<FinalizeBookingBloc, FinalizeBookingState>(
+                BlocConsumer<FinalizeBookingBloc, FinalizeBookingState>(
+                  listener: (context, state) {
+                    if (state is UserDetailsLoaded) {
+                      _user = state.userDetails;
+                    }
+                  },
                   builder: (context, state) {
                     if (state is UserDetailsLoaded) {
                       return FinalizeClientDetails(
                         userDetails: state.userDetails,
-                        getDetails: (value) {
-                          print(value);
+                        getDetails: (newUser) {
+                          _user = newUser;
                         },
                       );
                     }
@@ -73,10 +82,33 @@ class _FinalizeBookingPageState extends State<FinalizeBookingPage> {
                   },
                 ),
                 AppDivider(),
-                FinalizePaytmentMethods(),
+                FinalizePaytmentMethods(
+                  onChanged: (newPayMet) {
+                    _paytmentMethod = newPayMet.name;
+                  },
+                ),
                 Center(
-                    child: ElevatedButton(
-                        onPressed: () {}, child: const Text("Book a trip!"))),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      final Booking booking = Booking(
+                          bookingID: "",
+                          hotelID: widget._arguments.hotel.hotelID,
+                          roomID: widget._arguments.room.roomID,
+                          userUid:
+                              locator.get<UserController>().currentUser!.uid!,
+                          created: DateTime.now(),
+                          startTime:
+                              widget._arguments.cryteria!.timeRange.start,
+                          endTime: widget._arguments.cryteria!.timeRange.end,
+                          status: "active",
+                          payment: _paytmentMethod,
+                          opinion: "none");
+                      BlocProvider.of<FinalizeBookingBloc>(context)
+                          .add(CreateBooking(booking: booking));
+                    },
+                    child: const Text("Book a trip!"),
+                  ),
+                ),
               ],
             ),
           ),

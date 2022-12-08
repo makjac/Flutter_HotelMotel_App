@@ -27,6 +27,10 @@ class UpdatingUserDetails extends FinalizeBookingState {}
 
 class UserDetailsUpdated extends FinalizeBookingState {}
 
+class CreatingBooking extends FinalizeBookingState {}
+
+class BookingCreated extends FinalizeBookingState {}
+
 class ErrorFinalizeBooking extends FinalizeBookingState {
   final String error;
 
