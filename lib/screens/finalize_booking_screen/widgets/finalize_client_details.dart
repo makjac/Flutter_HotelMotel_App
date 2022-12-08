@@ -10,6 +10,7 @@ import '../../../../data/controller/user/user_controller.dart';
 import '../../../../data/models/user_details.dart';
 import '../../../../locator.dart';
 
+// ignore: must_be_immutable
 class FinalizeClientDetails extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
 
@@ -41,39 +42,61 @@ class FinalizeClientDetails extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      _inputField("Name", Icon(Icons.person),
-                          state.userDetails.name, ((value) {})),
-                      _inputField("Surname", Icon(Icons.person),
-                          state.userDetails.surname, ((value) {})),
-                      _inputField("Street", Icon(Icons.location_city),
-                          state.userDetails.street, ((value) {})),
-                      _inputField("Building Number", Icon(Icons.location_city),
-                          state.userDetails.buildingNumber, ((value) {})),
-                      _inputField("Local Number", Icon(Icons.location_city),
-                          state.userDetails.localNumber, ((value) {})),
-                      _inputField("City", Icon(Icons.location_city),
-                          state.userDetails.city, ((value) {})),
-                      _inputField("ZipCode", Icon(Icons.location_city),
-                          state.userDetails.zipcode, ((value) {})),
-                      _inputField("Phone number", Icon(Icons.phone),
-                          state.userDetails.phoneNumber, ((value) {})),
-                      _inputField("email", Icon(Icons.email),
-                          state.userDetails.email, ((value) {})),
-                      const SizedBox(height: Insets.s),
-                      Center(
-                        child: ElevatedButton(
-                            onPressed: () {
-                              if (_formKey.currentState!.validate()) {
-                                BlocProvider.of<FinalizeBookingBloc>(context)
-                                    .add(UpdateUserDetails(
-                                        userUid: locator
-                                            .get<UserController>()
-                                            .currentUserUid!,
-                                        userDetails: userDetails!));
-                              }
-                            },
-                            child: const Text("Save user details")),
+                      _inputField(
+                        "Name",
+                        Icon(Icons.person),
+                        state.userDetails.name,
+                        (newName) => userDetails?.name = newName!,
                       ),
+                      _inputField(
+                        "Surname",
+                        Icon(Icons.person),
+                        state.userDetails.surname,
+                        (newSurname) => userDetails?.surname = newSurname!,
+                      ),
+                      _inputField(
+                        "Street",
+                        Icon(Icons.location_city),
+                        state.userDetails.street,
+                        (newStreet) => userDetails?.street = newStreet!,
+                      ),
+                      _inputField(
+                        "Building Number",
+                        Icon(Icons.location_city),
+                        state.userDetails.buildingNumber,
+                        (newBN) => userDetails?.buildingNumber = newBN ?? "",
+                      ),
+                      _inputField(
+                        "Local Number",
+                        Icon(Icons.location_city),
+                        state.userDetails.localNumber,
+                        (newLN) => userDetails?.localNumber = newLN ?? "",
+                      ),
+                      _inputField(
+                        "City",
+                        Icon(Icons.location_city),
+                        state.userDetails.city,
+                        (newCity) => userDetails?.city = newCity!,
+                      ),
+                      _inputField(
+                        "ZipCode",
+                        Icon(Icons.location_city),
+                        state.userDetails.zipcode,
+                        (newZipcode) => userDetails?.zipcode = newZipcode!,
+                      ),
+                      _inputField(
+                        "Phone number",
+                        Icon(Icons.phone),
+                        state.userDetails.phoneNumber,
+                        (newPN) => userDetails?.phoneNumber = newPN!,
+                      ),
+                      _inputField(
+                        "email",
+                        Icon(Icons.email),
+                        state.userDetails.email,
+                        (newEmail) => userDetails?.email = newEmail!,
+                      ),
+                      const SizedBox(height: Insets.s),
                     ],
                   ),
                 );
@@ -81,6 +104,33 @@ class FinalizeClientDetails extends StatelessWidget {
               return CircularProgressIndicator();
             },
           ),
+          BlocBuilder<FinalizeBookingBloc, FinalizeBookingState>(
+            builder: (context, state) {
+              if (state is UpdatingUserDetails) {
+                return Center(
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    child: CircularProgressIndicator(),
+                  ),
+                );
+              }
+              return Center(
+                child: ElevatedButton(
+                    onPressed: () {
+                      _formKey.currentState!.save();
+                      if (_formKey.currentState!.validate()) {
+                        BlocProvider.of<FinalizeBookingBloc>(context).add(
+                            UpdateUserDetails(
+                                userUid: locator
+                                    .get<UserController>()
+                                    .currentUserUid!,
+                                userDetails: userDetails!));
+                      }
+                    },
+                    child: const Text("Save user details")),
+              );
+            },
+          )
         ],
       ),
     );
