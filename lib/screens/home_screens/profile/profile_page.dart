@@ -10,6 +10,8 @@ import 'package:hotel_motel/screens/home_screens/profile/profile_header.dart';
 import 'package:hotel_motel/theme/theme_base.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../../data/repository/firebase/analitic/analitics_repository.dart';
+
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
 
@@ -20,6 +22,16 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   final currentUser = locator.get<UserController>().currentUser;
   final ImagePicker _picker = ImagePicker();
+
+  @override
+  void initState() {
+    locator.get<AnalyticsRepository>().measureScreenview({
+      'firebase_screen': 'favorite_page',
+      'firebase_screen_class': 'home',
+      'hm_user': locator.get<UserController>().currentUserUid!,
+    });
+    super.initState();
+  }
 
   Future<void> uploadImage() async {
     try {

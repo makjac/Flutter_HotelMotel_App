@@ -8,8 +8,10 @@ import 'package:hotel_motel/screens/hotel_screen/widgets/hotel_page_title.dart';
 import 'package:hotel_motel/screens/hotel_screen/widgets/hotel_price_container.dart';
 import 'package:hotel_motel/screens/hotel_screen/widgets/summary/hotel_summary.dart';
 
+import '../../data/controller/user/user_controller.dart';
 import '../../data/models/hotel_model.dart';
 import '../../data/models/room_model.dart';
+import '../../data/repository/firebase/analitic/analitics_repository.dart';
 import '../../locator.dart';
 import '../../theme/design_system.dart';
 import '../../utils/scale.dart';
@@ -42,6 +44,12 @@ class _HotelPageState extends State<HotelPage> {
         _showScroolUp = false;
         setState(() {});
       }
+    });
+    locator.get<AnalyticsRepository>().measureScreenview({
+      'firebase_screen': 'hotel_page',
+      'firebase_screen_class': 'hotel',
+      'hm_user': locator.get<UserController>().currentUserUid!,
+      'hm_hotel': widget.hotelArguments.hotelID,
     });
     super.initState();
   }

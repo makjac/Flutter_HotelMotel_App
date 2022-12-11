@@ -8,6 +8,9 @@ import 'package:hotel_motel/screens/results_screens/utils/results_sort_values.da
 import 'package:hotel_motel/screens/results_screens/widgets/results_list.dart';
 import 'package:hotel_motel/theme/design_system.dart';
 
+import '../../data/controller/user/user_controller.dart';
+import '../../data/repository/firebase/analitic/analitics_repository.dart';
+
 class ResultsPage extends StatefulWidget {
   final SearchCryteria searchCryteria;
 
@@ -27,6 +30,12 @@ class RresultStatesPage extends State<ResultsPage> {
     locator
         .get<ResultSearchBloc>()
         .add(LoadSearchResults(searchCryteria: widget.searchCryteria));
+    locator.get<AnalyticsRepository>().measureScreenview({
+      'firebase_screen': 'search_results_page',
+      'firebase_screen_class': 'home',
+      'hm_user': locator.get<UserController>().currentUserUid!,
+      'hm_search_location': widget.searchCryteria.location
+    });
     super.initState();
   }
 

@@ -8,6 +8,9 @@ import 'package:hotel_motel/screens/home_screens/favorite/bloc/favorite_bloc.dar
 import 'package:hotel_motel/theme/theme_base.dart';
 import 'package:hotel_motel/widgets/cards/hotel_thumbnail.dart';
 
+import '../../../data/controller/user/user_controller.dart';
+import '../../../data/repository/firebase/analitic/analitics_repository.dart';
+
 class FavoritePage extends StatefulWidget {
   const FavoritePage({Key? key}) : super(key: key);
 
@@ -16,6 +19,16 @@ class FavoritePage extends StatefulWidget {
 }
 
 class _FavoritePageState extends State<FavoritePage> {
+  @override
+  void initState() {
+    locator.get<AnalyticsRepository>().measureScreenview({
+      'firebase_screen': 'favorite_page',
+      'firebase_screen_class': 'home',
+      'hm_user': locator.get<UserController>().currentUserUid!,
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

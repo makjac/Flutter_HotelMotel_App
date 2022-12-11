@@ -7,6 +7,9 @@ import 'package:hotel_motel/screens/auth_screens/signUp/sign_up_form.dart';
 import 'package:hotel_motel/theme/theme_base.dart';
 import 'package:hotel_motel/widgets/Screens_templates/auth_screen_template.dart';
 
+import '../../../data/repository/firebase/analitic/analitics_repository.dart';
+import '../../../locator.dart';
+
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
 
@@ -15,6 +18,15 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+  @override
+  void initState() {
+    locator.get<AnalyticsRepository>().measureScreenview({
+      'firebase_screen': 'signup_page',
+      'firebase_screen_class': 'auth_pages',
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(

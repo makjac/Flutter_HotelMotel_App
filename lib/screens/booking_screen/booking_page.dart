@@ -11,12 +11,31 @@ import 'package:hotel_motel/screens/booking_screen/widgets/price_details.dart';
 import 'package:hotel_motel/theme/design_system.dart';
 import 'package:hotel_motel/widgets/decorations/app_divider.dart';
 
-class BookingPage extends StatelessWidget {
+import '../../data/repository/firebase/analitic/analitics_repository.dart';
+import '../../locator.dart';
+
+class BookingPage extends StatefulWidget {
   final BookingThumbnailModel details;
   const BookingPage({
     Key? key,
     required this.details,
   }) : super(key: key);
+
+  @override
+  State<BookingPage> createState() => _BookingPageState();
+}
+
+class _BookingPageState extends State<BookingPage> {
+  @override
+  void initState() {
+    locator.get<AnalyticsRepository>().measureScreenview({
+      'firebase_screen': 'booking_overview_page',
+      'firebase_screen_class': 'bookings',
+      'hm_user': widget.details.booking.userUid,
+      'hm_hotel': widget.details.hotel.hotelID,
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,21 +50,21 @@ class BookingPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               HotelDetails(
-                hotel: details.hotel,
-                room: details.room,
+                hotel: widget.details.hotel,
+                room: widget.details.room,
               ),
-              AddreviewButton(bookingDetails: details),
+              AddreviewButton(bookingDetails: widget.details),
               AppDivider(),
-              BookingDetails(booking: details.booking),
+              BookingDetails(booking: widget.details.booking),
               AppDivider(),
-              ContactDetails(hotel: details.hotel),
+              ContactDetails(hotel: widget.details.hotel),
               AppDivider(),
               PriceDetails(
-                booking: details.booking,
-                room: details.room,
+                booking: widget.details.booking,
+                room: widget.details.room,
               ),
               SizedBox(height: Insets.s),
-              CancellBookingButton(booking: details.booking),
+              CancellBookingButton(booking: widget.details.booking),
             ],
           ),
         ),

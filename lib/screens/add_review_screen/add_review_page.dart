@@ -12,7 +12,10 @@ import 'package:hotel_motel/screens/add_review_screen/widgets/review_details_rat
 import 'package:hotel_motel/theme/design_system.dart';
 import 'package:hotel_motel/widgets/decorations/app_divider.dart';
 
-class AddReviewPage extends StatelessWidget {
+import '../../data/repository/firebase/analitic/analitics_repository.dart';
+import '../../locator.dart';
+
+class AddReviewPage extends StatefulWidget {
   final BookingThumbnailModel bookingDetails;
   const AddReviewPage({
     Key? key,
@@ -20,11 +23,27 @@ class AddReviewPage extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<AddReviewPage> createState() => _AddReviewPageState();
+}
+
+class _AddReviewPageState extends State<AddReviewPage> {
+  @override
+  void initState() {
+    locator.get<AnalyticsRepository>().measureScreenview({
+      'firebase_screen': 'add_review_page',
+      'firebase_screen_class': 'bookings',
+      'hm_user': widget.bookingDetails.booking.userUid,
+      'hm_hotel': widget.bookingDetails.hotel.hotelID,
+    });
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     ReviewModel review = ReviewModel(
-      hotelID: bookingDetails.hotel.hotelID,
-      userUid: bookingDetails.booking.userUid,
-      bookingID: bookingDetails.booking.bookingID,
+      hotelID: widget.bookingDetails.hotel.hotelID,
+      userUid: widget.bookingDetails.booking.userUid,
+      bookingID: widget.bookingDetails.booking.bookingID,
     );
     return SafeArea(
       child: Scaffold(
@@ -34,7 +53,8 @@ class AddReviewPage extends StatelessWidget {
               floating: false,
               pinned: true,
               delegate: ReviewAppbar(
-                  booking: bookingDetails.booking, hotel: bookingDetails.hotel),
+                  booking: widget.bookingDetails.booking,
+                  hotel: widget.bookingDetails.hotel),
             ),
             SliverToBoxAdapter(
               child: Column(
@@ -91,22 +111,3 @@ class AddReviewPage extends StatelessWidget {
     );
   }
 }
-
-// void _setFavorite(BuildContext context) {
-//     if (isFavorite) {
-//       BlocProvider.of<HotelAppbarBloc>(context)
-//           .add(RemoveFavoriteHotel(hotelID: hotel.hotelID));
-//       isFavorite = !isFavorite;
-//     } else {
-//       BlocProvider.of<HotelAppbarBloc>(context)
-//           .add(AddFavoriteHotel(hotelID: hotel.hotelID));
-//       isFavorite = !isFavorite;
-//     }
-//   }
-
-// Center(
-//                     child: ElevatedButton(
-//                       onPressed: () {},
-//                       child: const Text("Send"),
-//                     ),
-//                   )
