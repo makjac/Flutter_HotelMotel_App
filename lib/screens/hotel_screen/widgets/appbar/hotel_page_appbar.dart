@@ -7,7 +7,7 @@ import 'package:hotel_motel/locator.dart';
 import 'package:hotel_motel/screens/hotel_screen/widgets/hotel_image_carousel.dart';
 
 import '../../../../bloc/hotelAppbar/hotel_appbar_bloc.dart';
-import '../../../../data/controller/user/user_controller.dart';
+import '../../../../controller/user/user_controller.dart';
 
 class HotelPageAppbar implements SliverPersistentHeaderDelegate {
   final double _minExtent;

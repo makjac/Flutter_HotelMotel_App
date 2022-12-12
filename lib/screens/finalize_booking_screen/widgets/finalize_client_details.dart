@@ -6,9 +6,9 @@ import 'package:hotel_motel/screens/finalize_booking_screen/bloc/finalize_bookin
 import 'package:hotel_motel/screens/finalize_booking_screen/widgets/finalize_header.dart';
 import 'package:hotel_motel/theme/design_system.dart';
 
-import '../../../../data/controller/user/user_controller.dart';
 import '../../../../data/models/user_details.dart';
 import '../../../../locator.dart';
+import '../../../controller/user/user_controller.dart';
 
 // ignore: must_be_immutable
 class FinalizeClientDetails extends StatelessWidget {

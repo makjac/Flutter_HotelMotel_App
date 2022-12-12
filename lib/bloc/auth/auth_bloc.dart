@@ -2,7 +2,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:hotel_motel/data/controller/user/user_controller.dart';
+import 'package:hotel_motel/controller/user/user_controller.dart';
 import 'package:hotel_motel/locator.dart';
 import 'package:meta/meta.dart';
 

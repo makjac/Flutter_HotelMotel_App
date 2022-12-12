@@ -10,9 +10,9 @@ import 'package:hotel_motel/theme/theme_base.dart';
 import 'package:hotel_motel/utils/date.dart';
 
 import '../../../../bloc/hotelAppbar/hotel_appbar_bloc.dart';
-import '../../../../data/controller/user/user_controller.dart';
 import '../../../../data/models/booking_model.dart';
 import '../../../../locator.dart';
+import '../../../controller/user/user_controller.dart';
 
 class ReviewAppbar extends SliverPersistentHeaderDelegate {
   final Booking booking;
