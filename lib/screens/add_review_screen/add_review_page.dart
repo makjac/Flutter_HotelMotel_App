@@ -12,10 +12,7 @@ import 'package:hotel_motel/screens/add_review_screen/widgets/review_details_rat
 import 'package:hotel_motel/theme/design_system.dart';
 import 'package:hotel_motel/widgets/decorations/app_divider.dart';
 
-import '../../data/repository/firebase/analitic/analitics_repository.dart';
-import '../../locator.dart';
-
-class AddReviewPage extends StatefulWidget {
+class AddReviewPage extends StatelessWidget {
   final BookingThumbnailModel bookingDetails;
   const AddReviewPage({
     Key? key,
@@ -23,27 +20,11 @@ class AddReviewPage extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<AddReviewPage> createState() => _AddReviewPageState();
-}
-
-class _AddReviewPageState extends State<AddReviewPage> {
-  @override
-  void initState() {
-    locator.get<AnalyticsRepository>().measureScreenview({
-      'firebase_screen': 'add_review_page',
-      'firebase_screen_class': 'bookings',
-      'hm_user': widget.bookingDetails.booking.userUid,
-      'hm_hotel': widget.bookingDetails.hotel.hotelID,
-    });
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     ReviewModel review = ReviewModel(
-      hotelID: widget.bookingDetails.hotel.hotelID,
-      userUid: widget.bookingDetails.booking.userUid,
-      bookingID: widget.bookingDetails.booking.bookingID,
+      hotelID: bookingDetails.hotel.hotelID,
+      userUid: bookingDetails.booking.userUid,
+      bookingID: bookingDetails.booking.bookingID,
     );
     return SafeArea(
       child: Scaffold(
@@ -53,8 +34,7 @@ class _AddReviewPageState extends State<AddReviewPage> {
               floating: false,
               pinned: true,
               delegate: ReviewAppbar(
-                  booking: widget.bookingDetails.booking,
-                  hotel: widget.bookingDetails.hotel),
+                  booking: bookingDetails.booking, hotel: bookingDetails.hotel),
             ),
             SliverToBoxAdapter(
               child: Column(

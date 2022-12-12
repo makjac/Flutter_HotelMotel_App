@@ -6,27 +6,8 @@ import 'package:hotel_motel/theme/theme_base.dart';
 import 'package:hotel_motel/utils/userSharedPreferences.dart';
 import 'package:hotel_motel/widgets/cards/hotel_thumbnail.dart';
 
-import '../../../data/controller/user/user_controller.dart';
-import '../../../data/repository/firebase/analitic/analitics_repository.dart';
-import '../../../locator.dart';
-
-class SearchPage extends StatefulWidget {
+class SearchPage extends StatelessWidget {
   const SearchPage({Key? key}) : super(key: key);
-
-  @override
-  State<SearchPage> createState() => _SearchPageState();
-}
-
-class _SearchPageState extends State<SearchPage> {
-  @override
-  void initState() {
-    locator.get<AnalyticsRepository>().measureScreenview({
-      'firebase_screen': 'main_page',
-      'firebase_screen_class': 'home',
-      'hm_user': locator.get<UserController>().currentUserUid!,
-    });
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {

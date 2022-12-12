@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hotel_motel/data/controller/user/user_controller.dart';
 import 'package:hotel_motel/screens/home_screens/bookings/bloc/bookings_bloc.dart';
 import 'package:hotel_motel/screens/home_screens/bookings/cancelled/cancelled_bookings.dart';
 import 'package:hotel_motel/screens/home_screens/bookings/incoming/incoming_bookins.dart';
@@ -8,27 +7,8 @@ import 'package:hotel_motel/screens/home_screens/bookings/realized/realized_book
 import 'package:hotel_motel/screens/home_screens/bookings/widgets/bookings_tab_bar.dart';
 import 'package:hotel_motel/theme/theme_base.dart';
 
-import '../../../data/repository/firebase/analitic/analitics_repository.dart';
-import '../../../locator.dart';
-
-class BookingsPage extends StatefulWidget {
+class BookingsPage extends StatelessWidget {
   const BookingsPage({Key? key}) : super(key: key);
-
-  @override
-  State<BookingsPage> createState() => _BookingsPageState();
-}
-
-class _BookingsPageState extends State<BookingsPage> {
-  @override
-  void initState() {
-    BlocProvider.of<BookingsBloc>(context).add(LoadBookings());
-    locator.get<AnalyticsRepository>().measureScreenview({
-      'firebase_screen': 'bookings_page',
-      'firebase_screen_class': 'home',
-      'hm_user': locator.get<UserController>().currentUserUid!,
-    });
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {

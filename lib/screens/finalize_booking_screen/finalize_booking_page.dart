@@ -12,7 +12,6 @@ import 'package:hotel_motel/screens/finalize_booking_screen/widgets/peytment/fin
 import 'package:hotel_motel/theme/theme_base.dart';
 import 'package:hotel_motel/widgets/decorations/app_divider.dart';
 
-import '../../data/repository/firebase/analitic/analitics_repository.dart';
 import 'bloc/finalize_booking_bloc.dart';
 
 // ignore: must_be_immutable
@@ -38,18 +37,6 @@ class FinalizeBookingPage extends StatefulWidget {
 }
 
 class _FinalizeBookingPageState extends State<FinalizeBookingPage> {
-  @override
-  void initState() {
-    locator.get<AnalyticsRepository>().measureScreenview({
-      'firebase_screen': 'finalize_booking_page',
-      'firebase_screen_class': 'hotels',
-      'hm_user': locator.get<UserController>().currentUserUid!,
-      'hm_hotel': widget._arguments.hotel.hotelID,
-      'hm_room': widget._arguments.room.roomID,
-    });
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     UserDetails _user;

@@ -6,25 +6,8 @@ import 'package:hotel_motel/screens/auth_screens/forgot_password/fotgot_password
 import 'package:hotel_motel/theme/theme_base.dart';
 import 'package:hotel_motel/widgets/Screens_templates/auth_screen_template.dart';
 
-import '../../../data/repository/firebase/analitic/analitics_repository.dart';
-import '../../../locator.dart';
-
-class ForgotPasswordPage extends StatefulWidget {
+class ForgotPasswordPage extends StatelessWidget {
   const ForgotPasswordPage({Key? key}) : super(key: key);
-
-  @override
-  State<ForgotPasswordPage> createState() => _ForgotPasswordPageState();
-}
-
-class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
-  @override
-  void initState() {
-    locator.get<AnalyticsRepository>().measureScreenview({
-      'firebase_screen': 'forgot_password_page',
-      'firebase_screen_class': 'auth',
-    });
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {

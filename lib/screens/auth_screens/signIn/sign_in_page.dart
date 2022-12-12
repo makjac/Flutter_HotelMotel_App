@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hotel_motel/bloc/auth/auth_bloc.dart';
 import 'package:hotel_motel/constans/route_name_constans.dart';
-import 'package:hotel_motel/data/repository/firebase/analitic/analitics_repository.dart';
-import 'package:hotel_motel/locator.dart';
 import 'package:hotel_motel/screens/auth_screens/signIn/sign_in_footer.dart';
 import 'package:hotel_motel/screens/auth_screens/signIn/sign_in_form.dart';
 import 'package:hotel_motel/theme/theme_base.dart';
@@ -17,15 +15,6 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
-  @override
-  void initState() {
-    locator.get<AnalyticsRepository>().measureScreenview({
-      'firebase_screen': 'signin_page',
-      'firebase_screen_class': 'auth',
-    });
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
