@@ -21,7 +21,7 @@ class _SearchPageState extends State<SearchPage> {
   @override
   void initState() {
     locator.get<AnalyticsRepository>().measureScreenview({
-      'firebase_screen': 'favorite_page',
+      'firebase_screen': 'main_page',
       'firebase_screen_class': 'home',
       'hm_user': locator.get<UserController>().currentUserUid!,
     });

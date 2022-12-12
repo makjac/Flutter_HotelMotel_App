@@ -22,7 +22,7 @@ class _SignUpPageState extends State<SignUpPage> {
   void initState() {
     locator.get<AnalyticsRepository>().measureScreenview({
       'firebase_screen': 'signup_page',
-      'firebase_screen_class': 'auth_pages',
+      'firebase_screen_class': 'auth',
     });
     super.initState();
   }

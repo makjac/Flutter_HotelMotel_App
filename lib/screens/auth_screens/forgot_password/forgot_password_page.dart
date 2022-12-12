@@ -21,7 +21,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   void initState() {
     locator.get<AnalyticsRepository>().measureScreenview({
       'firebase_screen': 'forgot_password_page',
-      'firebase_screen_class': 'auth_pages',
+      'firebase_screen_class': 'auth',
     });
     super.initState();
   }

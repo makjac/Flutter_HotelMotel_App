@@ -21,7 +21,7 @@ class _SignInPageState extends State<SignInPage> {
   void initState() {
     locator.get<AnalyticsRepository>().measureScreenview({
       'firebase_screen': 'signin_page',
-      'firebase_screen_class': 'auth_pages',
+      'firebase_screen_class': 'auth',
     });
     super.initState();
   }

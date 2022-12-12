@@ -52,12 +52,13 @@ class UserController extends BaseUserController {
         _currentUser.avatarUrl = value;
       },
     );
+    await _analiticsRepo.loginLog("Email");
   }
 
   Future<void> signUpUser(
       {required String email, required String passwd}) async {
     await _authRepo.signUp(email: email, passwd: passwd);
-    await _analiticsRepo.loginLog("Email");
+    await _analiticsRepo.signupLog("Emial");
   }
 
   Future<void> logoutUser() async {

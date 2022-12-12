@@ -26,7 +26,7 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   void initState() {
     locator.get<AnalyticsRepository>().measureScreenview({
-      'firebase_screen': 'favorite_page',
+      'firebase_screen': 'profile_page',
       'firebase_screen_class': 'home',
       'hm_user': locator.get<UserController>().currentUserUid!,
     });
