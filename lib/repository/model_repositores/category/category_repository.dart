@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:hotel_motel/data/models/category_model.dart';
-import 'package:hotel_motel/data/repository/model_repositores/category/base_category_repository.dart';
+import 'package:hotel_motel/repository/model_repositores/category/base_category_repository.dart';
 
 class CategoryRepository extends BaseCategoryRepository {
   final FirebaseFirestore _firestore;

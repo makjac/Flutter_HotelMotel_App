@@ -1,4 +1,4 @@
-import 'package:hotel_motel/data/service/network_service/base_network_service.dart';
+import 'package:hotel_motel/service/network_service/base_network_service.dart';
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;

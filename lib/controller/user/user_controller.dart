@@ -1,19 +1,20 @@
 import 'dart:io';
 
-import 'package:hotel_motel/data/controller/user/base_user_controller.dart';
+import 'package:hotel_motel/controller/user/base_user_controller.dart';
 import 'package:hotel_motel/data/models/user_model.dart';
-import 'package:hotel_motel/data/repository/firebase/analitic/analitics_repository.dart';
-import 'package:hotel_motel/data/repository/firebase/auth/auth_repository.dart';
-import 'package:hotel_motel/data/repository/firebase/storage/storage_repository.dart';
-import 'package:hotel_motel/data/repository/model_repositores/user_repository/user_repository.dart';
+import 'package:hotel_motel/repository/firebase/auth/auth_repository.dart';
+import 'package:hotel_motel/repository/firebase/storage/storage_repository.dart';
+import 'package:hotel_motel/repository/model_repositores/user_repository/user_repository.dart';
 import 'package:hotel_motel/locator.dart';
+
+import '../../service/analitics_service/analitics_service.dart';
 
 class UserController extends BaseUserController {
   late UserModel _currentUser;
   final AuthRepository _authRepo = locator.get<AuthRepository>();
   final StorageRepository _storageRepo = locator.get<StorageRepository>();
-  final AnalyticsRepository _analiticsRepo = locator.get<AnalyticsRepository>();
   final UserRepository _userRepository = UserRepository();
+  final AnaliticsService _analiticsService = locator<AnaliticsService>();
   late Future init;
 
   UserController() {
@@ -47,18 +48,17 @@ class UserController extends BaseUserController {
       {required String email, required String passwd}) async {
     await _authRepo.signIn(email: email, passwd: passwd);
     await initUser();
+    await _analiticsService.setUserProporties(userId: _currentUser.uid!);
     _storageRepo.getProfulrImgUrl(_currentUser.uid).then(
       (value) {
         _currentUser.avatarUrl = value;
       },
     );
-    await _analiticsRepo.loginLog("Email");
   }
 
   Future<void> signUpUser(
       {required String email, required String passwd}) async {
     await _authRepo.signUp(email: email, passwd: passwd);
-    await _analiticsRepo.signupLog("Emial");
   }
 
   Future<void> logoutUser() async {

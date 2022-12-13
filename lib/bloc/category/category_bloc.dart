@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:hotel_motel/data/models/category_model.dart';
-import 'package:hotel_motel/data/repository/model_repositores/category/category_repository.dart';
+import 'package:hotel_motel/repository/model_repositores/category/category_repository.dart';
 
 part 'category_event.dart';
 part 'category_state.dart';

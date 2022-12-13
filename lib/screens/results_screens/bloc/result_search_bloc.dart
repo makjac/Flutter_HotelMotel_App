@@ -5,9 +5,9 @@ import 'package:equatable/equatable.dart';
 import 'package:hotel_motel/data/models/hotel_thumbnail_model.dart';
 import 'package:hotel_motel/data/models/results_filters.dart';
 import 'package:hotel_motel/data/models/search_cryteria.dart';
-import 'package:hotel_motel/data/repository/http/http_repository.dart';
-import 'package:hotel_motel/data/repository/model_repositores/hotel_repository/hotel_repository.dart';
-import 'package:hotel_motel/data/repository/model_repositores/room_repository/room_repository.dart';
+import 'package:hotel_motel/repository/http/http_repository.dart';
+import 'package:hotel_motel/repository/model_repositores/hotel_repository/hotel_repository.dart';
+import 'package:hotel_motel/repository/model_repositores/room_repository/room_repository.dart';
 import 'package:hotel_motel/screens/results_screens/utils/results_sort_values.dart';
 import 'package:hotel_motel/utils/numbers.dart';
 

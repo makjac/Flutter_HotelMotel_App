@@ -1,6 +1,6 @@
 import 'package:flutter/src/material/date.dart';
-import 'package:hotel_motel/data/repository/http/base_http_repository.dart';
-import 'package:hotel_motel/data/service/network_service/network_service.dart';
+import 'package:hotel_motel/repository/http/base_http_repository.dart';
+import 'package:hotel_motel/service/network_service/network_service.dart';
 import 'package:hotel_motel/utils/time.dart';
 
 class HttpRepository extends BaseHttpRepository {

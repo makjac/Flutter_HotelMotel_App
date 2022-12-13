@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:hotel_motel/data/models/favorite_model.dart';
-import 'package:hotel_motel/data/repository/model_repositores/favorite_repository/base_favorite_repository.dart';
+import 'package:hotel_motel/repository/model_repositores/favorite_repository/base_favorite_repository.dart';
 
 class FavoriteRepository extends BaseFavoriteRepository {
   FirebaseFirestore _firestore;

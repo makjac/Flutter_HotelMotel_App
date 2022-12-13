@@ -2,7 +2,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:hotel_motel/data/models/booking_model.dart';
-import 'package:hotel_motel/data/repository/model_repositores/booking_repository/base_booking_repository.dart';
+import 'package:hotel_motel/repository/model_repositores/booking_repository/base_booking_repository.dart';
 
 class BookingRepository extends BaseBookingRepository {
   final FirebaseFirestore _firebaseFirestore;

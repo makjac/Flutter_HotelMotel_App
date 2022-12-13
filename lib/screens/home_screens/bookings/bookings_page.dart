@@ -7,8 +7,18 @@ import 'package:hotel_motel/screens/home_screens/bookings/realized/realized_book
 import 'package:hotel_motel/screens/home_screens/bookings/widgets/bookings_tab_bar.dart';
 import 'package:hotel_motel/theme/theme_base.dart';
 
-class BookingsPage extends StatelessWidget {
+class BookingsPage extends StatefulWidget {
   const BookingsPage({Key? key}) : super(key: key);
+
+  @override
+  State<BookingsPage> createState() => _BookingsPageState();
+}
+
+class _BookingsPageState extends State<BookingsPage> {
+  @override
+  void initState() {
+    BlocProvider.of<BookingsBloc>(context).add(LoadBookings());
+  }
 
   @override
   Widget build(BuildContext context) {

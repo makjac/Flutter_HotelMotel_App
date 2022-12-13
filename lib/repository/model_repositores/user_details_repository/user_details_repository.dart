@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:hotel_motel/data/models/user_details.dart';
-import 'package:hotel_motel/data/repository/model_repositores/user_details_repository/base_user_details_repository.dart';
+import 'package:hotel_motel/repository/model_repositores/user_details_repository/base_user_details_repository.dart';
 
 class UserDetailsRepository extends BaseUserDetailsRepository {
   final FirebaseFirestore _firestore;
