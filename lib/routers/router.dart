@@ -19,47 +19,64 @@ class AppRouter {
     switch (settings.name) {
       case AppRoute.HOME_ROUTE:
         return MaterialPageRoute(
-            builder: (BuildContext context) => const HomePage());
+          builder: (BuildContext context) => const HomePage(),
+          settings: RouteSettings(name: settings.name),
+        );
       case AppRoute.LOGIN_ROUTE:
         return MaterialPageRoute(
-            builder: (BuildContext context) => const SignInPage());
+          builder: (BuildContext context) => const SignInPage(),
+          settings: RouteSettings(name: settings.name),
+        );
       case AppRoute.REGISTER_ROUTE:
         return MaterialPageRoute(
-            builder: (BuildContext context) => const SignUpPage());
+          builder: (BuildContext context) => const SignUpPage(),
+          settings: RouteSettings(name: settings.name),
+        );
       case AppRoute.FORGPASS_ROUTE:
         return MaterialPageRoute(
-            builder: (BuildContext context) => const ForgotPasswordPage());
+          builder: (BuildContext context) => const ForgotPasswordPage(),
+          settings: RouteSettings(name: settings.name),
+        );
       case AppRoute.RESULTS_ROUTE:
         final sreenArguments = settings.arguments as SearchCryteria;
         return MaterialPageRoute(
-            builder: (BuildContext context) => ResultsPage(
-                  searchCryteria: sreenArguments,
-                ));
+          builder: (BuildContext context) => ResultsPage(
+            searchCryteria: sreenArguments,
+          ),
+          settings: RouteSettings(name: settings.name),
+        );
       case AppRoute.HOTEL_ROUTE:
         final pageArguments = settings.arguments as hotelPageArguments;
         return MaterialPageRoute(
-            builder: (BuildContext context) => HotelPage(
-                  hotelArguments: pageArguments,
-                ));
+          builder: (BuildContext context) => HotelPage(
+            hotelArguments: pageArguments,
+          ),
+          settings: RouteSettings(name: settings.name),
+        );
       case AppRoute.FINALIZE_ROUTE:
         final finalizeBookingArguments =
             settings.arguments as FinalizeBookingArguments;
         return MaterialPageRoute(
-            builder: (BuildContext context) => FinalizeBookingPage(
-                  arguments: finalizeBookingArguments,
-                ));
+          builder: (BuildContext context) => FinalizeBookingPage(
+            arguments: finalizeBookingArguments,
+          ),
+          settings: RouteSettings(name: settings.name),
+        );
       case AppRoute.BOOKING_ROUTE:
         final bookingArguments = settings.arguments as BookingThumbnailModel;
         return MaterialPageRoute(
           builder: (BuildContext context) =>
               BookingPage(details: bookingArguments),
+          settings: RouteSettings(name: settings.name),
         );
       case AppRoute.ADD_REVIEW_ROUTE:
         final reviewArguments = settings.arguments as BookingThumbnailModel;
         return MaterialPageRoute(
-            builder: (BuildContext context) => AddReviewPage(
-                  bookingDetails: reviewArguments,
-                ));
+          builder: (BuildContext context) => AddReviewPage(
+            bookingDetails: reviewArguments,
+          ),
+          settings: RouteSettings(name: settings.name),
+        );
       default:
         return null;
     }

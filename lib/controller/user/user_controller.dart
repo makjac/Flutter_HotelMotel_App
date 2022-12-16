@@ -49,6 +49,7 @@ class UserController extends BaseUserController {
     await _authRepo.signIn(email: email, passwd: passwd);
     await initUser();
     await _analiticsService.setUserProporties(userId: _currentUser.uid!);
+    await _analiticsService.LoginLog();
     _storageRepo.getProfulrImgUrl(_currentUser.uid).then(
       (value) {
         _currentUser.avatarUrl = value;
@@ -59,6 +60,7 @@ class UserController extends BaseUserController {
   Future<void> signUpUser(
       {required String email, required String passwd}) async {
     await _authRepo.signUp(email: email, passwd: passwd);
+    await _analiticsService.LogSignUp();
   }
 
   Future<void> logoutUser() async {
