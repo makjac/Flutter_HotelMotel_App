@@ -9,13 +9,15 @@ import 'package:hotel_motel/firebase_options.dart';
 import 'package:hotel_motel/locator.dart';
 import 'package:hotel_motel/routers/router.dart';
 import 'package:hotel_motel/screens/auth_screens/auth_screens_base.dart';
-import 'package:hotel_motel/screens/finalize_booking_screen/bloc/finalize_booking_bloc.dart';
-import 'package:hotel_motel/screens/home_screens/bookings/bloc/bookings_bloc.dart';
-import 'package:hotel_motel/screens/home_screens/search/bloc/rcomended_bloc.dart';
-import 'package:hotel_motel/screens/hotel_screen/bloc/hotel_page_bloc.dart';
-import 'package:hotel_motel/screens/results_screens/bloc/result_search_bloc.dart';
 import 'package:hotel_motel/service/analitics_service/analitics_service.dart';
 import 'package:hotel_motel/utils/userSharedPreferences.dart';
+import 'package:dcdg/dcdg.dart';
+
+import 'bloc/bookings/bookings_bloc.dart';
+import 'bloc/finalize_booking/finalize_booking_bloc.dart';
+import 'bloc/hotel/hotel_page_bloc.dart';
+import 'bloc/results/result_search_bloc.dart';
+import 'bloc/search/rcomended_bloc.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

@@ -3,10 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hotel_motel/data/models/results_filters.dart';
 import 'package:hotel_motel/data/models/search_cryteria.dart';
 import 'package:hotel_motel/locator.dart';
-import 'package:hotel_motel/screens/results_screens/bloc/result_search_bloc.dart';
 import 'package:hotel_motel/screens/results_screens/utils/results_sort_values.dart';
 import 'package:hotel_motel/screens/results_screens/widgets/results_list.dart';
 import 'package:hotel_motel/theme/design_system.dart';
+
+import '../../bloc/results/result_search_bloc.dart';
 
 class ResultsPage extends StatefulWidget {
   final SearchCryteria searchCryteria;

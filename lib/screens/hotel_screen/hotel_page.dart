@@ -8,13 +8,13 @@ import 'package:hotel_motel/screens/hotel_screen/widgets/hotel_page_title.dart';
 import 'package:hotel_motel/screens/hotel_screen/widgets/hotel_price_container.dart';
 import 'package:hotel_motel/screens/hotel_screen/widgets/summary/hotel_summary.dart';
 
+import '../../bloc/hotel/hotel_page_bloc.dart';
 import '../../data/models/hotel_model.dart';
 import '../../data/models/room_model.dart';
 import '../../locator.dart';
 import '../../theme/design_system.dart';
 import '../../utils/scale.dart';
 import '../results_screens/utils/hotel_home_nav_argument.dart';
-import 'bloc/hotel_page_bloc.dart';
 
 class HotelPage extends StatefulWidget {
   final hotelPageArguments hotelArguments;

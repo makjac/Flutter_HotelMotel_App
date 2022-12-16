@@ -2,12 +2,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:hotel_motel/screens/finalize_booking_screen/bloc/finalize_booking_bloc.dart';
 import 'package:hotel_motel/screens/finalize_booking_screen/widgets/finalize_header.dart';
 import 'package:hotel_motel/theme/design_system.dart';
 
 import '../../../../data/models/user_details.dart';
 import '../../../../locator.dart';
+import '../../../bloc/finalize_booking/finalize_booking_bloc.dart';
 import '../../../controller/user/user_controller.dart';
 
 // ignore: must_be_immutable

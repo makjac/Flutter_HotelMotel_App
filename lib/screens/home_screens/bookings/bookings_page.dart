@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hotel_motel/screens/home_screens/bookings/bloc/bookings_bloc.dart';
 import 'package:hotel_motel/screens/home_screens/bookings/cancelled/cancelled_bookings.dart';
 import 'package:hotel_motel/screens/home_screens/bookings/incoming/incoming_bookins.dart';
 import 'package:hotel_motel/screens/home_screens/bookings/realized/realized_bookings.dart';
 import 'package:hotel_motel/screens/home_screens/bookings/widgets/bookings_tab_bar.dart';
 import 'package:hotel_motel/theme/theme_base.dart';
+
+import '../../../bloc/bookings/bookings_bloc.dart';
 
 class BookingsPage extends StatefulWidget {
   const BookingsPage({Key? key}) : super(key: key);

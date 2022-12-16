@@ -12,7 +12,7 @@ import 'package:hotel_motel/screens/finalize_booking_screen/widgets/peytment/fin
 import 'package:hotel_motel/theme/theme_base.dart';
 import 'package:hotel_motel/widgets/decorations/app_divider.dart';
 
-import 'bloc/finalize_booking_bloc.dart';
+import '../../bloc/finalize_booking/finalize_booking_bloc.dart';
 
 // ignore: must_be_immutable
 class FinalizeBookingPage extends StatefulWidget {

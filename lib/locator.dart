@@ -11,11 +11,12 @@ import 'package:hotel_motel/repository/firebase/storage/storage_repository.dart'
 import 'package:hotel_motel/repository/model_repositores/category/category_repository.dart';
 import 'package:hotel_motel/repository/model_repositores/hotel_repository/hotel_repository.dart';
 import 'package:hotel_motel/repository/model_repositores/room_repository/room_repository.dart';
-import 'package:hotel_motel/screens/home_screens/bookings/bloc/bookings_bloc.dart';
-import 'package:hotel_motel/screens/home_screens/search/bloc/rcomended_bloc.dart';
-import 'package:hotel_motel/screens/hotel_screen/bloc/hotel_page_bloc.dart';
-import 'package:hotel_motel/screens/results_screens/bloc/result_search_bloc.dart';
 import 'package:hotel_motel/service/analitics_service/analitics_service.dart';
+
+import 'bloc/bookings/bookings_bloc.dart';
+import 'bloc/hotel/hotel_page_bloc.dart';
+import 'bloc/results/result_search_bloc.dart';
+import 'bloc/search/rcomended_bloc.dart';
 
 final locator = GetIt.instance;
 

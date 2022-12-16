@@ -4,9 +4,10 @@ import 'package:hotel_motel/data/models/hotel_thumbnail_model.dart';
 import 'package:hotel_motel/repository/model_repositores/hotel_repository/hotel_repository.dart';
 import 'package:hotel_motel/repository/model_repositores/room_repository/room_repository.dart';
 import 'package:hotel_motel/locator.dart';
-import 'package:hotel_motel/screens/home_screens/favorite/bloc/favorite_bloc.dart';
 import 'package:hotel_motel/theme/theme_base.dart';
 import 'package:hotel_motel/widgets/cards/hotel_thumbnail.dart';
+
+import '../../../bloc/favorite/favorite_bloc.dart';
 
 class FavoritePage extends StatelessWidget {
   const FavoritePage({Key? key}) : super(key: key);

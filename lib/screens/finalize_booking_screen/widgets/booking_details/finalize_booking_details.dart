@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:hotel_motel/data/models/hotel_model.dart';
 import 'package:hotel_motel/data/models/room_model.dart';
 import 'package:hotel_motel/data/models/search_cryteria.dart';
-import 'package:hotel_motel/screens/finalize_booking_screen/widgets/booking_details/booking_deadline.dart';
-import 'package:hotel_motel/screens/finalize_booking_screen/widgets/booking_details/hotel_details.dart';
-import 'package:hotel_motel/screens/finalize_booking_screen/widgets/finalize_header.dart';
 
 import '../../../../theme/design_system.dart';
+import '../../../screens/booking_screen/widgets/hotel_details.dart';
+import '../finalize_header.dart';
+import 'booking_deadline.dart';
 
 class FinalizeBookingDetails extends StatelessWidget {
   final Hotel hotel;
