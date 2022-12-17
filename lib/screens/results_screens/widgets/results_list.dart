@@ -1,8 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/cupertino.dart';
 
-import 'package:hotel_motel/data/models/hotel_thumbnail_model.dart';
-import 'package:hotel_motel/data/models/search_cryteria.dart';
+import 'package:hotel_motel/models/hotel_thumbnail_model.dart';
+import 'package:hotel_motel/models/search_cryteria.dart';
 
 import '../../../theme/design_system.dart';
 import '../../../widgets/cards/hotel_thumbnail.dart';

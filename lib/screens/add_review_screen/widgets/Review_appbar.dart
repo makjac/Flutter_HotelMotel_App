@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:hotel_motel/data/models/hotel_model.dart';
 import 'package:hotel_motel/theme/theme_base.dart';
 import 'package:hotel_motel/utils/date.dart';
 
 import '../../../../bloc/hotelAppbar/hotel_appbar_bloc.dart';
-import '../../../../data/models/booking_model.dart';
 import '../../../../locator.dart';
 import '../../../controller/user/user_controller.dart';
+import '../../../models/booking_model.dart';
+import '../../../models/hotel_model.dart';
 
 class ReviewAppbar extends SliverPersistentHeaderDelegate {
   final Booking booking;

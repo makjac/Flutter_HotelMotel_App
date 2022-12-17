@@ -2,8 +2,7 @@
 import 'dart:convert';
 
 import 'package:equatable/equatable.dart';
-
-import 'package:hotel_motel/data/models/review_details_model.dart';
+import 'package:hotel_motel/models/review_details_model.dart';
 
 // ignore: must_be_immutable
 class ReviewModel extends Equatable {

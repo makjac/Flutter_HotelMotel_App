@@ -1,4 +1,4 @@
-import 'package:hotel_motel/data/models/search_cryteria.dart';
+import 'package:hotel_motel/models/search_cryteria.dart';
 
 class hotelPageArguments {
   final SearchCryteria? cryteria;

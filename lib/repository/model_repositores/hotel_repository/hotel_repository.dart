@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:hotel_motel/data/models/hotel_model.dart';
 import 'package:hotel_motel/repository/model_repositores/hotel_repository/base_hotel_repository.dart';
+
+import '../../../models/hotel_model.dart';
 
 class HotelRepository extends BaseHotelRepository {
   final FirebaseFirestore _firestore;

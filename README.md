@@ -17,8 +17,8 @@ It will be a hotel booking app.
 
 ## Screenshots
 
-![screenshot_1](https://i.imgur.com/0GWncaA.png)
-
 ![screenshot_2](https://i.imgur.com/jTdq302.png)
 ![screenshot_3](https://i.imgur.com/bGEM70B.png)
+![screenshot_4](https://i.imgur.com/euKIq3C.jpg)
+![screenshot_5](https://i.imgur.com/iY34sMF.jpg)
 

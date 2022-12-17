@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:hotel_motel/data/models/booking_model.dart';
-import 'package:hotel_motel/data/models/room_model.dart';
+import 'package:hotel_motel/models/booking_model.dart';
+import 'package:hotel_motel/models/room_model.dart';
 import 'package:hotel_motel/theme/design_system.dart';
 
 class PriceDetails extends StatelessWidget {

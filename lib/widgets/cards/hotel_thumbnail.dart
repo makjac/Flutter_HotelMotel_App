@@ -3,8 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:hotel_motel/constans/route_name_constans.dart';
-import 'package:hotel_motel/data/models/hotel_thumbnail_model.dart';
-import 'package:hotel_motel/data/models/search_cryteria.dart';
+import 'package:hotel_motel/models/hotel_thumbnail_model.dart';
+import 'package:hotel_motel/models/search_cryteria.dart';
 import 'package:hotel_motel/screens/results_screens/utils/hotel_home_nav_argument.dart';
 
 import 'package:hotel_motel/theme/colors.dart';

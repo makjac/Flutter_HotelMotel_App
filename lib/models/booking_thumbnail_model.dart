@@ -2,11 +2,10 @@
 import 'dart:convert';
 
 import 'package:equatable/equatable.dart';
-
-import 'package:hotel_motel/data/models/hotel_model.dart';
-import 'package:hotel_motel/data/models/room_model.dart';
+import 'package:hotel_motel/models/room_model.dart';
 
 import 'booking_model.dart';
+import 'hotel_model.dart';
 
 class BookingThumbnailModel extends Equatable {
   final Booking booking;

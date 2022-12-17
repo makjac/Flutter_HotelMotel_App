@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/rendering/sliver_persistent_header.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hotel_motel/data/models/hotel_model.dart';
+import 'package:hotel_motel/models/hotel_model.dart';
 import 'package:hotel_motel/locator.dart';
 import 'package:hotel_motel/screens/hotel_screen/widgets/hotel_image_carousel.dart';
 

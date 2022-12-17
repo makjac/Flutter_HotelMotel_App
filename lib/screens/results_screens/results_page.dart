@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hotel_motel/data/models/results_filters.dart';
-import 'package:hotel_motel/data/models/search_cryteria.dart';
+import 'package:hotel_motel/models/results_filters.dart';
+import 'package:hotel_motel/models/search_cryteria.dart';
 import 'package:hotel_motel/locator.dart';
 import 'package:hotel_motel/screens/results_screens/utils/results_sort_values.dart';
 import 'package:hotel_motel/screens/results_screens/widgets/results_list.dart';

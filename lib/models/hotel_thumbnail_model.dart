@@ -3,9 +3,9 @@ import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
+import 'package:hotel_motel/models/room_model.dart';
 
-import 'package:hotel_motel/data/models/hotel_model.dart';
-import 'package:hotel_motel/data/models/room_model.dart';
+import 'hotel_model.dart';
 
 class HotelThumbnailModel extends Equatable {
   final String hotelID;

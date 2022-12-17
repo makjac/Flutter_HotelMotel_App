@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:hotel_motel/constans/route_name_constans.dart';
-import 'package:hotel_motel/data/models/booking_thumbnail_model.dart';
+import 'package:hotel_motel/models/booking_thumbnail_model.dart';
 import 'package:hotel_motel/screens/home_screens/bookings/widgets/booking_thumbnail/booking_thumbnail_add_review_button.dart';
 import 'package:hotel_motel/screens/home_screens/bookings/widgets/booking_thumbnail/booking_thumbnail_content.dart';
-import 'package:hotel_motel/screens/home_screens/bookings/widgets/booking_thumbnail/booking_thumbnail_details.dart';
-import 'package:hotel_motel/screens/home_screens/bookings/widgets/booking_thumbnail/booking_thumbnail_title.dart';
 
 import '../../../../../theme/colors.dart';
 import '../../../../../theme/design_system.dart';

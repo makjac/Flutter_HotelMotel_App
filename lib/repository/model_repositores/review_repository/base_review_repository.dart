@@ -1,4 +1,4 @@
-import 'package:hotel_motel/data/models/review_model.dart';
+import '../../../models/review_model.dart';
 
 abstract class BaseReviewRepository {
   Future<void> AddhotelReview(ReviewModel review);

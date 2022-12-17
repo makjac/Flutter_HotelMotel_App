@@ -1,5 +1,5 @@
-import 'package:hotel_motel/data/models/favorite_model.dart';
-import 'package:hotel_motel/data/models/user_model.dart';
+import '../../../models/favorite_model.dart';
+import '../../../models/user_model.dart';
 
 abstract class BaseUserRepository {
   Stream<UserModel> getUserDetails(String uid);

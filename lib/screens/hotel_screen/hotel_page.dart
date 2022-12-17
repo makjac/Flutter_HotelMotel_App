@@ -9,8 +9,8 @@ import 'package:hotel_motel/screens/hotel_screen/widgets/hotel_price_container.d
 import 'package:hotel_motel/screens/hotel_screen/widgets/summary/hotel_summary.dart';
 
 import '../../bloc/hotel/hotel_page_bloc.dart';
-import '../../data/models/hotel_model.dart';
-import '../../data/models/room_model.dart';
+import '../../models/hotel_model.dart';
+import '../../models/room_model.dart';
 import '../../locator.dart';
 import '../../theme/design_system.dart';
 import '../../utils/scale.dart';

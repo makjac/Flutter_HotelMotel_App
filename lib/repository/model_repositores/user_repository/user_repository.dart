@@ -1,8 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:hotel_motel/data/models/favorite_model.dart';
-import 'package:hotel_motel/data/models/user_model.dart';
 import 'package:hotel_motel/repository/model_repositores/favorite_repository/favorite_repository.dart';
 import 'package:hotel_motel/repository/model_repositores/user_repository/base_user_repository.dart';
+
+import '../../../models/favorite_model.dart';
+import '../../../models/user_model.dart';
 
 class UserRepository extends BaseUserRepository {
   final FirebaseFirestore _firestore;

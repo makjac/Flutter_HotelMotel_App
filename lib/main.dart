@@ -11,7 +11,6 @@ import 'package:hotel_motel/routers/router.dart';
 import 'package:hotel_motel/screens/auth_screens/auth_screens_base.dart';
 import 'package:hotel_motel/service/analitics_service/analitics_service.dart';
 import 'package:hotel_motel/utils/userSharedPreferences.dart';
-import 'package:dcdg/dcdg.dart';
 
 import 'bloc/bookings/bookings_bloc.dart';
 import 'bloc/finalize_booking/finalize_booking_bloc.dart';

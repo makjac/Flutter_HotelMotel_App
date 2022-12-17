@@ -1,6 +1,6 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
 
-import '../../data/models/search_cryteria.dart';
+import '../../models/search_cryteria.dart';
 
 class AnaliticsService {
   final FirebaseAnalytics _analytics;

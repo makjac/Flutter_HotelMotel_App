@@ -2,7 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:hotel_motel/screens/home_screens/bookings/widgets/booking_thumbnail/booking_thumbnail.dart';
 
-import '../../../../data/models/booking_thumbnail_model.dart';
+import '../../../../models/booking_thumbnail_model.dart';
 import '../../../../theme/design_system.dart';
 
 class CancelledBookings extends StatelessWidget {

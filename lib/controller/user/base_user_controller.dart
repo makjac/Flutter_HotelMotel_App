@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import '../../data/models/user_model.dart';
+import '../../models/user_model.dart';
 
 abstract class BaseUserController {
   Future<UserModel?> initUser();

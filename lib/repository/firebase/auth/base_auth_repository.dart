@@ -1,4 +1,4 @@
-import 'package:hotel_motel/data/models/user_model.dart';
+import '../../../models/user_model.dart';
 
 abstract class BaseAuthRepository {
   Future<UserModel> getUser();

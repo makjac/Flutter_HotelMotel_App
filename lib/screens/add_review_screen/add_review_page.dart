@@ -3,14 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hotel_motel/bloc/review/review_bloc.dart';
 
-import 'package:hotel_motel/data/models/booking_thumbnail_model.dart';
-import 'package:hotel_motel/data/models/review_model.dart';
 import 'package:hotel_motel/screens/add_review_screen/widgets/Review_appbar.dart';
 import 'package:hotel_motel/screens/add_review_screen/widgets/Review_star_rating.dart';
 import 'package:hotel_motel/screens/add_review_screen/widgets/review_add_comment.dart';
 import 'package:hotel_motel/screens/add_review_screen/widgets/review_details_rating.dart';
 import 'package:hotel_motel/theme/design_system.dart';
 import 'package:hotel_motel/widgets/decorations/app_divider.dart';
+
+import '../../models/booking_thumbnail_model.dart';
+import '../../models/review_model.dart';
 
 class AddReviewPage extends StatelessWidget {
   final BookingThumbnailModel bookingDetails;

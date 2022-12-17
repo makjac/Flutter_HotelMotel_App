@@ -2,10 +2,11 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:hotel_motel/data/models/hotel_model.dart';
-import 'package:hotel_motel/data/models/room_model.dart';
 import 'package:hotel_motel/repository/model_repositores/hotel_repository/hotel_repository.dart';
 import 'package:hotel_motel/repository/model_repositores/room_repository/room_repository.dart';
+
+import '../../models/hotel_model.dart';
+import '../../models/room_model.dart';
 
 part 'hotel_page_event.dart';
 part 'hotel_page_state.dart';

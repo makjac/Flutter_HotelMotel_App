@@ -1,10 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
-import 'package:hotel_motel/data/models/booking_model.dart';
+import 'package:hotel_motel/models/booking_model.dart';
 import 'package:hotel_motel/theme/theme_base.dart';
 
 class CancellBookingButton extends StatelessWidget {

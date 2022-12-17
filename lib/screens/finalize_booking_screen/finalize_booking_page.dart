@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hotel_motel/controller/user/user_controller.dart';
-import 'package:hotel_motel/data/models/booking_model.dart';
-import 'package:hotel_motel/data/models/search_cryteria.dart';
-import 'package:hotel_motel/data/models/user_details.dart';
+import 'package:hotel_motel/models/booking_model.dart';
+import 'package:hotel_motel/models/search_cryteria.dart';
+import 'package:hotel_motel/models/user_details.dart';
 import 'package:hotel_motel/locator.dart';
 import 'package:hotel_motel/screens/finalize_booking_screen/utils/finalize_booking_arguments.dart';
 import 'package:hotel_motel/screens/finalize_booking_screen/widgets/booking_details/finalize_booking_details.dart';

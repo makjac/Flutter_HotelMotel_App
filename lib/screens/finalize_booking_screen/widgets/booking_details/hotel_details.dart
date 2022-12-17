@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-import 'package:hotel_motel/data/models/hotel_model.dart';
+import 'package:hotel_motel/models/hotel_model.dart';
 
 import '../../../../theme/design_system.dart';
 

@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:hotel_motel/constans/route_name_constans.dart';
-import 'package:hotel_motel/data/models/search_cryteria.dart';
+import 'package:hotel_motel/models/search_cryteria.dart';
 import 'package:hotel_motel/locator.dart';
 import 'package:hotel_motel/screens/home_screens/search/location_search_action.dart';
 import 'package:hotel_motel/service/analitics_service/analitics_service.dart';

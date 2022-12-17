@@ -4,11 +4,12 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hotel_motel/controller/user/user_controller.dart';
-import 'package:hotel_motel/data/models/hotel_thumbnail_model.dart';
 import 'package:hotel_motel/repository/model_repositores/favorite_repository/favorite_repository.dart';
 import 'package:hotel_motel/repository/model_repositores/hotel_repository/hotel_repository.dart';
 import 'package:hotel_motel/repository/model_repositores/room_repository/room_repository.dart';
 import 'package:hotel_motel/locator.dart';
+
+import '../../models/hotel_thumbnail_model.dart';
 
 part 'favorite_event.dart';
 part 'favorite_state.dart';

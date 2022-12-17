@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
-import 'package:hotel_motel/data/models/booking_thumbnail_model.dart';
+import 'package:hotel_motel/models/booking_thumbnail_model.dart';
 import 'package:hotel_motel/screens/booking_screen/widgets/add_review_button.dart';
 import 'package:hotel_motel/screens/booking_screen/widgets/booking_details.dart';
 import 'package:hotel_motel/screens/booking_screen/widgets/cancell_booking_button.dart';
