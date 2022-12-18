@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -21,7 +20,7 @@ class Hotel extends Equatable {
   final String localNumber;
   final String PhonePrefix;
   final String PhoneNumber;
-  final String Email;
+  final String email;
   Hotel({
     required this.hotelID,
     required this.name,
@@ -39,7 +38,7 @@ class Hotel extends Equatable {
     required this.localNumber,
     required this.PhonePrefix,
     required this.PhoneNumber,
-    required this.Email,
+    required this.email,
   });
 
   static Hotel fromSnapshot(DocumentSnapshot snap) {
@@ -60,7 +59,7 @@ class Hotel extends Equatable {
       localNumber: snap['local_number'] as String,
       PhonePrefix: snap['phone_prefix'] as String,
       PhoneNumber: snap['phone_number'] as String,
-      Email: snap['email'] as String,
+      email: snap['email'] as String,
     );
   }
 
@@ -82,7 +81,7 @@ class Hotel extends Equatable {
       'localNumber': localNumber,
       'PhonePrefix': PhonePrefix,
       'PhoneNumber': PhoneNumber,
-      'Email': Email,
+      'Email': email,
     };
   }
 
@@ -104,7 +103,7 @@ class Hotel extends Equatable {
       localNumber: map['localNumber'] as String,
       PhonePrefix: map['PhonePrefix'] as String,
       PhoneNumber: map['PhoneNumber'] as String,
-      Email: map['Email'] as String,
+      email: map['Email'] as String,
     );
   }
 
@@ -149,7 +148,7 @@ class Hotel extends Equatable {
       localNumber: localNumber ?? this.localNumber,
       PhonePrefix: PhonePrefix ?? this.PhonePrefix,
       PhoneNumber: PhoneNumber ?? this.PhoneNumber,
-      Email: Email ?? this.Email,
+      email: Email ?? this.email,
     );
   }
 
@@ -175,7 +174,7 @@ class Hotel extends Equatable {
       localNumber,
       PhonePrefix,
       PhoneNumber,
-      Email,
+      email,
     ];
   }
 }

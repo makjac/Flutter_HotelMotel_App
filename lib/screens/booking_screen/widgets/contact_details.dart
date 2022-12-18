@@ -73,7 +73,7 @@ class ContactDetails extends StatelessWidget {
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
               const SizedBox(height: Insets.xs),
-              _contactElement(Icons.email, "Email:", hotel.Email),
+              _contactElement(Icons.email, "Email:", hotel.email),
               _contactElement(Icons.phone, "Phone:",
                   "+${hotel.PhonePrefix} ${hotel.PhoneNumber}"),
             ],
