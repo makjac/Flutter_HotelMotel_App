@@ -1,4 +1,5 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:hotel_motel/models/hotel_model.dart';
 
 import '../../models/search_cryteria.dart';
 
@@ -33,6 +34,73 @@ class AnaliticsService {
       endDate: searchCryteria.timeRange.end.toString(),
       numberOfRooms: searchCryteria.rooms,
       numberOfPassengers: searchCryteria.adults + searchCryteria.kids,
+    );
+  }
+
+  Future LogViewHotel(Hotel hotel, double price) async {
+    await _analytics.logViewItem(
+      currency: 'PLN',
+      value: price,
+      items: [
+        AnalyticsEventItem(
+          itemId: hotel.hotelID,
+          itemName: hotel.name,
+          itemCategory: hotel.category,
+          itemCategory2: hotel.city,
+          price: price,
+        ),
+      ],
+    );
+  }
+
+  Future LogBeginCheckout(Hotel hotel, double price) async {
+    await _analytics.logBeginCheckout(
+      currency: 'PLN',
+      value: price,
+      items: [
+        AnalyticsEventItem(
+          itemId: hotel.hotelID,
+          itemName: hotel.name,
+          itemCategory: hotel.category,
+          itemCategory2: hotel.city,
+          price: price,
+        ),
+      ],
+    );
+  }
+
+  Future LogAddPaytmentInfo(
+      Hotel hotel, double price, String paytmentMethod) async {
+    await _analytics.logAddPaymentInfo(
+      currency: 'PLN',
+      value: price,
+      paymentType: paytmentMethod,
+      items: [
+        AnalyticsEventItem(
+          itemId: hotel.hotelID,
+          itemName: hotel.name,
+          itemCategory: hotel.category,
+          itemCategory2: hotel.city,
+          price: price,
+        ),
+      ],
+    );
+  }
+
+  Future LogPurchase(Hotel hotel, double price) async {
+    await _analytics.logPurchase(
+      currency: 'pln',
+      value: price,
+      tax: price * 0.23,
+      items: [
+        AnalyticsEventItem(
+          itemId: hotel.hotelID,
+          itemName: hotel.name,
+          itemCategory: hotel.category,
+          itemCategory2: hotel.city,
+          price: price,
+        ),
+      ],
     );
   }
 }
