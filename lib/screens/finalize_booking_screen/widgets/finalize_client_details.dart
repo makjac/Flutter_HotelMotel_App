@@ -43,18 +43,24 @@ class FinalizeClientDetails extends StatelessWidget {
                 );
               }
               return Center(
-                child: ElevatedButton(
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        BlocProvider.of<FinalizeBookingBloc>(context).add(
-                            UpdateUserDetails(
-                                userUid: locator
-                                    .get<UserController>()
-                                    .currentUserUid!,
-                                userDetails: userDetails));
-                      }
-                    },
-                    child: const Text("Save user details")),
+                child: SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.black,
+                      ),
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          BlocProvider.of<FinalizeBookingBloc>(context).add(
+                              UpdateUserDetails(
+                                  userUid: locator
+                                      .get<UserController>()
+                                      .currentUserUid!,
+                                  userDetails: userDetails));
+                        }
+                      },
+                      child: const Text("Save user details")),
+                ),
               );
             },
           )

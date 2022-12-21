@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hotel_motel/constans/route_name_constans.dart';
 import 'package:hotel_motel/controller/user/user_controller.dart';
 import 'package:hotel_motel/models/booking_model.dart';
 import 'package:hotel_motel/models/search_cryteria.dart';
@@ -9,6 +10,7 @@ import 'package:hotel_motel/screens/finalize_booking_screen/utils/finalize_booki
 import 'package:hotel_motel/screens/finalize_booking_screen/widgets/booking_details/finalize_booking_details.dart';
 import 'package:hotel_motel/screens/finalize_booking_screen/widgets/finalize_client_details.dart';
 import 'package:hotel_motel/screens/finalize_booking_screen/widgets/peytment/finalize_paytment_method.dart';
+import 'package:hotel_motel/service/analitics_service/analitics_service.dart';
 import 'package:hotel_motel/theme/theme_base.dart';
 import 'package:hotel_motel/widgets/decorations/app_divider.dart';
 
@@ -37,6 +39,17 @@ class FinalizeBookingPage extends StatefulWidget {
 }
 
 class _FinalizeBookingPageState extends State<FinalizeBookingPage> {
+  @override
+  void initState() {
+    locator<AnaliticsService>().LogBeginCheckout(
+        widget._arguments.hotel,
+        (widget._arguments.room.price *
+                widget._arguments.cryteria!.rooms *
+                widget._arguments.cryteria!.timeRange.duration.inDays)
+            .toDouble());
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     UserDetails _user;
@@ -78,6 +91,9 @@ class _FinalizeBookingPageState extends State<FinalizeBookingPage> {
                         },
                       );
                     }
+                    if (state is BookingCreated) {
+                      Navigator.pushNamed(context, AppRoute.HOME_ROUTE);
+                    }
                     return CircularProgressIndicator();
                   },
                 ),
@@ -88,25 +104,20 @@ class _FinalizeBookingPageState extends State<FinalizeBookingPage> {
                   },
                 ),
                 Center(
-                  child: ElevatedButton(
-                    onPressed: () {
-                      final Booking booking = Booking(
-                          bookingID: "",
-                          hotelID: widget._arguments.hotel.hotelID,
-                          roomID: widget._arguments.room.roomID,
-                          userUid:
-                              locator.get<UserController>().currentUser!.uid!,
-                          created: DateTime.now(),
-                          startTime:
-                              widget._arguments.cryteria!.timeRange.start,
-                          endTime: widget._arguments.cryteria!.timeRange.end,
-                          status: "active",
-                          payment: _paytmentMethod,
-                          opinion: "none");
-                      BlocProvider.of<FinalizeBookingBloc>(context)
-                          .add(CreateBooking(booking: booking));
-                    },
-                    child: const Text("Book a trip!"),
+                  child: Padding(
+                    padding: const EdgeInsets.all(Insets.s),
+                    child: SizedBox(
+                      width: double.infinity,
+                      child: BlocBuilder<FinalizeBookingBloc,
+                          FinalizeBookingState>(
+                        builder: (context, state) {
+                          if (state is CreateBooking) {
+                            return _loadingButton();
+                          }
+                          return _activeButton(_paytmentMethod);
+                        },
+                      ),
+                    ),
                   ),
                 ),
               ],
@@ -116,6 +127,45 @@ class _FinalizeBookingPageState extends State<FinalizeBookingPage> {
       ),
     );
   }
+
+  Widget _activeButton(String paytmentMethod) => ElevatedButton(
+        style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
+        onPressed: () {
+          final Booking booking = Booking(
+              bookingID: "",
+              hotelID: widget._arguments.hotel.hotelID,
+              roomID: widget._arguments.room.roomID,
+              userUid: locator.get<UserController>().currentUser!.uid!,
+              created: DateTime.now(),
+              startTime: widget._arguments.cryteria!.timeRange.start,
+              endTime: widget._arguments.cryteria!.timeRange.end,
+              status: "active",
+              payment: paytmentMethod,
+              opinion: "none");
+          locator<AnaliticsService>().LogAddPaytmentInfo(
+              widget._arguments.hotel,
+              (widget._arguments.room.price *
+                      widget._arguments.cryteria!.rooms *
+                      widget._arguments.cryteria!.timeRange.duration.inDays)
+                  .toDouble(),
+              paytmentMethod);
+          locator<AnaliticsService>().LogPurchase(
+              widget._arguments.hotel,
+              (widget._arguments.room.price *
+                      widget._arguments.cryteria!.rooms *
+                      widget._arguments.cryteria!.timeRange.duration.inDays)
+                  .toDouble());
+          BlocProvider.of<FinalizeBookingBloc>(context)
+              .add(CreateBooking(booking: booking));
+        },
+        child: const Text("Book a trip!"),
+      );
+
+  Widget _loadingButton() => ElevatedButton(
+        style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
+        onPressed: () {},
+        child: const CircularProgressIndicator(),
+      );
 
   void _updateTimeRange() {
     showDateRangePicker(

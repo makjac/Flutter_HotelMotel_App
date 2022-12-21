@@ -57,6 +57,7 @@ class AnaliticsService {
     await _analytics.logBeginCheckout(
       currency: 'PLN',
       value: price,
+      coupon: "",
       items: [
         AnalyticsEventItem(
           itemId: hotel.hotelID,
@@ -75,6 +76,7 @@ class AnaliticsService {
       currency: 'PLN',
       value: price,
       paymentType: paytmentMethod,
+      coupon: "",
       items: [
         AnalyticsEventItem(
           itemId: hotel.hotelID,
@@ -92,6 +94,7 @@ class AnaliticsService {
       currency: 'pln',
       value: price,
       tax: price * 0.23,
+      coupon: "",
       items: [
         AnalyticsEventItem(
           itemId: hotel.hotelID,
