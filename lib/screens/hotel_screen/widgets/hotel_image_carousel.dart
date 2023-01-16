@@ -5,10 +5,12 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class HotelImageCarousel extends StatefulWidget {
   final double height;
+  final List<dynamic> images;
 
   const HotelImageCarousel({
     Key? key,
     required this.height,
+    required this.images,
   }) : super(key: key);
 
   @override
@@ -26,7 +28,7 @@ class _HotelImageCarouselState extends State<HotelImageCarousel> {
       children: [
         CarouselSlider.builder(
           carouselController: _carouselControler,
-          itemCount: 3,
+          itemCount: widget.images.length,
           itemBuilder: ((context, index, realIndex) {
             return _buildImage(
                 "https://flutterappdev.com/wp-content/uploads/2019/03/Screen-Shot-2019-03-06-at-9.28.42-AM.png",
@@ -92,14 +94,14 @@ class _HotelImageCarouselState extends State<HotelImageCarousel> {
 
   Widget _buildImage(String urlImage, int index) => Container(
         child: Image.network(
-          hotelsUrl[index],
+          widget.images[index],
           fit: BoxFit.cover,
         ),
       );
 
   Widget _buildIndicator() => AnimatedSmoothIndicator(
         activeIndex: _activeIndex,
-        count: hotelsUrl.length,
+        count: widget.images.length,
         effect: const JumpingDotEffect(
           activeDotColor: Colors.white,
           dotColor: Colors.grey,

@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -21,6 +22,7 @@ class Hotel extends Equatable {
   final String PhonePrefix;
   final String PhoneNumber;
   final String email;
+  final List<dynamic> images;
   Hotel({
     required this.hotelID,
     required this.name,
@@ -39,6 +41,7 @@ class Hotel extends Equatable {
     required this.PhonePrefix,
     required this.PhoneNumber,
     required this.email,
+    required this.images,
   });
 
   static Hotel fromSnapshot(DocumentSnapshot snap) {
@@ -60,6 +63,7 @@ class Hotel extends Equatable {
       PhonePrefix: snap['phone_prefix'] as String,
       PhoneNumber: snap['phone_number'] as String,
       email: snap['email'] as String,
+      images: snap['images'] as List<dynamic>,
     );
   }
 
@@ -82,6 +86,7 @@ class Hotel extends Equatable {
       'PhonePrefix': PhonePrefix,
       'PhoneNumber': PhoneNumber,
       'Email': email,
+      'images': images,
     };
   }
 
@@ -104,6 +109,7 @@ class Hotel extends Equatable {
       PhonePrefix: map['PhonePrefix'] as String,
       PhoneNumber: map['PhoneNumber'] as String,
       email: map['Email'] as String,
+      images: map['images'] as List<dynamic>,
     );
   }
 
@@ -130,6 +136,7 @@ class Hotel extends Equatable {
     String? PhonePrefix,
     String? PhoneNumber,
     String? Email,
+    List<dynamic>? images,
   }) {
     return Hotel(
       hotelID: hotelID ?? this.hotelID,
@@ -149,6 +156,7 @@ class Hotel extends Equatable {
       PhonePrefix: PhonePrefix ?? this.PhonePrefix,
       PhoneNumber: PhoneNumber ?? this.PhoneNumber,
       email: Email ?? this.email,
+      images: images ?? this.images,
     );
   }
 
@@ -175,6 +183,7 @@ class Hotel extends Equatable {
       PhonePrefix,
       PhoneNumber,
       email,
+      images,
     ];
   }
 }

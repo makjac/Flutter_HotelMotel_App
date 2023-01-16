@@ -26,7 +26,7 @@ class BookingThumbnailContent extends StatelessWidget {
           Expanded(
             flex: 1,
             child: Image.network(
-              "https://pliki.propertydesign.pl/i/12/62/06/126206_r0_300.jpg",
+              hotel.images[0],
               fit: BoxFit.cover,
             ),
           ),

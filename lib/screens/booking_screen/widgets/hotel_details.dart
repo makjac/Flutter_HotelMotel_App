@@ -38,6 +38,7 @@ class HotelDetails extends StatelessWidget {
           HotelThumbnail(
             hotel: HotelThumbnailModel(
               hotelID: hotel.hotelID,
+              images: hotel.images,
               name: hotel.name,
               discount: room.discount,
               isFeeCanceling: hotel.isFreeCanceling,

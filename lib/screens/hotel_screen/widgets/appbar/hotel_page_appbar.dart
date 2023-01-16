@@ -43,7 +43,10 @@ class HotelPageAppbar implements SliverPersistentHeaderDelegate {
             opacity: 1 - progress,
             duration: const Duration(milliseconds: 150),
             child: SingleChildScrollView(
-                child: HotelImageCarousel(height: _maxExtent)),
+                child: HotelImageCarousel(
+              height: _maxExtent,
+              images: hotel.images,
+            )),
           ),
           Positioned(
             top: 0,

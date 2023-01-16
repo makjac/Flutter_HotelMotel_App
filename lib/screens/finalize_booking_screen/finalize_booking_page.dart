@@ -81,6 +81,10 @@ class _FinalizeBookingPageState extends State<FinalizeBookingPage> {
                     if (state is UserDetailsLoaded) {
                       _user = state.userDetails;
                     }
+                    if (state is BookingCreated) {
+                      Navigator.pushNamedAndRemoveUntil(
+                          context, AppRoute.HOME_ROUTE, (route) => false);
+                    }
                   },
                   builder: (context, state) {
                     if (state is UserDetailsLoaded) {
@@ -91,9 +95,7 @@ class _FinalizeBookingPageState extends State<FinalizeBookingPage> {
                         },
                       );
                     }
-                    if (state is BookingCreated) {
-                      Navigator.pushNamed(context, AppRoute.HOME_ROUTE);
-                    }
+
                     return CircularProgressIndicator();
                   },
                 ),
@@ -114,7 +116,7 @@ class _FinalizeBookingPageState extends State<FinalizeBookingPage> {
                           if (state is CreateBooking) {
                             return _loadingButton();
                           }
-                          return _activeButton(_paytmentMethod);
+                          return _activeButton(_paytmentMethod, context);
                         },
                       ),
                     ),
@@ -128,7 +130,8 @@ class _FinalizeBookingPageState extends State<FinalizeBookingPage> {
     );
   }
 
-  Widget _activeButton(String paytmentMethod) => ElevatedButton(
+  Widget _activeButton(String paytmentMethod, BuildContext context) =>
+      ElevatedButton(
         style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
         onPressed: () {
           final Booking booking = Booking(
