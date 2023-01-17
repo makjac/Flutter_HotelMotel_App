@@ -6,12 +6,14 @@ import 'package:hotel_motel/models/review_details_model.dart';
 
 // ignore: must_be_immutable
 class ReviewModel extends Equatable {
+  final String reviewID;
   final String hotelID;
   final String userUid;
   final String bookingID;
   ReviewDetailsModel details;
   String comment;
   ReviewModel({
+    required this.reviewID,
     required this.hotelID,
     required this.userUid,
     required this.bookingID,
@@ -43,6 +45,7 @@ class ReviewModel extends Equatable {
 
   factory ReviewModel.fromMap(Map<String, dynamic> map) {
     return ReviewModel(
+      reviewID: map['opinion_id'] as String,
       hotelID: map['hotel_id'] as String,
       userUid: map['reviewer_uid'] as String,
       bookingID: map['booking_id'] as String,
