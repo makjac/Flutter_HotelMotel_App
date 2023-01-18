@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:hotel_motel/models/review_model.dart';
-import 'package:hotel_motel/repository/model_repositores/review_repository/base_review_repository.dart';
+import 'package:hotel_motel/repository/review_repository/base_review_repository.dart';
 
 class ReviewRepository extends BaseReviewRepository {
   final FirebaseFirestore _firestore;

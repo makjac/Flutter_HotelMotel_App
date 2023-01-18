@@ -1,9 +1,9 @@
 import 'dart:io';
 
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:hotel_motel/repository/firebase/storage/base_storage_repository.dart';
+import 'package:hotel_motel/service/storage/base_storage_service.dart';
 
-class StorageRepository extends BaseStorageRepository {
+class StorageService extends BaseStorageService {
   final String profileImgLicatoion = "user/profile/";
   final FirebaseStorage _storage =
       FirebaseStorage.instanceFor(bucket: "gs://hotelmotel-66527.appspot.com");

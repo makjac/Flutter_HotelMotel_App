@@ -1,6 +1,6 @@
 import '../../../models/user_model.dart';
 
-abstract class BaseAuthRepository {
+abstract class BaseAuthService {
   Future<UserModel> getUser();
 
   Future<void> signUp({required String email, required String passwd});

@@ -2,11 +2,11 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:hotel_motel/repository/model_repositores/booking_repository/booking_repository.dart';
-import 'package:hotel_motel/repository/model_repositores/user_details_repository/user_details_repository.dart';
 
 import '../../models/booking_model.dart';
 import '../../models/user_details.dart';
+import '../../repository/booking_repository/booking_repository.dart';
+import '../../repository/user_details_repository/user_details_repository.dart';
 
 part 'finalize_booking_event.dart';
 part 'finalize_booking_state.dart';

@@ -1,7 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:cloud_firestore/cloud_firestore.dart';
-
-import 'package:hotel_motel/repository/model_repositores/booking_repository/base_booking_repository.dart';
+import 'package:hotel_motel/repository/booking_repository/base_booking_repository.dart';
 
 import '../../../models/booking_model.dart';
 

@@ -5,27 +5,27 @@ import 'package:hotel_motel/bloc/hotel_thumbnail/hotel_thumbnail_bloc.dart';
 import 'package:hotel_motel/bloc/review/review_bloc.dart';
 import 'package:hotel_motel/controller/storage/storage_controller.dart';
 import 'package:hotel_motel/controller/user/user_controller.dart';
-import 'package:hotel_motel/repository/firebase/auth/auth_repository.dart';
 import 'package:hotel_motel/repository/fb_firestore_repository.dart';
-import 'package:hotel_motel/repository/firebase/storage/storage_repository.dart';
-import 'package:hotel_motel/repository/model_repositores/category/category_repository.dart';
-import 'package:hotel_motel/repository/model_repositores/hotel_repository/hotel_repository.dart';
-import 'package:hotel_motel/repository/model_repositores/review_repository/review_repository.dart';
-import 'package:hotel_motel/repository/model_repositores/room_repository/room_repository.dart';
+import 'package:hotel_motel/repository/hotel_repository/hotel_repository.dart';
 import 'package:hotel_motel/repository/model_repositores/user_repository/user_repository.dart';
+import 'package:hotel_motel/repository/review_repository/review_repository.dart';
+import 'package:hotel_motel/repository/room_repository/room_repository.dart';
 import 'package:hotel_motel/service/analitics_service/analitics_service.dart';
+import 'package:hotel_motel/service/auth/auth_service.dart';
+import 'package:hotel_motel/service/storage/storage_service.dart';
 
 import 'bloc/bookings/bookings_bloc.dart';
 import 'bloc/hotel/hotel_page_bloc.dart';
 import 'bloc/results/result_search_bloc.dart';
 import 'bloc/search/rcomended_bloc.dart';
+import 'repository/category/category_repository.dart';
 
 final locator = GetIt.instance;
 
 setupServices() {
   //repositores
-  locator.registerSingleton<AuthRepository>(AuthRepository());
-  locator.registerSingleton<StorageRepository>(StorageRepository());
+  locator.registerSingleton<AuthService>(AuthService());
+  locator.registerSingleton<StorageService>(StorageService());
   locator.registerSingleton<FirestoreRepository>(FirestoreRepository());
   locator.registerSingleton<HotelRepository>(HotelRepository());
   locator.registerSingleton<RoomRepository>(RoomRepository());

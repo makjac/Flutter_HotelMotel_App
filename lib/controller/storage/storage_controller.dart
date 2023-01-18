@@ -1,6 +1,7 @@
-import 'package:hotel_motel/repository/firebase/storage/storage_repository.dart';
 import 'package:hotel_motel/locator.dart';
 
+import '../../service/storage/storage_service.dart';
+
 class StorageController {
-  final StorageRepository _storageRepo = locator.get<StorageRepository>();
+  final StorageService _storageRepo = locator.get<StorageService>();
 }

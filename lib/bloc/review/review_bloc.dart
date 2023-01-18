@@ -2,10 +2,10 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:hotel_motel/repository/model_repositores/booking_repository/booking_repository.dart';
-import 'package:hotel_motel/repository/model_repositores/review_repository/review_repository.dart';
 
 import '../../models/review_model.dart';
+import '../../repository/booking_repository/booking_repository.dart';
+import '../../repository/review_repository/review_repository.dart';
 
 part 'review_event.dart';
 part 'review_state.dart';

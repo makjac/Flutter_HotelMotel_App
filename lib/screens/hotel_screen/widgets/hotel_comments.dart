@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 
 import 'package:hotel_motel/locator.dart';
 import 'package:hotel_motel/models/review_model.dart';
-import 'package:hotel_motel/repository/model_repositores/review_repository/review_repository.dart';
 import 'package:hotel_motel/screens/hotel_screen/widgets/hotel_opinion.dart';
+
+import '../../../repository/review_repository/review_repository.dart';
 
 class HotelComments extends StatelessWidget {
   final String hotelID;

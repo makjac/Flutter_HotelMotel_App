@@ -1,6 +1,6 @@
 import 'dart:io';
 
-abstract class BaseStorageRepository {
+abstract class BaseStorageService {
   Future<void> uploadProfileFile(File file, String? uid);
 
   Future<String> getProfulrImgUrl(String? uid);

@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:hotel_motel/repository/model_repositores/favorite_repository/favorite_repository.dart';
+import 'package:hotel_motel/repository/favorite_repository/favorite_repository.dart';
 import 'package:hotel_motel/repository/model_repositores/user_repository/base_user_repository.dart';
 
 import '../../../models/favorite_model.dart';

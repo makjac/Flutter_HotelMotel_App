@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../../models/user_model.dart';
 
-class AuthRepository {
+class AuthService {
   final _firebaseAuth = FirebaseAuth.instance;
 
   Future<UserModel> getUser() async {

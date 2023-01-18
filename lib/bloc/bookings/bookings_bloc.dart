@@ -3,12 +3,12 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:hotel_motel/controller/user/user_controller.dart';
-import 'package:hotel_motel/repository/model_repositores/booking_repository/booking_repository.dart';
-import 'package:hotel_motel/repository/model_repositores/hotel_repository/hotel_repository.dart';
-import 'package:hotel_motel/repository/model_repositores/room_repository/room_repository.dart';
 import 'package:hotel_motel/locator.dart';
 
 import '../../models/booking_thumbnail_model.dart';
+import '../../repository/booking_repository/booking_repository.dart';
+import '../../repository/hotel_repository/hotel_repository.dart';
+import '../../repository/room_repository/room_repository.dart';
 
 part 'bookings_event.dart';
 part 'bookings_state.dart';
