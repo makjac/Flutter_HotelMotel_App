@@ -23,10 +23,8 @@ class UserModel extends Equatable {
   static UserModel fromSnapshot(DocumentSnapshot snap) {
     return UserModel(
       uid: snap.id,
-      anonim: snap['anomin'] != null ? snap['anonim'] as bool : null,
-      avatarUrl:
-          snap['avatar_url'] != null ? snap['avatar_url'] as String : null,
-      displayName: snap['username'] != null ? snap['usernale'] as String : null,
+      anonim: snap['anonim'] != null ? snap['anonim'] as bool : null,
+      displayName: snap['username'] != null ? snap['username'] as String : null,
     );
   }
 

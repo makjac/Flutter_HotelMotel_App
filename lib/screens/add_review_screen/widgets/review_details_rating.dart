@@ -50,35 +50,35 @@ class _ReviewDetailsRatingState extends State<ReviewDetailsRating> {
           children: [
             ReviewDetailsSlider(
                 label: "Purity",
-                value: details.purity,
+                value: details.purity.toDouble(),
                 onChanged: (value) {
                   details.purity = value;
                   widget.onChanged(details);
                 }),
             ReviewDetailsSlider(
                 label: "Comfort",
-                value: details.comfort,
+                value: details.comfort.toDouble(),
                 onChanged: (value) {
                   details.comfort = value;
                   widget.onChanged(details);
                 }),
             ReviewDetailsSlider(
                 label: "Amenities",
-                value: details.amenities,
+                value: details.amenities.toDouble(),
                 onChanged: (value) {
                   details.amenities = value;
                   widget.onChanged(details);
                 }),
             ReviewDetailsSlider(
                 label: "Staff",
-                value: details.staff,
+                value: details.staff.toDouble(),
                 onChanged: (value) {
                   details.staff = value;
                   widget.onChanged(details);
                 }),
             ReviewDetailsSlider(
                 label: "Price",
-                value: details.price,
+                value: details.price.toDouble(),
                 onChanged: (value) {
                   details.price = value;
                   widget.onChanged(details);

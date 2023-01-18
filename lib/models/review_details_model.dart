@@ -5,13 +5,13 @@ import 'package:equatable/equatable.dart';
 
 // ignore: must_be_immutable
 class ReviewDetailsModel extends Equatable {
-  double total;
-  double purity;
-  double comfort;
-  double amenities;
-  double staff;
-  double location;
-  double price;
+  num total;
+  num purity;
+  num comfort;
+  num amenities;
+  num staff;
+  num location;
+  num price;
   ReviewDetailsModel({
     this.total = 0,
     this.purity = 0,
@@ -47,13 +47,13 @@ class ReviewDetailsModel extends Equatable {
 
   factory ReviewDetailsModel.fromMap(Map<String, dynamic> map) {
     return ReviewDetailsModel(
-      total: map['total'] as double,
-      purity: map['cleanliness'] as double,
-      comfort: map['comfort'] as double,
-      amenities: map['amenities'] as double,
-      staff: map['personnel'] as double,
-      location: map['location'] as double,
-      price: map['price'] as double,
+      total: map['total'] as num,
+      purity: map['cleanliness'] as num,
+      comfort: map['comfort'] as num,
+      amenities: map['amenities'] as num,
+      staff: map['personnel'] as num,
+      location: map['location'] as num,
+      price: map['price'] as num,
     );
   }
 

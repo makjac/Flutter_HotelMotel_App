@@ -10,7 +10,9 @@ import 'package:hotel_motel/repository/fb_firestore_repository.dart';
 import 'package:hotel_motel/repository/firebase/storage/storage_repository.dart';
 import 'package:hotel_motel/repository/model_repositores/category/category_repository.dart';
 import 'package:hotel_motel/repository/model_repositores/hotel_repository/hotel_repository.dart';
+import 'package:hotel_motel/repository/model_repositores/review_repository/review_repository.dart';
 import 'package:hotel_motel/repository/model_repositores/room_repository/room_repository.dart';
+import 'package:hotel_motel/repository/model_repositores/user_repository/user_repository.dart';
 import 'package:hotel_motel/service/analitics_service/analitics_service.dart';
 
 import 'bloc/bookings/bookings_bloc.dart';
@@ -27,6 +29,8 @@ setupServices() {
   locator.registerSingleton<FirestoreRepository>(FirestoreRepository());
   locator.registerSingleton<HotelRepository>(HotelRepository());
   locator.registerSingleton<RoomRepository>(RoomRepository());
+  locator.registerSingleton<ReviewRepository>(ReviewRepository());
+  locator.registerSingleton<UserRepository>(UserRepository());
 
   //services
   locator.registerLazySingleton<AnaliticsService>(() => AnaliticsService());

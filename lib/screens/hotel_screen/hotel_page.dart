@@ -4,6 +4,7 @@ import 'package:hotel_motel/constans/route_name_constans.dart';
 import 'package:hotel_motel/screens/finalize_booking_screen/utils/finalize_booking_arguments.dart';
 import 'package:hotel_motel/screens/hotel_screen/widgets/hotel_amenities.dart';
 import 'package:hotel_motel/screens/hotel_screen/widgets/appbar/hotel_page_appbar.dart';
+import 'package:hotel_motel/screens/hotel_screen/widgets/hotel_comments.dart';
 import 'package:hotel_motel/screens/hotel_screen/widgets/hotel_page_title.dart';
 import 'package:hotel_motel/screens/hotel_screen/widgets/hotel_price_container.dart';
 import 'package:hotel_motel/screens/hotel_screen/widgets/summary/hotel_summary.dart';
@@ -130,7 +131,9 @@ class _HotelPageState extends State<HotelPage> {
           HotelSummary(hotel: hotel),
           HotelAmenities(room: rooms[0]),
           const SizedBox(height: Insets.m),
-          _opinions(width)
+          _opinions(width),
+          HotelComments(hotelID: hotel.hotelID),
+          SizedBox(height: 60),
         ],
       ),
     );

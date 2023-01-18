@@ -17,7 +17,12 @@ class ReviewRepository extends BaseReviewRepository {
 
   @override
   Stream<List<ReviewModel>> GetHotelReviews(String hotelID) {
-    // TODO: implement GetHotelReviews
-    throw UnimplementedError();
+    var reviewRef =
+        _firestore.collection('opinion').where('hotel_id', isEqualTo: hotelID);
+    return reviewRef.snapshots().map((review) {
+      return review.docs
+          .map((hotelDoc) => ReviewModel.fromSnapshot(hotelDoc))
+          .toList();
+    });
   }
 }
