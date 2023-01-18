@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hotel_motel/theme/theme_base.dart';
-import 'package:hotel_motel/utils/scale.dart';
 
 class ProfileHeader extends StatelessWidget {
   final String? imgUrl;
@@ -14,33 +13,13 @@ class ProfileHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
     return Stack(
       children: [
         Column(
           children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  flex: 1,
-                  child: _statChip("Trips:", "3", width),
-                ),
-                _spacer(),
-                Expanded(
-                  flex: 1,
-                  child: _statChip("something:", "8", width),
-                ),
-                _spacer(),
-                Expanded(
-                  flex: 1,
-                  child: _statChip("hahahahahahahahahahah:", "190", width),
-                ),
-              ],
-            ),
             Container(
               width: double.infinity,
-              height: 70,
+              height: 60,
               decoration: const BoxDecoration(
                 color: InsetsColors.abBackgroundColor,
                 borderRadius: BorderRadius.vertical(
@@ -69,51 +48,6 @@ class ProfileHeader extends StatelessWidget {
         ),
         _profileImage(),
       ],
-    );
-  }
-
-  Widget _spacer() {
-    return Container(
-      width: 2,
-      height: 70,
-      color: Colors.brown[300],
-    );
-  }
-
-  Widget _statChip(String title, String score, double width) {
-    return Container(
-      height: 70,
-      decoration: BoxDecoration(
-        color: Colors.brown[400],
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(Insets.xs),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              title,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              textScaleFactor: Scale.textScale(width, 1.3),
-              style: const TextStyle(
-                fontWeight: FontWeight.w600,
-                fontSize: 15,
-                color: Colors.white,
-              ),
-            ),
-            const SizedBox(height: 3),
-            Text(
-              score,
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-                color: Colors.white,
-              ),
-            )
-          ],
-        ),
-      ),
     );
   }
 
@@ -146,7 +80,7 @@ class ProfileHeader extends StatelessWidget {
               imgUrl!,
             )
           : const NetworkImage(
-              "https://firebasestorage.googleapis.com/v0/b/hotelmotel-66527.appspot.com/o/default-avatar-profile-vector-user-profile-default-avatar-profile-vector-user-profile-profile-179376714.jpeg?alt=media&token=af8c479a-585d-44da-a9b6-f43035f6ef09"),
+              "https://firebasestorage.googleapis.com/v0/b/hotelmotel-66527.appspot.com/o/default_user.png?alt=media&token=c7fedb11-9c37-4c0a-8417-bdc769803a6b"),
     );
   }
 }

@@ -45,8 +45,7 @@ class _ProfilePageState extends State<ProfilePage> {
       appBar: AppBar(
         title: Text("Hi, ${currentUser?.displayName ?? "nice to see you"}!"),
         backgroundColor: InsetsColors.abBackgroundColor,
-        //shadowColor: Colors.transparent,
-        shadowColor: Colors.brown,
+        shadowColor: Colors.transparent,
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -62,11 +61,6 @@ class _ProfilePageState extends State<ProfilePage> {
               padding: const EdgeInsets.all(Insets.s),
               child: Column(
                 children: [
-                  _button(
-                    Icons.add_business,
-                    "Register own hotel",
-                    () {},
-                  ),
                   const SizedBox(height: Insets.xs),
                   _logoutButton(),
                 ],
