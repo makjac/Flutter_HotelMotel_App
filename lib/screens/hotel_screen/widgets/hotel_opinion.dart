@@ -45,80 +45,84 @@ class _HotelOpinionState extends State<HotelOpinion>
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<UserModel>(
-      stream:
-          locator.get<UserRepository>().getUserDetails(widget.opinion.userUid),
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          return AnimatedContainer(
-            duration: const Duration(milliseconds: 500),
-            padding: EdgeInsets.all(Insets.xs),
-            color: isDetailsVisible ? Colors.black12 : Colors.transparent,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    snapshot.data!.anonim == false
-                        ? _profileAvatar()
-                        : _anonimAvatar(),
-                    SizedBox(width: Insets.xs),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        snapshot.data!.anonim == false
-                            ? Text(
-                                snapshot.data!.displayName ?? "Anonim",
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              )
-                            : Text(
-                                "Anonim",
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                        RatingBar(
-                          itemCount: 5,
-                          initialRating:
-                              (widget.opinion.details.total / 20).toDouble(),
-                          direction: Axis.horizontal,
-                          allowHalfRating: true,
-                          ignoreGestures: true,
-                          itemSize: 23,
-                          ratingWidget: RatingWidget(
-                            empty: Icon(Icons.star_border_rounded,
-                                color: InsetsColors.emptyStarColor),
-                            half: Icon(Icons.star_half_rounded,
-                                color: InsetsColors.halfStarColor),
-                            full: Icon(Icons.star_rounded,
-                                color: InsetsColors.fullStarColor),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: Insets.xs),
+      child: StreamBuilder<UserModel>(
+        stream: locator
+            .get<UserRepository>()
+            .getUserDetails(widget.opinion.userUid),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return AnimatedContainer(
+              duration: const Duration(milliseconds: 500),
+              padding: EdgeInsets.all(Insets.xs),
+              color: isDetailsVisible ? Colors.black12 : Colors.transparent,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      snapshot.data!.anonim == false
+                          ? _profileAvatar()
+                          : _anonimAvatar(),
+                      SizedBox(width: Insets.xs),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          snapshot.data!.anonim == false
+                              ? Text(
+                                  snapshot.data!.displayName ?? "Anonim",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                )
+                              : Text(
+                                  "Anonim",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                          RatingBar(
+                            itemCount: 5,
+                            initialRating:
+                                (widget.opinion.details.total / 20).toDouble(),
+                            direction: Axis.horizontal,
+                            allowHalfRating: true,
+                            ignoreGestures: true,
+                            itemSize: 23,
+                            ratingWidget: RatingWidget(
+                              empty: Icon(Icons.star_border_rounded,
+                                  color: InsetsColors.emptyStarColor),
+                              half: Icon(Icons.star_half_rounded,
+                                  color: InsetsColors.halfStarColor),
+                              full: Icon(Icons.star_rounded,
+                                  color: InsetsColors.fullStarColor),
+                            ),
+                            onRatingUpdate: (value) {},
                           ),
-                          onRatingUpdate: (value) {},
-                        ),
-                      ],
-                    ),
-                    Spacer(),
-                    IconButton(
-                        onPressed: () => setState(() {
-                              isDetailsVisible = !isDetailsVisible;
-                              _toggleContainer();
-                            }),
-                        icon: isDetailsVisible
-                            ? Icon(Icons.keyboard_arrow_up_rounded)
-                            : Icon(Icons.keyboard_arrow_down_rounded)),
-                  ],
-                ),
-                SizedBox(height: Insets.xs),
-                _moreDetails(),
-                SizedBox(height: Insets.xs),
-                Text(
-                  widget.opinion.comment,
-                  textAlign: TextAlign.justify,
-                ),
-              ],
-            ),
-          );
-        }
-        return Container();
-      },
+                        ],
+                      ),
+                      Spacer(),
+                      IconButton(
+                          onPressed: () => setState(() {
+                                isDetailsVisible = !isDetailsVisible;
+                                _toggleContainer();
+                              }),
+                          icon: isDetailsVisible
+                              ? Icon(Icons.keyboard_arrow_up_rounded)
+                              : Icon(Icons.keyboard_arrow_down_rounded)),
+                    ],
+                  ),
+                  SizedBox(height: Insets.xs),
+                  _moreDetails(),
+                  SizedBox(height: Insets.xs),
+                  Text(
+                    widget.opinion.comment,
+                    textAlign: TextAlign.justify,
+                  ),
+                ],
+              ),
+            );
+          }
+          return Container();
+        },
+      ),
     );
   }
 
