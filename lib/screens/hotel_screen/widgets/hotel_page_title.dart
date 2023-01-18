@@ -60,7 +60,6 @@ class HotelPageTitle extends StatelessWidget {
               number: (hotel.rating / 100) * 5,
               textPadding: 5,
               textScale: 1.3,
-              color: Colors.black,
             ),
           ),
         ),

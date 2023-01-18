@@ -61,7 +61,6 @@ class _HotelSummaryState extends State<HotelSummary> {
               number: (hotel.rating / 100) * 5,
               textPadding: 5,
               textScale: 1.1,
-              color: Colors.black,
             ),
             const SizedBox(width: Insets.xs),
             _stars(width, hotel.rating),

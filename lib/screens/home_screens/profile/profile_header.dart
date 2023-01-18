@@ -34,7 +34,7 @@ class ProfileHeader extends StatelessWidget {
                       blurStyle: BlurStyle.normal,
                       spreadRadius: 0),
                   BoxShadow(
-                      color: Color.fromARGB(58, 83, 55, 2),
+                      color: Color.fromARGB(57, 67, 67, 67),
                       offset: Offset(0, 5),
                       //color: Colors.brown,
                       blurRadius: 5,
@@ -57,7 +57,7 @@ class ProfileHeader extends StatelessWidget {
       left: 0,
       right: 0,
       child: CircleAvatar(
-        backgroundColor: Colors.brown,
+        backgroundColor: Color.fromARGB(255, 66, 66, 66),
         radius: 60,
         child: CircleAvatar(
           backgroundColor: Colors.white,

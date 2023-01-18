@@ -1,5 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-
 import 'package:flutter/material.dart';
 import 'package:hotel_motel/constans/route_name_constans.dart';
 import 'package:hotel_motel/models/search_cryteria.dart';
@@ -50,7 +48,7 @@ class _SearchFormState extends State<SearchForm> {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: Colors.white,
-          border: Border.all(color: Colors.brown, width: 5)),
+          border: Border.all(color: Color.fromARGB(255, 66, 66, 66), width: 5)),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -68,7 +66,7 @@ class _SearchFormState extends State<SearchForm> {
 
   Widget _spacer() {
     return Container(
-      color: Colors.brown,
+      color: Color.fromARGB(255, 66, 66, 66),
       width: double.infinity,
       height: 5,
     );
@@ -304,7 +302,7 @@ class _SearchFormState extends State<SearchForm> {
         splashColor: InsetsColors.splashColor,
         child: Container(
           width: double.infinity,
-          color: Colors.brown[400],
+          color: Color.fromARGB(255, 105, 105, 105),
           child: const Center(
               child: Padding(
             padding: EdgeInsets.all(13),

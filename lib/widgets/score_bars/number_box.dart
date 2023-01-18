@@ -6,13 +6,11 @@ import 'package:hotel_motel/utils/scale.dart';
 // ignore: must_be_immutable
 class NumberBox extends StatelessWidget {
   final num number;
-  Color color;
   double textPadding;
   double textScale;
   NumberBox({
     Key? key,
     required this.number,
-    this.color = Colors.brown,
     this.textPadding = 3,
     this.textScale = 1,
   }) : super(key: key);
@@ -21,8 +19,9 @@ class NumberBox extends StatelessWidget {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     return Container(
-      decoration:
-          BoxDecoration(color: color, borderRadius: BorderRadius.circular(5)),
+      decoration: BoxDecoration(
+          color: Color.fromARGB(255, 66, 66, 66),
+          borderRadius: BorderRadius.circular(5)),
       child: Padding(
         padding: EdgeInsets.all(textPadding),
         child: Center(

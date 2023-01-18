@@ -103,10 +103,11 @@ class HotelThumbnail extends StatelessWidget {
       ignoreGestures: true,
       itemSize: 23 * Scale.textScale(width, 1.3),
       ratingWidget: RatingWidget(
-        empty:
-            Icon(Icons.star_border_rounded, color: InsetsColors.emptyStarColor),
-        half: Icon(Icons.star_half_rounded, color: InsetsColors.halfStarColor),
-        full: Icon(Icons.star_rounded, color: InsetsColors.fullStarColor),
+        empty: Icon(Icons.star_border_rounded,
+            color: Color.fromARGB(255, 201, 201, 201)),
+        half: Icon(Icons.star_half_rounded,
+            color: Color.fromARGB(255, 138, 138, 138)),
+        full: Icon(Icons.star_rounded, color: Color.fromARGB(255, 66, 66, 66)),
       ),
       onRatingUpdate: (value) {},
     );
