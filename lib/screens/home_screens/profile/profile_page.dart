@@ -7,6 +7,7 @@ import 'package:hotel_motel/constans/route_name_constans.dart';
 import 'package:hotel_motel/controller/user/user_controller.dart';
 import 'package:hotel_motel/locator.dart';
 import 'package:hotel_motel/screens/home_screens/profile/profile_header.dart';
+import 'package:hotel_motel/screens/home_screens/profile/widgets/profile_reset_password_button.dart';
 import 'package:hotel_motel/theme/theme_base.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -61,6 +62,7 @@ class _ProfilePageState extends State<ProfilePage> {
               padding: const EdgeInsets.all(Insets.s),
               child: Column(
                 children: [
+                  const ProfileResetPasswordButton(),
                   const SizedBox(height: Insets.xs),
                   _logoutButton(),
                 ],

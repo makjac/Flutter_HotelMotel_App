@@ -1,6 +1,5 @@
 import 'package:get_it/get_it.dart';
 import 'package:hotel_motel/bloc/auth/auth_bloc.dart';
-import 'package:hotel_motel/bloc/category/category_bloc.dart';
 import 'package:hotel_motel/bloc/hotel_thumbnail/hotel_thumbnail_bloc.dart';
 import 'package:hotel_motel/bloc/review/review_bloc.dart';
 import 'package:hotel_motel/controller/storage/storage_controller.dart';
@@ -18,7 +17,6 @@ import 'bloc/bookings/bookings_bloc.dart';
 import 'bloc/hotel/hotel_page_bloc.dart';
 import 'bloc/results/result_search_bloc.dart';
 import 'bloc/search/rcomended_bloc.dart';
-import 'repository/category/category_repository.dart';
 
 final locator = GetIt.instance;
 
@@ -41,9 +39,6 @@ setupServices() {
 
   //blocs
   locator.registerSingleton<AuthBloc>(AuthBloc());
-  locator.registerSingleton<CategoryBloc>(CategoryBloc(
-    categoryRepository: CategoryRepository(),
-  ));
   locator.registerSingleton<HotelThumbnailBloc>(HotelThumbnailBloc());
   locator.registerSingleton<ResultSearchBloc>(
     ResultSearchBloc(

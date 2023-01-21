@@ -3,11 +3,11 @@ import 'dart:io';
 import 'package:hotel_motel/controller/user/base_user_controller.dart';
 import 'package:hotel_motel/repository/model_repositores/user_repository/user_repository.dart';
 import 'package:hotel_motel/locator.dart';
-import 'package:hotel_motel/service/storage/storage_service.dart';
 
 import '../../models/user_model.dart';
 import '../../service/analitics_service/analitics_service.dart';
 import '../../service/auth/auth_service.dart';
+import '../../service/storage/storage_service.dart';
 
 class UserController extends BaseUserController {
   late UserModel _currentUser;

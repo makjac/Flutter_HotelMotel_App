@@ -2,7 +2,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hotel_motel/bloc/auth/auth_bloc.dart';
-import 'package:hotel_motel/bloc/category/category_bloc.dart';
 import 'package:hotel_motel/bloc/hotel_thumbnail/hotel_thumbnail_bloc.dart';
 import 'package:hotel_motel/bloc/review/review_bloc.dart';
 import 'package:hotel_motel/firebase_options.dart';
@@ -34,8 +33,6 @@ Future<void> main() async {
         BlocProvider<AuthBloc>(
           create: (context) => locator.get<AuthBloc>(),
         ),
-        BlocProvider<CategoryBloc>(
-            create: (context) => locator.get<CategoryBloc>()),
         BlocProvider<HotelThumbnailBloc>(
             create: (context) =>
                 locator.get<HotelThumbnailBloc>()..add(LoadThumbnails())),
