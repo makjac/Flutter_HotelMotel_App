@@ -9,6 +9,7 @@ import 'package:hotel_motel/repository/hotel_repository/hotel_repository.dart';
 import 'package:hotel_motel/repository/model_repositores/user_repository/user_repository.dart';
 import 'package:hotel_motel/repository/review_repository/review_repository.dart';
 import 'package:hotel_motel/repository/room_repository/room_repository.dart';
+import 'package:hotel_motel/repository/user_details_repository/user_details_repository.dart';
 import 'package:hotel_motel/service/analitics_service/analitics_service.dart';
 import 'package:hotel_motel/service/auth/auth_service.dart';
 import 'package:hotel_motel/service/storage/storage_service.dart';
@@ -29,6 +30,7 @@ setupServices() {
   locator.registerSingleton<RoomRepository>(RoomRepository());
   locator.registerSingleton<ReviewRepository>(ReviewRepository());
   locator.registerSingleton<UserRepository>(UserRepository());
+  locator.registerSingleton<UserDetailsRepository>(UserDetailsRepository());
 
   //services
   locator.registerLazySingleton<AnaliticsService>(() => AnaliticsService());
