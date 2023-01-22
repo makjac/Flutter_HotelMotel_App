@@ -2,7 +2,6 @@ import 'package:get_it/get_it.dart';
 import 'package:hotel_motel/bloc/auth/auth_bloc.dart';
 import 'package:hotel_motel/bloc/hotel_thumbnail/hotel_thumbnail_bloc.dart';
 import 'package:hotel_motel/bloc/review/review_bloc.dart';
-import 'package:hotel_motel/controller/storage/storage_controller.dart';
 import 'package:hotel_motel/controller/user/user_controller.dart';
 import 'package:hotel_motel/repository/fb_firestore_repository.dart';
 import 'package:hotel_motel/repository/hotel_repository/hotel_repository.dart';
@@ -37,7 +36,6 @@ setupServices() {
 
   //controllers
   locator.registerSingleton<UserController>(UserController());
-  locator.registerSingleton<StorageController>(StorageController());
 
   //blocs
   locator.registerSingleton<AuthBloc>(AuthBloc());
