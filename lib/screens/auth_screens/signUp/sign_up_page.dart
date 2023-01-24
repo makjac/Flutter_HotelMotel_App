@@ -18,8 +18,14 @@ class SignUpPage extends StatelessWidget {
         body: BlocListener<AuthBloc, AuthState>(
           listener: (ctx, state) {
             if (state is Authorized) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: const Text(
+                      "Yay! You have crated a account! Please login ;)"),
+                ),
+              );
               Navigator.pushNamedAndRemoveUntil(
-                  context, AppRoute.HOME_ROUTE, (route) => false);
+                  context, AppRoute.LOGIN_ROUTE, (route) => false);
             }
             if (state is AuthError) {
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(

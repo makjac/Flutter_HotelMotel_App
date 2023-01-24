@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:hotel_motel/controller/user/base_user_controller.dart';
-import 'package:hotel_motel/repository/model_repositores/user_repository/user_repository.dart';
+import 'package:hotel_motel/repository/user_repository/user_repository.dart';
 import 'package:hotel_motel/locator.dart';
 
 import '../../models/user_model.dart';

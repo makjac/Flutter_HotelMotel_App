@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:hotel_motel/screens/finalize_booking_screen/widgets/finalize_header.dart';
 import 'package:hotel_motel/theme/design_system.dart';
+import 'package:hotel_motel/widgets/TextFormFields/input_field.dart';
 
 import '../../../models/user_details.dart';
 import '../../../../locator.dart';
@@ -74,83 +75,83 @@ class FinalizeClientDetails extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            _inputField(
-              "Name",
-              Icon(Icons.person),
-              userDetails.name,
-              (newName) {
+            InputField(
+              label: "Name",
+              prefixIcon: Icon(Icons.person),
+              initValue: userDetails.name,
+              onChanged: (newName) {
                 userDetails.name = newName!;
                 getDetails(userDetails);
               },
             ),
-            _inputField(
-              "Surname",
-              Icon(Icons.person),
-              userDetails.surname,
-              (newSurname) {
+            InputField(
+              label: "Surname",
+              prefixIcon: Icon(Icons.person),
+              initValue: userDetails.surname,
+              onChanged: (newSurname) {
                 userDetails.surname = newSurname!;
                 getDetails(userDetails);
               },
             ),
-            _inputField(
-              "Street",
-              Icon(Icons.location_city),
-              userDetails.street,
-              (newStreet) {
+            InputField(
+              label: "Street",
+              prefixIcon: Icon(Icons.location_city),
+              initValue: userDetails.street,
+              onChanged: (newStreet) {
                 userDetails.street = newStreet!;
                 getDetails(userDetails);
               },
             ),
-            _inputField(
-              "Building Number",
-              Icon(Icons.location_city),
-              userDetails.buildingNumber,
-              (newBN) {
+            InputField(
+              label: "Building Number",
+              prefixIcon: Icon(Icons.location_city),
+              initValue: userDetails.buildingNumber,
+              onChanged: (newBN) {
                 userDetails.buildingNumber = newBN ?? "";
                 getDetails(userDetails);
               },
             ),
-            _inputField(
-              "Local Number",
-              Icon(Icons.location_city),
-              userDetails.localNumber,
-              (newLN) {
+            InputField(
+              label: "Local Number",
+              prefixIcon: Icon(Icons.location_city),
+              initValue: userDetails.localNumber,
+              onChanged: (newLN) {
                 userDetails.localNumber = newLN ?? "";
                 getDetails(userDetails);
               },
             ),
-            _inputField(
-              "City",
-              Icon(Icons.location_city),
-              userDetails.city,
-              (newCity) {
+            InputField(
+              label: "City",
+              prefixIcon: Icon(Icons.location_city),
+              initValue: userDetails.city,
+              onChanged: (newCity) {
                 userDetails.city = newCity!;
                 getDetails(userDetails);
               },
             ),
-            _inputField(
-              "ZipCode",
-              Icon(Icons.location_city),
-              userDetails.zipcode,
-              (newZipcode) {
+            InputField(
+              label: "ZipCode",
+              prefixIcon: Icon(Icons.location_city),
+              initValue: userDetails.zipcode,
+              onChanged: (newZipcode) {
                 userDetails.zipcode = newZipcode!;
                 getDetails(userDetails);
               },
             ),
-            _inputField(
-              "Phone number",
-              Icon(Icons.phone),
-              userDetails.phoneNumber,
-              (newPN) {
+            InputField(
+              label: "Phone number",
+              prefixIcon: Icon(Icons.phone),
+              initValue: userDetails.phoneNumber,
+              onChanged: (newPN) {
                 userDetails.phoneNumber = newPN!;
                 getDetails(userDetails);
               },
             ),
-            _inputField(
-              "email",
-              Icon(Icons.email),
-              userDetails.email,
-              (newEmail) {
+            InputField(
+              label: "email",
+              prefixIcon: Icon(Icons.email),
+              initValue: userDetails.email,
+              onChanged: (newEmail) {
                 userDetails.email = newEmail!;
                 getDetails(userDetails);
               },
@@ -159,47 +160,4 @@ class FinalizeClientDetails extends StatelessWidget {
           ],
         ),
       );
-
-  Widget _inputField(String label, Icon prefixIcon, String initValue,
-      void Function(String?)? onChanged) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: Insets.xs),
-      child: TextFormField(
-        decoration: _textFireldDecoration(label, prefixIcon),
-        minLines: 1,
-        initialValue: initValue,
-        onChanged: onChanged,
-        validator: (value) {
-          if (value == null || value.isEmpty) {
-            return "value can't be null";
-          }
-          return null;
-        },
-      ),
-    );
-  }
-
-  InputDecoration _textFireldDecoration(String label, Icon prefixIcon) {
-    return InputDecoration(
-      hintText: label,
-      label: Text(label),
-      focusColor: Colors.black,
-      hoverColor: Colors.black,
-      prefixIcon: prefixIcon,
-      border: OutlineInputBorder(
-        borderSide: const BorderSide(
-          width: 2,
-          color: Colors.black,
-        ),
-      ),
-      enabledBorder: OutlineInputBorder(
-        borderSide: const BorderSide(
-          width: 1,
-          color: Colors.black87,
-        ),
-        borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(20), topRight: Radius.circular(10)),
-      ),
-    );
-  }
 }

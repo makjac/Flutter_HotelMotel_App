@@ -5,7 +5,7 @@ import 'package:hotel_motel/bloc/review/review_bloc.dart';
 import 'package:hotel_motel/controller/user/user_controller.dart';
 import 'package:hotel_motel/repository/fb_firestore_repository.dart';
 import 'package:hotel_motel/repository/hotel_repository/hotel_repository.dart';
-import 'package:hotel_motel/repository/model_repositores/user_repository/user_repository.dart';
+import 'package:hotel_motel/repository/user_repository/user_repository.dart';
 import 'package:hotel_motel/repository/review_repository/review_repository.dart';
 import 'package:hotel_motel/repository/room_repository/room_repository.dart';
 import 'package:hotel_motel/repository/user_details_repository/user_details_repository.dart';

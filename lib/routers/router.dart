@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hotel_motel/constans/route_name_constans.dart';
 import 'package:hotel_motel/screens/add_review_screen/add_review_page.dart';
-import 'package:hotel_motel/screens/auth_screens/auth_screens_base.dart';
 import 'package:hotel_motel/screens/booking_screen/booking_page.dart';
 import 'package:hotel_motel/screens/finalize_booking_screen/finalize_booking_page.dart';
 import 'package:hotel_motel/screens/finalize_booking_screen/utils/finalize_booking_arguments.dart';
@@ -12,6 +11,9 @@ import 'package:hotel_motel/screens/results_screens/results_page.dart';
 
 import '../models/booking_thumbnail_model.dart';
 import '../models/search_cryteria.dart';
+import '../screens/auth_screens/forgot_password/forgot_password_page.dart';
+import '../screens/auth_screens/signIn/sign_in_page.dart';
+import '../screens/auth_screens/signUp/sign_up_page.dart';
 
 class AppRouter {
   AppRouter();

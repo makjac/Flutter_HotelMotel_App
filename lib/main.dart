@@ -7,7 +7,7 @@ import 'package:hotel_motel/bloc/review/review_bloc.dart';
 import 'package:hotel_motel/firebase_options.dart';
 import 'package:hotel_motel/locator.dart';
 import 'package:hotel_motel/routers/router.dart';
-import 'package:hotel_motel/screens/auth_screens/auth_screens_base.dart';
+import 'package:hotel_motel/screens/auth_screens/signIn/sign_in_page.dart';
 import 'package:hotel_motel/service/analitics_service/analitics_service.dart';
 import 'package:hotel_motel/utils/userSharedPreferences.dart';
 

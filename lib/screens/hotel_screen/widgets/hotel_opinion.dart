@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:hotel_motel/locator.dart';
 import 'package:hotel_motel/models/user_model.dart';
-import 'package:hotel_motel/repository/model_repositores/user_repository/user_repository.dart';
+import 'package:hotel_motel/repository/user_repository/user_repository.dart';
 import 'package:hotel_motel/screens/hotel_screen/widgets/summary/score_label.dart';
 import 'package:hotel_motel/theme/theme_base.dart';
 

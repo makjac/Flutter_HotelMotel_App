@@ -39,7 +39,7 @@ class FavoriteBloc extends Bloc<FavoriteEvent, FavoriteState> {
       await _favoriteRepository
           .getUserFavorite(_userController.currentUserUid!)
           .forEach((favotire) {
-        if (favotire.favoriteHotels![0].isNotEmpty) {
+        if (favotire.favoriteHotels != []) {
           favotire.favoriteHotels?.forEach((favoriteHotel) async {
             await _hotelRepository
                 .getHotel(favoriteHotel)
@@ -53,7 +53,7 @@ class FavoriteBloc extends Bloc<FavoriteEvent, FavoriteState> {
             });
           });
         } else {
-          emit(FavoriteError(error: "You don't have any favorite hotel"));
+          emit(NoFavorites());
         }
       });
     } catch (error) {

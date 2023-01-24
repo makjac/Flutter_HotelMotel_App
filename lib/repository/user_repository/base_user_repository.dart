@@ -1,5 +1,5 @@
-import '../../../models/favorite_model.dart';
-import '../../../models/user_model.dart';
+import '../../models/favorite_model.dart';
+import '../../models/user_model.dart';
 
 abstract class BaseUserRepository {
   Stream<UserModel> getUserDetails(String uid);
@@ -9,4 +9,6 @@ abstract class BaseUserRepository {
   Future<bool> removeFavoriteHotel(String userUid, String hotelID);
 
   Future<Favorite> getUserFavoriteHotels(String userUid);
+
+  Future<void> initUserDocuments(String userUid, String email);
 }

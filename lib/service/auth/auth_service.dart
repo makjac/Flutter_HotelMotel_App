@@ -1,4 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:hotel_motel/locator.dart';
+import 'package:hotel_motel/repository/user_repository/user_repository.dart';
 
 import '../../../models/user_model.dart';
 
@@ -15,8 +17,11 @@ class AuthService {
 
   Future<void> signUp({required String email, required String passwd}) async {
     try {
-      await _firebaseAuth.createUserWithEmailAndPassword(
-          email: email, password: passwd);
+      final UserCredential user = await _firebaseAuth
+          .createUserWithEmailAndPassword(email: email, password: passwd);
+      await locator
+          .get<UserRepository>()
+          .initUserDocuments(user.user!.uid, email);
     } on FirebaseAuthException catch (e) {
       if (e.code == "email-already-in-use") {
         throw Exception(
