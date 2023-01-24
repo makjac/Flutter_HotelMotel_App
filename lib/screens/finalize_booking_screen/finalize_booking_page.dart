@@ -63,6 +63,7 @@ class _FinalizeBookingPageState extends State<FinalizeBookingPage> {
           appBar: AppBar(
             title: const Text("Finalize booking"),
             centerTitle: true,
+            backgroundColor: InsetsColors.abBackgroundColor,
           ),
           body: SingleChildScrollView(
             child: Column(

@@ -5,6 +5,7 @@ import 'package:hotel_motel/models/search_cryteria.dart';
 import 'package:hotel_motel/locator.dart';
 import 'package:hotel_motel/screens/results_screens/utils/results_sort_values.dart';
 import 'package:hotel_motel/screens/results_screens/widgets/results_list.dart';
+import 'package:hotel_motel/theme/colors.dart';
 import 'package:hotel_motel/theme/design_system.dart';
 
 import '../../bloc/results/result_search_bloc.dart';
@@ -37,6 +38,7 @@ class RresultStatesPage extends State<ResultsPage> {
       appBar: AppBar(
         title: Text("Results"),
         centerTitle: true,
+        backgroundColor: InsetsColors.abBackgroundColor,
         bottom: _appBarBottom(context),
       ),
       body: _searchResults(),
@@ -106,6 +108,9 @@ class RresultStatesPage extends State<ResultsPage> {
       },
       icon: Icon(Icons.sort),
       label: const Text("Sort"),
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Color.fromARGB(255, 116, 116, 116),
+      ),
     );
   }
 
@@ -134,6 +139,9 @@ class RresultStatesPage extends State<ResultsPage> {
       },
       icon: Icon(Icons.filter_alt_outlined),
       label: const Text("Filter"),
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Color.fromARGB(255, 116, 116, 116),
+      ),
     );
   }
 

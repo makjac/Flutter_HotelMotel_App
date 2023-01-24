@@ -51,11 +51,11 @@ class _ReviewDetailsSliderState extends State<ReviewDetailsSlider> {
               widget.onChanged(changedValue);
             }),
             min: 0,
-            max: 10,
+            max: 100,
             divisions: 10,
             activeColor: Colors.black,
             inactiveColor: Colors.black26,
-            label: "${widget.value.toInt()}",
+            label: "${widget.value ~/ 10}",
           ),
         ),
       ],

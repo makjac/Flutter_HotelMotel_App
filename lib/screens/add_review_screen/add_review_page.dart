@@ -52,7 +52,7 @@ class AddReviewPage extends StatelessWidget {
                   ),
                   const SizedBox(height: Insets.xs),
                   ReviewStarRating(
-                      onChanged: (value) => review.details.total = value),
+                      onChanged: (value) => review.details.total = value * 10),
                   AppDivider(),
                   ReviewDetailsRating(
                     onChanged: (details) => review.details = details,
@@ -73,12 +73,23 @@ class AddReviewPage extends StatelessWidget {
                       );
                     }
                     return Center(
-                      child: ElevatedButton(
-                        onPressed: () {
-                          BlocProvider.of<ReviewBloc>(context)
-                              .add(AddReview(review: review));
-                        },
-                        child: const Text("Send"),
+                      child: Padding(
+                        padding:
+                            const EdgeInsets.symmetric(horizontal: Insets.s),
+                        child: SizedBox(
+                          width: double.infinity,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              BlocProvider.of<ReviewBloc>(context)
+                                  .add(AddReview(review: review));
+                            },
+                            child: const Text("Send"),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor:
+                                  Color.fromARGB(255, 116, 116, 116),
+                            ),
+                          ),
+                        ),
                       ),
                     );
                   })),
