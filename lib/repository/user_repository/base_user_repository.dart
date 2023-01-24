@@ -10,5 +10,7 @@ abstract class BaseUserRepository {
 
   Future<Favorite> getUserFavoriteHotels(String userUid);
 
+  Future<void> updateUser(String uid, UserModel user);
+
   Future<void> initUserDocuments(String userUid, String email);
 }

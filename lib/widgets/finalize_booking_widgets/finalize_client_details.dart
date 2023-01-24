@@ -71,7 +71,7 @@ class FinalizeClientDetails extends StatelessWidget {
             _inputField(
               "Name",
               Icon(Icons.person),
-              userDetails.name,
+              userDetails.name!,
               (newName) {
                 userDetails.name = newName!;
                 getDetails(userDetails);
@@ -80,7 +80,7 @@ class FinalizeClientDetails extends StatelessWidget {
             _inputField(
               "Surname",
               Icon(Icons.person),
-              userDetails.surname,
+              userDetails.surname!,
               (newSurname) {
                 userDetails.surname = newSurname!;
                 getDetails(userDetails);
@@ -89,7 +89,7 @@ class FinalizeClientDetails extends StatelessWidget {
             _inputField(
               "Street",
               Icon(Icons.location_city),
-              userDetails.street,
+              userDetails.street!,
               (newStreet) {
                 userDetails.street = newStreet!;
                 getDetails(userDetails);
@@ -98,7 +98,7 @@ class FinalizeClientDetails extends StatelessWidget {
             _inputField(
               "Building Number",
               Icon(Icons.location_city),
-              userDetails.buildingNumber,
+              userDetails.buildingNumber!,
               (newBN) {
                 userDetails.buildingNumber = newBN ?? "";
                 getDetails(userDetails);
@@ -107,7 +107,7 @@ class FinalizeClientDetails extends StatelessWidget {
             _inputField(
               "Local Number",
               Icon(Icons.location_city),
-              userDetails.localNumber,
+              userDetails.localNumber!,
               (newLN) {
                 userDetails.localNumber = newLN ?? "";
                 getDetails(userDetails);
@@ -116,7 +116,7 @@ class FinalizeClientDetails extends StatelessWidget {
             _inputField(
               "City",
               Icon(Icons.location_city),
-              userDetails.city,
+              userDetails.city!,
               (newCity) {
                 userDetails.city = newCity!;
                 getDetails(userDetails);
@@ -125,7 +125,7 @@ class FinalizeClientDetails extends StatelessWidget {
             _inputField(
               "ZipCode",
               Icon(Icons.location_city),
-              userDetails.zipcode,
+              userDetails.zipcode!,
               (newZipcode) {
                 userDetails.zipcode = newZipcode!;
                 getDetails(userDetails);
@@ -134,7 +134,7 @@ class FinalizeClientDetails extends StatelessWidget {
             _inputField(
               "Phone number",
               Icon(Icons.phone),
-              userDetails.phoneNumber,
+              userDetails.phoneNumber!,
               (newPN) {
                 userDetails.phoneNumber = newPN!;
                 getDetails(userDetails);
@@ -143,7 +143,7 @@ class FinalizeClientDetails extends StatelessWidget {
             _inputField(
               "email",
               Icon(Icons.email),
-              userDetails.email,
+              userDetails.email!,
               (newEmail) {
                 userDetails.email = newEmail!;
                 getDetails(userDetails);

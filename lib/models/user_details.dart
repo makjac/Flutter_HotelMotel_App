@@ -6,26 +6,26 @@ import 'package:equatable/equatable.dart';
 
 // ignore: must_be_immutable
 class UserDetails extends Equatable {
-  String name;
-  String surname;
-  String street;
-  String buildingNumber;
-  String localNumber;
-  String city;
-  String zipcode;
-  String phoneNumber;
-  String email;
+  String? name;
+  String? surname;
+  String? street;
+  String? buildingNumber;
+  String? localNumber;
+  String? city;
+  String? zipcode;
+  String? phoneNumber;
+  String? email;
 
   UserDetails({
-    required this.name,
-    required this.surname,
-    required this.street,
-    required this.buildingNumber,
-    required this.localNumber,
-    required this.city,
-    required this.zipcode,
-    required this.phoneNumber,
-    required this.email,
+    this.name,
+    this.surname,
+    this.street,
+    this.buildingNumber,
+    this.localNumber,
+    this.city,
+    this.zipcode,
+    this.phoneNumber,
+    this.email,
   });
 
   static UserDetails fromSnapshot(DocumentSnapshot snap) {
@@ -104,16 +104,6 @@ class UserDetails extends Equatable {
 
   @override
   List<Object> get props {
-    return [
-      name,
-      surname,
-      street,
-      buildingNumber,
-      localNumber,
-      city,
-      zipcode,
-      phoneNumber,
-      email,
-    ];
+    return [];
   }
 }

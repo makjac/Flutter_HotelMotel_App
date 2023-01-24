@@ -64,6 +64,7 @@ class _ProfilePageState extends State<ProfilePage> {
               child: Column(
                 children: [
                   const ProfileUserForm(),
+                  const SizedBox(height: Insets.s),
                   const ProfileResetPasswordButton(),
                   const SizedBox(height: Insets.xs),
                   _logoutButton(),

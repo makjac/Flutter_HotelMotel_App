@@ -13,7 +13,11 @@ class ProfileUserForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _formKey = GlobalKey<FormState>();
+    UserModel userModel = UserModel(anonim: false);
+    UserDetails userDetails = UserDetails();
     return Form(
+      key: _formKey,
       child: Column(
         children: [
           StreamBuilder<UserModel>(
@@ -28,7 +32,8 @@ class ProfileUserForm extends StatelessWidget {
                       label: "Username",
                       prefixIcon: Icon(Icons.person),
                       initValue: snapshot.data!.displayName ?? "",
-                      onSaved: (newUsername) {},
+                      onSaved: (newUsername) =>
+                          userModel.displayName = newUsername,
                     ),
                   ],
                 );
@@ -48,62 +53,81 @@ class ProfileUserForm extends StatelessWidget {
                       label: "Name",
                       prefixIcon: Icon(Icons.person),
                       initValue: snapshot.data?.name,
-                      onSaved: (newName) {},
+                      onSaved: (newName) => userDetails.name = newName,
                     ),
                     InputField(
                       label: "Surname",
                       prefixIcon: Icon(Icons.person),
                       initValue: snapshot.data?.surname,
-                      onSaved: (newSurname) {},
+                      onSaved: (newSurname) => userDetails.surname = newSurname,
                     ),
                     InputField(
                       label: "Street",
                       prefixIcon: Icon(Icons.location_city),
                       initValue: snapshot.data?.street,
-                      onSaved: (newStreet) {},
+                      onSaved: (newStreet) => userDetails.street = newStreet,
                     ),
                     InputField(
                       label: "Building Number",
                       prefixIcon: Icon(Icons.location_city),
                       initValue: snapshot.data?.buildingNumber,
-                      onSaved: (newBN) {},
+                      onSaved: (newBN) => userDetails.buildingNumber = newBN,
                     ),
                     InputField(
                       label: "Local Number",
                       prefixIcon: Icon(Icons.location_city),
                       initValue: snapshot.data?.localNumber,
-                      onSaved: (newLN) {},
+                      onSaved: (newLN) => userDetails.localNumber = newLN,
                     ),
                     InputField(
                       label: "City",
                       prefixIcon: Icon(Icons.location_city),
                       initValue: snapshot.data?.city,
-                      onSaved: (newCity) {},
+                      onSaved: (newCity) => userDetails.city = newCity,
                     ),
                     InputField(
                       label: "ZipCode",
                       prefixIcon: Icon(Icons.location_city),
                       initValue: snapshot.data?.zipcode,
-                      onSaved: (newZipcode) {},
+                      onSaved: (newZipcode) => userDetails.zipcode = newZipcode,
                     ),
                     InputField(
                       label: "Phone number",
                       prefixIcon: Icon(Icons.phone),
                       initValue: snapshot.data?.phoneNumber,
-                      onSaved: (newPN) {},
+                      onSaved: (newPN) => userDetails.phoneNumber = newPN,
                     ),
                     InputField(
                       label: "email",
                       prefixIcon: Icon(Icons.email),
                       initValue: snapshot.data?.email,
-                      onSaved: (newEmail) {},
+                      onSaved: (newEmail) => userDetails.email = newEmail,
                     ),
                   ],
                 );
               }
               return CircularProgressIndicator(color: Colors.black);
             },
-          )
+          ),
+          SizedBox(
+            width: double.infinity,
+            child: ElevatedButton(
+              onPressed: () async {
+                if (_formKey.currentState!.validate()) {
+                  _formKey.currentState!.save();
+                  var uid = locator.get<UserController>().currentUserUid;
+                  await locator
+                      .get<UserRepository>()
+                      .updateUser(uid!, userModel);
+                  await locator
+                      .get<UserDetailsRepository>()
+                      .updateUserDetails(uid, userDetails);
+                }
+              },
+              child: const Text("Save user data"),
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.grey),
+            ),
+          ),
         ],
       ),
     );

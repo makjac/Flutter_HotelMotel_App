@@ -71,6 +71,13 @@ class UserRepository extends BaseUserRepository {
   }
 
   @override
+  Future<void> updateUser(String uid, UserModel user) async {
+    var userRef = _firestore.collection('user').doc(uid);
+
+    await userRef.update(user.toMap());
+  }
+
+  @override
   Future<void> initUserDocuments(String userUid, String email) async {
     var userRef = _firestore.collection('user');
     var favoriteRef =
