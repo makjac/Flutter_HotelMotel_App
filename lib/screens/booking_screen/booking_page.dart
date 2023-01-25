@@ -8,6 +8,7 @@ import 'package:hotel_motel/screens/booking_screen/widgets/cancell_booking_butto
 import 'package:hotel_motel/screens/booking_screen/widgets/contact_details.dart';
 import 'package:hotel_motel/screens/booking_screen/widgets/hotel_details.dart';
 import 'package:hotel_motel/screens/booking_screen/widgets/price_details.dart';
+import 'package:hotel_motel/theme/colors.dart';
 import 'package:hotel_motel/theme/design_system.dart';
 import 'package:hotel_motel/widgets/decorations/app_divider.dart';
 
@@ -25,6 +26,7 @@ class BookingPage extends StatelessWidget {
         appBar: AppBar(
           title: const Text("Booking details"),
           centerTitle: true,
+          backgroundColor: InsetsColors.abBackgroundColor,
         ),
         body: SingleChildScrollView(
           child: Column(

@@ -41,9 +41,11 @@ class BookingThumbnailContent extends StatelessWidget {
                     hotel: hotel,
                   ),
                   const SizedBox(height: Insets.s),
-                  BookingThumbnailDetails(
-                    booking: booking,
-                    hotel: hotel,
+                  Expanded(
+                    child: BookingThumbnailDetails(
+                      booking: booking,
+                      hotel: hotel,
+                    ),
                   ),
                 ],
               ),

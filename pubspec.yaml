@@ -47,6 +47,7 @@ dependencies:
   carousel_slider: ^4.1.1
   smooth_page_indicator: ^1.0.0+2
   dcdg: ^4.1.0
+  auto_size_text: ^3.0.0
   
 
 
