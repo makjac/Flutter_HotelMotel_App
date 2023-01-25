@@ -24,3 +24,9 @@ class AuthError extends AuthState {
 }
 
 class SignedOut extends AuthState {}
+
+class CheckingUser extends AuthState {}
+
+class UserLoggedIn extends AuthState {}
+
+class NoUserLoggedIn extends AuthState {}

@@ -18,6 +18,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<SignUpRequest>(_signUp);
     on<ForgotPasswdRequest>(_forgotPasswd);
     on<SignOutRequest>(_signOut);
+    on<CheckUserEvt>(_checkUser);
   }
 
   FutureOr<void> _signIn(SignInRequest event, Emitter<AuthState> emit) async {
@@ -62,6 +63,19 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(SignedOut());
     } catch (e) {
       emit(AuthError(error: e.toString()));
+    }
+  }
+
+  FutureOr<void> _checkUser(CheckUserEvt event, Emitter<AuthState> emit) async {
+    try {
+      emit(CheckingUser());
+      if (await _userController.isUserLoggedIn()) {
+        emit(UserLoggedIn());
+      } else {
+        emit(NoUserLoggedIn());
+      }
+    } catch (e) {
+      emit(AuthError(error: "No loggedin user..."));
     }
   }
 }

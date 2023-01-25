@@ -83,7 +83,7 @@ class _SearchFormState extends State<SearchForm> {
               .then((value) {
             if (value != "" && value != null) {
               widget.location = value;
-              HomeShared.setLocation(value);
+              UserSharedPreferences.setLocation(value);
             }
           });
           setState(() {});
@@ -123,8 +123,10 @@ class _SearchFormState extends State<SearchForm> {
               .then((range) {
             if (range != null) {
               widget.dateRange = range;
-              HomeShared.setStartTime(range.start.millisecondsSinceEpoch);
-              HomeShared.setEndTime(range.end.millisecondsSinceEpoch);
+              UserSharedPreferences.setStartTime(
+                  range.start.millisecondsSinceEpoch);
+              UserSharedPreferences.setEndTime(
+                  range.end.millisecondsSinceEpoch);
             }
           });
           setState(() {});
@@ -247,9 +249,9 @@ class _SearchFormState extends State<SearchForm> {
       }
       widget.kids = _kidsController.number;
     });
-    HomeShared.setRooms(widget.rooms);
-    HomeShared.setAdults(widget.adults);
-    HomeShared.setKids(widget.kids);
+    UserSharedPreferences.setRooms(widget.rooms);
+    UserSharedPreferences.setAdults(widget.adults);
+    UserSharedPreferences.setKids(widget.kids);
     Navigator.pop(context);
   }
 

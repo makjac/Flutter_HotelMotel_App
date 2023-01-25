@@ -1,12 +1,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hotel_motel/locator.dart';
 import 'package:hotel_motel/repository/user_repository/user_repository.dart';
+import 'package:hotel_motel/service/auth/base_auth_service.dart';
+import 'package:hotel_motel/utils/userSharedPreferences.dart';
 
 import '../../../models/user_model.dart';
 
-class AuthService {
+class AuthService extends BaseAuthService {
   final _firebaseAuth = FirebaseAuth.instance;
 
+  @override
   Future<UserModel> getUser() async {
     var firebaseUser = _firebaseAuth.currentUser;
     return UserModel(
@@ -15,6 +18,7 @@ class AuthService {
         avatarUrl: null);
   }
 
+  @override
   Future<void> signUp({required String email, required String passwd}) async {
     try {
       final UserCredential user = await _firebaseAuth
@@ -38,10 +42,12 @@ class AuthService {
     }
   }
 
+  @override
   Future<void> signIn({required String email, required String passwd}) async {
     try {
-      await _firebaseAuth.signInWithEmailAndPassword(
+      UserCredential user = await _firebaseAuth.signInWithEmailAndPassword(
           email: email, password: passwd);
+      await UserSharedPreferences.setUserUID(user.user!.uid);
     } on FirebaseAuthException catch (e) {
       switch (e.code) {
         case "user-not-found":
@@ -58,10 +64,13 @@ class AuthService {
     }
   }
 
+  @override
   Future<void> signOut() async {
     await _firebaseAuth.signOut();
+    await UserSharedPreferences.clear();
   }
 
+  @override
   Future<void> resetPasswd({required String email}) async {
     try {
       _firebaseAuth.sendPasswordResetEmail(email: email);
@@ -75,5 +84,14 @@ class AuthService {
     } catch (e) {
       throw Exception(e.toString());
     }
+  }
+
+  @override
+  Future<bool> checkUser() async {
+    final firebaseUID = _firebaseAuth.currentUser?.uid;
+    if (firebaseUID != null) {
+      return firebaseUID == UserSharedPreferences.getUserUID();
+    }
+    return false;
   }
 }

@@ -3,7 +3,7 @@ import 'dart:io';
 abstract class BaseStorageService {
   Future<void> uploadProfileFile(File file, String? uid);
 
-  Future<String> getProfulrImgUrl(String? uid);
+  Future<String> getProfUlrImgUrl(String? uid);
 
   Future<void> deleteProfulrImgUrl(String? uid);
 

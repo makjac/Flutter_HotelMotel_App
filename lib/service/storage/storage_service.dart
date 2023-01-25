@@ -17,7 +17,7 @@ class StorageService extends BaseStorageService {
     }
   }
 
-  Future<String> getProfulrImgUrl(String? uid) async {
+  Future<String> getProfUlrImgUrl(String? uid) async {
     try {
       var storageRef = _storage.ref().child("$profileImgLicatoion$uid");
       return storageRef.getDownloadURL();

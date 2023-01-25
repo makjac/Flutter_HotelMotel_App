@@ -129,7 +129,7 @@ class _HotelOpinionState extends State<HotelOpinion>
   Widget _profileAvatar() => FutureBuilder<String>(
         future: locator
             .get<StorageService>()
-            .getProfulrImgUrl(widget.opinion.userUid),
+            .getProfUlrImgUrl(widget.opinion.userUid),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return CircleAvatar(

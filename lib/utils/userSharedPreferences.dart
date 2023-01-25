@@ -2,9 +2,10 @@
 
 import 'package:shared_preferences/shared_preferences.dart';
 
-class HomeShared {
+class UserSharedPreferences {
   static late SharedPreferences _preferences;
 
+  static const _keyUserUID = 'user_uid';
   static const _keyLocation = 'search_location';
   static const _keyStatTime = 'start_time';
   static const _keyEndTime = 'end_time';
@@ -14,6 +15,14 @@ class HomeShared {
 
   static Future init() async =>
       _preferences = await SharedPreferences.getInstance();
+
+  static Future<bool> clear() async => _preferences.clear();
+
+  //user
+  static Future setUserUID(String uid) async =>
+      await _preferences.setString(_keyUserUID, uid);
+
+  static String? getUserUID() => _preferences.getString(_keyUserUID);
 
   //Search location
   static Future setLocation(String location) async =>

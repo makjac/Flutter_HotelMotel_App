@@ -31,6 +31,10 @@ class _SignInPageState extends State<SignInPage> {
                 content: Text(state.error),
               ));
             }
+            if (state is UserLoggedIn) {
+              Navigator.pushNamedAndRemoveUntil(
+                  context, AppRoute.HOME_ROUTE, (route) => false);
+            }
           },
           child: AuthScreenTemplate(
               header: "Sign In",

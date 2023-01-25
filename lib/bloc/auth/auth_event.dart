@@ -32,3 +32,5 @@ class ForgotPasswdRequest extends AuthEvent {
     required this.email,
   });
 }
+
+class CheckUserEvt extends AuthEvent {}

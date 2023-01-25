@@ -10,4 +10,6 @@ abstract class BaseAuthService {
   Future<void> signOut();
 
   Future<void> resetPasswd({required String email});
+
+  Future<bool> checkUser();
 }

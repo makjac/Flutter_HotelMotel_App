@@ -23,7 +23,7 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  await HomeShared.init();
+  await UserSharedPreferences.init();
 
   setupServices();
 
@@ -31,7 +31,7 @@ Future<void> main() async {
     MultiBlocProvider(
       providers: [
         BlocProvider<AuthBloc>(
-          create: (context) => locator.get<AuthBloc>(),
+          create: (context) => locator.get<AuthBloc>()..add(CheckUserEvt()),
         ),
         BlocProvider<HotelThumbnailBloc>(
             create: (context) =>

@@ -23,6 +23,8 @@ abstract class BaseUserController {
 
   bool isHotelUserFavorite(String hotelID);
 
+  Future<bool> isUserLoggedIn();
+
   UserModel? get currentUser;
 
   String? get currentUserUid;
