@@ -40,6 +40,19 @@ class _ProfilePageState extends State<ProfilePage> {
     }
   }
 
+  Future<void> deleteImage() async {
+    try {
+      await locator
+          .get<UserController>()
+          .deleteUserProfileImage()
+          .whenComplete(() {
+        setState(() {});
+      });
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,7 +71,13 @@ class _ProfilePageState extends State<ProfilePage> {
               imgUrl: locator.get<UserController>().currentUser?.avatarUrl,
               onTap: uploadImage,
             ),
-            const SizedBox(height: Insets.xs),
+            Center(
+              child: TextButton(
+                onPressed: () async => deleteImage(),
+                child: Text("Delete profile image"),
+                style: TextButton.styleFrom(foregroundColor: Colors.red),
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.all(Insets.s),
               child: Column(

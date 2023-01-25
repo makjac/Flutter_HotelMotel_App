@@ -46,7 +46,10 @@ class ProfileUserForm extends StatelessWidget {
                 .get<UserDetailsRepository>()
                 .getUserDetails(locator.get<UserController>().currentUserUid!),
             builder: (context, snapshot) {
-              if (snapshot.hasData) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return CircularProgressIndicator(color: Colors.black);
+              }
+              if (snapshot.connectionState == ConnectionState.active) {
                 return Column(
                   children: [
                     InputField(

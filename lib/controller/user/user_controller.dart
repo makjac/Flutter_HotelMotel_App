@@ -39,6 +39,13 @@ class UserController extends BaseUserController {
     return _currentUser.avatarUrl;
   }
 
+  @override
+  Future<void> deleteUserProfileImage() async {
+    await _storageService
+        .deleteProfulrImgUrl(_currentUser.uid)
+        .then((value) => _currentUser.avatarUrl = "");
+  }
+
   Future<String> getUserProfileImgUrl() {
     return _storageService.getProfUlrImgUrl(_currentUser.uid);
   }

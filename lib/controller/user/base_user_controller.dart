@@ -7,6 +7,8 @@ abstract class BaseUserController {
 
   Future<String?> uploadUserProfileImage(File file);
 
+  Future<void> deleteUserProfileImage();
+
   Future<String> getUserProfileImgUrl();
 
   Future<void> signInUser({required String email, required String passwd});
