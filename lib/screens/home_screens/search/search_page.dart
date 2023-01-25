@@ -45,11 +45,28 @@ class SearchPage extends StatelessWidget {
       padding: const EdgeInsets.all(Insets.s),
       child: SearchForm(
         location: UserSharedPreferences.getLocation(),
+        dateRange: _getTimeRange(),
         room: UserSharedPreferences.getRoomsCount(),
         adult: UserSharedPreferences.getAtultsCount(),
         kid: UserSharedPreferences.getKidsCount(),
       ),
     );
+  }
+
+  DateTimeRange? _getTimeRange() {
+    int? startTime = UserSharedPreferences.getStartTime();
+    int? endTime = UserSharedPreferences.getEndTime();
+
+    if (startTime != null && endTime != null) {
+      if (DateTime.fromMillisecondsSinceEpoch(startTime)
+          .isAfter(DateTime.now())) {
+        return DateTimeRange(
+          start: DateTime.fromMillisecondsSinceEpoch(startTime),
+          end: DateTime.fromMillisecondsSinceEpoch(endTime),
+        );
+      }
+    }
+    return null;
   }
 
   Widget _recomended() {

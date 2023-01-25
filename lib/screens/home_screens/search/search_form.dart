@@ -22,7 +22,7 @@ class SearchForm extends StatefulWidget {
   SearchForm({
     Key? key,
     this.location,
-    DateTimeRange? range,
+    this.dateRange,
     int? room,
     int? adult,
     int? kid,
@@ -147,6 +147,7 @@ class _SearchFormState extends State<SearchForm> {
   }
 
   String _dateText() {
+    print(widget.dateRange);
     if (widget.dateRange == null) {
       return "Pick date";
     } else {

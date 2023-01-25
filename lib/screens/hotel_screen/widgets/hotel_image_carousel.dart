@@ -26,25 +26,25 @@ class _HotelImageCarouselState extends State<HotelImageCarousel> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        CarouselSlider.builder(
-          carouselController: _carouselControler,
-          itemCount: widget.images.length,
-          itemBuilder: ((context, index, realIndex) {
-            return _buildImage(
-                "https://flutterappdev.com/wp-content/uploads/2019/03/Screen-Shot-2019-03-06-at-9.28.42-AM.png",
-                index);
-          }),
-          options: CarouselOptions(
-            viewportFraction: 1,
-            initialPage: _activeIndex,
-            autoPlay: _isAautoPlay,
-            height: widget.height,
-            autoPlayInterval: const Duration(seconds: 3),
-            onPageChanged: (index, reason) {
-              setState(() {
-                _activeIndex = index;
-              });
-            },
+        SizedBox(
+          child: CarouselSlider.builder(
+            carouselController: _carouselControler,
+            itemCount: widget.images.length,
+            itemBuilder: ((context, index, realIndex) {
+              return _buildImage(index);
+            }),
+            options: CarouselOptions(
+              viewportFraction: 1,
+              initialPage: _activeIndex,
+              autoPlay: _isAautoPlay,
+              height: widget.height,
+              autoPlayInterval: const Duration(seconds: 3),
+              onPageChanged: (index, reason) {
+                setState(() {
+                  _activeIndex = index;
+                });
+              },
+            ),
           ),
         ),
         Positioned.fill(
@@ -92,7 +92,7 @@ class _HotelImageCarouselState extends State<HotelImageCarousel> {
     );
   }
 
-  Widget _buildImage(String urlImage, int index) => Container(
+  Widget _buildImage(int index) => Container(
         child: Image.network(
           widget.images[index],
           fit: BoxFit.cover,
