@@ -63,7 +63,7 @@ class HotelPriceContainer extends StatelessWidget {
                   ),
                   const SizedBox(height: Insets.xs),
                   Text(
-                    "PLN ${priceUnit * nights}",
+                    "PLN ${priceUnit.floorToDouble() * nights}",
                     style: const TextStyle(
                         fontWeight: FontWeight.bold, fontSize: 22),
                     textScaleFactor: Scale.textScale(width, 1.5),
