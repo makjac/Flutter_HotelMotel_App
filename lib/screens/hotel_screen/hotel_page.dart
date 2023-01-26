@@ -105,8 +105,8 @@ class _HotelPageState extends State<HotelPage> {
                   nights:
                       widget.hotelArguments.cryteria!.timeRange.duration.inDays,
                   roomCount: widget.hotelArguments.cryteria!.rooms,
-                  adultsCount: 1,
-                  kidsCount: 1,
+                  adultsCount: widget.hotelArguments.cryteria!.adults,
+                  kidsCount: widget.hotelArguments.cryteria!.kids,
                   funcHandler: () => Navigator.pushNamed(
                       context, AppRoute.FINALIZE_ROUTE,
                       arguments: FinalizeBookingArguments(
