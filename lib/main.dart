@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hotel_motel/bloc/auth/auth_bloc.dart';
 import 'package:hotel_motel/bloc/hotel_thumbnail/hotel_thumbnail_bloc.dart';
@@ -27,36 +28,41 @@ Future<void> main() async {
 
   setupServices();
 
-  runApp(
-    MultiBlocProvider(
-      providers: [
-        BlocProvider<AuthBloc>(
-          create: (context) => locator.get<AuthBloc>()..add(CheckUserEvt()),
-        ),
-        BlocProvider<HotelThumbnailBloc>(
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]).then(
+    (_) => runApp(
+      MultiBlocProvider(
+        providers: [
+          BlocProvider<AuthBloc>(
+            create: (context) => locator.get<AuthBloc>()..add(CheckUserEvt()),
+          ),
+          BlocProvider<HotelThumbnailBloc>(
+              create: (context) =>
+                  locator.get<HotelThumbnailBloc>()..add(LoadThumbnails())),
+          BlocProvider<ResultSearchBloc>(
+            create: (context) => locator.get<ResultSearchBloc>(),
+          ),
+          BlocProvider<HotelPageBloc>(
+            create: (context) => locator.get<HotelPageBloc>(),
+          ),
+          BlocProvider<RecomendedBloc>(
             create: (context) =>
-                locator.get<HotelThumbnailBloc>()..add(LoadThumbnails())),
-        BlocProvider<ResultSearchBloc>(
-          create: (context) => locator.get<ResultSearchBloc>(),
+                locator.get<RecomendedBloc>()..add(LoadRecommendation()),
+          ),
+          BlocProvider<BookingsBloc>(
+            create: (context) => locator.get<BookingsBloc>(),
+          ),
+          BlocProvider<ReviewBloc>(
+            create: (context) => locator.get<ReviewBloc>(),
+          ),
+          BlocProvider<FinalizeBookingBloc>(
+              create: (context) => FinalizeBookingBloc()),
+        ],
+        child: HotelMotelApp(
+          router: AppRouter(),
         ),
-        BlocProvider<HotelPageBloc>(
-          create: (context) => locator.get<HotelPageBloc>(),
-        ),
-        BlocProvider<RecomendedBloc>(
-          create: (context) =>
-              locator.get<RecomendedBloc>()..add(LoadRecommendation()),
-        ),
-        BlocProvider<BookingsBloc>(
-          create: (context) => locator.get<BookingsBloc>(),
-        ),
-        BlocProvider<ReviewBloc>(
-          create: (context) => locator.get<ReviewBloc>(),
-        ),
-        BlocProvider<FinalizeBookingBloc>(
-            create: (context) => FinalizeBookingBloc()),
-      ],
-      child: HotelMotelApp(
-        router: AppRouter(),
       ),
     ),
   );
