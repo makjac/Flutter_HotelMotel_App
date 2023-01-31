@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:hotel_motel/service/storage/base_storage_service.dart';
+import 'package:hotel_motel/service/storage_service/base_storage_service.dart';
 
 class StorageService extends BaseStorageService {
   final String profileImgLicatoion = "user/profile/";

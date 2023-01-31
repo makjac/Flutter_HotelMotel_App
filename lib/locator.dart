@@ -10,8 +10,8 @@ import 'package:hotel_motel/repository/review_repository/review_repository.dart'
 import 'package:hotel_motel/repository/room_repository/room_repository.dart';
 import 'package:hotel_motel/repository/user_details_repository/user_details_repository.dart';
 import 'package:hotel_motel/service/analitics_service/analitics_service.dart';
-import 'package:hotel_motel/service/auth/auth_service.dart';
-import 'package:hotel_motel/service/storage/storage_service.dart';
+import 'package:hotel_motel/service/auth_service/auth_service.dart';
+import 'package:hotel_motel/service/storage_service/storage_service.dart';
 
 import 'bloc/bookings/bookings_bloc.dart';
 import 'bloc/hotel/hotel_page_bloc.dart';

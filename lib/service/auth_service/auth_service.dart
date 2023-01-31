@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hotel_motel/locator.dart';
 import 'package:hotel_motel/repository/user_repository/user_repository.dart';
-import 'package:hotel_motel/service/auth/base_auth_service.dart';
+import 'package:hotel_motel/service/auth_service/base_auth_service.dart';
 import 'package:hotel_motel/utils/userSharedPreferences.dart';
 
 import '../../../models/user_model.dart';

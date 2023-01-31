@@ -7,7 +7,7 @@ import 'package:hotel_motel/screens/hotel_screen/widgets/summary/score_label.dar
 import 'package:hotel_motel/theme/theme_base.dart';
 
 import '../../../models/review_model.dart';
-import '../../../service/storage/storage_service.dart';
+import '../../../service/storage_service/storage_service.dart';
 
 class HotelOpinion extends StatefulWidget {
   final ReviewModel opinion;

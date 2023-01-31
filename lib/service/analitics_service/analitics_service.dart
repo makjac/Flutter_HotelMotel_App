@@ -1,5 +1,6 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:hotel_motel/models/hotel_model.dart';
+import 'package:hotel_motel/models/review_model.dart';
 
 import '../../models/search_cryteria.dart';
 
@@ -104,6 +105,21 @@ class AnaliticsService {
           price: price,
         ),
       ],
+    );
+  }
+
+  Future LogAddItemReview(ReviewModel review) async {
+    await _analytics.logEvent(
+      name: "add_item_review",
+      parameters: {
+        "hotelID": review.hotelID,
+        "purity": review.details.purity,
+        "comfort": review.details.comfort,
+        "location": review.details.location,
+        "price": review.details.price,
+        "staff": review.details.staff,
+        "total": review.details.total,
+      },
     );
   }
 }

@@ -6,8 +6,8 @@ import 'package:hotel_motel/locator.dart';
 
 import '../../models/user_model.dart';
 import '../../service/analitics_service/analitics_service.dart';
-import '../../service/auth/auth_service.dart';
-import '../../service/storage/storage_service.dart';
+import '../../service/auth_service/auth_service.dart';
+import '../../service/storage_service/storage_service.dart';
 
 class UserController extends BaseUserController {
   late UserModel _currentUser;
