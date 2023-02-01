@@ -54,7 +54,7 @@ class UserController extends BaseUserController {
       {required String email, required String passwd}) async {
     await _authService.signIn(email: email, passwd: passwd);
     await initUser();
-    await _analiticsService.setUserProporties(userId: _currentUser.uid!);
+    await _analiticsService.setUserId(userId: _currentUser.uid!);
     await _analiticsService.LoginLog();
     _storageService.getProfUlrImgUrl(_currentUser.uid).then(
       (value) {
@@ -117,7 +117,7 @@ class UserController extends BaseUserController {
   Future<bool> isUserLoggedIn() async {
     if (await _authService.checkUser()) {
       await initUser();
-      await _analiticsService.setUserProporties(userId: _currentUser.uid!);
+      await _analiticsService.setUserId(userId: _currentUser.uid!);
       _storageService.getProfUlrImgUrl(_currentUser.uid).then(
         (value) {
           _currentUser.avatarUrl = value;
