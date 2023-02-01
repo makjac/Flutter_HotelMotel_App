@@ -3,9 +3,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:hotel_motel/constans/route_name_constans.dart';
+import 'package:hotel_motel/locator.dart';
 import 'package:hotel_motel/models/hotel_thumbnail_model.dart';
 import 'package:hotel_motel/models/search_cryteria.dart';
 import 'package:hotel_motel/screens/results_screens/utils/hotel_home_nav_argument.dart';
+import 'package:hotel_motel/service/analitics_service/analitics_service.dart';
 
 import 'package:hotel_motel/theme/colors.dart';
 import 'package:hotel_motel/theme/design_system.dart';
@@ -24,6 +26,7 @@ class HotelThumbnail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    locator.get<AnaliticsService>().logHotelThumbnailView(hotel.hotelID);
     final width = MediaQuery.of(context).size.width;
     return InkWell(
       onTap: () {

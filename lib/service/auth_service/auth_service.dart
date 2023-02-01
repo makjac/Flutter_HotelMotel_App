@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hotel_motel/locator.dart';
 import 'package:hotel_motel/repository/user_repository/user_repository.dart';
+import 'package:hotel_motel/service/analitics_service/analitics_service.dart';
 import 'package:hotel_motel/service/auth_service/base_auth_service.dart';
 import 'package:hotel_motel/utils/userSharedPreferences.dart';
 
@@ -27,6 +28,9 @@ class AuthService extends BaseAuthService {
           .get<UserRepository>()
           .initUserDocuments(user.user!.uid, email);
     } on FirebaseAuthException catch (e) {
+      await locator
+          .get<AnaliticsService>()
+          .logAuthError(authType: "Sign Up", error: e.code);
       if (e.code == "email-already-in-use") {
         throw Exception(
             "There already exists an account with the given email address");
@@ -49,6 +53,9 @@ class AuthService extends BaseAuthService {
           email: email, password: passwd);
       await UserSharedPreferences.setUserUID(user.user!.uid);
     } on FirebaseAuthException catch (e) {
+      await locator
+          .get<AnaliticsService>()
+          .logAuthError(authType: "Sign in", error: e.code);
       switch (e.code) {
         case "user-not-found":
           throw Exception("There is no user corresponding to the given email");
@@ -75,6 +82,9 @@ class AuthService extends BaseAuthService {
     try {
       _firebaseAuth.sendPasswordResetEmail(email: email);
     } on FirebaseAuthException catch (e) {
+      await locator
+          .get<AnaliticsService>()
+          .logAuthError(authType: "Reset password", error: e.code);
       if (e.code == "auth/invalid-email") {
         throw Exception("The email address is not valid");
       }

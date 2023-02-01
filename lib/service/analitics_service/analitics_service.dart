@@ -112,13 +112,44 @@ class AnaliticsService {
     await _analytics.logEvent(
       name: "add_item_review",
       parameters: {
-        "hotelID": review.hotelID,
+        "hotel_id": review.hotelID,
         "purity": review.details.purity,
         "comfort": review.details.comfort,
         "location": review.details.location,
         "price": review.details.price,
         "staff": review.details.staff,
         "total": review.details.total,
+      },
+    );
+  }
+
+  Future LogUpdateProfileImage(String userUid) async {
+    await _analytics.logEvent(
+      name: "update_profile_image",
+      parameters: {
+        "User_uid": userUid,
+      },
+    );
+  }
+
+  Future logAuthError({required String authType, String? error}) async {
+    var paremeters = {
+      "auth_type": authType,
+    };
+    if (error != null) {
+      paremeters.addAll({"error_value": error});
+    }
+    await _analytics.logEvent(
+      name: "auth_error",
+      parameters: paremeters,
+    );
+  }
+
+  Future logHotelThumbnailView(String hotelId) async {
+    await _analytics.logEvent(
+      name: "hotel_thumbnail_veiw",
+      parameters: {
+        "hotel_id": hotelId,
       },
     );
   }

@@ -9,6 +9,7 @@ import 'package:hotel_motel/locator.dart';
 import 'package:hotel_motel/screens/home_screens/profile/profile_header.dart';
 import 'package:hotel_motel/screens/home_screens/profile/profile_user_form.dart';
 import 'package:hotel_motel/screens/home_screens/profile/widgets/profile_reset_password_button.dart';
+import 'package:hotel_motel/service/analitics_service/analitics_service.dart';
 import 'package:hotel_motel/theme/theme_base.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -35,6 +36,9 @@ class _ProfilePageState extends State<ProfilePage> {
           setState(() {});
         });
       }
+      await locator
+          .get<AnaliticsService>()
+          .LogUpdateProfileImage(currentUser!.uid!);
     } catch (e) {
       throw Exception(e.toString());
     }

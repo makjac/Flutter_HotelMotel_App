@@ -21,7 +21,7 @@ import 'bloc/search/rcomended_bloc.dart';
 final locator = GetIt.instance;
 
 setupServices() {
-  //repositores
+  locator.registerLazySingleton<AnaliticsService>(() => AnaliticsService());
   locator.registerSingleton<AuthService>(AuthService());
   locator.registerSingleton<StorageService>(StorageService());
   locator.registerSingleton<FirestoreRepository>(FirestoreRepository());
@@ -30,9 +30,6 @@ setupServices() {
   locator.registerSingleton<ReviewRepository>(ReviewRepository());
   locator.registerSingleton<UserRepository>(UserRepository());
   locator.registerSingleton<UserDetailsRepository>(UserDetailsRepository());
-
-  //services
-  locator.registerLazySingleton<AnaliticsService>(() => AnaliticsService());
 
   //controllers
   locator.registerSingleton<UserController>(UserController());

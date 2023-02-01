@@ -25,7 +25,6 @@ class SearchPage extends StatelessWidget {
           children: [
             _searchForm(),
             _recomended(),
-            //_searchAgain(),
             const SizedBox(height: Insets.xs),
           ],
         ),
