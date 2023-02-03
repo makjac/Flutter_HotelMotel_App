@@ -26,7 +26,7 @@ class HotelThumbnail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    locator.get<AnaliticsService>().logHotelThumbnailView(hotel.hotelID);
+    //locator.get<AnaliticsService>().logHotelThumbnailView(hotel.hotelID);
     final width = MediaQuery.of(context).size.width;
     return InkWell(
       onTap: () {
