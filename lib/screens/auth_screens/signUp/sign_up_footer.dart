@@ -16,7 +16,7 @@ class SignUpFooter extends StatelessWidget {
           style: TextButton.styleFrom(
             primary: InsetsColors.tButColor,
           ),
-          child: const Text("Sign Up"),
+          child: const Text("Sign In"),
         ),
       ],
     );
